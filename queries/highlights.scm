@@ -22,6 +22,25 @@
 (option
   key: ((string) @keyword))
 
+(option
+  value: (value
+    [
+      (number)
+      (percentage)
+      (color)] @number))
+
+(option
+  value: (value
+    (boolean) @boolean))
+
+(option
+  value: (value
+    (string) @string))
+
+(option
+  value: (value
+    (inherit) @constant))
+
 (keymap
   "map" @keyword)
 
