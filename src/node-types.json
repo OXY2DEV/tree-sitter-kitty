@@ -42,7 +42,7 @@
           "named": true
         },
         {
-          "type": "keymap",
+          "type": "keyboard_shortcut",
           "named": true
         },
         {
@@ -147,7 +147,7 @@
     }
   },
   {
-    "type": "keymap",
+    "type": "keyboard_shortcut",
     "named": true,
     "fields": {
       "action": {

@@ -48,7 +48,7 @@ enum ts_symbol_identifiers {
   sym_color = 18,
   sym_string = 19,
   anon_sym_map = 20,
-  aux_sym_keymap_token1 = 21,
+  aux_sym_keyboard_shortcut_token1 = 21,
   sym_key_action = 22,
   anon_sym_ctrl = 23,
   anon_sym_control = 24,
@@ -149,7 +149,7 @@ enum ts_symbol_identifiers {
   sym_option = 119,
   sym__primitive = 120,
   sym_boolean = 121,
-  sym_keymap = 122,
+  sym_keyboard_shortcut = 122,
   sym_key_sequence = 123,
   sym__key_element = 124,
   sym_ctrl = 125,
@@ -186,7 +186,7 @@ static const char * const ts_symbol_names[] = {
   [sym_color] = "color",
   [sym_string] = "string",
   [anon_sym_map] = "map",
-  [aux_sym_keymap_token1] = "keymap_token1",
+  [aux_sym_keyboard_shortcut_token1] = "keyboard_shortcut_token1",
   [sym_key_action] = "key_action",
   [anon_sym_ctrl] = "ctrl",
   [anon_sym_control] = "control",
@@ -287,7 +287,7 @@ static const char * const ts_symbol_names[] = {
   [sym_option] = "option",
   [sym__primitive] = "_primitive",
   [sym_boolean] = "boolean",
-  [sym_keymap] = "keymap",
+  [sym_keyboard_shortcut] = "keyboard_shortcut",
   [sym_key_sequence] = "key_sequence",
   [sym__key_element] = "_key_element",
   [sym_ctrl] = "ctrl",
@@ -324,7 +324,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_color] = sym_color,
   [sym_string] = sym_string,
   [anon_sym_map] = anon_sym_map,
-  [aux_sym_keymap_token1] = aux_sym_keymap_token1,
+  [aux_sym_keyboard_shortcut_token1] = aux_sym_keyboard_shortcut_token1,
   [sym_key_action] = sym_key_action,
   [anon_sym_ctrl] = anon_sym_ctrl,
   [anon_sym_control] = anon_sym_control,
@@ -425,7 +425,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_option] = sym_option,
   [sym__primitive] = sym__primitive,
   [sym_boolean] = sym_boolean,
-  [sym_keymap] = sym_keymap,
+  [sym_keyboard_shortcut] = sym_keyboard_shortcut,
   [sym_key_sequence] = sym_key_sequence,
   [sym__key_element] = sym__key_element,
   [sym_ctrl] = sym_ctrl,
@@ -525,7 +525,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
-  [aux_sym_keymap_token1] = {
+  [aux_sym_keyboard_shortcut_token1] = {
     .visible = false,
     .named = false,
   },
@@ -929,7 +929,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_keymap] = {
+  [sym_keyboard_shortcut] = {
     .visible = true,
     .named = true,
   },
@@ -2887,7 +2887,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           ('a' <= lookahead && lookahead <= 'z')) ADVANCE(382);
       END_STATE();
     case 419:
-      ACCEPT_TOKEN(aux_sym_keymap_token1);
+      ACCEPT_TOKEN(aux_sym_keyboard_shortcut_token1);
       if (lookahead == '\t' ||
           lookahead == ' ') ADVANCE(419);
       END_STATE();
@@ -3408,7 +3408,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__gen_include] = STATE(29),
     [sym__env_include] = STATE(30),
     [sym_option] = STATE(26),
-    [sym_keymap] = STATE(26),
+    [sym_keyboard_shortcut] = STATE(26),
     [aux_sym_configuration_file_repeat1] = STATE(9),
     [ts_builtin_sym_end] = ACTIONS(3),
     [anon_sym_POUND] = ACTIONS(5),
@@ -3523,7 +3523,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_super] = STATE(4),
     [sym_special] = STATE(4),
     [aux_sym_key_sequence_repeat1] = STATE(4),
-    [aux_sym_keymap_token1] = ACTIONS(35),
+    [aux_sym_keyboard_shortcut_token1] = ACTIONS(35),
     [anon_sym_ctrl] = ACTIONS(37),
     [anon_sym_control] = ACTIONS(37),
     [anon_sym_CARET] = ACTIONS(37),
@@ -3620,7 +3620,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_super] = STATE(4),
     [sym_special] = STATE(4),
     [aux_sym_key_sequence_repeat1] = STATE(4),
-    [aux_sym_keymap_token1] = ACTIONS(43),
+    [aux_sym_keyboard_shortcut_token1] = ACTIONS(43),
     [anon_sym_ctrl] = ACTIONS(45),
     [anon_sym_control] = ACTIONS(45),
     [anon_sym_CARET] = ACTIONS(45),
@@ -3711,7 +3711,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_add] = ACTIONS(51),
   },
   [STATE(5)] = {
-    [aux_sym_keymap_token1] = ACTIONS(60),
+    [aux_sym_keyboard_shortcut_token1] = ACTIONS(60),
     [anon_sym_ctrl] = ACTIONS(62),
     [anon_sym_control] = ACTIONS(62),
     [anon_sym_CARET] = ACTIONS(62),
@@ -3802,7 +3802,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_add] = ACTIONS(62),
   },
   [STATE(6)] = {
-    [aux_sym_keymap_token1] = ACTIONS(64),
+    [aux_sym_keyboard_shortcut_token1] = ACTIONS(64),
     [anon_sym_ctrl] = ACTIONS(66),
     [anon_sym_control] = ACTIONS(66),
     [anon_sym_CARET] = ACTIONS(66),
@@ -3893,7 +3893,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_add] = ACTIONS(66),
   },
   [STATE(7)] = {
-    [aux_sym_keymap_token1] = ACTIONS(68),
+    [aux_sym_keyboard_shortcut_token1] = ACTIONS(68),
     [anon_sym_ctrl] = ACTIONS(70),
     [anon_sym_control] = ACTIONS(70),
     [anon_sym_CARET] = ACTIONS(70),
@@ -3984,7 +3984,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_add] = ACTIONS(70),
   },
   [STATE(8)] = {
-    [aux_sym_keymap_token1] = ACTIONS(72),
+    [aux_sym_keyboard_shortcut_token1] = ACTIONS(72),
     [anon_sym_ctrl] = ACTIONS(74),
     [anon_sym_control] = ACTIONS(74),
     [anon_sym_CARET] = ACTIONS(74),
@@ -4109,7 +4109,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_comment,
       sym_include,
       sym_option,
-      sym_keymap,
+      sym_keyboard_shortcut,
   [47] = 14,
     ACTIONS(78), 1,
       ts_builtin_sym_end,
@@ -4142,7 +4142,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_comment,
       sym_include,
       sym_option,
-      sym_keymap,
+      sym_keyboard_shortcut,
   [94] = 5,
     ACTIONS(101), 1,
       aux_sym__common_node_token1,
@@ -4242,7 +4242,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_map,
   [211] = 1,
     ACTIONS(127), 1,
-      aux_sym_keymap_token1,
+      aux_sym_keyboard_shortcut_token1,
   [215] = 1,
     ACTIONS(129), 1,
       aux_sym__common_node_token1,
@@ -4405,7 +4405,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [157] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_comment, 2, 0, 0),
   [159] = {.entry = {.count = 1, .reusable = true}}, SHIFT(35),
   [161] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__path_include, 2, 0, 5),
-  [163] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_keymap, 4, 0, 10),
+  [163] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_keyboard_shortcut, 4, 0, 10),
 };
 
 #ifdef __cplusplus

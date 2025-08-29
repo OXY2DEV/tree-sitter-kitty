@@ -29,7 +29,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "keymap"
+              "name": "keyboard_shortcut"
             }
           ]
         },
@@ -298,7 +298,7 @@
         "value": "\\S+"
       }
     },
-    "keymap": {
+    "keyboard_shortcut": {
       "type": "SEQ",
       "members": [
         {

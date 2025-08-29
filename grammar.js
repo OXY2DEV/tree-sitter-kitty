@@ -38,7 +38,7 @@ module.exports = grammar({
         $.comment,
         $.include,
         $.option,
-        $.keymap,
+        $.keyboard_shortcut,
       ),
       /\r?\n+/,
     ),
@@ -114,7 +114,7 @@ module.exports = grammar({
     string: _ => token(/\S+/),
 
 
-    keymap: $ => seq(
+    keyboard_shortcut: $ => seq(
       "map",
       field("sequence", $.key_sequence),
       /[ \t]+/,

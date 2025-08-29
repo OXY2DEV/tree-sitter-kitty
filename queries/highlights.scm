@@ -41,7 +41,7 @@
 ;   value: (value
 ;     (inherit) @constant))
 
-(keymap
+(keyboard_shortcut
   "map" @keyword)
 
 (key_sequence
@@ -62,7 +62,7 @@
 (key_sequence
   (key) @string.special)
 
-(keymap
+(keyboard_shortcut
   action: ((key_action) @variable.builtin))
 
 ; Option specific;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
