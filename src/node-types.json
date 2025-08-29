@@ -1,0 +1,678 @@
+[
+  {
+    "type": "alt",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "boolean",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "comment_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "configuration_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        },
+        {
+          "type": "keymap",
+          "named": true
+        },
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ctrl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "include",
+    "named": true,
+    "fields": {
+      "environment_variable": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "file": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "path",
+            "named": true
+          }
+        ]
+      },
+      "glob": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pattern",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "path",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "key_sequence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "add",
+          "named": true
+        },
+        {
+          "type": "alt",
+          "named": true
+        },
+        {
+          "type": "ctrl",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "key",
+          "named": true
+        },
+        {
+          "type": "shift",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        },
+        {
+          "type": "super",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keymap",
+    "named": true,
+    "fields": {
+      "action": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "key_action",
+            "named": true
+          }
+        ]
+      },
+      "sequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "key_sequence",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "option",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "special",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "super",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "color",
+          "named": true
+        },
+        {
+          "type": "inherit",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "percentage",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "add",
+    "named": true
+  },
+  {
+    "type": "alt",
+    "named": false
+  },
+  {
+    "type": "backspace",
+    "named": false
+  },
+  {
+    "type": "caps_lock",
+    "named": false
+  },
+  {
+    "type": "cmd",
+    "named": false
+  },
+  {
+    "type": "color",
+    "named": true
+  },
+  {
+    "type": "command",
+    "named": false
+  },
+  {
+    "type": "comment_content",
+    "named": true
+  },
+  {
+    "type": "control",
+    "named": false
+  },
+  {
+    "type": "ctrl",
+    "named": false
+  },
+  {
+    "type": "delete",
+    "named": false
+  },
+  {
+    "type": "down",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "enter",
+    "named": false
+  },
+  {
+    "type": "envinclude",
+    "named": false
+  },
+  {
+    "type": "escape",
+    "named": false
+  },
+  {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "function",
+    "named": true
+  },
+  {
+    "type": "geninclude",
+    "named": false
+  },
+  {
+    "type": "globinclude",
+    "named": false
+  },
+  {
+    "type": "home",
+    "named": false
+  },
+  {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "inherit",
+    "named": true
+  },
+  {
+    "type": "insert",
+    "named": false
+  },
+  {
+    "type": "iso_level3_shift",
+    "named": false
+  },
+  {
+    "type": "iso_level5_shift",
+    "named": false
+  },
+  {
+    "type": "key",
+    "named": true
+  },
+  {
+    "type": "key_action",
+    "named": true
+  },
+  {
+    "type": "kp_0",
+    "named": false
+  },
+  {
+    "type": "kp_1",
+    "named": false
+  },
+  {
+    "type": "kp_2",
+    "named": false
+  },
+  {
+    "type": "kp_3",
+    "named": false
+  },
+  {
+    "type": "kp_4",
+    "named": false
+  },
+  {
+    "type": "kp_5",
+    "named": false
+  },
+  {
+    "type": "kp_6",
+    "named": false
+  },
+  {
+    "type": "kp_7",
+    "named": false
+  },
+  {
+    "type": "kp_8",
+    "named": false
+  },
+  {
+    "type": "kp_9",
+    "named": false
+  },
+  {
+    "type": "kp_add",
+    "named": false
+  },
+  {
+    "type": "kp_begin",
+    "named": false
+  },
+  {
+    "type": "kp_decimal",
+    "named": false
+  },
+  {
+    "type": "kp_delete",
+    "named": false
+  },
+  {
+    "type": "kp_divide",
+    "named": false
+  },
+  {
+    "type": "kp_down",
+    "named": false
+  },
+  {
+    "type": "kp_end",
+    "named": false
+  },
+  {
+    "type": "kp_enter",
+    "named": false
+  },
+  {
+    "type": "kp_equal",
+    "named": false
+  },
+  {
+    "type": "kp_home",
+    "named": false
+  },
+  {
+    "type": "kp_insert",
+    "named": false
+  },
+  {
+    "type": "kp_left",
+    "named": false
+  },
+  {
+    "type": "kp_multiply",
+    "named": false
+  },
+  {
+    "type": "kp_page_down",
+    "named": false
+  },
+  {
+    "type": "kp_page_up",
+    "named": false
+  },
+  {
+    "type": "kp_right",
+    "named": false
+  },
+  {
+    "type": "kp_separator",
+    "named": false
+  },
+  {
+    "type": "kp_subtract",
+    "named": false
+  },
+  {
+    "type": "kp_up",
+    "named": false
+  },
+  {
+    "type": "left",
+    "named": false
+  },
+  {
+    "type": "left_alt",
+    "named": false
+  },
+  {
+    "type": "left_control",
+    "named": false
+  },
+  {
+    "type": "left_hyper",
+    "named": false
+  },
+  {
+    "type": "left_meta",
+    "named": false
+  },
+  {
+    "type": "left_shift",
+    "named": false
+  },
+  {
+    "type": "left_super",
+    "named": false
+  },
+  {
+    "type": "lower_volume",
+    "named": false
+  },
+  {
+    "type": "map",
+    "named": false
+  },
+  {
+    "type": "media_fast_forward",
+    "named": false
+  },
+  {
+    "type": "media_pause",
+    "named": false
+  },
+  {
+    "type": "media_play",
+    "named": false
+  },
+  {
+    "type": "media_play_pause",
+    "named": false
+  },
+  {
+    "type": "media_record",
+    "named": false
+  },
+  {
+    "type": "media_reverse",
+    "named": false
+  },
+  {
+    "type": "media_rewind",
+    "named": false
+  },
+  {
+    "type": "media_stop",
+    "named": false
+  },
+  {
+    "type": "media_track_next",
+    "named": false
+  },
+  {
+    "type": "media_track_previous",
+    "named": false
+  },
+  {
+    "type": "menu",
+    "named": false
+  },
+  {
+    "type": "mute_volume",
+    "named": false
+  },
+  {
+    "type": "name",
+    "named": true
+  },
+  {
+    "type": "no",
+    "named": false
+  },
+  {
+    "type": "num_lock",
+    "named": false
+  },
+  {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "opt",
+    "named": false
+  },
+  {
+    "type": "option",
+    "named": false
+  },
+  {
+    "type": "page_down",
+    "named": false
+  },
+  {
+    "type": "page_up",
+    "named": false
+  },
+  {
+    "type": "path",
+    "named": true
+  },
+  {
+    "type": "pattern",
+    "named": true
+  },
+  {
+    "type": "pause",
+    "named": false
+  },
+  {
+    "type": "percentage",
+    "named": true
+  },
+  {
+    "type": "raise_volume",
+    "named": false
+  },
+  {
+    "type": "right",
+    "named": false
+  },
+  {
+    "type": "right_alt",
+    "named": false
+  },
+  {
+    "type": "right_control",
+    "named": false
+  },
+  {
+    "type": "right_hyper",
+    "named": false
+  },
+  {
+    "type": "right_meta",
+    "named": false
+  },
+  {
+    "type": "right_shift",
+    "named": false
+  },
+  {
+    "type": "right_super",
+    "named": false
+  },
+  {
+    "type": "scroll_lock",
+    "named": false
+  },
+  {
+    "type": "shift",
+    "named": true
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
+    "type": "super",
+    "named": false
+  },
+  {
+    "type": "tab",
+    "named": false
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
+    "type": "up",
+    "named": false
+  },
+  {
+    "type": "yes",
+    "named": false
+  }
+]

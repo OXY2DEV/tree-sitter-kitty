@@ -1,0 +1,111 @@
+==============================================================================
+Comment
+==============================================================================
+# Comment
+
+------------------------------------------------------------------------------
+
+(configuration_file
+  (comment
+    (comment_content)))
+
+==============================================================================
+Various includes
+==============================================================================
+include other.conf
+globinclude kitty.d/**/*.conf
+envinclude KITTY_CONF_*
+geninclude dynamic.py
+
+------------------------------------------------------------------------------
+
+(configuration_file
+  (include
+    path: (path))
+  (include
+    glob: (pattern))
+  (include
+    environment_variable: (name))
+  (include
+    file: (path)))
+
+==============================================================================
+Option set
+==============================================================================
+mouse_map left click ungrabbed
+clear_all_mouse_actions no
+wheel_scroll_multiplier 5.0
+url_color #0087bd
+url_style curly
+
+------------------------------------------------------------------------------
+
+(configuration_file
+  (option
+    key: (string)
+    value: (other
+      (entry)
+      (entry)
+      (entry)))
+  (option
+    key: (string)
+    value: (boolean))
+  (option
+    key: (string)
+    value: (number))
+  (option
+    key: (string)
+    value: (color))
+  (option
+    key: (string)
+    value: (other
+      (entry))))
+
+==============================================================================
+Keymap
+==============================================================================
+map ctrl+shift+up scroll_line_up
+map ctrl+shift+k scroll_line_up
+map opt+cmd+page_up scroll_line_up
+map cmd+up scroll_line_up
+
+------------------------------------------------------------------------------
+
+(configuration_file
+  (keymap
+    sequence: (key_sequence
+      (ctrl)
+      (add)
+      (shift)
+      (add)
+      (special))
+    action: (key_action))
+  (keymap
+    sequence: (key_sequence
+      (ctrl)
+      (add)
+      (shift)
+      (add)
+      (key))
+    action: (key_action))
+  (keymap
+    sequence: (key_sequence
+      (key)
+      (key)
+      (key)
+      (add)
+      (key)
+      (key)
+      (key)
+      (add)
+      (special))
+    action: (key_action))
+  (keymap
+    sequence: (key_sequence
+      (key)
+      (key)
+      (key)
+      (add)
+      (special))
+    action: (key_action)))
+
