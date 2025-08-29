@@ -97,6 +97,7 @@ module.exports = grammar({
     ),
 
     _primitive: $ => choice(
+      $.pixel,
       $.percentage,
       $.number,
       $.boolean,
@@ -105,6 +106,7 @@ module.exports = grammar({
       prec(-100, alias(".", $.inherit)),
     ),
 
+    pixel: _ => token(/\d+px/),
     percentage: _ => token(/[\d\.]+%/),
     number: _ => token(/[\d\.\-]+/),
     boolean: _ => choice("yes", "no", "true", "false"),

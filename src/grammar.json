@@ -205,6 +205,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "pixel"
+        },
+        {
+          "type": "SYMBOL",
           "name": "percentage"
         },
         {
@@ -237,6 +241,13 @@
           }
         }
       ]
+    },
+    "pixel": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\d+px"
+      }
     },
     "percentage": {
       "type": "TOKEN",
@@ -285,21 +296,6 @@
       "content": {
         "type": "PATTERN",
         "value": "\\S+"
-      }
-    },
-    "other": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "ALIAS",
-        "content": {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\S+"
-          }
-        },
-        "named": true,
-        "value": "entry"
       }
     },
     "keymap": {

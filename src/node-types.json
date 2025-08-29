@@ -237,6 +237,10 @@
           "named": true
         },
         {
+          "type": "pixel",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         }
@@ -609,6 +613,10 @@
   },
   {
     "type": "percentage",
+    "named": true
+  },
+  {
+    "type": "pixel",
     "named": true
   },
   {
