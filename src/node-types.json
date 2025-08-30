@@ -245,6 +245,57 @@
     }
   },
   {
+    "type": "key_action",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "clear_terminal",
+          "named": true
+        },
+        {
+          "type": "combine",
+          "named": true
+        },
+        {
+          "type": "disable_ligatures",
+          "named": true
+        },
+        {
+          "type": "generic_action",
+          "named": true
+        },
+        {
+          "type": "kitten",
+          "named": true
+        },
+        {
+          "type": "launch",
+          "named": true
+        },
+        {
+          "type": "send_key",
+          "named": true
+        },
+        {
+          "type": "send_text",
+          "named": true
+        },
+        {
+          "type": "show_kitty_doc",
+          "named": true
+        },
+        {
+          "type": "signal_child",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "key_criteria",
     "named": true,
     "fields": {},
@@ -367,9 +418,19 @@
     "type": "launch",
     "named": true,
     "fields": {
-      "options": {
+      "command": {
         "multiple": false,
         "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "options": {
+        "multiple": false,
+        "required": false,
         "types": [
           {
             "type": "launch_options",
@@ -463,6 +524,59 @@
     "fields": {}
   },
   {
+    "type": "launch_hold_after_ssh",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_logo",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_logo_alpha",
+    "named": true,
+    "fields": {
+      "alpha": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_logo_position",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "launch_marker",
     "named": true,
     "fields": {
@@ -535,11 +649,43 @@
           "named": true
         },
         {
+          "type": "launch_hold_after_ssh",
+          "named": true
+        },
+        {
+          "type": "launch_logo",
+          "named": true
+        },
+        {
+          "type": "launch_logo_alpha",
+          "named": true
+        },
+        {
+          "type": "launch_logo_position",
+          "named": true
+        },
+        {
           "type": "launch_marker",
           "named": true
         },
         {
           "type": "launch_next_to",
+          "named": true
+        },
+        {
+          "type": "launch_os_window_class",
+          "named": true
+        },
+        {
+          "type": "launch_os_window_name",
+          "named": true
+        },
+        {
+          "type": "launch_os_window_state",
+          "named": true
+        },
+        {
+          "type": "launch_os_window_title",
           "named": true
         },
         {
@@ -575,6 +721,10 @@
           "named": true
         },
         {
+          "type": "launch_watcher",
+          "named": true
+        },
+        {
           "type": "launch_window_location",
           "named": true
         },
@@ -583,6 +733,70 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "launch_os_window_class",
+    "named": true,
+    "fields": {
+      "class": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_os_window_name",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_os_window_state",
+    "named": true,
+    "fields": {
+      "state": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "window_state",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_os_window_title",
+    "named": true,
+    "fields": {
+      "title": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -668,6 +882,22 @@
         ]
       },
       "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_watcher",
+    "named": true,
+    "fields": {
+      "path": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1112,6 +1342,11 @@
     "fields": {}
   },
   {
+    "type": "window_state",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -1176,6 +1411,14 @@
     "named": false
   },
   {
+    "type": "--hold-after-ssh",
+    "named": false
+  },
+  {
+    "type": "--hold-after-ssh=no",
+    "named": false
+  },
+  {
     "type": "--hold=no",
     "named": false
   },
@@ -1192,11 +1435,39 @@
     "named": false
   },
   {
+    "type": "--logo",
+    "named": false
+  },
+  {
+    "type": "--logo-alpha",
+    "named": false
+  },
+  {
+    "type": "--logo-position",
+    "named": false
+  },
+  {
     "type": "--marker",
     "named": false
   },
   {
     "type": "--next-to",
+    "named": false
+  },
+  {
+    "type": "--os-window-class",
+    "named": false
+  },
+  {
+    "type": "--os-window-name",
+    "named": false
+  },
+  {
+    "type": "--os-window-state",
+    "named": false
+  },
+  {
+    "type": "--os-window-title",
     "named": false
   },
   {
@@ -1240,7 +1511,15 @@
     "named": false
   },
   {
+    "type": "--watcher",
+    "named": false
+  },
+  {
     "type": "--when-focus-on",
+    "named": false
+  },
+  {
+    "type": "-w",
     "named": false
   },
   {
@@ -1480,12 +1759,16 @@
     "named": false
   },
   {
-    "type": "function",
+    "type": "fullscreen",
     "named": false
   },
   {
     "type": "function",
     "named": true
+  },
+  {
+    "type": "function",
+    "named": false
   },
   {
     "type": "geninclude",
@@ -1557,10 +1840,6 @@
   },
   {
     "type": "key",
-    "named": true
-  },
-  {
-    "type": "key_action",
     "named": true
   },
   {
@@ -1744,6 +2023,10 @@
     "named": false
   },
   {
+    "type": "maximized",
+    "named": false
+  },
+  {
     "type": "media_fast_forward",
     "named": false
   },
@@ -1790,6 +2073,10 @@
   {
     "type": "middle",
     "named": true
+  },
+  {
+    "type": "minimized",
+    "named": false
   },
   {
     "type": "mouse_button",
