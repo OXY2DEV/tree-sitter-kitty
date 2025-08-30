@@ -10,6 +10,112 @@
     "fields": {}
   },
   {
+    "type": "clear_action",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "clear_target",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "clear_terminal",
+    "named": true,
+    "fields": {
+      "action": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "clear_action",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "clear_target",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "combine",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "combine_action",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "combine_action",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "clear_terminal",
+          "named": true
+        },
+        {
+          "type": "combine",
+          "named": true
+        },
+        {
+          "type": "disable_ligatures",
+          "named": true
+        },
+        {
+          "type": "generic_action",
+          "named": true
+        },
+        {
+          "type": "kitten",
+          "named": true
+        },
+        {
+          "type": "launch",
+          "named": true
+        },
+        {
+          "type": "send_key",
+          "named": true
+        },
+        {
+          "type": "send_text",
+          "named": true
+        },
+        {
+          "type": "separator",
+          "named": true
+        },
+        {
+          "type": "show_kitty_doc",
+          "named": true
+        },
+        {
+          "type": "signal_child",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {},
@@ -46,6 +152,10 @@
           "named": true
         },
         {
+          "type": "mouse_action",
+          "named": true
+        },
+        {
           "type": "option",
           "named": true
         }
@@ -54,6 +164,37 @@
   },
   {
     "type": "ctrl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "disable_ligatures",
+    "named": true,
+    "fields": {
+      "disabled_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ligature_disabled",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ligature_target",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "generic_action",
     "named": true,
     "fields": {}
   },
@@ -104,6 +245,21 @@
     }
   },
   {
+    "type": "key_criteria",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "condition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "key_sequence",
     "named": true,
     "fields": {},
@@ -112,7 +268,7 @@
       "required": true,
       "types": [
         {
-          "type": "add",
+          "type": "after",
           "named": true
         },
         {
@@ -142,9 +298,18 @@
         {
           "type": "super",
           "named": true
+        },
+        {
+          "type": "together",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "keyboard_mode",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "keyboard_shortcut",
@@ -152,10 +317,20 @@
     "fields": {
       "action": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "key_action",
+            "named": true
+          }
+        ]
+      },
+      "criteria": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "key_criteria",
             "named": true
           }
         ]
@@ -170,6 +345,601 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "kitten",
+    "named": true,
+    "fields": {
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch",
+    "named": true,
+    "fields": {
+      "options": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "launch_options",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_bias",
+    "named": true,
+    "fields": {
+      "amount": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_copy_cmd",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_copy_colors",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_copy_env",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_cwd",
+    "named": true,
+    "fields": {
+      "directory": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_env",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_focus",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_hold",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_marker",
+    "named": true,
+    "fields": {
+      "markers": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "markers",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_next_to",
+    "named": true,
+    "fields": {
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_options",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "launch_bias",
+          "named": true
+        },
+        {
+          "type": "launch_copy_cmd",
+          "named": true
+        },
+        {
+          "type": "launch_copy_colors",
+          "named": true
+        },
+        {
+          "type": "launch_copy_env",
+          "named": true
+        },
+        {
+          "type": "launch_cwd",
+          "named": true
+        },
+        {
+          "type": "launch_env",
+          "named": true
+        },
+        {
+          "type": "launch_focus",
+          "named": true
+        },
+        {
+          "type": "launch_hold",
+          "named": true
+        },
+        {
+          "type": "launch_marker",
+          "named": true
+        },
+        {
+          "type": "launch_next_to",
+          "named": true
+        },
+        {
+          "type": "launch_remote_control",
+          "named": true
+        },
+        {
+          "type": "launch_source_window",
+          "named": true
+        },
+        {
+          "type": "launch_stdin_formatting",
+          "named": true
+        },
+        {
+          "type": "launch_stdin_line_wrap",
+          "named": true
+        },
+        {
+          "type": "launch_stdin_source",
+          "named": true
+        },
+        {
+          "type": "launch_tab_title",
+          "named": true
+        },
+        {
+          "type": "launch_type",
+          "named": true
+        },
+        {
+          "type": "launch_var",
+          "named": true
+        },
+        {
+          "type": "launch_window_location",
+          "named": true
+        },
+        {
+          "type": "launch_window_title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "launch_remote_control",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_source_window",
+    "named": true,
+    "fields": {
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_stdin_formatting",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_stdin_line_wrap",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_stdin_source",
+    "named": true,
+    "fields": {
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "stdin_source",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_tab_title",
+    "named": true,
+    "fields": {
+      "title": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "launch_var",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_window_location",
+    "named": true,
+    "fields": {
+      "location": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "window_location",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "launch_window_title",
+    "named": true,
+    "fields": {
+      "title": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "left",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ligature_disabled",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ligature_target",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "marker_entries",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "marker_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "marker_entry",
+    "named": true,
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "marker_id",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "marker_id",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "marker_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "markers",
+    "named": true,
+    "fields": {
+      "markers": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "marker_entries",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "marker_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "mouse_action",
+    "named": true,
+    "fields": {
+      "action": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "clear_terminal",
+            "named": true
+          },
+          {
+            "type": "combine",
+            "named": true
+          },
+          {
+            "type": "disable_ligatures",
+            "named": true
+          },
+          {
+            "type": "generic_action",
+            "named": true
+          },
+          {
+            "type": "kitten",
+            "named": true
+          },
+          {
+            "type": "launch",
+            "named": true
+          },
+          {
+            "type": "send_key",
+            "named": true
+          },
+          {
+            "type": "send_text",
+            "named": true
+          },
+          {
+            "type": "show_kitty_doc",
+            "named": true
+          },
+          {
+            "type": "signal_child",
+            "named": true
+          }
+        ]
+      },
+      "button_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mouse_sequence",
+            "named": true
+          }
+        ]
+      },
+      "event_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mouse_event",
+            "named": true
+          }
+        ]
+      },
+      "modes": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mouse_mode",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "mouse_event",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mouse_mode",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mouse_sequence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alt",
+          "named": true
+        },
+        {
+          "type": "ctrl",
+          "named": true
+        },
+        {
+          "type": "left",
+          "named": true
+        },
+        {
+          "type": "middle",
+          "named": true
+        },
+        {
+          "type": "mouse_button",
+          "named": true
+        },
+        {
+          "type": "right",
+          "named": true
+        },
+        {
+          "type": "shift",
+          "named": true
+        },
+        {
+          "type": "super",
+          "named": true
+        },
+        {
+          "type": "together",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -199,7 +969,96 @@
     }
   },
   {
+    "type": "right",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "send_key",
+    "named": true,
+    "fields": {
+      "keys": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "key_sequence",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "send_text",
+    "named": true,
+    "fields": {
+      "mode": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "keyboard_mode",
+            "named": true
+          }
+        ]
+      },
+      "text": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "separator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "show_kitty_doc",
+    "named": true,
+    "fields": {
+      "topic": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "signal_child",
+    "named": true,
+    "fields": {
+      "signal": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "signal_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "special",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "stdin_source",
     "named": true,
     "fields": {}
   },
@@ -248,7 +1107,188 @@
     }
   },
   {
+    "type": "window_location",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "--allow-remote-control",
+    "named": false
+  },
+  {
+    "type": "--allow-remote-control=no",
+    "named": false
+  },
+  {
+    "type": "--bias",
+    "named": false
+  },
+  {
+    "type": "--copy-cmd",
+    "named": false
+  },
+  {
+    "type": "--copy-cmd=no",
+    "named": false
+  },
+  {
+    "type": "--copy-colors",
+    "named": false
+  },
+  {
+    "type": "--copy-colors=no",
+    "named": false
+  },
+  {
+    "type": "--copy-env",
+    "named": false
+  },
+  {
+    "type": "--copy-env=no",
+    "named": false
+  },
+  {
+    "type": "--cwd",
+    "named": false
+  },
+  {
+    "type": "--dont-take-focus",
+    "named": false
+  },
+  {
+    "type": "--dont-take-focus=no",
+    "named": false
+  },
+  {
+    "type": "--env",
+    "named": false
+  },
+  {
+    "type": "--hold",
+    "named": false
+  },
+  {
+    "type": "--hold=no",
+    "named": false
+  },
+  {
+    "type": "--keep_focus",
+    "named": false
+  },
+  {
+    "type": "--keep_focus=no",
+    "named": false
+  },
+  {
+    "type": "--location",
+    "named": false
+  },
+  {
+    "type": "--marker",
+    "named": false
+  },
+  {
+    "type": "--next-to",
+    "named": false
+  },
+  {
+    "type": "--source-window",
+    "named": false
+  },
+  {
+    "type": "--stdin-add-formatting",
+    "named": false
+  },
+  {
+    "type": "--stdin-add-formatting=no",
+    "named": false
+  },
+  {
+    "type": "--stdin-add-line-wrap-markers",
+    "named": false
+  },
+  {
+    "type": "--stdin-add-line-wrap-markers=no",
+    "named": false
+  },
+  {
+    "type": "--stdin-source",
+    "named": false
+  },
+  {
+    "type": "--tab-title",
+    "named": false
+  },
+  {
+    "type": "--title",
+    "named": false
+  },
+  {
+    "type": "--type",
+    "named": false
+  },
+  {
+    "type": "--var",
+    "named": false
+  },
+  {
+    "type": "--when-focus-on",
+    "named": false
+  },
+  {
+    "type": "1",
+    "named": false
+  },
+  {
+    "type": "2",
+    "named": false
+  },
+  {
+    "type": "3",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "@alternate",
+    "named": false
+  },
+  {
+    "type": "@first_cmd_output_on_screen",
+    "named": false
+  },
+  {
+    "type": "@last_cmd_output",
+    "named": false
+  },
+  {
+    "type": "@last_visited_cmd_output",
+    "named": false
+  },
+  {
+    "type": "@screen",
+    "named": false
+  },
+  {
+    "type": "@screen_scrollback",
+    "named": false
+  },
+  {
+    "type": "@selection",
     "named": false
   },
   {
@@ -256,11 +1296,35 @@
     "named": false
   },
   {
-    "type": "add",
+    "type": "active",
+    "named": false
+  },
+  {
+    "type": "after",
+    "named": false
+  },
+  {
+    "type": "after",
     "named": true
   },
   {
+    "type": "all",
+    "named": false
+  },
+  {
     "type": "alt",
+    "named": false
+  },
+  {
+    "type": "always",
+    "named": false
+  },
+  {
+    "type": "application",
+    "named": false
+  },
+  {
+    "type": "background",
     "named": false
   },
   {
@@ -268,7 +1332,35 @@
     "named": false
   },
   {
+    "type": "before",
+    "named": false
+  },
+  {
     "type": "caps_lock",
+    "named": false
+  },
+  {
+    "type": "clear",
+    "named": false
+  },
+  {
+    "type": "clear_selection",
+    "named": false
+  },
+  {
+    "type": "clear_terminal",
+    "named": false
+  },
+  {
+    "type": "click",
+    "named": false
+  },
+  {
+    "type": "clipboard,primary",
+    "named": false
+  },
+  {
+    "type": "close_shared_ssh_connections",
     "named": false
   },
   {
@@ -280,6 +1372,10 @@
     "named": true
   },
   {
+    "type": "combine",
+    "named": false
+  },
+  {
     "type": "command",
     "named": false
   },
@@ -288,7 +1384,35 @@
     "named": true
   },
   {
+    "type": "condition",
+    "named": true
+  },
+  {
     "type": "control",
+    "named": false
+  },
+  {
+    "type": "copy_and_clear_or_interrupt",
+    "named": false
+  },
+  {
+    "type": "copy_ansi_to_clipboard",
+    "named": false
+  },
+  {
+    "type": "copy_or_interrupt",
+    "named": false
+  },
+  {
+    "type": "copy_to_buffer",
+    "named": false
+  },
+  {
+    "type": "copy_to_clipboard",
+    "named": false
+  },
+  {
+    "type": "create_marker",
     "named": false
   },
   {
@@ -296,11 +1420,43 @@
     "named": false
   },
   {
+    "type": "cursor",
+    "named": false
+  },
+  {
+    "type": "debug_config",
+    "named": false
+  },
+  {
     "type": "delete",
     "named": false
   },
   {
+    "type": "disable_ligatures",
+    "named": false
+  },
+  {
+    "type": "discard_event",
+    "named": false
+  },
+  {
+    "type": "doubleclick",
+    "named": false
+  },
+  {
+    "type": "doublepress",
+    "named": false
+  },
+  {
     "type": "down",
+    "named": false
+  },
+  {
+    "type": "dump_lines_with_attrs",
+    "named": false
+  },
+  {
+    "type": "edit_config_file",
     "named": false
   },
   {
@@ -325,6 +1481,10 @@
   },
   {
     "type": "function",
+    "named": false
+  },
+  {
+    "type": "function",
     "named": true
   },
   {
@@ -336,7 +1496,31 @@
     "named": false
   },
   {
+    "type": "goto_layout",
+    "named": false
+  },
+  {
+    "type": "grab_keyboard",
+    "named": false
+  },
+  {
+    "type": "grabbed",
+    "named": false
+  },
+  {
+    "type": "hide_macos_app",
+    "named": false
+  },
+  {
+    "type": "hide_macos_other_apps",
+    "named": false
+  },
+  {
     "type": "home",
+    "named": false
+  },
+  {
+    "type": "hsplit",
     "named": false
   },
   {
@@ -348,7 +1532,15 @@
     "named": true
   },
   {
+    "type": "input_unicode_character",
+    "named": false
+  },
+  {
     "type": "insert",
+    "named": false
+  },
+  {
+    "type": "iregex",
     "named": false
   },
   {
@@ -360,12 +1552,32 @@
     "named": false
   },
   {
+    "type": "itext",
+    "named": false
+  },
+  {
     "type": "key",
     "named": true
   },
   {
     "type": "key_action",
     "named": true
+  },
+  {
+    "type": "kitten",
+    "named": false
+  },
+  {
+    "type": "kitty",
+    "named": false
+  },
+  {
+    "type": "kitty_mod",
+    "named": false
+  },
+  {
+    "type": "kitty_shell",
+    "named": false
   },
   {
     "type": "kp_0",
@@ -484,6 +1696,18 @@
     "named": false
   },
   {
+    "type": "last_used_layout",
+    "named": false
+  },
+  {
+    "type": "launch",
+    "named": false
+  },
+  {
+    "type": "layout_action",
+    "named": false
+  },
+  {
     "type": "left",
     "named": false
   },
@@ -564,6 +1788,18 @@
     "named": false
   },
   {
+    "type": "middle",
+    "named": true
+  },
+  {
+    "type": "mouse_button",
+    "named": true
+  },
+  {
+    "type": "mouse_map",
+    "named": false
+  },
+  {
     "type": "mute_volume",
     "named": false
   },
@@ -572,7 +1808,27 @@
     "named": true
   },
   {
+    "type": "neighbor",
+    "named": false
+  },
+  {
+    "type": "never",
+    "named": false
+  },
+  {
+    "type": "next_layout",
+    "named": false
+  },
+  {
     "type": "no",
+    "named": false
+  },
+  {
+    "type": "none",
+    "named": false
+  },
+  {
+    "type": "normal",
     "named": false
   },
   {
@@ -592,11 +1848,47 @@
     "named": false
   },
   {
+    "type": "os-panel",
+    "named": false
+  },
+  {
+    "type": "os-window",
+    "named": false
+  },
+  {
+    "type": "overlay",
+    "named": false
+  },
+  {
+    "type": "overlay-main",
+    "named": false
+  },
+  {
     "type": "page_down",
     "named": false
   },
   {
     "type": "page_up",
+    "named": false
+  },
+  {
+    "type": "pass_selection_to_program",
+    "named": false
+  },
+  {
+    "type": "paste",
+    "named": false
+  },
+  {
+    "type": "paste_from_buffer",
+    "named": false
+  },
+  {
+    "type": "paste_from_clipboard",
+    "named": false
+  },
+  {
+    "type": "paste_from_selection",
     "named": false
   },
   {
@@ -620,7 +1912,27 @@
     "named": true
   },
   {
+    "type": "press",
+    "named": false
+  },
+  {
     "type": "raise_volume",
+    "named": false
+  },
+  {
+    "type": "regex",
+    "named": false
+  },
+  {
+    "type": "release",
+    "named": false
+  },
+  {
+    "type": "remove_marker",
+    "named": false
+  },
+  {
+    "type": "reset",
     "named": false
   },
   {
@@ -652,12 +1964,76 @@
     "named": false
   },
   {
+    "type": "scroll",
+    "named": false
+  },
+  {
     "type": "scroll_lock",
+    "named": false
+  },
+  {
+    "type": "scroll_to_mark",
+    "named": false
+  },
+  {
+    "type": "scrollback",
+    "named": false
+  },
+  {
+    "type": "send_key",
+    "named": false
+  },
+  {
+    "type": "send_text",
     "named": false
   },
   {
     "type": "shift",
     "named": true
+  },
+  {
+    "type": "show_first_command_output_on_screen",
+    "named": false
+  },
+  {
+    "type": "show_kitty_doc",
+    "named": false
+  },
+  {
+    "type": "show_kitty_env_vars",
+    "named": false
+  },
+  {
+    "type": "show_last_command_output",
+    "named": false
+  },
+  {
+    "type": "show_last_non_empty_command_output",
+    "named": false
+  },
+  {
+    "type": "show_last_visited_command_output",
+    "named": false
+  },
+  {
+    "type": "show_scrollback",
+    "named": false
+  },
+  {
+    "type": "signal_child",
+    "named": false
+  },
+  {
+    "type": "signal_name",
+    "named": true
+  },
+  {
+    "type": "simulate_color_scheme_preference_change",
+    "named": false
+  },
+  {
+    "type": "split",
+    "named": false
   },
   {
     "type": "string",
@@ -672,7 +2048,39 @@
     "named": false
   },
   {
+    "type": "text",
+    "named": false
+  },
+  {
+    "type": "to_cursor",
+    "named": false
+  },
+  {
+    "type": "to_cursor_scroll",
+    "named": false
+  },
+  {
+    "type": "together",
+    "named": true
+  },
+  {
+    "type": "toggle_layout",
+    "named": false
+  },
+  {
+    "type": "tripplepress",
+    "named": false
+  },
+  {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "ungrabbed",
+    "named": false
+  },
+  {
+    "type": "ungrabbed,grabbed",
     "named": false
   },
   {
@@ -680,7 +2088,23 @@
     "named": false
   },
   {
+    "type": "vsplit",
+    "named": false
+  },
+  {
+    "type": "window",
+    "named": false
+  },
+  {
+    "type": "window-title",
+    "named": false
+  },
+  {
     "type": "yes",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   }
 ]

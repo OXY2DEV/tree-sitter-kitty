@@ -30,6 +30,10 @@
             {
               "type": "SYMBOL",
               "name": "keyboard_shortcut"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mouse_action"
             }
           ]
         },
@@ -298,12 +302,1392 @@
         "value": "\\S+"
       }
     },
+    "mouse_action": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mouse_map"
+        },
+        {
+          "type": "FIELD",
+          "name": "button_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mouse_sequence"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[ \\t]+"
+        },
+        {
+          "type": "FIELD",
+          "name": "event_type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mouse_event"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[ \\t]+"
+        },
+        {
+          "type": "FIELD",
+          "name": "modes",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mouse_mode"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "action",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_action"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "mouse_sequence": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_mouse_element"
+      }
+    },
+    "_mouse_element": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ctrl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "alt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shift"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "super"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "left"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "middle"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "right"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mouse_button"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "together"
+        }
+      ]
+    },
+    "left": {
+      "type": "STRING",
+      "value": "left"
+    },
+    "middle": {
+      "type": "STRING",
+      "value": "middle"
+    },
+    "right": {
+      "type": "STRING",
+      "value": "right"
+    },
+    "mouse_button": {
+      "type": "PATTERN",
+      "value": "b[1-8]"
+    },
+    "mouse_event": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "press"
+        },
+        {
+          "type": "STRING",
+          "value": "release"
+        },
+        {
+          "type": "STRING",
+          "value": "doublepress"
+        },
+        {
+          "type": "STRING",
+          "value": "tripplepress"
+        },
+        {
+          "type": "STRING",
+          "value": "click"
+        },
+        {
+          "type": "STRING",
+          "value": "doubleclick"
+        }
+      ]
+    },
+    "mouse_mode": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "grabbed"
+        },
+        {
+          "type": "STRING",
+          "value": "ungrabbed"
+        },
+        {
+          "type": "STRING",
+          "value": "ungrabbed,grabbed"
+        }
+      ]
+    },
+    "_action": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "generic_action"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "send_key"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "send_text"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "show_kitty_doc"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "signal_child"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "clear_terminal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "combine"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "disable_ligatures"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kitten"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch"
+        }
+      ]
+    },
+    "generic_action": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "clear_selection"
+        },
+        {
+          "type": "STRING",
+          "value": "copy_and_clear_or_interrupt"
+        },
+        {
+          "type": "STRING",
+          "value": "copy_ansi_to_clipboard"
+        },
+        {
+          "type": "STRING",
+          "value": "copy_or_interrupt"
+        },
+        {
+          "type": "STRING",
+          "value": "copy_to_clipboard"
+        },
+        {
+          "type": "STRING",
+          "value": "pass_selection_to_program"
+        },
+        {
+          "type": "STRING",
+          "value": "paste"
+        },
+        {
+          "type": "STRING",
+          "value": "show_first_command_output_on_screen"
+        },
+        {
+          "type": "STRING",
+          "value": "show_last_command_output"
+        },
+        {
+          "type": "STRING",
+          "value": "show_last_non_empty_command_output"
+        },
+        {
+          "type": "STRING",
+          "value": "show_last_visited_command_output"
+        },
+        {
+          "type": "STRING",
+          "value": "show_scrollback"
+        },
+        {
+          "type": "STRING",
+          "value": "copy_to_buffer"
+        },
+        {
+          "type": "STRING",
+          "value": "paste_from_buffer"
+        },
+        {
+          "type": "STRING",
+          "value": "paste_from_clipboard"
+        },
+        {
+          "type": "STRING",
+          "value": "paste_from_selection"
+        },
+        {
+          "type": "STRING",
+          "value": "dump_lines_with_attrs"
+        },
+        {
+          "type": "STRING",
+          "value": "close_shared_ssh_connections"
+        },
+        {
+          "type": "STRING",
+          "value": "debug_config"
+        },
+        {
+          "type": "STRING",
+          "value": "show_kitty_env_vars"
+        },
+        {
+          "type": "STRING",
+          "value": "simulate_color_scheme_preference_change"
+        },
+        {
+          "type": "STRING",
+          "value": "goto_layout"
+        },
+        {
+          "type": "STRING",
+          "value": "last_used_layout"
+        },
+        {
+          "type": "STRING",
+          "value": "layout_action"
+        },
+        {
+          "type": "STRING",
+          "value": "next_layout"
+        },
+        {
+          "type": "STRING",
+          "value": "toggle_layout"
+        },
+        {
+          "type": "STRING",
+          "value": "remove_marker"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_to_mark"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_to_mark"
+        },
+        {
+          "type": "STRING",
+          "value": "create_marker"
+        },
+        {
+          "type": "STRING",
+          "value": "discard_event"
+        },
+        {
+          "type": "STRING",
+          "value": "edit_config_file"
+        },
+        {
+          "type": "STRING",
+          "value": "grab_keyboard"
+        },
+        {
+          "type": "STRING",
+          "value": "hide_macos_app"
+        },
+        {
+          "type": "STRING",
+          "value": "hide_macos_other_apps"
+        },
+        {
+          "type": "STRING",
+          "value": "input_unicode_character"
+        },
+        {
+          "type": "STRING",
+          "value": "kitty_shell"
+        }
+      ]
+    },
+    "send_key": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "send_key"
+        },
+        {
+          "type": "FIELD",
+          "name": "keys",
+          "content": {
+            "type": "SYMBOL",
+            "name": "key_sequence"
+          }
+        }
+      ]
+    },
+    "send_text": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "send_text"
+        },
+        {
+          "type": "FIELD",
+          "name": "mode",
+          "content": {
+            "type": "SYMBOL",
+            "name": "keyboard_mode"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[\\t ]+"
+        },
+        {
+          "type": "FIELD",
+          "name": "text",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\n\\r]+"
+            },
+            "named": true,
+            "value": "string"
+          }
+        }
+      ]
+    },
+    "keyboard_mode": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_keyboard_mode"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_keyboard_mode"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "_keyboard_mode": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "normal"
+        },
+        {
+          "type": "STRING",
+          "value": "application"
+        },
+        {
+          "type": "STRING",
+          "value": "kitty"
+        },
+        {
+          "type": "STRING",
+          "value": "all"
+        }
+      ]
+    },
+    "show_kitty_doc": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "show_kitty_doc"
+        },
+        {
+          "type": "FIELD",
+          "name": "topic",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "signal_child": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "signal_child"
+        },
+        {
+          "type": "FIELD",
+          "name": "signal",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[A-Z0-9]+"
+            },
+            "named": true,
+            "value": "signal_name"
+          }
+        }
+      ]
+    },
+    "clear_terminal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "clear_terminal"
+        },
+        {
+          "type": "FIELD",
+          "name": "action",
+          "content": {
+            "type": "SYMBOL",
+            "name": "clear_action"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "clear_target"
+          }
+        }
+      ]
+    },
+    "clear_action": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "reset"
+        },
+        {
+          "type": "STRING",
+          "value": "clear"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll"
+        },
+        {
+          "type": "STRING",
+          "value": "scrollback"
+        },
+        {
+          "type": "STRING",
+          "value": "to_cursor"
+        },
+        {
+          "type": "STRING",
+          "value": "to_cursor_scroll"
+        }
+      ]
+    },
+    "clear_target": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "active"
+        },
+        {
+          "type": "STRING",
+          "value": "all"
+        }
+      ]
+    },
+    "combine": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "combine"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "combine_action"
+            }
+          }
+        ]
+      }
+    },
+    "separator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": "|"
+        }
+      ]
+    },
+    "combine_action": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "separator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_action"
+        }
+      ]
+    },
+    "disable_ligatures": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "disable_ligatures"
+        },
+        {
+          "type": "FIELD",
+          "name": "target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "ligature_target"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "disabled_type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "ligature_disabled"
+          }
+        }
+      ]
+    },
+    "ligature_target": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "active"
+        },
+        {
+          "type": "STRING",
+          "value": "all"
+        },
+        {
+          "type": "STRING",
+          "value": "tab"
+        }
+      ]
+    },
+    "ligature_disabled": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "always"
+        },
+        {
+          "type": "STRING",
+          "value": "never"
+        },
+        {
+          "type": "STRING",
+          "value": "cursor"
+        }
+      ]
+    },
+    "kitten": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "kitten"
+        },
+        {
+          "type": "FIELD",
+          "name": "target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "launch"
+        },
+        {
+          "type": "FIELD",
+          "name": "options",
+          "content": {
+            "type": "SYMBOL",
+            "name": "launch_options"
+          }
+        }
+      ]
+    },
+    "launch_options": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_launch_option"
+      }
+    },
+    "_launch_option": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "launch_source_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_window_title"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_tab_title"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_focus"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_cwd"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_env"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_var"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_hold"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_copy_colors"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_copy_cmd"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_copy_env"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_window_location"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_next_to"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_bias"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_remote_control"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_stdin_source"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_stdin_formatting"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_stdin_line_wrap"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "launch_marker"
+        }
+      ]
+    },
+    "launch_source_window": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--source-window"
+        },
+        {
+          "type": "FIELD",
+          "name": "pattern",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_window_title": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--title"
+            },
+            {
+              "type": "STRING",
+              "value": "window-title"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "title",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_tab_title": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--tab-title"
+        },
+        {
+          "type": "FIELD",
+          "name": "title",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--type"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "window"
+            },
+            {
+              "type": "STRING",
+              "value": "tab"
+            },
+            {
+              "type": "STRING",
+              "value": "os-window"
+            },
+            {
+              "type": "STRING",
+              "value": "overlay-main"
+            },
+            {
+              "type": "STRING",
+              "value": "overlay"
+            },
+            {
+              "type": "STRING",
+              "value": "background"
+            },
+            {
+              "type": "STRING",
+              "value": "clipboard,primary"
+            },
+            {
+              "type": "STRING",
+              "value": "os-panel"
+            }
+          ]
+        }
+      ]
+    },
+    "launch_focus": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--dont-take-focus=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--dont-take-focus"
+        },
+        {
+          "type": "STRING",
+          "value": "--keep_focus=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--keep_focus"
+        }
+      ]
+    },
+    "launch_cwd": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--cwd"
+        },
+        {
+          "type": "FIELD",
+          "name": "directory",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_env": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--env"
+        },
+        {
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\s=]+"
+            },
+            "named": true,
+            "value": "string"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_var": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--var"
+        },
+        {
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\s=]+"
+            },
+            "named": true,
+            "value": "string"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_hold": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--hold=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--hold"
+        }
+      ]
+    },
+    "launch_copy_colors": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--copy-colors=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--copy-colors"
+        }
+      ]
+    },
+    "launch_copy_cmd": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--copy-cmd=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--copy-cmd"
+        }
+      ]
+    },
+    "launch_copy_env": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--copy-env=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--copy-env"
+        }
+      ]
+    },
+    "launch_window_location": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--location"
+        },
+        {
+          "type": "FIELD",
+          "name": "location",
+          "content": {
+            "type": "SYMBOL",
+            "name": "window_location"
+          }
+        }
+      ]
+    },
+    "window_location": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "before"
+        },
+        {
+          "type": "STRING",
+          "value": "after"
+        },
+        {
+          "type": "STRING",
+          "value": "neighbor"
+        },
+        {
+          "type": "STRING",
+          "value": "vsplit"
+        },
+        {
+          "type": "STRING",
+          "value": "hsplit"
+        },
+        {
+          "type": "STRING",
+          "value": "split"
+        }
+      ]
+    },
+    "launch_next_to": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--next-to"
+        },
+        {
+          "type": "FIELD",
+          "name": "pattern",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "launch_bias": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--bias"
+        },
+        {
+          "type": "FIELD",
+          "name": "amount",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[0-9\\-]+"
+            },
+            "named": true,
+            "value": "number"
+          }
+        }
+      ]
+    },
+    "launch_remote_control": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--allow-remote-control=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--allow-remote-control"
+        }
+      ]
+    },
+    "launch_stdin_source": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--stdin-source"
+        },
+        {
+          "type": "FIELD",
+          "name": "source",
+          "content": {
+            "type": "SYMBOL",
+            "name": "stdin_source"
+          }
+        }
+      ]
+    },
+    "stdin_source": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@selection"
+        },
+        {
+          "type": "STRING",
+          "value": "@screen_scrollback"
+        },
+        {
+          "type": "STRING",
+          "value": "@screen"
+        },
+        {
+          "type": "STRING",
+          "value": "@alternate"
+        },
+        {
+          "type": "STRING",
+          "value": "@first_cmd_output_on_screen"
+        },
+        {
+          "type": "STRING",
+          "value": "@last_cmd_output"
+        },
+        {
+          "type": "STRING",
+          "value": "@last_visited_cmd_output"
+        },
+        {
+          "type": "STRING",
+          "value": "none"
+        }
+      ]
+    },
+    "launch_stdin_formatting": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--stdin-add-formatting=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--stdin-add-formatting"
+        }
+      ]
+    },
+    "launch_stdin_line_wrap": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--stdin-add-line-wrap-markers=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--stdin-add-line-wrap-markers"
+        }
+      ]
+    },
+    "launch_marker": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--marker"
+        },
+        {
+          "type": "FIELD",
+          "name": "markers",
+          "content": {
+            "type": "SYMBOL",
+            "name": "markers"
+          }
+        }
+      ]
+    },
+    "markers": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "marker_type"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "markers",
+          "content": {
+            "type": "SYMBOL",
+            "name": "marker_entries"
+          }
+        }
+      ]
+    },
+    "marker_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "text"
+        },
+        {
+          "type": "STRING",
+          "value": "itext"
+        },
+        {
+          "type": "STRING",
+          "value": "regex"
+        },
+        {
+          "type": "STRING",
+          "value": "iregex"
+        },
+        {
+          "type": "STRING",
+          "value": "function"
+        }
+      ]
+    },
+    "marker_entries": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "marker_entry"
+      }
+    },
+    "marker_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "id",
+          "content": {
+            "type": "SYMBOL",
+            "name": "marker_id"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "pattern",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "marker_id": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "1"
+        },
+        {
+          "type": "STRING",
+          "value": "2"
+        },
+        {
+          "type": "STRING",
+          "value": "3"
+        }
+      ]
+    },
     "keyboard_shortcut": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
           "value": "map"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "criteria",
+              "content": {
+                "type": "SYMBOL",
+                "name": "key_criteria"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -314,16 +1698,51 @@
           }
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "action",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "key_action"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "key_criteria": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--when-focus-on"
+        },
+        {
           "type": "PATTERN",
           "value": "[ \\t]+"
         },
         {
-          "type": "FIELD",
-          "name": "action",
+          "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "key_action"
-          }
+            "name": "string"
+          },
+          "named": true,
+          "value": "condition"
         }
       ]
     },
@@ -371,7 +1790,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "add"
+          "name": "together"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "after"
         }
       ]
     },
@@ -437,6 +1860,10 @@
     "special": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "STRING",
+          "value": "kitty_mod"
+        },
         {
           "type": "STRING",
           "value": "escape"
@@ -743,9 +2170,13 @@
       "type": "PATTERN",
       "value": "[a-z]"
     },
-    "add": {
+    "together": {
       "type": "STRING",
       "value": "+"
+    },
+    "after": {
+      "type": "STRING",
+      "value": ">"
     }
   },
   "extras": [

@@ -44,6 +44,9 @@
 (keyboard_shortcut
   "map" @keyword)
 
+(mouse_action
+  "mouse_map" @keyword)
+
 (key_sequence
   [
    (ctrl)
@@ -54,7 +57,7 @@
    ] @constant)
 
 (key_sequence
-  (add) @operator)
+  (together) @operator)
 
 (key_sequence
   (special) @constant)
@@ -64,6 +67,28 @@
 
 (keyboard_shortcut
   action: ((key_action) @variable.builtin))
+
+
+(mouse_action
+  event_type: ((mouse_event) @variable.parameter)
+  modes: ((mouse_mode) @type))
+
+(mouse_sequence
+  [
+   (ctrl)
+   (alt)
+   (shift)
+   (super)
+   (left)
+   (middle)
+   (right)
+   ] @constant)
+
+(mouse_sequence
+  (together) @operator)
+
+(mouse_sequence
+  (mouse_button) @constant)
 
 ; Option specific;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -476,4 +501,22 @@
     (string) @constant
     (string) @constant
     .))
+
+; Mouse action ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; (launch
+;   "launch" @keyword
+;   options: (launch_options
+;     (flag) @type))
+
+; (mouse_action
+;     button_name: (mouse_sequence
+;       (middle))
+;     event_type: (mouse_event)
+;     modes: (mouse_mode)
+;     action: (launch
+;       options: (launch_options
+;         (flag)
+;         (parameter)
+;         (parameter))))
 

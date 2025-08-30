@@ -71,31 +71,31 @@ map cmd+up scroll_line_up
   (keyboard_shortcut
     sequence: (key_sequence
       (ctrl)
-      (add)
+      (together)
       (shift)
-      (add)
+      (together)
       (special))
     action: (key_action))
   (keyboard_shortcut
     sequence: (key_sequence
       (ctrl)
-      (add)
+      (together)
       (shift)
-      (add)
+      (together)
       (key))
     action: (key_action))
   (keyboard_shortcut
     sequence: (key_sequence
       (alt)
-      (add)
+      (together)
       (super)
-      (add)
+      (together)
       (special))
     action: (key_action))
   (keyboard_shortcut
     sequence: (key_sequence
       (super)
-      (add)
+      (together)
       (special))
     action: (key_action)))
 
