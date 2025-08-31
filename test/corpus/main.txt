@@ -75,7 +75,8 @@ map cmd+up scroll_line_up
       (shift)
       (together)
       (special))
-    action: (key_action))
+    action: (key_action
+      (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
       (ctrl)
@@ -83,7 +84,8 @@ map cmd+up scroll_line_up
       (shift)
       (together)
       (key))
-    action: (key_action))
+    action: (key_action
+      (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
       (alt)
@@ -91,11 +93,13 @@ map cmd+up scroll_line_up
       (super)
       (together)
       (special))
-    action: (key_action))
+    action: (key_action
+      (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
       (super)
       (together)
       (special))
-    action: (key_action)))
+    action: (key_action
+      (generic_action))))
 

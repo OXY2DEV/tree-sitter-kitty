@@ -89,6 +89,10 @@
           "name": "string"
         },
         {
+          "type": "SYMBOL",
+          "name": "time"
+        },
+        {
           "type": "PREC",
           "value": -100,
           "content": {
@@ -121,7 +125,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[\\d\\.\\-]+"
+        "value": "[\\d\\.\\-\\+]+"
       }
     },
     "boolean": {
@@ -146,112 +150,102 @@
       ]
     },
     "color": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "#[0-9A-Fa-f]{3,6}"
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "#[0-9A-Fa-f]{3,6}"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "color_name"
+        }
+      ]
     },
     "string": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "\\S+"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "'[^']*'"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\"[^\"]*\""
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\S+"
+          }
+        ]
       }
     },
-    "left": {
-      "type": "STRING",
-      "value": "left"
-    },
-    "middle": {
-      "type": "STRING",
-      "value": "middle"
-    },
-    "right": {
-      "type": "STRING",
-      "value": "right"
-    },
-    "mouse_button": {
-      "type": "PATTERN",
-      "value": "b[1-8]"
-    },
-    "ctrl": {
-      "type": "CHOICE",
+    "time": {
+      "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "ctrl"
+          "type": "FIELD",
+          "name": "duration",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
         },
         {
-          "type": "STRING",
-          "value": "control"
-        },
-        {
-          "type": "STRING",
-          "value": "^"
+          "type": "FIELD",
+          "name": "suffix",
+          "content": {
+            "type": "SYMBOL",
+            "name": "time_suffix"
+          }
         }
       ]
     },
-    "alt": {
+    "time_suffix": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "alt"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "s"
+          }
         },
         {
-          "type": "STRING",
-          "value": "opt"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "m"
+          }
         },
         {
-          "type": "STRING",
-          "value": "option"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "h"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "d"
+          }
         }
       ]
     },
-    "shift": {
-      "type": "STRING",
-      "value": "shift"
-    },
-    "function": {
-      "type": "PATTERN",
-      "value": "f[1-9]"
-    },
-    "super": {
+    "direction": {
       "type": "CHOICE",
       "members": [
         {
           "type": "STRING",
-          "value": "super"
+          "value": "top"
         },
         {
           "type": "STRING",
-          "value": "cmd"
-        },
-        {
-          "type": "STRING",
-          "value": "command"
-        }
-      ]
-    },
-    "special": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "kitty_mod"
-        },
-        {
-          "type": "STRING",
-          "value": "escape"
-        },
-        {
-          "type": "STRING",
-          "value": "tab"
-        },
-        {
-          "type": "STRING",
-          "value": "insert"
+          "value": "bottom"
         },
         {
           "type": "STRING",
@@ -259,301 +253,3078 @@
         },
         {
           "type": "STRING",
-          "value": "up"
-        },
-        {
-          "type": "STRING",
-          "value": "page_up"
-        },
-        {
-          "type": "STRING",
-          "value": "home"
-        },
-        {
-          "type": "STRING",
-          "value": "caps_lock"
-        },
-        {
-          "type": "STRING",
-          "value": "num_lock"
-        },
-        {
-          "type": "STRING",
-          "value": "pause"
-        },
-        {
-          "type": "STRING",
-          "value": "enter"
-        },
-        {
-          "type": "STRING",
-          "value": "backspace"
-        },
-        {
-          "type": "STRING",
-          "value": "delete"
-        },
-        {
-          "type": "STRING",
           "value": "right"
+        }
+      ]
+    },
+    "left": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "left"
+      }
+    },
+    "middle": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "middle"
+      }
+    },
+    "right": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "right"
+      }
+    },
+    "mouse_button": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "b[1-8]"
+      }
+    },
+    "ctrl": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "ctrl"
+          }
         },
         {
-          "type": "STRING",
-          "value": "down"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "control"
+          }
         },
         {
-          "type": "STRING",
-          "value": "page_down"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "^"
+          }
+        }
+      ]
+    },
+    "alt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "alt"
+          }
         },
         {
-          "type": "STRING",
-          "value": "end"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "opt"
+          }
         },
         {
-          "type": "STRING",
-          "value": "scroll_lock"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "option"
+          }
+        }
+      ]
+    },
+    "shift": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "shift"
+      }
+    },
+    "function": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "f[1-9]"
+      }
+    },
+    "super": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "super"
+          }
         },
         {
-          "type": "STRING",
-          "value": "menu"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "cmd"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_0"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "command"
+          }
+        }
+      ]
+    },
+    "special": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kitty_mod"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_1"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "escape"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_2"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "tab"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_3"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "insert"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_4"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_5"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "up"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_6"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "page_up"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_7"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "home"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_8"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "caps_lock"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_9"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "num_lock"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_decimal"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "pause"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_divide"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "enter"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_multiply"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "backspace"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_subtract"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "delete"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_add"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_enter"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "down"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_equal"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "page_down"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_separator"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "end"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_left"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "scroll_lock"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_right"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "menu"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_up"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_0"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_down"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_1"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_page_up"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_2"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_page_down"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_3"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_home"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_4"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_end"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_5"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_insert"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_6"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_delete"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_7"
+          }
         },
         {
-          "type": "STRING",
-          "value": "kp_begin"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_8"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_play"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_9"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_pause"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_decimal"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_play_pause"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_divide"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_reverse"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_multiply"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_stop"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_subtract"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_fast_forward"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_add"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_rewind"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_enter"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_track_next"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_equal"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_track_previous"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_separator"
+          }
         },
         {
-          "type": "STRING",
-          "value": "media_record"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_left"
+          }
         },
         {
-          "type": "STRING",
-          "value": "lower_volume"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_right"
+          }
         },
         {
-          "type": "STRING",
-          "value": "raise_volume"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_up"
+          }
         },
         {
-          "type": "STRING",
-          "value": "mute_volume"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_down"
+          }
         },
         {
-          "type": "STRING",
-          "value": "left_shift"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_page_up"
+          }
         },
         {
-          "type": "STRING",
-          "value": "left_control"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_page_down"
+          }
         },
         {
-          "type": "STRING",
-          "value": "left_alt"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_home"
+          }
         },
         {
-          "type": "STRING",
-          "value": "left_super"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_end"
+          }
         },
         {
-          "type": "STRING",
-          "value": "left_hyper"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_insert"
+          }
         },
         {
-          "type": "STRING",
-          "value": "left_meta"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_delete"
+          }
         },
         {
-          "type": "STRING",
-          "value": "right_shift"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kp_begin"
+          }
         },
         {
-          "type": "STRING",
-          "value": "right_control"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_play"
+          }
         },
         {
-          "type": "STRING",
-          "value": "right_alt"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_pause"
+          }
         },
         {
-          "type": "STRING",
-          "value": "right_super"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_play_pause"
+          }
         },
         {
-          "type": "STRING",
-          "value": "right_hyper"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_reverse"
+          }
         },
         {
-          "type": "STRING",
-          "value": "right_meta"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_stop"
+          }
         },
         {
-          "type": "STRING",
-          "value": "iso_level3_shift"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_fast_forward"
+          }
         },
         {
-          "type": "STRING",
-          "value": "iso_level5_shift"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_rewind"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_track_next"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_track_previous"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "media_record"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "lower_volume"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "raise_volume"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "mute_volume"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_shift"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_control"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_alt"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_super"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_hyper"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_meta"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_shift"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_control"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_alt"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_super"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_hyper"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_meta"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "iso_level3_shift"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "iso_level5_shift"
+          }
         }
       ]
     },
     "key": {
-      "type": "PATTERN",
-      "value": "[a-z]"
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[a-z]"
+      }
     },
     "together": {
-      "type": "STRING",
-      "value": "+"
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "+"
+      }
     },
     "after": {
-      "type": "STRING",
-      "value": ">"
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": ">"
+      }
+    },
+    "color_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "aliceblue"
+        },
+        {
+          "type": "STRING",
+          "value": "antiquewhite"
+        },
+        {
+          "type": "STRING",
+          "value": "antiquewhite1"
+        },
+        {
+          "type": "STRING",
+          "value": "antiquewhite2"
+        },
+        {
+          "type": "STRING",
+          "value": "antiquewhite3"
+        },
+        {
+          "type": "STRING",
+          "value": "antiquewhite4"
+        },
+        {
+          "type": "STRING",
+          "value": "aquamarine1"
+        },
+        {
+          "type": "STRING",
+          "value": "aquamarine2"
+        },
+        {
+          "type": "STRING",
+          "value": "aquamarine4"
+        },
+        {
+          "type": "STRING",
+          "value": "azure1"
+        },
+        {
+          "type": "STRING",
+          "value": "azure2"
+        },
+        {
+          "type": "STRING",
+          "value": "azure3"
+        },
+        {
+          "type": "STRING",
+          "value": "azure4"
+        },
+        {
+          "type": "STRING",
+          "value": "beige"
+        },
+        {
+          "type": "STRING",
+          "value": "bisque1"
+        },
+        {
+          "type": "STRING",
+          "value": "bisque2"
+        },
+        {
+          "type": "STRING",
+          "value": "bisque3"
+        },
+        {
+          "type": "STRING",
+          "value": "bisque4"
+        },
+        {
+          "type": "STRING",
+          "value": "black"
+        },
+        {
+          "type": "STRING",
+          "value": "blanchedalmond"
+        },
+        {
+          "type": "STRING",
+          "value": "blue1"
+        },
+        {
+          "type": "STRING",
+          "value": "blue2"
+        },
+        {
+          "type": "STRING",
+          "value": "blue4"
+        },
+        {
+          "type": "STRING",
+          "value": "blueviolet"
+        },
+        {
+          "type": "STRING",
+          "value": "brown"
+        },
+        {
+          "type": "STRING",
+          "value": "brown1"
+        },
+        {
+          "type": "STRING",
+          "value": "brown2"
+        },
+        {
+          "type": "STRING",
+          "value": "brown3"
+        },
+        {
+          "type": "STRING",
+          "value": "brown4"
+        },
+        {
+          "type": "STRING",
+          "value": "burlywood"
+        },
+        {
+          "type": "STRING",
+          "value": "burlywood1"
+        },
+        {
+          "type": "STRING",
+          "value": "burlywood2"
+        },
+        {
+          "type": "STRING",
+          "value": "burlywood3"
+        },
+        {
+          "type": "STRING",
+          "value": "burlywood4"
+        },
+        {
+          "type": "STRING",
+          "value": "cadetblue"
+        },
+        {
+          "type": "STRING",
+          "value": "cadetblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "cadetblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "cadetblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "cadetblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "chartreuse1"
+        },
+        {
+          "type": "STRING",
+          "value": "chartreuse2"
+        },
+        {
+          "type": "STRING",
+          "value": "chartreuse3"
+        },
+        {
+          "type": "STRING",
+          "value": "chartreuse4"
+        },
+        {
+          "type": "STRING",
+          "value": "chocolate"
+        },
+        {
+          "type": "STRING",
+          "value": "chocolate1"
+        },
+        {
+          "type": "STRING",
+          "value": "chocolate2"
+        },
+        {
+          "type": "STRING",
+          "value": "chocolate3"
+        },
+        {
+          "type": "STRING",
+          "value": "coral"
+        },
+        {
+          "type": "STRING",
+          "value": "coral1"
+        },
+        {
+          "type": "STRING",
+          "value": "coral2"
+        },
+        {
+          "type": "STRING",
+          "value": "coral3"
+        },
+        {
+          "type": "STRING",
+          "value": "coral4"
+        },
+        {
+          "type": "STRING",
+          "value": "cornflowerblue"
+        },
+        {
+          "type": "STRING",
+          "value": "cornsilk1"
+        },
+        {
+          "type": "STRING",
+          "value": "cornsilk2"
+        },
+        {
+          "type": "STRING",
+          "value": "cornsilk3"
+        },
+        {
+          "type": "STRING",
+          "value": "cornsilk4"
+        },
+        {
+          "type": "STRING",
+          "value": "cyan1"
+        },
+        {
+          "type": "STRING",
+          "value": "cyan2"
+        },
+        {
+          "type": "STRING",
+          "value": "cyan3"
+        },
+        {
+          "type": "STRING",
+          "value": "cyan4"
+        },
+        {
+          "type": "STRING",
+          "value": "darkgoldenrod"
+        },
+        {
+          "type": "STRING",
+          "value": "darkgoldenrod1"
+        },
+        {
+          "type": "STRING",
+          "value": "darkgoldenrod2"
+        },
+        {
+          "type": "STRING",
+          "value": "darkgoldenrod3"
+        },
+        {
+          "type": "STRING",
+          "value": "darkgoldenrod4"
+        },
+        {
+          "type": "STRING",
+          "value": "darkgreen"
+        },
+        {
+          "type": "STRING",
+          "value": "darkkhaki"
+        },
+        {
+          "type": "STRING",
+          "value": "darkolivegreen"
+        },
+        {
+          "type": "STRING",
+          "value": "darkolivegreen1"
+        },
+        {
+          "type": "STRING",
+          "value": "darkolivegreen2"
+        },
+        {
+          "type": "STRING",
+          "value": "darkolivegreen3"
+        },
+        {
+          "type": "STRING",
+          "value": "darkolivegreen4"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorange"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorange1"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorange2"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorange3"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorange4"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorchid"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorchid1"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorchid2"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorchid3"
+        },
+        {
+          "type": "STRING",
+          "value": "darkorchid4"
+        },
+        {
+          "type": "STRING",
+          "value": "darksalmon"
+        },
+        {
+          "type": "STRING",
+          "value": "darkseagreen"
+        },
+        {
+          "type": "STRING",
+          "value": "darkseagreen1"
+        },
+        {
+          "type": "STRING",
+          "value": "darkseagreen2"
+        },
+        {
+          "type": "STRING",
+          "value": "darkseagreen3"
+        },
+        {
+          "type": "STRING",
+          "value": "darkseagreen4"
+        },
+        {
+          "type": "STRING",
+          "value": "darkslateblue"
+        },
+        {
+          "type": "STRING",
+          "value": "darkslategray"
+        },
+        {
+          "type": "STRING",
+          "value": "darkslategray1"
+        },
+        {
+          "type": "STRING",
+          "value": "darkslategray2"
+        },
+        {
+          "type": "STRING",
+          "value": "darkslategray3"
+        },
+        {
+          "type": "STRING",
+          "value": "darkslategray4"
+        },
+        {
+          "type": "STRING",
+          "value": "darkturquoise"
+        },
+        {
+          "type": "STRING",
+          "value": "darkviolet"
+        },
+        {
+          "type": "STRING",
+          "value": "deeppink1"
+        },
+        {
+          "type": "STRING",
+          "value": "deeppink2"
+        },
+        {
+          "type": "STRING",
+          "value": "deeppink3"
+        },
+        {
+          "type": "STRING",
+          "value": "deeppink4"
+        },
+        {
+          "type": "STRING",
+          "value": "deepskyblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "deepskyblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "deepskyblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "deepskyblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "dimgray"
+        },
+        {
+          "type": "STRING",
+          "value": "dodgerblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "dodgerblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "dodgerblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "dodgerblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "firebrick"
+        },
+        {
+          "type": "STRING",
+          "value": "firebrick1"
+        },
+        {
+          "type": "STRING",
+          "value": "firebrick2"
+        },
+        {
+          "type": "STRING",
+          "value": "firebrick3"
+        },
+        {
+          "type": "STRING",
+          "value": "firebrick4"
+        },
+        {
+          "type": "STRING",
+          "value": "floralwhite"
+        },
+        {
+          "type": "STRING",
+          "value": "forestgreen"
+        },
+        {
+          "type": "STRING",
+          "value": "gainsboro"
+        },
+        {
+          "type": "STRING",
+          "value": "ghostwhite"
+        },
+        {
+          "type": "STRING",
+          "value": "gold1"
+        },
+        {
+          "type": "STRING",
+          "value": "gold2"
+        },
+        {
+          "type": "STRING",
+          "value": "gold3"
+        },
+        {
+          "type": "STRING",
+          "value": "gold4"
+        },
+        {
+          "type": "STRING",
+          "value": "goldenrod"
+        },
+        {
+          "type": "STRING",
+          "value": "goldenrod1"
+        },
+        {
+          "type": "STRING",
+          "value": "goldenrod2"
+        },
+        {
+          "type": "STRING",
+          "value": "goldenrod3"
+        },
+        {
+          "type": "STRING",
+          "value": "goldenrod4"
+        },
+        {
+          "type": "STRING",
+          "value": "gray"
+        },
+        {
+          "type": "STRING",
+          "value": "gray1"
+        },
+        {
+          "type": "STRING",
+          "value": "gray2"
+        },
+        {
+          "type": "STRING",
+          "value": "gray3"
+        },
+        {
+          "type": "STRING",
+          "value": "gray4"
+        },
+        {
+          "type": "STRING",
+          "value": "gray5"
+        },
+        {
+          "type": "STRING",
+          "value": "gray6"
+        },
+        {
+          "type": "STRING",
+          "value": "gray7"
+        },
+        {
+          "type": "STRING",
+          "value": "gray8"
+        },
+        {
+          "type": "STRING",
+          "value": "gray9"
+        },
+        {
+          "type": "STRING",
+          "value": "gray10"
+        },
+        {
+          "type": "STRING",
+          "value": "gray11"
+        },
+        {
+          "type": "STRING",
+          "value": "gray12"
+        },
+        {
+          "type": "STRING",
+          "value": "gray13"
+        },
+        {
+          "type": "STRING",
+          "value": "gray14"
+        },
+        {
+          "type": "STRING",
+          "value": "gray15"
+        },
+        {
+          "type": "STRING",
+          "value": "gray16"
+        },
+        {
+          "type": "STRING",
+          "value": "gray17"
+        },
+        {
+          "type": "STRING",
+          "value": "gray18"
+        },
+        {
+          "type": "STRING",
+          "value": "gray19"
+        },
+        {
+          "type": "STRING",
+          "value": "gray20"
+        },
+        {
+          "type": "STRING",
+          "value": "gray21"
+        },
+        {
+          "type": "STRING",
+          "value": "gray22"
+        },
+        {
+          "type": "STRING",
+          "value": "gray23"
+        },
+        {
+          "type": "STRING",
+          "value": "gray24"
+        },
+        {
+          "type": "STRING",
+          "value": "gray25"
+        },
+        {
+          "type": "STRING",
+          "value": "gray26"
+        },
+        {
+          "type": "STRING",
+          "value": "gray27"
+        },
+        {
+          "type": "STRING",
+          "value": "gray28"
+        },
+        {
+          "type": "STRING",
+          "value": "gray29"
+        },
+        {
+          "type": "STRING",
+          "value": "gray30"
+        },
+        {
+          "type": "STRING",
+          "value": "gray31"
+        },
+        {
+          "type": "STRING",
+          "value": "gray32"
+        },
+        {
+          "type": "STRING",
+          "value": "gray33"
+        },
+        {
+          "type": "STRING",
+          "value": "gray34"
+        },
+        {
+          "type": "STRING",
+          "value": "gray35"
+        },
+        {
+          "type": "STRING",
+          "value": "gray36"
+        },
+        {
+          "type": "STRING",
+          "value": "gray37"
+        },
+        {
+          "type": "STRING",
+          "value": "gray38"
+        },
+        {
+          "type": "STRING",
+          "value": "gray39"
+        },
+        {
+          "type": "STRING",
+          "value": "gray40"
+        },
+        {
+          "type": "STRING",
+          "value": "gray41"
+        },
+        {
+          "type": "STRING",
+          "value": "gray42"
+        },
+        {
+          "type": "STRING",
+          "value": "gray43"
+        },
+        {
+          "type": "STRING",
+          "value": "gray44"
+        },
+        {
+          "type": "STRING",
+          "value": "gray45"
+        },
+        {
+          "type": "STRING",
+          "value": "gray46"
+        },
+        {
+          "type": "STRING",
+          "value": "gray47"
+        },
+        {
+          "type": "STRING",
+          "value": "gray48"
+        },
+        {
+          "type": "STRING",
+          "value": "gray49"
+        },
+        {
+          "type": "STRING",
+          "value": "gray50"
+        },
+        {
+          "type": "STRING",
+          "value": "gray51"
+        },
+        {
+          "type": "STRING",
+          "value": "gray52"
+        },
+        {
+          "type": "STRING",
+          "value": "gray53"
+        },
+        {
+          "type": "STRING",
+          "value": "gray54"
+        },
+        {
+          "type": "STRING",
+          "value": "gray55"
+        },
+        {
+          "type": "STRING",
+          "value": "gray56"
+        },
+        {
+          "type": "STRING",
+          "value": "gray57"
+        },
+        {
+          "type": "STRING",
+          "value": "gray58"
+        },
+        {
+          "type": "STRING",
+          "value": "gray59"
+        },
+        {
+          "type": "STRING",
+          "value": "gray60"
+        },
+        {
+          "type": "STRING",
+          "value": "gray61"
+        },
+        {
+          "type": "STRING",
+          "value": "gray62"
+        },
+        {
+          "type": "STRING",
+          "value": "gray63"
+        },
+        {
+          "type": "STRING",
+          "value": "gray64"
+        },
+        {
+          "type": "STRING",
+          "value": "gray65"
+        },
+        {
+          "type": "STRING",
+          "value": "gray66"
+        },
+        {
+          "type": "STRING",
+          "value": "gray67"
+        },
+        {
+          "type": "STRING",
+          "value": "gray68"
+        },
+        {
+          "type": "STRING",
+          "value": "gray69"
+        },
+        {
+          "type": "STRING",
+          "value": "gray70"
+        },
+        {
+          "type": "STRING",
+          "value": "gray71"
+        },
+        {
+          "type": "STRING",
+          "value": "gray72"
+        },
+        {
+          "type": "STRING",
+          "value": "gray73"
+        },
+        {
+          "type": "STRING",
+          "value": "gray74"
+        },
+        {
+          "type": "STRING",
+          "value": "gray75"
+        },
+        {
+          "type": "STRING",
+          "value": "gray76"
+        },
+        {
+          "type": "STRING",
+          "value": "gray77"
+        },
+        {
+          "type": "STRING",
+          "value": "gray78"
+        },
+        {
+          "type": "STRING",
+          "value": "gray79"
+        },
+        {
+          "type": "STRING",
+          "value": "gray80"
+        },
+        {
+          "type": "STRING",
+          "value": "gray81"
+        },
+        {
+          "type": "STRING",
+          "value": "gray82"
+        },
+        {
+          "type": "STRING",
+          "value": "gray83"
+        },
+        {
+          "type": "STRING",
+          "value": "gray84"
+        },
+        {
+          "type": "STRING",
+          "value": "gray85"
+        },
+        {
+          "type": "STRING",
+          "value": "gray86"
+        },
+        {
+          "type": "STRING",
+          "value": "gray87"
+        },
+        {
+          "type": "STRING",
+          "value": "gray88"
+        },
+        {
+          "type": "STRING",
+          "value": "gray89"
+        },
+        {
+          "type": "STRING",
+          "value": "gray90"
+        },
+        {
+          "type": "STRING",
+          "value": "gray91"
+        },
+        {
+          "type": "STRING",
+          "value": "gray92"
+        },
+        {
+          "type": "STRING",
+          "value": "gray93"
+        },
+        {
+          "type": "STRING",
+          "value": "gray94"
+        },
+        {
+          "type": "STRING",
+          "value": "gray95"
+        },
+        {
+          "type": "STRING",
+          "value": "gray97"
+        },
+        {
+          "type": "STRING",
+          "value": "gray98"
+        },
+        {
+          "type": "STRING",
+          "value": "gray99"
+        },
+        {
+          "type": "STRING",
+          "value": "green1"
+        },
+        {
+          "type": "STRING",
+          "value": "green2"
+        },
+        {
+          "type": "STRING",
+          "value": "green3"
+        },
+        {
+          "type": "STRING",
+          "value": "green4"
+        },
+        {
+          "type": "STRING",
+          "value": "greenyellow"
+        },
+        {
+          "type": "STRING",
+          "value": "honeydew1"
+        },
+        {
+          "type": "STRING",
+          "value": "honeydew2"
+        },
+        {
+          "type": "STRING",
+          "value": "honeydew3"
+        },
+        {
+          "type": "STRING",
+          "value": "honeydew4"
+        },
+        {
+          "type": "STRING",
+          "value": "hotpink"
+        },
+        {
+          "type": "STRING",
+          "value": "hotpink1"
+        },
+        {
+          "type": "STRING",
+          "value": "hotpink2"
+        },
+        {
+          "type": "STRING",
+          "value": "hotpink3"
+        },
+        {
+          "type": "STRING",
+          "value": "hotpink4"
+        },
+        {
+          "type": "STRING",
+          "value": "indianred"
+        },
+        {
+          "type": "STRING",
+          "value": "indianred1"
+        },
+        {
+          "type": "STRING",
+          "value": "indianred2"
+        },
+        {
+          "type": "STRING",
+          "value": "indianred3"
+        },
+        {
+          "type": "STRING",
+          "value": "indianred4"
+        },
+        {
+          "type": "STRING",
+          "value": "ivory1"
+        },
+        {
+          "type": "STRING",
+          "value": "ivory2"
+        },
+        {
+          "type": "STRING",
+          "value": "ivory3"
+        },
+        {
+          "type": "STRING",
+          "value": "ivory4"
+        },
+        {
+          "type": "STRING",
+          "value": "khaki"
+        },
+        {
+          "type": "STRING",
+          "value": "khaki1"
+        },
+        {
+          "type": "STRING",
+          "value": "khaki2"
+        },
+        {
+          "type": "STRING",
+          "value": "khaki3"
+        },
+        {
+          "type": "STRING",
+          "value": "khaki4"
+        },
+        {
+          "type": "STRING",
+          "value": "lavender"
+        },
+        {
+          "type": "STRING",
+          "value": "lavenderblush1"
+        },
+        {
+          "type": "STRING",
+          "value": "lavenderblush2"
+        },
+        {
+          "type": "STRING",
+          "value": "lavenderblush3"
+        },
+        {
+          "type": "STRING",
+          "value": "lavenderblush4"
+        },
+        {
+          "type": "STRING",
+          "value": "lawngreen"
+        },
+        {
+          "type": "STRING",
+          "value": "lemonchiffon1"
+        },
+        {
+          "type": "STRING",
+          "value": "lemonchiffon2"
+        },
+        {
+          "type": "STRING",
+          "value": "lemonchiffon3"
+        },
+        {
+          "type": "STRING",
+          "value": "lemonchiffon4"
+        },
+        {
+          "type": "STRING",
+          "value": "light"
+        },
+        {
+          "type": "STRING",
+          "value": "lightblue"
+        },
+        {
+          "type": "STRING",
+          "value": "lightblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightcoral"
+        },
+        {
+          "type": "STRING",
+          "value": "lightcyan1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightcyan2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightcyan3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightcyan4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightgoldenrod1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightgoldenrod2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightgoldenrod3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightgoldenrod4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightgoldenrodyellow"
+        },
+        {
+          "type": "STRING",
+          "value": "lightgray"
+        },
+        {
+          "type": "STRING",
+          "value": "lightpink"
+        },
+        {
+          "type": "STRING",
+          "value": "lightpink1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightpink2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightpink3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightpink4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsalmon1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsalmon2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsalmon3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsalmon4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightseagreen"
+        },
+        {
+          "type": "STRING",
+          "value": "lightskyblue"
+        },
+        {
+          "type": "STRING",
+          "value": "lightskyblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightskyblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightskyblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightskyblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightslateblue"
+        },
+        {
+          "type": "STRING",
+          "value": "lightslategray"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsteelblue"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsteelblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsteelblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsteelblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightsteelblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "lightyellow1"
+        },
+        {
+          "type": "STRING",
+          "value": "lightyellow2"
+        },
+        {
+          "type": "STRING",
+          "value": "lightyellow3"
+        },
+        {
+          "type": "STRING",
+          "value": "lightyellow4"
+        },
+        {
+          "type": "STRING",
+          "value": "limegreen"
+        },
+        {
+          "type": "STRING",
+          "value": "linen"
+        },
+        {
+          "type": "STRING",
+          "value": "magenta"
+        },
+        {
+          "type": "STRING",
+          "value": "magenta2"
+        },
+        {
+          "type": "STRING",
+          "value": "magenta3"
+        },
+        {
+          "type": "STRING",
+          "value": "magenta4"
+        },
+        {
+          "type": "STRING",
+          "value": "maroon"
+        },
+        {
+          "type": "STRING",
+          "value": "maroon1"
+        },
+        {
+          "type": "STRING",
+          "value": "maroon2"
+        },
+        {
+          "type": "STRING",
+          "value": "maroon3"
+        },
+        {
+          "type": "STRING",
+          "value": "maroon4"
+        },
+        {
+          "type": "STRING",
+          "value": "medium"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumaquamarine"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumblue"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumorchid"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumorchid1"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumorchid2"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumorchid3"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumorchid4"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumpurple"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumpurple1"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumpurple2"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumpurple3"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumpurple4"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumseagreen"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumslateblue"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumspringgreen"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumturquoise"
+        },
+        {
+          "type": "STRING",
+          "value": "mediumvioletred"
+        },
+        {
+          "type": "STRING",
+          "value": "midnightblue"
+        },
+        {
+          "type": "STRING",
+          "value": "mintcream"
+        },
+        {
+          "type": "STRING",
+          "value": "mistyrose1"
+        },
+        {
+          "type": "STRING",
+          "value": "mistyrose2"
+        },
+        {
+          "type": "STRING",
+          "value": "mistyrose3"
+        },
+        {
+          "type": "STRING",
+          "value": "mistyrose4"
+        },
+        {
+          "type": "STRING",
+          "value": "moccasin"
+        },
+        {
+          "type": "STRING",
+          "value": "navajowhite1"
+        },
+        {
+          "type": "STRING",
+          "value": "navajowhite2"
+        },
+        {
+          "type": "STRING",
+          "value": "navajowhite3"
+        },
+        {
+          "type": "STRING",
+          "value": "navajowhite4"
+        },
+        {
+          "type": "STRING",
+          "value": "navyblue"
+        },
+        {
+          "type": "STRING",
+          "value": "oldlace"
+        },
+        {
+          "type": "STRING",
+          "value": "olivedrab"
+        },
+        {
+          "type": "STRING",
+          "value": "olivedrab1"
+        },
+        {
+          "type": "STRING",
+          "value": "olivedrab2"
+        },
+        {
+          "type": "STRING",
+          "value": "olivedrab4"
+        },
+        {
+          "type": "STRING",
+          "value": "orange1"
+        },
+        {
+          "type": "STRING",
+          "value": "orange2"
+        },
+        {
+          "type": "STRING",
+          "value": "orange3"
+        },
+        {
+          "type": "STRING",
+          "value": "orange4"
+        },
+        {
+          "type": "STRING",
+          "value": "orangered1"
+        },
+        {
+          "type": "STRING",
+          "value": "orangered2"
+        },
+        {
+          "type": "STRING",
+          "value": "orangered3"
+        },
+        {
+          "type": "STRING",
+          "value": "orangered4"
+        },
+        {
+          "type": "STRING",
+          "value": "orchid"
+        },
+        {
+          "type": "STRING",
+          "value": "orchid1"
+        },
+        {
+          "type": "STRING",
+          "value": "orchid2"
+        },
+        {
+          "type": "STRING",
+          "value": "orchid3"
+        },
+        {
+          "type": "STRING",
+          "value": "orchid4"
+        },
+        {
+          "type": "STRING",
+          "value": "pale"
+        },
+        {
+          "type": "STRING",
+          "value": "palegoldenrod"
+        },
+        {
+          "type": "STRING",
+          "value": "palegreen"
+        },
+        {
+          "type": "STRING",
+          "value": "palegreen1"
+        },
+        {
+          "type": "STRING",
+          "value": "palegreen2"
+        },
+        {
+          "type": "STRING",
+          "value": "palegreen3"
+        },
+        {
+          "type": "STRING",
+          "value": "palegreen4"
+        },
+        {
+          "type": "STRING",
+          "value": "paleturquoise"
+        },
+        {
+          "type": "STRING",
+          "value": "paleturquoise1"
+        },
+        {
+          "type": "STRING",
+          "value": "paleturquoise2"
+        },
+        {
+          "type": "STRING",
+          "value": "paleturquoise3"
+        },
+        {
+          "type": "STRING",
+          "value": "paleturquoise4"
+        },
+        {
+          "type": "STRING",
+          "value": "palevioletred"
+        },
+        {
+          "type": "STRING",
+          "value": "palevioletred1"
+        },
+        {
+          "type": "STRING",
+          "value": "palevioletred2"
+        },
+        {
+          "type": "STRING",
+          "value": "palevioletred3"
+        },
+        {
+          "type": "STRING",
+          "value": "palevioletred4"
+        },
+        {
+          "type": "STRING",
+          "value": "papayawhip"
+        },
+        {
+          "type": "STRING",
+          "value": "peachpuff1"
+        },
+        {
+          "type": "STRING",
+          "value": "peachpuff2"
+        },
+        {
+          "type": "STRING",
+          "value": "peachpuff3"
+        },
+        {
+          "type": "STRING",
+          "value": "peachpuff4"
+        },
+        {
+          "type": "STRING",
+          "value": "pink"
+        },
+        {
+          "type": "STRING",
+          "value": "pink1"
+        },
+        {
+          "type": "STRING",
+          "value": "pink2"
+        },
+        {
+          "type": "STRING",
+          "value": "pink3"
+        },
+        {
+          "type": "STRING",
+          "value": "pink4"
+        },
+        {
+          "type": "STRING",
+          "value": "plum"
+        },
+        {
+          "type": "STRING",
+          "value": "plum1"
+        },
+        {
+          "type": "STRING",
+          "value": "plum2"
+        },
+        {
+          "type": "STRING",
+          "value": "plum3"
+        },
+        {
+          "type": "STRING",
+          "value": "plum4"
+        },
+        {
+          "type": "STRING",
+          "value": "powderblue"
+        },
+        {
+          "type": "STRING",
+          "value": "purple"
+        },
+        {
+          "type": "STRING",
+          "value": "purple1"
+        },
+        {
+          "type": "STRING",
+          "value": "purple2"
+        },
+        {
+          "type": "STRING",
+          "value": "purple3"
+        },
+        {
+          "type": "STRING",
+          "value": "purple4"
+        },
+        {
+          "type": "STRING",
+          "value": "red1"
+        },
+        {
+          "type": "STRING",
+          "value": "red2"
+        },
+        {
+          "type": "STRING",
+          "value": "red3"
+        },
+        {
+          "type": "STRING",
+          "value": "red4"
+        },
+        {
+          "type": "STRING",
+          "value": "rosybrown"
+        },
+        {
+          "type": "STRING",
+          "value": "rosybrown1"
+        },
+        {
+          "type": "STRING",
+          "value": "rosybrown2"
+        },
+        {
+          "type": "STRING",
+          "value": "rosybrown3"
+        },
+        {
+          "type": "STRING",
+          "value": "rosybrown4"
+        },
+        {
+          "type": "STRING",
+          "value": "royalblue"
+        },
+        {
+          "type": "STRING",
+          "value": "royalblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "royalblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "royalblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "royalblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "saddlebrown"
+        },
+        {
+          "type": "STRING",
+          "value": "salmon"
+        },
+        {
+          "type": "STRING",
+          "value": "salmon1"
+        },
+        {
+          "type": "STRING",
+          "value": "salmon2"
+        },
+        {
+          "type": "STRING",
+          "value": "salmon3"
+        },
+        {
+          "type": "STRING",
+          "value": "salmon4"
+        },
+        {
+          "type": "STRING",
+          "value": "sandybrown"
+        },
+        {
+          "type": "STRING",
+          "value": "seagreen1"
+        },
+        {
+          "type": "STRING",
+          "value": "seagreen2"
+        },
+        {
+          "type": "STRING",
+          "value": "seagreen3"
+        },
+        {
+          "type": "STRING",
+          "value": "seagreen4"
+        },
+        {
+          "type": "STRING",
+          "value": "seashell1"
+        },
+        {
+          "type": "STRING",
+          "value": "seashell2"
+        },
+        {
+          "type": "STRING",
+          "value": "seashell3"
+        },
+        {
+          "type": "STRING",
+          "value": "seashell4"
+        },
+        {
+          "type": "STRING",
+          "value": "sienna"
+        },
+        {
+          "type": "STRING",
+          "value": "sienna1"
+        },
+        {
+          "type": "STRING",
+          "value": "sienna2"
+        },
+        {
+          "type": "STRING",
+          "value": "sienna3"
+        },
+        {
+          "type": "STRING",
+          "value": "sienna4"
+        },
+        {
+          "type": "STRING",
+          "value": "skyblue"
+        },
+        {
+          "type": "STRING",
+          "value": "skyblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "skyblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "skyblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "skyblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "slateblue"
+        },
+        {
+          "type": "STRING",
+          "value": "slateblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "slateblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "slateblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "slateblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "slategray"
+        },
+        {
+          "type": "STRING",
+          "value": "slategray1"
+        },
+        {
+          "type": "STRING",
+          "value": "slategray2"
+        },
+        {
+          "type": "STRING",
+          "value": "slategray3"
+        },
+        {
+          "type": "STRING",
+          "value": "slategray4"
+        },
+        {
+          "type": "STRING",
+          "value": "snow1"
+        },
+        {
+          "type": "STRING",
+          "value": "snow2"
+        },
+        {
+          "type": "STRING",
+          "value": "snow3"
+        },
+        {
+          "type": "STRING",
+          "value": "snow4"
+        },
+        {
+          "type": "STRING",
+          "value": "springgreen1"
+        },
+        {
+          "type": "STRING",
+          "value": "springgreen2"
+        },
+        {
+          "type": "STRING",
+          "value": "springgreen3"
+        },
+        {
+          "type": "STRING",
+          "value": "springgreen4"
+        },
+        {
+          "type": "STRING",
+          "value": "steelblue"
+        },
+        {
+          "type": "STRING",
+          "value": "steelblue1"
+        },
+        {
+          "type": "STRING",
+          "value": "steelblue2"
+        },
+        {
+          "type": "STRING",
+          "value": "steelblue3"
+        },
+        {
+          "type": "STRING",
+          "value": "steelblue4"
+        },
+        {
+          "type": "STRING",
+          "value": "tan"
+        },
+        {
+          "type": "STRING",
+          "value": "tan1"
+        },
+        {
+          "type": "STRING",
+          "value": "tan2"
+        },
+        {
+          "type": "STRING",
+          "value": "tan3"
+        },
+        {
+          "type": "STRING",
+          "value": "tan4"
+        },
+        {
+          "type": "STRING",
+          "value": "thistle"
+        },
+        {
+          "type": "STRING",
+          "value": "thistle1"
+        },
+        {
+          "type": "STRING",
+          "value": "thistle2"
+        },
+        {
+          "type": "STRING",
+          "value": "thistle3"
+        },
+        {
+          "type": "STRING",
+          "value": "thistle4"
+        },
+        {
+          "type": "STRING",
+          "value": "tomato1"
+        },
+        {
+          "type": "STRING",
+          "value": "tomato2"
+        },
+        {
+          "type": "STRING",
+          "value": "tomato3"
+        },
+        {
+          "type": "STRING",
+          "value": "tomato4"
+        },
+        {
+          "type": "STRING",
+          "value": "turquoise"
+        },
+        {
+          "type": "STRING",
+          "value": "turquoise1"
+        },
+        {
+          "type": "STRING",
+          "value": "turquoise2"
+        },
+        {
+          "type": "STRING",
+          "value": "turquoise3"
+        },
+        {
+          "type": "STRING",
+          "value": "turquoise4"
+        },
+        {
+          "type": "STRING",
+          "value": "violet"
+        },
+        {
+          "type": "STRING",
+          "value": "violetred"
+        },
+        {
+          "type": "STRING",
+          "value": "violetred1"
+        },
+        {
+          "type": "STRING",
+          "value": "violetred2"
+        },
+        {
+          "type": "STRING",
+          "value": "violetred3"
+        },
+        {
+          "type": "STRING",
+          "value": "violetred4"
+        },
+        {
+          "type": "STRING",
+          "value": "wheat"
+        },
+        {
+          "type": "STRING",
+          "value": "wheat1"
+        },
+        {
+          "type": "STRING",
+          "value": "wheat2"
+        },
+        {
+          "type": "STRING",
+          "value": "wheat3"
+        },
+        {
+          "type": "STRING",
+          "value": "wheat4"
+        },
+        {
+          "type": "STRING",
+          "value": "white"
+        },
+        {
+          "type": "STRING",
+          "value": "whitesmoke"
+        },
+        {
+          "type": "STRING",
+          "value": "yellow1"
+        },
+        {
+          "type": "STRING",
+          "value": "yellow2"
+        },
+        {
+          "type": "STRING",
+          "value": "yellow3"
+        },
+        {
+          "type": "STRING",
+          "value": "yellow4"
+        },
+        {
+          "type": "STRING",
+          "value": "yellowgreen"
+        }
+      ]
+    },
+    "set_colors": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "set_colors"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "options",
+              "content": {
+                "type": "SYMBOL",
+                "name": "color_options"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "color_value"
+          }
+        }
+      ]
+    },
+    "color_options": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_color_option"
+      }
+    },
+    "_color_option": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "color_all"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "color_configured"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "color_reset"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "color_match"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "color_match_tab"
+        }
+      ]
+    },
+    "color_all": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "-a=no"
+        },
+        {
+          "type": "STRING",
+          "value": "-a"
+        },
+        {
+          "type": "STRING",
+          "value": "--all=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--all"
+        }
+      ]
+    },
+    "color_configured": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "-c=no"
+        },
+        {
+          "type": "STRING",
+          "value": "-c"
+        },
+        {
+          "type": "STRING",
+          "value": "--configured=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--configured"
+        }
+      ]
+    },
+    "color_reset": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "--reset=no"
+        },
+        {
+          "type": "STRING",
+          "value": "--reset"
+        }
+      ]
+    },
+    "color_match": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--match"
+            },
+            {
+              "type": "STRING",
+              "value": "-m"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "query",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "color_match_tab": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "--match-tab"
+            },
+            {
+              "type": "STRING",
+              "value": "-t"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "query",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "color_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "color_option"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          },
+          "named": true,
+          "value": "path"
+        }
+      ]
+    },
+    "color_option": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "color_option_name"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "color"
+          }
+        }
+      ]
+    },
+    "color_option_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "background"
+        },
+        {
+          "type": "STRING",
+          "value": "selection_foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "selection_background"
+        },
+        {
+          "type": "STRING",
+          "value": "cursor"
+        },
+        {
+          "type": "STRING",
+          "value": "url_color"
+        },
+        {
+          "type": "STRING",
+          "value": "active_border_color"
+        },
+        {
+          "type": "STRING",
+          "value": "inactive_border_color"
+        },
+        {
+          "type": "STRING",
+          "value": "bell_border_color"
+        },
+        {
+          "type": "STRING",
+          "value": "active_tab_foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "active_tab_background"
+        },
+        {
+          "type": "STRING",
+          "value": "inactive_tab_foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "inactive_tab_background"
+        },
+        {
+          "type": "STRING",
+          "value": "tab_bar_background"
+        },
+        {
+          "type": "STRING",
+          "value": "mark1_foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "mark1_background"
+        },
+        {
+          "type": "STRING",
+          "value": "mark2_foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "mark2_background"
+        },
+        {
+          "type": "STRING",
+          "value": "mark3_foreground"
+        },
+        {
+          "type": "STRING",
+          "value": "mark3_background"
+        },
+        {
+          "type": "STRING",
+          "value": "color0"
+        },
+        {
+          "type": "STRING",
+          "value": "color8"
+        },
+        {
+          "type": "STRING",
+          "value": "color1"
+        },
+        {
+          "type": "STRING",
+          "value": "color9"
+        },
+        {
+          "type": "STRING",
+          "value": "color2"
+        },
+        {
+          "type": "STRING",
+          "value": "color10"
+        },
+        {
+          "type": "STRING",
+          "value": "color3"
+        },
+        {
+          "type": "STRING",
+          "value": "color11"
+        },
+        {
+          "type": "STRING",
+          "value": "color4"
+        },
+        {
+          "type": "STRING",
+          "value": "color12"
+        },
+        {
+          "type": "STRING",
+          "value": "color5"
+        },
+        {
+          "type": "STRING",
+          "value": "color13"
+        },
+        {
+          "type": "STRING",
+          "value": "color6"
+        },
+        {
+          "type": "STRING",
+          "value": "color14"
+        },
+        {
+          "type": "STRING",
+          "value": "color7"
+        },
+        {
+          "type": "STRING",
+          "value": "color15"
+        }
+      ]
     },
     "_action": {
       "type": "CHOICE",
@@ -597,6 +3368,82 @@
         {
           "type": "SYMBOL",
           "name": "launch"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "load_config_file"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "open_url"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "remote_control_script"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "set_colors"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "sleep"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mouse_handle_click"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mouse_selection"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "scroll_prompt_to_top"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "scroll_to_prompt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "goto_tab"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "set_tab_title"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "set_window_title"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "move_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "neighboring_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nth_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "resize_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "close_window_with_confirmation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "detach_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "set_background_opacity"
         }
       ]
     },
@@ -750,6 +3597,250 @@
         {
           "type": "STRING",
           "value": "kitty_shell"
+        },
+        {
+          "type": "STRING",
+          "value": "minimize_macos_window"
+        },
+        {
+          "type": "STRING",
+          "value": "open_url_with_hints"
+        },
+        {
+          "type": "STRING",
+          "value": "pop_keyboard_mode"
+        },
+        {
+          "type": "STRING",
+          "value": "push_keyboard_mode"
+        },
+        {
+          "type": "STRING",
+          "value": "show_error"
+        },
+        {
+          "type": "STRING",
+          "value": "toggle_macos_secure_keyboard_entry"
+        },
+        {
+          "type": "STRING",
+          "value": "ungrab_keyboard"
+        },
+        {
+          "type": "STRING",
+          "value": "no_op"
+        },
+        {
+          "type": "STRING",
+          "value": "mouse_click_url"
+        },
+        {
+          "type": "STRING",
+          "value": "mouse_click_url_or_select"
+        },
+        {
+          "type": "STRING",
+          "value": "mouse_select_command_output"
+        },
+        {
+          "type": "STRING",
+          "value": "mouse_show_command_output"
+        },
+        {
+          "type": "STRING",
+          "value": "paste_selection"
+        },
+        {
+          "type": "STRING",
+          "value": "paste_selection_or_clipboard"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_end"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_line_down"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_line_up"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_page_down"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_page_up"
+        },
+        {
+          "type": "STRING",
+          "value": "scroll_prompt_to_bottom"
+        },
+        {
+          "type": "STRING",
+          "value": "close_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "detach_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "move_tab_backward"
+        },
+        {
+          "type": "STRING",
+          "value": "move_tab_forward"
+        },
+        {
+          "type": "STRING",
+          "value": "new_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "new_tab_with_cwd"
+        },
+        {
+          "type": "STRING",
+          "value": "next_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "previous_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "select_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "close_other_windows_in_tab"
+        },
+        {
+          "type": "STRING",
+          "value": "eighth_window"
+        },
+        {
+          "type": "STRING",
+          "value": "fifth_window"
+        },
+        {
+          "type": "STRING",
+          "value": "first_window"
+        },
+        {
+          "type": "STRING",
+          "value": "focus_visible_window"
+        },
+        {
+          "type": "STRING",
+          "value": "fourth_window"
+        },
+        {
+          "type": "STRING",
+          "value": "move_window_backward"
+        },
+        {
+          "type": "STRING",
+          "value": "move_window_forward"
+        },
+        {
+          "type": "STRING",
+          "value": "move_window_to_top"
+        },
+        {
+          "type": "STRING",
+          "value": "next_window"
+        },
+        {
+          "type": "STRING",
+          "value": "ninth_window"
+        },
+        {
+          "type": "STRING",
+          "value": "previous_window"
+        },
+        {
+          "type": "STRING",
+          "value": "reset_window_sizes"
+        },
+        {
+          "type": "STRING",
+          "value": "second_window"
+        },
+        {
+          "type": "STRING",
+          "value": "seventh_window"
+        },
+        {
+          "type": "STRING",
+          "value": "sixth_window"
+        },
+        {
+          "type": "STRING",
+          "value": "swap_with_window"
+        },
+        {
+          "type": "STRING",
+          "value": "tenth_window"
+        },
+        {
+          "type": "STRING",
+          "value": "third_window"
+        },
+        {
+          "type": "STRING",
+          "value": "close_os_window"
+        },
+        {
+          "type": "STRING",
+          "value": "close_other_os_windows"
+        },
+        {
+          "type": "STRING",
+          "value": "close_window"
+        },
+        {
+          "type": "STRING",
+          "value": "new_os_window"
+        },
+        {
+          "type": "STRING",
+          "value": "new_os_window_with_cwd"
+        },
+        {
+          "type": "STRING",
+          "value": "new_window"
+        },
+        {
+          "type": "STRING",
+          "value": "new_window_with_cwd"
+        },
+        {
+          "type": "STRING",
+          "value": "nth_os_window"
+        },
+        {
+          "type": "STRING",
+          "value": "quit"
+        },
+        {
+          "type": "STRING",
+          "value": "start_resizing_window"
+        },
+        {
+          "type": "STRING",
+          "value": "toggle_fullscreen"
+        },
+        {
+          "type": "STRING",
+          "value": "toggle_maximized"
+        },
+        {
+          "type": "STRING",
+          "value": "toggle_tab"
         }
       ]
     },
@@ -2015,6 +5106,570 @@
         }
       ]
     },
+    "load_config_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "loas_config_file"
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "open_url": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "open_url"
+        },
+        {
+          "type": "FIELD",
+          "name": "url",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "remote_control_script": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "remote_control_script"
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "remote_args"
+          }
+        }
+      ]
+    },
+    "remote_args": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "string"
+      }
+    },
+    "sleep": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "sleep"
+        },
+        {
+          "type": "FIELD",
+          "name": "time",
+          "content": {
+            "type": "SYMBOL",
+            "name": "time"
+          }
+        }
+      ]
+    },
+    "mouse_handle_click": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mouse_handle_click"
+        },
+        {
+          "type": "FIELD",
+          "name": "actions",
+          "content": {
+            "type": "SYMBOL",
+            "name": "handle_click_actions"
+          }
+        }
+      ]
+    },
+    "handle_click_actions": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_handle_click_action"
+      }
+    },
+    "_handle_click_action": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "selection"
+        },
+        {
+          "type": "STRING",
+          "value": "link"
+        },
+        {
+          "type": "STRING",
+          "value": "prompt"
+        }
+      ]
+    },
+    "mouse_selection": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mouse_selection"
+        },
+        {
+          "type": "FIELD",
+          "name": "selection",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mouse_selection_type"
+          }
+        }
+      ]
+    },
+    "mouse_selection_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "normal"
+        },
+        {
+          "type": "STRING",
+          "value": "rectangle"
+        },
+        {
+          "type": "STRING",
+          "value": "word"
+        },
+        {
+          "type": "STRING",
+          "value": "line"
+        },
+        {
+          "type": "STRING",
+          "value": "line_from_point"
+        },
+        {
+          "type": "STRING",
+          "value": "extend"
+        }
+      ]
+    },
+    "scroll_prompt_to_top": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "scroll_prompt_to_top"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[ \\t]+"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "STRING",
+                  "value": "y"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "scroll_to_prompt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "scroll_to_prompt"
+        },
+        {
+          "type": "FIELD",
+          "name": "prompt_number",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "lines_above",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "goto_tab": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "goto_tab"
+        },
+        {
+          "type": "FIELD",
+          "name": "tab",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    "set_tab_title": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "set_tab_title"
+        },
+        {
+          "type": "FIELD",
+          "name": "tab",
+          "content": {
+            "type": "SYMBOL",
+            "name": "title"
+          }
+        }
+      ]
+    },
+    "set_window_title": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "set_window_title"
+        },
+        {
+          "type": "FIELD",
+          "name": "tab",
+          "content": {
+            "type": "SYMBOL",
+            "name": "title"
+          }
+        }
+      ]
+    },
+    "title": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "\"[^\"]+\""
+          }
+        },
+        {
+          "type": "PREC",
+          "value": -100,
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\n\\r]+"
+            }
+          }
+        }
+      ]
+    },
+    "move_window": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "move_window"
+        },
+        {
+          "type": "FIELD",
+          "name": "direction",
+          "content": {
+            "type": "SYMBOL",
+            "name": "direction"
+          }
+        }
+      ]
+    },
+    "neighboring_window": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "neighboring_window"
+        },
+        {
+          "type": "FIELD",
+          "name": "direction",
+          "content": {
+            "type": "SYMBOL",
+            "name": "direction"
+          }
+        }
+      ]
+    },
+    "nth_window": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "nth_window"
+        },
+        {
+          "type": "FIELD",
+          "name": "window",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    "resize_window": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "resize_window"
+        },
+        {
+          "type": "FIELD",
+          "name": "layout",
+          "content": {
+            "type": "SYMBOL",
+            "name": "window_layout"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "amount",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "number"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "window_layout": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "narrowee"
+        },
+        {
+          "type": "STRING",
+          "value": "wider"
+        },
+        {
+          "type": "STRING",
+          "value": "taller"
+        },
+        {
+          "type": "STRING",
+          "value": "shorter"
+        }
+      ]
+    },
+    "change_font_size": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "change_font_size"
+        },
+        {
+          "type": "FIELD",
+          "name": "target",
+          "content": {
+            "type": "SYMBOL",
+            "name": "os_window"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "amount",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    "os_window": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "all"
+        },
+        {
+          "type": "STRING",
+          "value": "current"
+        }
+      ]
+    },
+    "close_window_with_confirmation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "close_window_with_confirmation"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "STRING",
+                  "value": "ignore-shell"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "detach_window": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "new-tab-prev"
+        },
+        {
+          "type": "STRING",
+          "value": "new-tab-left"
+        },
+        {
+          "type": "STRING",
+          "value": "new-tab-next"
+        },
+        {
+          "type": "STRING",
+          "value": "new-tab-right"
+        },
+        {
+          "type": "STRING",
+          "value": "new-tab"
+        },
+        {
+          "type": "STRING",
+          "value": "tab-prev"
+        },
+        {
+          "type": "STRING",
+          "value": "tab-left"
+        },
+        {
+          "type": "STRING",
+          "value": "tab-next"
+        },
+        {
+          "type": "STRING",
+          "value": "tab-right"
+        },
+        {
+          "type": "STRING",
+          "value": "ask"
+        }
+      ]
+    },
+    "set_background_opacity": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "set_background_opacity"
+        },
+        {
+          "type": "FIELD",
+          "name": "alpha",
+          "content": {
+            "type": "SYMBOL",
+            "name": "number"
+          }
+        }
+      ]
+    },
     "include": {
       "type": "CHOICE",
       "members": [
@@ -2286,12 +5941,21 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "criteria",
-              "content": {
-                "type": "SYMBOL",
-                "name": "key_criteria"
-              }
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "criteria",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "key_criteria"
+                  }
+                }
+              ]
             },
             {
               "type": "BLANK"

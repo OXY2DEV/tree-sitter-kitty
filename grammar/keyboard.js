@@ -2,7 +2,10 @@ module.exports.rules = {
   keyboard_shortcut: $ => seq(
     "map",
     optional(
-      field("criteria", $.key_criteria)
+      seq(
+        /[ \t]+/,
+        field("criteria", $.key_criteria)
+      )
     ),
 
     /[ \t]+/,

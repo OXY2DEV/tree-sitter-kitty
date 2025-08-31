@@ -8,23 +8,12 @@
 // @ts-check
 
 const primitives = require("./grammar/primitive");
+const colors = require("./grammar/colors");
 const actions = require("./grammar/actions");
 
 const includes = require("./grammar/includes");
 const mouse = require("./grammar/mouse");
 const keyboard = require("./grammar/keyboard");
-
-function immediate (tokens) {
-  let output = [];
-
-  tokens.forEach(t => {
-    output.push(
-      token.immediate(t)
-    );
-  })
-
-  return choice(...output);
-}
 
 module.exports = grammar({
   name: "kitty",
@@ -57,6 +46,7 @@ module.exports = grammar({
     ),
 
     ...primitives.rules,
+    ...colors.rules,
     ...actions.rules,
 
     ...includes.rules,

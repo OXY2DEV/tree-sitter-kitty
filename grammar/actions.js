@@ -10,6 +10,30 @@ module.exports.rules = {
     $.disable_ligatures,
     $.kitten,
     $.launch,
+    $.load_config_file,
+    $.open_url,
+    // $.remote_control
+    $.remote_control_script,
+    $.set_colors,
+    $.sleep,
+
+    $.mouse_handle_click,
+    $.mouse_selection,
+
+    $.scroll_prompt_to_top,
+    $.scroll_to_prompt,
+
+    $.goto_tab,
+    $.set_tab_title,
+
+    $.set_window_title,
+    $.move_window,
+    $.neighboring_window,
+    $.nth_window,
+    $.resize_window,
+    $.close_window_with_confirmation,
+    $.detach_window,
+    $.set_background_opacity,
   ),
 
   generic_action: _ => choice(
@@ -55,6 +79,74 @@ module.exports.rules = {
     "input_unicode_character",
 
     "kitty_shell",
+
+    "minimize_macos_window",
+    "open_url_with_hints",
+
+    "pop_keyboard_mode",
+    "push_keyboard_mode",
+
+    "show_error",
+    "toggle_macos_secure_keyboard_entry",
+    "ungrab_keyboard",
+    "no_op",
+
+    "mouse_click_url",
+    "mouse_click_url_or_select",
+    "mouse_select_command_output",
+    "mouse_show_command_output",
+    "paste_selection",
+    "paste_selection_or_clipboard",
+
+    "scroll_end",
+    "scroll_line_down",
+    "scroll_line_up",
+    "scroll_page_down",
+    "scroll_page_up",
+    "scroll_prompt_to_bottom",
+
+    "close_tab",
+    "detach_tab",
+    "move_tab_backward",
+    "move_tab_forward",
+    "new_tab",
+    "new_tab_with_cwd",
+    "next_tab",
+    "previous_tab",
+    "select_tab",
+
+    "close_other_windows_in_tab",
+    "eighth_window",
+    "fifth_window",
+    "first_window",
+    "focus_visible_window",
+    "fourth_window",
+    "move_window_backward",
+    "move_window_forward",
+    "move_window_to_top",
+    "next_window",
+    "ninth_window",
+    "previous_window",
+    "reset_window_sizes",
+    "second_window",
+    "seventh_window",
+    "sixth_window",
+    "swap_with_window",
+    "tenth_window",
+    "third_window",
+    "close_os_window",
+    "close_other_os_windows",
+    "close_window",
+    "new_os_window",
+    "new_os_window_with_cwd",
+    "new_window",
+    "new_window_with_cwd",
+    "nth_os_window",
+    "quit",
+    "start_resizing_window",
+    "toggle_fullscreen",
+    "toggle_maximized",
+    "toggle_tab",
   ),
 
   send_key: $ => seq(
@@ -430,5 +522,182 @@ module.exports.rules = {
   launch_hold_after_ssh: _ => choice(
     "--hold-after-ssh=no",
     "--hold-after-ssh",
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  load_config_file: $ => seq(
+    "loas_config_file",
+    field("path", $.string)
+  ),
+
+  open_url: $ => seq(
+    "open_url",
+    field("url", $.string)
+  ),
+
+  remote_control_script: $ => seq(
+    "remote_control_script",
+    field("path", $.string),
+    field("arguments", $.remote_args)
+  ),
+
+  remote_args: $ => repeat1($.string),
+
+  sleep: $ => seq(
+    "sleep",
+    field("time", $.time)
+  ),
+
+  mouse_handle_click: $ => seq(
+    "mouse_handle_click",
+    field("actions", $.handle_click_actions)
+  ),
+
+  handle_click_actions: $ => repeat1($._handle_click_action),
+  _handle_click_action: _ => choice(
+    "selection",
+    "link",
+    "prompt"
+  ),
+
+  mouse_selection: $ => seq(
+    "mouse_selection",
+    field("selection", $.mouse_selection_type)
+  ),
+
+  mouse_selection_type: _ => choice(
+    "normal",
+    "rectangle",
+    "word",
+    "line",
+    "line_from_point",
+    "extend",
+  ),
+
+  scroll_prompt_to_top: _ => seq(
+    "scroll_prompt_to_top",
+    /[ \t]+/,
+    optional(
+      seq(
+        /[ \t]+/,
+        "y",
+      )
+    ),
+  ),
+
+  scroll_to_prompt: $ => seq(
+    "scroll_to_prompt",
+    field("prompt_number", $.number),
+    optional(
+      seq(
+        /[ \t]+/,
+        field("lines_above", $.number),
+      )
+    ),
+  ),
+
+  goto_tab: $ => seq(
+    "goto_tab",
+    field("tab", $.number),
+  ),
+
+  set_tab_title: $ => seq(
+    "set_tab_title",
+    field("tab", $.title),
+  ),
+
+  set_window_title: $ => seq(
+    "set_window_title",
+    field("tab", $.title),
+  ),
+
+  title: _ => choice(
+    token(/"[^"]+"/),
+    prec(-100, token(/[^\n\r]+/))
+  ),
+
+  move_window: $ => seq(
+    "move_window",
+    field("direction", $.direction),
+  ),
+
+  neighboring_window: $ => seq(
+    "neighboring_window",
+    field("direction", $.direction),
+  ),
+
+  nth_window: $ => seq(
+    "nth_window",
+    field("window", $.number),
+  ),
+
+  resize_window: $ => seq(
+    "resize_window",
+    field("layout", $.window_layout),
+    optional(
+      seq(
+        /[ \t]+/,
+        field("amount", $.number),
+      )
+    ),
+  ),
+
+  window_layout: _ => choice(
+    "narrowee",
+    "wider",
+    "taller",
+    "shorter",
+  ),
+
+  change_font_size: $ => seq(
+    "change_font_size",
+    field("target", $.os_window),
+    field("amount", $.number),
+  ),
+
+  os_window: _ => choice(
+    "all",
+    "current"
+  ),
+
+  close_window_with_confirmation: _ => seq(
+    "close_window_with_confirmation",
+    optional(
+      seq(
+        /[ \t]+/,
+        "ignore-shell"
+      )
+    ),
+  ),
+
+  detach_window: $ => choice(
+    "detach_window",
+    optional(
+      seq(
+        /[ \t]+/,
+        field("into", $.detach_into),
+      )
+    ),
+  ),
+
+  detach_window: _ => choice(
+    "new-tab-prev",
+    "new-tab-left",
+    "new-tab-next",
+    "new-tab-right",
+    "new-tab",
+
+    "tab-prev",
+    "tab-left",
+    "tab-next",
+    "tab-right",
+
+    "ask",
+  ),
+
+  set_background_opacity: $ => seq(
+    "set_background_opacity",
+    field("alpha", $.number),
   ),
 };

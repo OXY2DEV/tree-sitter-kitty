@@ -8,7 +8,7 @@ module.exports.rules = {
     field("modes", $.mouse_mode),
 
     optional(
-        field("action", $._action)
+      field("action", $._action)
     )
   ),
 
