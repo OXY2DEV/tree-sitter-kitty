@@ -228,7 +228,7 @@ module.exports.rules = {
   disable_ligatures: $ => seq(
     "disable_ligatures",
     field("target", $.ligature_target),
-    field("disabled_type", $.ligature_disabled)
+    field("type", $.ligature_disabled)
   ),
 
   ligature_target: _ => choice(
