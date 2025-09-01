@@ -52,6 +52,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   color_value: $ => choice(
+    "none",
     repeat1($.color_option),
     alias($.string, $.path),
   ),
@@ -82,6 +83,7 @@ module.exports.rules = {
     "inactive_tab_foreground",
     "inactive_tab_background",
     "tab_bar_background",
+    "tab_bar_margin_color",
 
     "mark1_foreground",
     "mark1_background",
