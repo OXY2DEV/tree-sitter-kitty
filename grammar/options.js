@@ -1,9 +1,58 @@
+function immediate (...tokens) {
+  let output = [];
+
+  tokens.forEach(t => {
+    output.push(
+      token.immediate(t)
+    );
+  })
+
+  return choice(...output);
+}
+
 module.exports.rules = {
   _option: $ => choice(
     $.numeric_option,
     $.boolean_option,
+
     $.font_option,
-  ),
+    $.symbol_map,
+    $.font_features,
+    $.modify_font,
+    $.undercurl_style,
+    $.text_composition_strategy,
+    $.text_fg_override_threshold,
+    $.cursor_shape,
+    $.cursor_shape_unfocused,
+    $.cursor_blink_interval,
+    $.cursor_trail_decay,
+    $.scrollback_pager,
+    $.mouse_hide_wait,
+    $.url_prefixes,
+    $.url_excluded_characters,
+    $.paste_actions,
+    $.visual_bell_color,
+    $.enabled_layouts,
+    $.window_border_width,
+    $.window_margin_width,
+    $.single_window_margin_width,
+    $.window_padding_width,
+    $.single_window_padding_width,
+    $.resize_debounce_time,
+    $.tab_bar_margin_height,
+    $.transparent_background_colors,
+    $.transparent_background_colors,
+    $.remote_control_password,
+    $.env,
+    $.filter_notification,
+    $.clipboard_control,
+    $.shell_integration,
+    $.clone_source_strategies,
+    $.notify_on_cmd_finish,
+    $.menu_map,
+    $.wayland_titlebar_color,
+    $.narrow_symbols,
+   ),
 
   numeric_option: $ => seq(
     $._numeric_option_name,
@@ -15,7 +64,6 @@ module.exports.rules = {
     "underline_exclusion",
     "cursor_beam_thickness",
     "cursor_underline_thickness",
-    "cursor_blink_interval",
     "cursor_stop_blinking_after",
     "cursor_trail",
     "cursor_trail_start_threshold",
@@ -105,6 +153,36 @@ module.exports.rules = {
     "startup_session",
     "file_transfer_confirmation_bypass",
     "term",
+
+    "strip_trailing_spaces",
+    "pointer_options",
+    "command_on_bell",
+    "bell_path",
+    "linux_bell_theme",
+    "placement_strategy",
+    "hide_window_decorations",
+    "window_logo_position",
+    "tab_bar_edge",
+    "tab_bar_style",
+    "tab_bar_align",
+    "tab_switch_strategy",
+    "tab_powerline_style",
+    "tab_activity_symbol",
+    "active_tab_font_style",
+    "inactive_tab_font_style",
+    "background_image_layout",
+    "allow_remote_control",
+    "allow_cloning",
+    "terminfo_type",
+    "macos_titlebar_color",
+    "macos_show_window_title_in",
+    "macos_colorspace",
+    "linux_display_server",
+    "disable_ligatures",
+    "url_style",
+    "open_url_with",
+    "underline_hyperlinks",
+    "copy_on_select",
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -124,22 +202,28 @@ module.exports.rules = {
     field("value", $.string),
   ),
 
-  symbol_map: $ => choice(
+  ////////////////////////////////////////////////////////////////////////////
+
+  symbol_map: $ => seq(
     "symbol_map",
     field("codepoints", $.string),
     field("font_name", $.string),
   ),
 
-  narrow_symbol: $ => choice(
-    "narrow_symbol",
+  narrow_symbols: $ => seq(
+    "narrow_symbols",
     field("codepoints", $.string),
-    field("width", $.number),
+    optional(
+      field("width", $.number)
+    ),
   ),
 
-  disable_ligatures: $ => seq(
-    "disable_ligatures",
-    field("type", $.ligature_disabled),
-  ),
+  // disable_ligatures: $ => seq(
+  //   "disable_ligatures",
+  //   field("type", $.ligature_disabled),
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   font_features: $ => seq(
     "font_features",
@@ -152,12 +236,15 @@ module.exports.rules = {
     )
   ),
 
-  feature_list: $ => repeat($.string),
+  feature_list: $ => repeat1($.string),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   modify_font: $ => seq(
     "modify_font",
     field("type", $.font_modification_type),
     field("value", $.number),
+
     optional(
       field("unit", $.font_unit)
     ),
@@ -178,6 +265,8 @@ module.exports.rules = {
     token.immediate("px"),
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   undercurl_style: _ => seq(
     "undercurl_style",
 
@@ -191,7 +280,7 @@ module.exports.rules = {
 
   text_composition_strategy: $ => seq(
     "text_composition_strategy",
-    $.composition_value,
+    field("strategy", $.composition_value),
   ),
 
   composition_value: $ => choice(
@@ -203,19 +292,20 @@ module.exports.rules = {
     )
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   text_fg_override_threshold: $ => seq(
     "text_fg_override_threshold",
     field("threshold", $.fg_override_threshold)
   ),
 
-  fg_override_threshold: $ => choice(
-    0,
-    seq(
-      $.number,
-      /[ \t]+/,
-      choice("%", "ratio")
-    )
+  fg_override_threshold: $ => seq(
+    $.number,
+    /[ \t]+/,
+    choice("%", "ratio")
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   cursor_shape: $ => seq(
     "cursor_shape",
@@ -240,6 +330,8 @@ module.exports.rules = {
     "hollow",
     "unchanged",
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   cursor_blink_interval: $ => seq(
     "cursor_blink_interval",
@@ -305,11 +397,15 @@ module.exports.rules = {
     ")",
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   cursor_trail_decay: $ => seq(
     "cursor_trail_decay",
     field("fastest_time", $.number),
     field("slowest_time", $.number),
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   scrollback_pager: $ => seq(
     "scrollback_pager",
@@ -317,6 +413,8 @@ module.exports.rules = {
   ),
 
   command: _ => /[^\n\r]+/,
+
+  ////////////////////////////////////////////////////////////////////////////
 
   mouse_hide_wait: $ => seq(
     "mouse_hide_wait",
@@ -334,30 +432,36 @@ module.exports.rules = {
     ),
   ),
 
-  url_style: $ => seq(
-    "url_style",
-    field("style", $.url_style_type)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  url_style_type: _ => choice(
-    "none",
-    "straight",
-    "double",
-    "curly",
-    "dotted",
-    "dashed",
-  ),
+  // url_style: $ => seq(
+  //   "url_style",
+  //   field("style", $.url_style_type)
+  // ),
+  //
+  // url_style_type: _ => choice(
+  //   "none",
+  //   "straight",
+  //   "double",
+  //   "curly",
+  //   "dotted",
+  //   "dashed",
+  // ),
 
-  open_url_with: $ => seq(
-    "open_url_with",
-    field("target", $.url_opener)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  url_opener: _ => choice(
-    "default",
-    "open",
-    "xdg-open",
-  ),
+  // open_url_with: $ => seq(
+  //   "open_url_with",
+  //   field("target", $.url_opener)
+  // ),
+  //
+  // url_opener: _ => choice(
+  //   "default",
+  //   "open",
+  //   "xdg-open",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   url_prefixes: $ => seq(
     "url_prefixes",
@@ -366,6 +470,8 @@ module.exports.rules = {
 
   url_prefix_list: $ => repeat1($.string),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   url_excluded_characters: $ => seq(
     "url_excluded_characters",
     field("characters", $.character_list)
@@ -373,26 +479,32 @@ module.exports.rules = {
 
   character_list: $ => repeat1($.string),
 
-  underline_hyperlinks: $ => seq(
-    "underline_hyperlinks",
-    field("value", $.underline_condition)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  underline_condition: _ => choice(
-    "always",
-    "never",
-    "hover",
-  ),
+  // underline_hyperlinks: $ => seq(
+  //   "underline_hyperlinks",
+  //   field("value", $.underline_condition)
+  // ),
+  //
+  // underline_condition: _ => choice(
+  //   "always",
+  //   "never",
+  //   "hover",
+  // ),
 
-  copy_on_select: $ => seq(
-    "copy_on_select",
-    field("target", $.copy_target),
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  copy_target: $ => choice(
-    "no",
-    $.string
-  ),
+  // copy_on_select: $ => seq(
+  //   "copy_on_select",
+  //   field("target", $.copy_target),
+  // ),
+  //
+  // copy_target: $ => choice(
+  //   "no",
+  //   $.string
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   paste_actions: $ => seq(
     "paste_actions",
@@ -401,10 +513,19 @@ module.exports.rules = {
 
   paste_action_list: $ => seq(
     $.paste_action,
-    repeat1(
+    repeat(
       seq(
         token.immediate(","),
-        token.immediate($.paste_action)
+        immediate(
+          "quote-urls-at-prompt",
+          "replace-dangerous-control-codes",
+          "replace-newline",
+          "confirm",
+          "confirm-if-large",
+          "filter",
+
+          "no-op",
+        )
       )
     )
   ),
@@ -420,24 +541,28 @@ module.exports.rules = {
     "no-op",
   ),
 
-  strip_trailing_spaces: $ => seq(
-    "strip_trailing_spaces",
-    field("value", $.strip_space_condition)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  strip_space_condition: _ => choice(
-    "always",
-    "never",
-    "smart",
-  ),
+  // strip_trailing_spaces: $ => seq(
+  //   "strip_trailing_spaces",
+  //   field("value", $.strip_space_condition)
+  // ),
+  //
+  // strip_space_condition: _ => choice(
+  //   "always",
+  //   "never",
+  //   "smart",
+  // ),
 
-  pointer_options: $ => seq(
-    choice(
-      "pointer_shape_when_grabbed",
-      "default_pointer_shape",
-    ),
-    field("type", $.pointer_type)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
+
+  // pointer_options: $ => seq(
+  //   choice(
+  //     "pointer_shape_when_grabbed",
+  //     "default_pointer_shape",
+  //   ),
+  //   field("type", $.pointer_type)
+  // ),
 
   pointer_shape_when_dragging: $ => seq(
     "pointer_shape_when_dragging",
@@ -457,40 +582,45 @@ module.exports.rules = {
     "hand",
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   visual_bell_color: $ => seq(
     "visual_bell_color",
-    field("color", $.bell_color)
+    field("color", $.color)
   ),
 
-  bell_color: $ => choice(
-    "none",
-    $.color
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  command_on_bell: $ => seq(
-    "command_on_bell",
-    field("command", $.bell_command)
-  ),
+  // command_on_bell: $ => seq(
+  //   "command_on_bell",
+  //   field("command", $.bell_command)
+  // ),
+  //
+  // bell_command: $ => choice(
+  //   "none",
+  //   $.string
+  // ),
 
-  bell_command: $ => choice(
-    "none",
-    $.string
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  bell_path: $ => seq(
-    "bell_path",
-    field("path", $.bell_path_value)
-  ),
+  // bell_path: $ => seq(
+  //   "bell_path",
+  //   field("path", $.bell_path_value)
+  // ),
+  //
+  // bell_path_value: $ => choice(
+  //   "none",
+  //   $.string
+  // ),
 
-  bell_path_value: $ => choice(
-    "none",
-    $.string
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  linux_bell_theme: $ => seq(
-    "linux_bell_theme",
-    field("theme", $.string)
-  ),
+  // linux_bell_theme: $ => seq(
+  //   "linux_bell_theme",
+  //   field("theme", $.string)
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   enabled_layouts: $ => seq(
     "enabled_layouts",
@@ -521,6 +651,8 @@ module.exports.rules = {
     "*"
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   window_border_width: $ => seq(
     "window_border_width",
     field("value", $.border_width),
@@ -537,6 +669,8 @@ module.exports.rules = {
       )
     )
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   window_margin_width: $ => seq(
     "window_margin_width",
@@ -560,39 +694,47 @@ module.exports.rules = {
 
   box_value: $ => repeat1($.number),
 
-  placement_strategy: $ => seq(
-    "placement_strategy",
-    field("strategy", $.placement_type)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  placement_type: _ => choice(
-    "top-left",
-    "top",
-    "top-right",
-    "left",
-    "center",
-    "right",
-    "bottom-left",
-    "bottom",
-    "bottom-right"
-  ),
+  // placement_strategy: $ => seq(
+  //   "placement_strategy",
+  //   field("strategy", $.placement_type)
+  // ),
+  //
+  // placement_type: _ => choice(
+  //   "top-left",
+  //   "top",
+  //   "top-right",
+  //   "left",
+  //   "center",
+  //   "right",
+  //   "bottom-left",
+  //   "bottom",
+  //   "bottom-right"
+  // ),
 
-  hide_window_decorations: $ => seq(
-    "hide_window_decorations",
-    field("decorations", $.decoration_type)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  decoration_type: _ => choice(
-    "no",
-    "yes",
-    "titlebar-only",
-    "titlebar-and-corners",
-  ),
+  // hide_window_decorations: $ => seq(
+  //   "hide_window_decorations",
+  //   field("decorations", $.decoration_type)
+  // ),
+  //
+  // decoration_type: _ => choice(
+  //   "no",
+  //   "yes",
+  //   "titlebar-only",
+  //   "titlebar-and-corners",
+  // ),
 
-  window_logo_position: $ => seq(
-    "window_logo_position",
-    field("position", $.placement_type)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
+
+  // window_logo_position: $ => seq(
+  //   "window_logo_position",
+  //   field("position", $.placement_type)
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   resize_debounce_time: $ => seq(
     "resize_debounce_time",
@@ -600,15 +742,19 @@ module.exports.rules = {
     field("after_pause", $.number),
   ),
 
-  tab_bar_edge: $ => seq(
-    "tab_bar_edge",
-    field("position", $.edge_position)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  edge_position: _ => choice(
-    "top",
-    "bottom",
-  ),
+  // tab_bar_edge: $ => seq(
+  //   "tab_bar_edge",
+  //   field("position", $.edge_position)
+  // ),
+  //
+  // edge_position: _ => choice(
+  //   "top",
+  //   "bottom",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   tab_bar_margin_height: $ => seq(
     "tab_bar_margin_height",
@@ -616,89 +762,105 @@ module.exports.rules = {
     field("inner", $.number),
   ),
 
-  tab_bar_style: $ => seq(
-    "tab_bar_style",
-    field("style", $.tab_bar_style_value)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  tab_bar_style_value: _ => choice(
-    "fade",
-    "slant",
-    "separtor",
-    "powerline",
-    "custom",
-    "hidden",
-  ),
+  // tab_bar_style: $ => seq(
+  //   "tab_bar_style",
+  //   field("style", $.tab_bar_style_value)
+  // ),
+  //
+  // tab_bar_style_value: _ => choice(
+  //   "fade",
+  //   "slant",
+  //   "separtor",
+  //   "powerline",
+  //   "custom",
+  //   "hidden",
+  // ),
 
-  tab_bar_align: $ => seq(
-    "tab_bar_align",
-    field("alignment", $.tab_bar_align_value)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  tab_bar_align_value: _ => choice(
-    "left",
-    "center",
-    "right",
-  ),
+  // tab_bar_align: $ => seq(
+  //   "tab_bar_align",
+  //   field("alignment", $.tab_bar_align_value)
+  // ),
+  //
+  // tab_bar_align_value: _ => choice(
+  //   "left",
+  //   "center",
+  //   "right",
+  // ),
 
-  tab_switch_strategy: $ => seq(
-    "tab_switch_strategy",
-    field("strategy", $.switch_strategy)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  switch_strategy: _ => choice(
-    "previous",
+  // tab_switch_strategy: $ => seq(
+  //   "tab_switch_strategy",
+  //   field("strategy", $.switch_strategy)
+  // ),
+  //
+  // switch_strategy: _ => choice(
+  //   "previous",
+  //
+  //   "left",
+  //   "right",
+  //
+  //   "last"
+  // ),
 
-    "left",
-    "right",
+  ////////////////////////////////////////////////////////////////////////////
 
-    "last"
-  ),
+  // tab_fade: $ => seq(
+  //   "tab_fade",
+  //   field("fade", $.fade_list)
+  // ),
+  //
+  // fade_list: $ => repeat1($.number),
 
-  tab_fade: $ => seq(
-    "tab_fade",
-    field("fade", $.fade_list)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  fade_list: $ => repeat1($.number),
+  // tab_powerline_style: $ => seq(
+  //   "tab_powerline_style",
+  //   field("style", $.powerline_style)
+  // ),
+  //
+  // powerline_style: _ => choice(
+  //   "angled",
+  //   "round",
+  //   "slanted"
+  // ),
 
-  tab_powerline_style: $ => seq(
-    "tab_powerline_style",
-    field("style", $.powerline_style)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  powerline_style: _ => choice(
-    "angled",
-    "round",
-    "slanted"
-  ),
+  // tab_activity_symbol: $ => seq(
+  //   "tab_activity_symbol",
+  //   field("style", $.activity_symbol)
+  // ),
+  //
+  // activity_symbol: $ => choice(
+  //   "none",
+  //   $.string
+  // ),
 
-  tab_activity_symbol: $ => seq(
-    "tab_activity_symbol",
-    field("style", $.activity_symbol)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  activity_symbol: $ => choice(
-    "none",
-    $.string
-  ),
+  // active_tab_font_style: $ => seq(
+  //   "active_tab_font_style",
+  //   field("style", $.font_style)
+  // ),
+  //
+  // inactive_tab_font_style: $ => seq(
+  //   "inactive_tab_font_style",
+  //   field("style", $.font_style)
+  // ),
+  //
+  // font_style: _ => choice(
+  //   "normal",
+  //   "italic",
+  //   "bold-italic",
+  //   "bold",
+  // ),
 
-  active_tab_font_style: $ => seq(
-    "active_tab_font_style",
-    field("style", $.font_style)
-  ),
-
-  inactive_tab_font_style: $ => seq(
-    "inactive_tab_font_style",
-    field("style", $.font_style)
-  ),
-
-  font_style: _ => choice(
-    "normal",
-    "italic",
-    "bold-italic",
-    "bold",
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
   transparent_background_colors: $ => seq(
     "transparent_background_colors",
@@ -720,24 +882,28 @@ module.exports.rules = {
     optional(
       seq(
         token.immediate("@"),
-        token.immediate($.number)
+        token.immediate(/[\d\.]+/)
       )
     )
   ),
 
-  background_image_layout: $ => seq(
-    "background_image_layout",
-    field("layout", $.image_layout)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  image_layout: _ => choice(
-    "tiled", 
-    "mirror-tiled",
-    "scaled",
-    "clamped",
-    "centered",
-    "cscaled",
-  ),
+  // background_image_layout: $ => seq(
+  //   "background_image_layout",
+  //   field("layout", $.image_layout)
+  // ),
+  //
+  // image_layout: _ => choice(
+  //   "tiled", 
+  //   "mirror-tiled",
+  //   "scaled",
+  //   "clamped",
+  //   "centered",
+  //   "cscaled",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   remote_control_password: $ => seq(
     "remote_control_password",
@@ -754,18 +920,22 @@ module.exports.rules = {
     )
   ),
 
-  allow_remote_control: $ => seq(
-    "allow_remote_control",
-    field("type", $.remote_control_type)
-  ),
+  ////////////////////////////////////////////////////////////////////////////
 
-  remote_control_type: _ => choice(
-    "password",
-    "socket-only",
-    "socket",
-    "no",
-    "yes",
-  ),
+  // allow_remote_control: $ => seq(
+  //   "allow_remote_control",
+  //   field("type", $.remote_control_type)
+  // ),
+  //
+  // remote_control_type: _ => choice(
+  //   "password",
+  //   "socket-only",
+  //   "socket",
+  //   "no",
+  //   "yes",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   env: $ => seq(
     "env",
@@ -773,6 +943,8 @@ module.exports.rules = {
     token.immediate("="),
     field("value", $.string),
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   filter_notification: $ => seq(
     "filter_notification",
@@ -789,14 +961,15 @@ module.exports.rules = {
     $.boolean_expression
   ),
 
-  _filter_element: $ => seq(
+  _filter_element: _ => seq(
     choice(
-      "title:",
-      "body:",
-      "app:",
-      "type:",
+      "title",
+      "body",
+      "app",
+      "type",
     ),
-    token.immediate($.string)
+    token.immediate(":"),
+    token.immediate(/\S+/)
   ),
 
   boolean_expression: _ => choice(
@@ -805,9 +978,11 @@ module.exports.rules = {
     "not"
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   clipboard_control: $ => seq(
     "clipboard_control",
-    field("actions", $.filter_sequence)
+    field("actions", $.clipboard_actions)
   ),
 
   clipboard_actions: $ => seq(
@@ -820,7 +995,7 @@ module.exports.rules = {
     )
   ),
 
-  clipboard_action: _ => choicw(
+  clipboard_action: _ => choice(
     "write-clipboard",
     "read-clipboard",
     "write-primary",
@@ -828,6 +1003,8 @@ module.exports.rules = {
     "read-clipboard-ask",
     "read-primary-ask",
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   shell_integration: $ => seq(
     "shell_integration",
@@ -844,7 +1021,7 @@ module.exports.rules = {
     )
   ),
 
-  shell_features: _ => choicw(
+  shell_features: _ => choice(
     "no-rc",
     "no-cursor",
     "no-title",
@@ -854,7 +1031,11 @@ module.exports.rules = {
     "no-sudo",
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   // allow_cloning: $ => seq()
+
+  ////////////////////////////////////////////////////////////////////////////
 
   clone_source_strategies: $ => seq(
     "clone_source_strategies",
@@ -866,16 +1047,18 @@ module.exports.rules = {
     repeat(
       seq(
         token.immediate(","),
-        token.immediate($.source_strategy)
+        $.source_strategy
       )
     )
   ),
-  source_strategy: _ => choice(
+  source_strategy: _ => immediate(
     "venv",
     "conda",
     "env_var",
     "path"
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   notify_on_cmd_finish: $ => seq(
     "notify_on_cmd_finish",
@@ -892,14 +1075,14 @@ module.exports.rules = {
     ),
   ),
 
-  notification_time: _ => choicw(
+  notification_time: _ => choice(
     "never",
     "unfocused",
     "invisible",
     "always",
   ),
 
-  notification_action: $ => choicw(
+  notification_action: $ => choice(
     "notify",
     "bell",
 
@@ -913,14 +1096,94 @@ module.exports.rules = {
     )
   ),
 
-  terminfo_type: $ => seq(
-    "terminfo_type",
-    field("value", $.terminfo_type)
+  ////////////////////////////////////////////////////////////////////////////
+
+  // terminfo_type: $ => seq(
+  //   "terminfo_type",
+  //   field("value", $.terminfo_type)
+  // ),
+  //
+  // terminfo_type: _ => choice(
+  //   "path",
+  //   "direct",
+  //   "none",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  menu_map: $ => seq(
+    "menu_map",
+    field(
+      "value",
+      alias(/[^\n\r]+/, $.string)
+    )
   ),
 
-  terminfo_type: _ => choice(
-    "path",
-    "direct",
-    "none",
+  ////////////////////////////////////////////////////////////////////////////
+
+  wayland_titlebar_color: $ => seq(
+    "wayland_titlebar_color",
+    field("value", $.titlebar_color)
   ),
+
+  titlebar_color: $ => choice(
+    "system",
+    "background",
+    $.color,
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  // macos_titlebar_color: $ => seq(
+  //   "macos_titlebar_color",
+  //   field("value", $.macos_titlebar_color)
+  // ),
+  //
+  // macos_titlebar_color: $ => choice(
+  //   "system",
+  //   "background",
+  //   "light",
+  //   "dark",
+  //   $.color,
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  // macos_show_window_title_in: $ => seq(
+  //   "macos_show_window_title_in",
+  //   field("value", $.title_in)
+  // ),
+  //
+  // title_in: _ => choice(
+  //   "all",
+  //   "none",
+  //   "window",
+  //   "menubar",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  // macos_colorspace: $ => seq(
+  //   "macos_colorspace",
+  //   field("value", $.colorspace)
+  // ),
+  //
+  // colorspace: _ => choice(
+  //   "srgb",
+  //   "default",
+  //   "display3",
+  // ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  // linux_display_server: $ => seq(
+  //   "linux_display_server",
+  //   field("value", $.display_server)
+  // ),
+  //
+  // display_server: _ => choice(
+  //   "wayland",
+  //   "x11",
+  //   "auto",
+  // ),
 };

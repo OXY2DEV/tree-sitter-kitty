@@ -12,6 +12,7 @@ const colors = require("./grammar/colors");
 const actions = require("./grammar/actions");
 
 const includes = require("./grammar/includes");
+const options = require("./grammar/options");
 const mouse = require("./grammar/mouse");
 const keyboard = require("./grammar/keyboard");
 
@@ -33,7 +34,7 @@ module.exports = grammar({
       choice(
         $.comment,
         $.include,
-        $.option,
+        $._option,
         $.keyboard_shortcut,
         $.mouse_action
       ),
@@ -50,19 +51,9 @@ module.exports = grammar({
     ...actions.rules,
 
     ...includes.rules,
+    ...options.rules,
 
     ...mouse.rules,
     ...keyboard.rules,
-
-    option: $ => seq(
-      field(
-        "key",
-        alias(/[\w_]+/, $.string)
-      ),
-      field(
-        "value",
-        alias(repeat1($._primitive), $.value),
-      )
-    ),
   }
 });
