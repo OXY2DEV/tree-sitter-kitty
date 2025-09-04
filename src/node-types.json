@@ -375,7 +375,7 @@
           "named": true
         },
         {
-          "type": "combine",
+          "type": "copy_to_buffer",
           "named": true
         },
         {
@@ -388,6 +388,10 @@
         },
         {
           "type": "generic_action",
+          "named": true
+        },
+        {
+          "type": "goto_layout",
           "named": true
         },
         {
@@ -423,11 +427,23 @@
           "named": true
         },
         {
+          "type": "nth_os_window",
+          "named": true
+        },
+        {
           "type": "nth_window",
           "named": true
         },
         {
           "type": "open_url",
+          "named": true
+        },
+        {
+          "type": "paste_from_buffer",
+          "named": true
+        },
+        {
+          "type": "remote_control",
           "named": true
         },
         {
@@ -732,6 +748,22 @@
     }
   },
   {
+    "type": "copy_to_buffer",
+    "named": true,
+    "fields": {
+      "buffer": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "ctrl",
     "named": true,
     "fields": {}
@@ -836,9 +868,25 @@
     }
   },
   {
-    "type": "detach_window",
+    "type": "detach_into",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "detach_window",
+    "named": true,
+    "fields": {
+      "into": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "detach_into",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "direction",
@@ -1112,6 +1160,32 @@
     "fields": {}
   },
   {
+    "type": "goto_layout",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "layout_name",
+            "named": true
+          }
+        ]
+      },
+      "options": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "layout",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "goto_tab",
     "named": true,
     "fields": {
@@ -1199,6 +1273,10 @@
           "named": true
         },
         {
+          "type": "copy_to_buffer",
+          "named": true
+        },
+        {
           "type": "detach_window",
           "named": true
         },
@@ -1208,6 +1286,10 @@
         },
         {
           "type": "generic_action",
+          "named": true
+        },
+        {
+          "type": "goto_layout",
           "named": true
         },
         {
@@ -1243,11 +1325,23 @@
           "named": true
         },
         {
+          "type": "nth_os_window",
+          "named": true
+        },
+        {
           "type": "nth_window",
           "named": true
         },
         {
           "type": "open_url",
+          "named": true
+        },
+        {
+          "type": "paste_from_buffer",
+          "named": true
+        },
+        {
+          "type": "remote_control",
           "named": true
         },
         {
@@ -1414,6 +1508,61 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "keys",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alt",
+          "named": true
+        },
+        {
+          "type": "ctrl",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "key",
+          "named": true
+        },
+        {
+          "type": "left",
+          "named": true
+        },
+        {
+          "type": "middle",
+          "named": true
+        },
+        {
+          "type": "mouse_button",
+          "named": true
+        },
+        {
+          "type": "right",
+          "named": true
+        },
+        {
+          "type": "shift",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        },
+        {
+          "type": "super",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1980,6 +2129,11 @@
     }
   },
   {
+    "type": "layout_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "left",
     "named": true,
     "fields": {}
@@ -2308,6 +2462,10 @@
             "named": true
           },
           {
+            "type": "copy_to_buffer",
+            "named": true
+          },
+          {
             "type": "detach_window",
             "named": true
           },
@@ -2317,6 +2475,10 @@
           },
           {
             "type": "generic_action",
+            "named": true
+          },
+          {
+            "type": "goto_layout",
             "named": true
           },
           {
@@ -2352,11 +2514,23 @@
             "named": true
           },
           {
+            "type": "nth_os_window",
+            "named": true
+          },
+          {
             "type": "nth_window",
             "named": true
           },
           {
             "type": "open_url",
+            "named": true
+          },
+          {
+            "type": "paste_from_buffer",
+            "named": true
+          },
+          {
+            "type": "remote_control",
             "named": true
           },
           {
@@ -2561,6 +2735,22 @@
     }
   },
   {
+    "type": "nth_os_window",
+    "named": true,
+    "fields": {
+      "window": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "nth_window",
     "named": true,
     "fields": {
@@ -2645,6 +2835,22 @@
     }
   },
   {
+    "type": "paste_from_buffer",
+    "named": true,
+    "fields": {
+      "buffer": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "pointer_shape_when_dragging",
     "named": true,
     "fields": {
@@ -2703,6 +2909,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "remote_control",
+    "named": true,
+    "fields": {
+      "commands": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2885,7 +3107,7 @@
         "required": true,
         "types": [
           {
-            "type": "key_sequence",
+            "type": "keys",
             "named": true
           }
         ]
@@ -4248,6 +4470,10 @@
     "named": false
   },
   {
+    "type": "close_other_tabs_in_os_window",
+    "named": false
+  },
+  {
     "type": "close_other_windows_in_tab",
     "named": false
   },
@@ -4712,6 +4938,10 @@
     "named": false
   },
   {
+    "type": "detach_window",
+    "named": false
+  },
+  {
     "type": "detect_urls",
     "named": false
   },
@@ -4844,6 +5074,10 @@
     "named": false
   },
   {
+    "type": "fat",
+    "named": false
+  },
+  {
     "type": "fifth_window",
     "named": false
   },
@@ -4933,11 +5167,11 @@
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "gainsboro",
@@ -5428,6 +5662,10 @@
     "named": false
   },
   {
+    "type": "grid",
+    "named": false
+  },
+  {
     "type": "h",
     "named": false
   },
@@ -5469,6 +5707,10 @@
   },
   {
     "type": "honeydew4",
+    "named": false
+  },
+  {
+    "type": "horizontal",
     "named": false
   },
   {
@@ -7032,6 +7274,10 @@
     "named": false
   },
   {
+    "type": "remote_control",
+    "named": false
+  },
+  {
     "type": "remote_control_password",
     "named": false
   },
@@ -7181,6 +7427,10 @@
   },
   {
     "type": "scroll_end",
+    "named": false
+  },
+  {
+    "type": "scroll_home",
     "named": false
   },
   {
@@ -7520,6 +7770,10 @@
     "named": false
   },
   {
+    "type": "splits",
+    "named": false
+  },
+  {
     "type": "springgreen1",
     "named": false
   },
@@ -7533,6 +7787,10 @@
   },
   {
     "type": "springgreen4",
+    "named": false
+  },
+  {
+    "type": "stack",
     "named": false
   },
   {
@@ -7688,6 +7946,10 @@
     "named": false
   },
   {
+    "type": "tall",
+    "named": false
+  },
+  {
     "type": "taller",
     "named": false
   },
@@ -7789,6 +8051,10 @@
   },
   {
     "type": "toggle_macos_secure_keyboard_entry",
+    "named": false
+  },
+  {
+    "type": "toggle_marker",
     "named": false
   },
   {
@@ -7929,6 +8195,10 @@
   },
   {
     "type": "venv",
+    "named": false
+  },
+  {
+    "type": "vertical",
     "named": false
   },
   {

@@ -1,6 +1,9 @@
 module.exports.rules = {
   _action: $ => choice(
     $.generic_action,
+
+    $.copy_to_buffer,
+    $.paste_from_buffer,
     $.send_key,
     $.send_text,
     $.show_kitty_doc,
@@ -12,7 +15,7 @@ module.exports.rules = {
     $.launch,
     $.load_config_file,
     $.open_url,
-    // $.remote_control
+    $.remote_control,
     $.remote_control_script,
     $.set_colors,
     $.sleep,
@@ -34,6 +37,9 @@ module.exports.rules = {
     $.close_window_with_confirmation,
     $.detach_window,
     $.set_background_opacity,
+
+    $.nth_os_window,
+    $.goto_layout,
   ),
 
   generic_action: _ => choice(
@@ -49,8 +55,6 @@ module.exports.rules = {
     "show_last_non_empty_command_output",
     "show_last_visited_command_output",
     "show_scrollback",
-    "copy_to_buffer",
-    "paste_from_buffer",
     "paste_from_clipboard",
     "paste_from_selection",
 
@@ -60,7 +64,6 @@ module.exports.rules = {
     "show_kitty_env_vars",
     "simulate_color_scheme_preference_change",
 
-    "goto_layout",
     "last_used_layout",
     "layout_action",
     "next_layout",
@@ -68,8 +71,8 @@ module.exports.rules = {
 
     "remove_marker",
     "scroll_to_mark",
-    "scroll_to_mark",
     "create_marker",
+    "scroll_home",
 
     "discard_event",
     "edit_config_file",
@@ -116,6 +119,7 @@ module.exports.rules = {
     "select_tab",
 
     "close_other_windows_in_tab",
+    "close_other_tabs_in_os_window",
     "eighth_window",
     "fifth_window",
     "first_window",
@@ -141,21 +145,51 @@ module.exports.rules = {
     "new_os_window_with_cwd",
     "new_window",
     "new_window_with_cwd",
-    "nth_os_window",
     "quit",
     "start_resizing_window",
     "toggle_fullscreen",
     "toggle_maximized",
     "toggle_tab",
+
+    "toggle_marker",
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  copy_to_buffer: $ => seq(
+    "copy_to_buffer",
+    field(
+      "buffer",
+      $.string
+    )
+  ),
+
+  paste_from_buffer: $ => seq(
+    "paste_from_buffer",
+    field(
+      "buffer",
+      $.string
+    )
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   send_key: $ => seq(
     "send_key",
     field(
       "keys",
-      $.key_sequence
+      $.keys
     )
   ),
+
+  keys: $ => repeat1(
+    seq(
+      $._key,
+      repeat($._key_later)
+    )
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   send_text: $ => seq(
     "send_text",
@@ -214,6 +248,8 @@ module.exports.rules = {
     "all"
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   combine: $ => prec.left(seq(
     "combine",
     repeat1($.combine_action)
@@ -222,8 +258,52 @@ module.exports.rules = {
   separator: _ => choice(":", "|"),
   combine_action: $ => seq(
     $.separator,
-    $._action
+    $._combine_action
   ),
+
+  _combine_action: $ => choice(
+    $.generic_action,
+
+    $.copy_to_buffer,
+    $.paste_from_buffer,
+    $.send_key,
+    $.send_text,
+    $.show_kitty_doc,
+    $.signal_child,
+    $.clear_terminal,
+    $.disable_ligatures_in,
+    $.kitten,
+    $.launch,
+    $.load_config_file,
+    $.open_url,
+    $.remote_control,
+    $.remote_control_script,
+    $.set_colors,
+    $.sleep,
+
+    $.mouse_handle_click,
+    $.mouse_selection,
+
+    $.scroll_prompt_to_top,
+    $.scroll_to_prompt,
+
+    $.goto_tab,
+    $.set_tab_title,
+
+    $.set_window_title,
+    $.move_window,
+    $.neighboring_window,
+    $.nth_window,
+    $.resize_window,
+    $.close_window_with_confirmation,
+    $.detach_window,
+    $.set_background_opacity,
+
+    $.nth_os_window,
+    $.goto_layout,
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   disable_ligatures_in: $ => seq(
     "disable_ligatures_in",
@@ -622,10 +702,14 @@ module.exports.rules = {
     field("direction", $.direction),
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   neighboring_window: $ => seq(
     "neighboring_window",
     field("direction", $.direction),
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   nth_window: $ => seq(
     "nth_window",
@@ -671,7 +755,7 @@ module.exports.rules = {
     ),
   ),
 
-  detach_window: $ => choice(
+  detach_window: $ => seq(
     "detach_window",
     optional(
       seq(
@@ -681,7 +765,7 @@ module.exports.rules = {
     ),
   ),
 
-  detach_window: _ => choice(
+  detach_into: _ => choice(
     "new-tab-prev",
     "new-tab-left",
     "new-tab-next",
@@ -700,4 +784,121 @@ module.exports.rules = {
     "set_background_opacity",
     field("alpha", $.number),
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  nth_os_window: $ => seq(
+    "nth_os_window",
+    field("window", $.number),
+  ),
+
+  goto_layout: $ => seq(
+    "goto_layout",
+    field("name", $.layout_name),
+    optional(
+      field("options", $.layout)
+    ),
+  ),
+
+  layout_name: _ => choice(
+    "stack",
+    "tall",
+    "fat",
+    "grid",
+    "splits",
+    "horizontal",
+    "vertical",
+  ),
+
+  layout: $ => seq(
+    token.immediate(":"),
+    $._layout_item,
+    repeat(
+      seq(
+        ";",
+        $._layout_item
+      )
+    )
+  ),
+
+  _layout_item: $ => choice(
+    $.layout_bias,
+    $.layout_full_size,
+    $.layout_mirrored,
+    $.layout_split_axis,
+  ),
+
+  layout_bias: $ => seq(
+    field(
+      "name",
+      alias(
+        token.immediate("bias"),
+        $.string
+      )
+    ),
+    token.immediate("="),
+    field(
+      "value",
+      $.number
+    )
+  ),
+
+  layout_full_size: $ => seq(
+    field(
+      "name",
+      alias(
+        token.immediate("full_size"),
+        $.string
+      )
+    ),
+    token.immediate("="),
+    field(
+      "value",
+      $.number
+    )
+  ),
+
+  layout_mirrored: $ => seq(
+    field(
+      "name",
+      alias(
+        token.immediate("mirrored"),
+        $.string
+      )
+    ),
+    token.immediate("="),
+    field(
+      "value",
+      $.boolean
+    )
+  ),
+
+  layout_split_axis: $ => seq(
+    field(
+      "name",
+      alias(
+        token.immediate("split_axis"),
+        $.string
+      )
+    ),
+    token.immediate("="),
+    field(
+      "value",
+      $.axis
+    )
+  ),
+
+  axis: _ => choice("horizontal", "vertical"),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  remote_control: $ => seq(
+    "remote_control",
+    /[ \t]+/,
+    field(
+      "commands",
+      alias(/[^\n\r]+/, $.string)
+    )
+  ),
+
 };
