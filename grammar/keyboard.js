@@ -2,20 +2,13 @@ module.exports.rules = {
   keyboard_shortcut: $ => seq(
     "map",
     optional(
-      seq(
-        /[ \t]+/,
-        field("criteria", $.key_criteria)
-      )
+      field("criteria", $.key_criteria)
     ),
 
-    /[ \t]+/,
     field("sequence", $.key_sequence),
 
     optional(
-      seq(
-        /[ \t]+/,
-        field("action", $.key_action)
-      )
+      field("action", $.key_action)
     )
   ),
 
@@ -25,17 +18,8 @@ module.exports.rules = {
     alias($.string, $.condition)
   ),
   key_action: $ => $._action,
-  key_sequence: $ => repeat1($._key_element),
-
-  _key_element: $ => choice(
-    $.ctrl,
-    $.alt,
-    $.shift,
-    $.function,
-    $.super,
-    $.special,
-    $.key,
-    $.together,
-    $.after,
+  key_sequence: $ => seq(
+    $._key,
+    repeat($._key_later)
   ),
 };
