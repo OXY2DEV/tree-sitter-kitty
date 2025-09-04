@@ -7,7 +7,7 @@ module.exports.rules = {
     $.signal_child,
     $.clear_terminal,
     $.combine,
-    $.disable_ligatures,
+    $.disable_ligatures_in,
     $.kitten,
     $.launch,
     $.load_config_file,
@@ -225,8 +225,8 @@ module.exports.rules = {
     $._action
   ),
 
-  disable_ligatures: $ => seq(
-    "disable_ligatures",
+  disable_ligatures_in: $ => seq(
+    "disable_ligatures_in",
     field("target", $.ligature_target),
     field("type", $.ligature_disabled)
   ),
