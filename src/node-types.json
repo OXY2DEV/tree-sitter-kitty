@@ -31,6 +31,22 @@
     }
   },
   {
+    "type": "box_drawing_scale",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "scale_value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "box_value",
     "named": true,
     "fields": {},
@@ -179,6 +195,32 @@
     "fields": {}
   },
   {
+    "type": "color_data",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "color_option_name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "color",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "color_match",
     "named": true,
     "fields": {
@@ -291,7 +333,7 @@
       "required": false,
       "types": [
         {
-          "type": "color_option",
+          "type": "color_data",
           "named": true
         },
         {
@@ -341,7 +383,7 @@
           "named": true
         },
         {
-          "type": "disable_ligatures",
+          "type": "disable_ligatures_in",
           "named": true
         },
         {
@@ -507,11 +549,19 @@
           "named": true
         },
         {
+          "type": "box_drawing_scale",
+          "named": true
+        },
+        {
           "type": "clipboard_control",
           "named": true
         },
         {
           "type": "clone_source_strategies",
+          "named": true
+        },
+        {
+          "type": "color_option",
           "named": true
         },
         {
@@ -571,11 +621,11 @@
           "named": true
         },
         {
-          "type": "mouse_action",
+          "type": "mouse_hide_wait",
           "named": true
         },
         {
-          "type": "mouse_hide_wait",
+          "type": "mouse_shortcut",
           "named": true
         },
         {
@@ -592,6 +642,10 @@
         },
         {
           "type": "paste_actions",
+          "named": true
+        },
+        {
+          "type": "pointer_shape_when_dragging",
           "named": true
         },
         {
@@ -616,6 +670,10 @@
         },
         {
           "type": "single_window_padding_width",
+          "named": true
+        },
+        {
+          "type": "string_option",
           "named": true
         },
         {
@@ -788,7 +846,7 @@
     "fields": {}
   },
   {
-    "type": "disable_ligatures",
+    "type": "disable_ligatures_in",
     "named": true,
     "fields": {
       "target": {
@@ -1145,7 +1203,7 @@
           "named": true
         },
         {
-          "type": "disable_ligatures",
+          "type": "disable_ligatures_in",
           "named": true
         },
         {
@@ -1271,10 +1329,6 @@
       "required": true,
       "types": [
         {
-          "type": "after",
-          "named": true
-        },
-        {
           "type": "alt",
           "named": true
         },
@@ -1291,6 +1345,22 @@
           "named": true
         },
         {
+          "type": "left",
+          "named": true
+        },
+        {
+          "type": "middle",
+          "named": true
+        },
+        {
+          "type": "mouse_button",
+          "named": true
+        },
+        {
+          "type": "right",
+          "named": true
+        },
+        {
           "type": "shift",
           "named": true
         },
@@ -1300,10 +1370,6 @@
         },
         {
           "type": "super",
-          "named": true
-        },
-        {
-          "type": "together",
           "named": true
         }
       ]
@@ -2074,164 +2140,6 @@
     }
   },
   {
-    "type": "mouse_action",
-    "named": true,
-    "fields": {
-      "action": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "clear_terminal",
-            "named": true
-          },
-          {
-            "type": "close_window_with_confirmation",
-            "named": true
-          },
-          {
-            "type": "combine",
-            "named": true
-          },
-          {
-            "type": "detach_window",
-            "named": true
-          },
-          {
-            "type": "disable_ligatures",
-            "named": true
-          },
-          {
-            "type": "generic_action",
-            "named": true
-          },
-          {
-            "type": "goto_tab",
-            "named": true
-          },
-          {
-            "type": "kitten",
-            "named": true
-          },
-          {
-            "type": "launch",
-            "named": true
-          },
-          {
-            "type": "load_config_file",
-            "named": true
-          },
-          {
-            "type": "mouse_handle_click",
-            "named": true
-          },
-          {
-            "type": "mouse_selection",
-            "named": true
-          },
-          {
-            "type": "move_window",
-            "named": true
-          },
-          {
-            "type": "neighboring_window",
-            "named": true
-          },
-          {
-            "type": "nth_window",
-            "named": true
-          },
-          {
-            "type": "open_url",
-            "named": true
-          },
-          {
-            "type": "remote_control_script",
-            "named": true
-          },
-          {
-            "type": "resize_window",
-            "named": true
-          },
-          {
-            "type": "scroll_prompt_to_top",
-            "named": true
-          },
-          {
-            "type": "scroll_to_prompt",
-            "named": true
-          },
-          {
-            "type": "send_key",
-            "named": true
-          },
-          {
-            "type": "send_text",
-            "named": true
-          },
-          {
-            "type": "set_background_opacity",
-            "named": true
-          },
-          {
-            "type": "set_colors",
-            "named": true
-          },
-          {
-            "type": "set_tab_title",
-            "named": true
-          },
-          {
-            "type": "set_window_title",
-            "named": true
-          },
-          {
-            "type": "show_kitty_doc",
-            "named": true
-          },
-          {
-            "type": "signal_child",
-            "named": true
-          },
-          {
-            "type": "sleep",
-            "named": true
-          }
-        ]
-      },
-      "button_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "mouse_sequence",
-            "named": true
-          }
-        ]
-      },
-      "event_type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "mouse_event",
-            "named": true
-          }
-        ]
-      },
-      "modes": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "mouse_mode",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "mouse_event",
     "named": true,
     "fields": {}
@@ -2341,6 +2249,14 @@
           "named": true
         },
         {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "key",
+          "named": true
+        },
+        {
           "type": "left",
           "named": true
         },
@@ -2361,14 +2277,172 @@
           "named": true
         },
         {
-          "type": "super",
+          "type": "special",
           "named": true
         },
         {
-          "type": "together",
+          "type": "super",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "mouse_shortcut",
+    "named": true,
+    "fields": {
+      "action": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "clear_terminal",
+            "named": true
+          },
+          {
+            "type": "close_window_with_confirmation",
+            "named": true
+          },
+          {
+            "type": "combine",
+            "named": true
+          },
+          {
+            "type": "detach_window",
+            "named": true
+          },
+          {
+            "type": "disable_ligatures_in",
+            "named": true
+          },
+          {
+            "type": "generic_action",
+            "named": true
+          },
+          {
+            "type": "goto_tab",
+            "named": true
+          },
+          {
+            "type": "kitten",
+            "named": true
+          },
+          {
+            "type": "launch",
+            "named": true
+          },
+          {
+            "type": "load_config_file",
+            "named": true
+          },
+          {
+            "type": "mouse_handle_click",
+            "named": true
+          },
+          {
+            "type": "mouse_selection",
+            "named": true
+          },
+          {
+            "type": "move_window",
+            "named": true
+          },
+          {
+            "type": "neighboring_window",
+            "named": true
+          },
+          {
+            "type": "nth_window",
+            "named": true
+          },
+          {
+            "type": "open_url",
+            "named": true
+          },
+          {
+            "type": "remote_control_script",
+            "named": true
+          },
+          {
+            "type": "resize_window",
+            "named": true
+          },
+          {
+            "type": "scroll_prompt_to_top",
+            "named": true
+          },
+          {
+            "type": "scroll_to_prompt",
+            "named": true
+          },
+          {
+            "type": "send_key",
+            "named": true
+          },
+          {
+            "type": "send_text",
+            "named": true
+          },
+          {
+            "type": "set_background_opacity",
+            "named": true
+          },
+          {
+            "type": "set_colors",
+            "named": true
+          },
+          {
+            "type": "set_tab_title",
+            "named": true
+          },
+          {
+            "type": "set_window_title",
+            "named": true
+          },
+          {
+            "type": "show_kitty_doc",
+            "named": true
+          },
+          {
+            "type": "signal_child",
+            "named": true
+          },
+          {
+            "type": "sleep",
+            "named": true
+          }
+        ]
+      },
+      "event_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mouse_event",
+            "named": true
+          }
+        ]
+      },
+      "modes": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mouse_mode",
+            "named": true
+          }
+        ]
+      },
+      "sequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mouse_sequence",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2571,6 +2645,37 @@
     }
   },
   {
+    "type": "pointer_shape_when_dragging",
+    "named": true,
+    "fields": {
+      "default": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      },
+      "rectangular": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pointer_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pointer_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "remote_actions",
     "named": true,
     "fields": {},
@@ -2708,6 +2813,21 @@
     "type": "right",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "scale_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "scroll_prompt_to_top",
@@ -3017,6 +3137,22 @@
     "type": "stdin_source",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "string_option",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "super",
@@ -3368,6 +3504,10 @@
     "named": false
   },
   {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -3620,6 +3760,10 @@
     "named": false
   },
   {
+    "type": ">",
+    "named": false
+  },
+  {
     "type": "@",
     "named": false
   },
@@ -3696,12 +3840,16 @@
     "named": false
   },
   {
+    "type": "active_tab_font_style",
+    "named": false
+  },
+  {
     "type": "active_tab_foreground",
     "named": false
   },
   {
-    "type": "after",
-    "named": true
+    "type": "active_tab_title_template",
+    "named": false
   },
   {
     "type": "after",
@@ -3713,6 +3861,14 @@
   },
   {
     "type": "all",
+    "named": false
+  },
+  {
+    "type": "allow_cloning",
+    "named": false
+  },
+  {
+    "type": "allow_remote_control",
     "named": false
   },
   {
@@ -3768,6 +3924,10 @@
     "named": false
   },
   {
+    "type": "arrow",
+    "named": false
+  },
+  {
     "type": "ask",
     "named": false
   },
@@ -3797,6 +3957,14 @@
   },
   {
     "type": "background_blur",
+    "named": false
+  },
+  {
+    "type": "background_image",
+    "named": false
+  },
+  {
+    "type": "background_image_layout",
     "named": false
   },
   {
@@ -3841,6 +4009,14 @@
   },
   {
     "type": "bell_border_color",
+    "named": false
+  },
+  {
+    "type": "bell_on_tab",
+    "named": false
+  },
+  {
+    "type": "bell_path",
     "named": false
   },
   {
@@ -3905,6 +4081,10 @@
   },
   {
     "type": "bottom",
+    "named": false
+  },
+  {
+    "type": "box_drawing_scale",
     "named": false
   },
   {
@@ -4164,6 +4344,10 @@
     "named": false
   },
   {
+    "type": "command_on_bell",
+    "named": false
+  },
+  {
     "type": "comment_content",
     "named": true
   },
@@ -4193,6 +4377,10 @@
   },
   {
     "type": "copy_ansi_to_clipboard",
+    "named": false
+  },
+  {
+    "type": "copy_on_select",
     "named": false
   },
   {
@@ -4252,6 +4440,10 @@
     "named": false
   },
   {
+    "type": "crosshair",
+    "named": false
+  },
+  {
     "type": "ctrl",
     "named": false
   },
@@ -4281,6 +4473,10 @@
   },
   {
     "type": "cursor_stop_blinking_after",
+    "named": false
+  },
+  {
+    "type": "cursor_text_color",
     "named": false
   },
   {
@@ -4500,6 +4696,10 @@
     "named": false
   },
   {
+    "type": "default_pointer_shape",
+    "named": false
+  },
+  {
     "type": "delete",
     "named": false
   },
@@ -4525,6 +4725,10 @@
   },
   {
     "type": "disable_ligatures",
+    "named": false
+  },
+  {
+    "type": "disable_ligatures_in",
     "named": false
   },
   {
@@ -4588,6 +4792,10 @@
     "named": false
   },
   {
+    "type": "editor",
+    "named": false
+  },
+  {
     "type": "eighth_window",
     "named": false
   },
@@ -4624,6 +4832,10 @@
     "named": false
   },
   {
+    "type": "exe_search_path",
+    "named": false
+  },
+  {
     "type": "extend",
     "named": false
   },
@@ -4633,6 +4845,10 @@
   },
   {
     "type": "fifth_window",
+    "named": false
+  },
+  {
+    "type": "file_transfer_confirmation_bypass",
     "named": false
   },
   {
@@ -4717,11 +4933,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",
@@ -4789,6 +5005,10 @@
   },
   {
     "type": "grabbed",
+    "named": false
+  },
+  {
+    "type": "grabbed,ungrabbed",
     "named": false
   },
   {
@@ -5212,11 +5432,19 @@
     "named": false
   },
   {
+    "type": "hand",
+    "named": false
+  },
+  {
     "type": "hide_macos_app",
     "named": false
   },
   {
     "type": "hide_macos_other_apps",
+    "named": false
+  },
+  {
+    "type": "hide_window_decorations",
     "named": false
   },
   {
@@ -5277,6 +5505,10 @@
   },
   {
     "type": "inactive_tab_background",
+    "named": false
+  },
+  {
+    "type": "inactive_tab_font_style",
     "named": false
   },
   {
@@ -5820,6 +6052,18 @@
     "named": false
   },
   {
+    "type": "linux_bell_theme",
+    "named": false
+  },
+  {
+    "type": "linux_display_server",
+    "named": false
+  },
+  {
+    "type": "listen_on",
+    "named": false
+  },
+  {
     "type": "loas_config_file",
     "named": false
   },
@@ -5829,6 +6073,10 @@
   },
   {
     "type": "m",
+    "named": false
+  },
+  {
+    "type": "macos_colorspace",
     "named": false
   },
   {
@@ -5852,7 +6100,15 @@
     "named": false
   },
   {
+    "type": "macos_show_window_title_in",
+    "named": false
+  },
+  {
     "type": "macos_thicken_font",
+    "named": false
+  },
+  {
+    "type": "macos_titlebar_color",
     "named": false
   },
   {
@@ -6368,6 +6624,10 @@
     "named": false
   },
   {
+    "type": "open_url_with",
+    "named": false
+  },
+  {
     "type": "open_url_with_hints",
     "named": false
   },
@@ -6565,11 +6825,11 @@
   },
   {
     "type": "path",
-    "named": true
+    "named": false
   },
   {
     "type": "path",
-    "named": false
+    "named": true
   },
   {
     "type": "pattern",
@@ -6616,6 +6876,10 @@
     "named": false
   },
   {
+    "type": "placement_strategy",
+    "named": false
+  },
+  {
     "type": "platform",
     "named": false
   },
@@ -6637,6 +6901,18 @@
   },
   {
     "type": "plum4",
+    "named": false
+  },
+  {
+    "type": "pointer_options",
+    "named": false
+  },
+  {
+    "type": "pointer_shape_when_dragging",
+    "named": false
+  },
+  {
+    "type": "pointer_shape_when_grabbed",
     "named": false
   },
   {
@@ -7004,6 +7280,14 @@
     "named": false
   },
   {
+    "type": "select_by_word_characters",
+    "named": false
+  },
+  {
+    "type": "select_by_word_characters_forward",
+    "named": false
+  },
+  {
     "type": "select_tab",
     "named": false
   },
@@ -7045,6 +7329,10 @@
   },
   {
     "type": "seventh_window",
+    "named": false
+  },
+  {
+    "type": "shell",
     "named": false
   },
   {
@@ -7220,6 +7508,10 @@
     "named": false
   },
   {
+    "type": "space",
+    "named": false
+  },
+  {
     "type": "sparse",
     "named": false
   },
@@ -7249,6 +7541,10 @@
   },
   {
     "type": "start_resizing_window",
+    "named": false
+  },
+  {
+    "type": "startup_session",
     "named": false
   },
   {
@@ -7292,6 +7588,10 @@
     "named": true
   },
   {
+    "type": "strip_trailing_spaces",
+    "named": false
+  },
+  {
     "type": "super",
     "named": false
   },
@@ -7332,7 +7632,19 @@
     "named": false
   },
   {
+    "type": "tab_activity_symbol",
+    "named": false
+  },
+  {
+    "type": "tab_bar_align",
+    "named": false
+  },
+  {
     "type": "tab_bar_background",
+    "named": false
+  },
+  {
+    "type": "tab_bar_edge",
     "named": false
   },
   {
@@ -7352,7 +7664,27 @@
     "named": false
   },
   {
+    "type": "tab_bar_style",
+    "named": false
+  },
+  {
+    "type": "tab_powerline_style",
+    "named": false
+  },
+  {
+    "type": "tab_separator",
+    "named": false
+  },
+  {
+    "type": "tab_switch_strategy",
+    "named": false
+  },
+  {
     "type": "tab_title_max_length",
+    "named": false
+  },
+  {
+    "type": "tab_title_template",
     "named": false
   },
   {
@@ -7381,6 +7713,14 @@
   },
   {
     "type": "tenth_window",
+    "named": false
+  },
+  {
+    "type": "term",
+    "named": false
+  },
+  {
+    "type": "terminfo_type",
     "named": false
   },
   {
@@ -7440,10 +7780,6 @@
     "named": false
   },
   {
-    "type": "together",
-    "named": true
-  },
-  {
     "type": "toggle_fullscreen",
     "named": false
   },
@@ -7492,7 +7828,7 @@
     "named": false
   },
   {
-    "type": "tripplepress",
+    "type": "triplepress",
     "named": false
   },
   {
@@ -7540,6 +7876,10 @@
     "named": false
   },
   {
+    "type": "underline_hyperlinks",
+    "named": false
+  },
+  {
     "type": "underline_position",
     "named": false
   },
@@ -7584,6 +7924,10 @@
     "named": false
   },
   {
+    "type": "url_style",
+    "named": false
+  },
+  {
     "type": "venv",
     "named": false
   },
@@ -7616,7 +7960,15 @@
     "named": false
   },
   {
+    "type": "visual_window_select_characters",
+    "named": false
+  },
+  {
     "type": "vsplit",
+    "named": false
+  },
+  {
+    "type": "watcher",
     "named": false
   },
   {
@@ -7685,6 +8037,10 @@
   },
   {
     "type": "window_logo_alpha",
+    "named": false
+  },
+  {
+    "type": "window_logo_position",
     "named": false
   },
   {
