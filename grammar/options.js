@@ -14,6 +14,7 @@ module.exports.rules = {
   _option: $ => choice(
     $.numeric_option,
     $.boolean_option,
+    $.string_option,
 
     $.font_option,
     $.symbol_map,
@@ -35,6 +36,7 @@ module.exports.rules = {
     $.enabled_layouts,
     $.window_border_width,
     $.window_margin_width,
+    $.box_drawing_scale,
     $.single_window_margin_width,
     $.window_padding_width,
     $.single_window_padding_width,
@@ -52,6 +54,7 @@ module.exports.rules = {
     $.menu_map,
     $.wayland_titlebar_color,
     $.narrow_symbols,
+    $.pointer_shape_when_dragging,
    ),
 
   numeric_option: $ => seq(
@@ -183,6 +186,8 @@ module.exports.rules = {
     "open_url_with",
     "underline_hyperlinks",
     "copy_on_select",
+    "pointer_shape_when_grabbed",
+    "default_pointer_shape",
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -301,8 +306,12 @@ module.exports.rules = {
 
   fg_override_threshold: $ => seq(
     $.number,
-    /[ \t]+/,
-    choice("%", "ratio")
+    optional(
+      // seq(
+      // /[ \t]+/,
+      choice("%", "ratio")
+      // )
+    )
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -580,6 +589,7 @@ module.exports.rules = {
     "arrow",
     "beam",
     "hand",
+    "crosshair",
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -671,6 +681,21 @@ module.exports.rules = {
   ),
 
   ////////////////////////////////////////////////////////////////////////////
+
+  box_drawing_scale: $ => seq(
+    "box_drawing_scale",
+    field("value", $.scale_value)
+  ),
+
+  scale_value: $ => seq(
+    $.number,
+    ",",
+    $.number,
+    ",",
+    $.number,
+    ",",
+    $.number,
+  ),
 
   window_margin_width: $ => seq(
     "window_margin_width",
