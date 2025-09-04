@@ -48,16 +48,22 @@ module.exports.rules = {
     choice("--match-tab", "-t"),
     field("query", $.string),
   ),
+  ////////////////////////////////////////////////////////////////////////////
+
+  color_option: $ => seq(
+    field("name", $.color_option_name),
+    field("value", $.color),
+  ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   color_value: $ => choice(
     "none",
-    repeat1($.color_option),
+    repeat1($.color_data),
     alias($.string, $.path),
   ),
 
-  color_option: $ => seq(
+  color_data: $ => seq(
     field("name", $.color_option_name),
     token.immediate("="),
     field("value", $.color),
@@ -71,6 +77,7 @@ module.exports.rules = {
     "selection_background",
 
     "cursor",
+    "cursor_text_color",
 
     "url_color",
 
