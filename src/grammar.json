@@ -112,18 +112,36 @@
       ]
     },
     "pixel": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "\\d+px"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "px"
+          }
+        }
+      ]
     },
     "percentage": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "[\\d\\.]+%"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "%"
+          }
+        }
+      ]
     },
     "number": {
       "type": "TOKEN",
@@ -166,7 +184,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "color_name"
+          "name": "_color_name"
         }
       ]
     },
@@ -417,18 +435,22 @@
           "value": "key"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
+          "type": "ALIAS",
           "content": {
-            "type": "STRING",
-            "value": "+"
-          }
+            "type": "SYMBOL",
+            "name": "with_"
+          },
+          "named": true,
+          "value": "with"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
+          "type": "ALIAS",
           "content": {
-            "type": "STRING",
-            "value": ">"
-          }
+            "type": "SYMBOL",
+            "name": "together_"
+          },
+          "named": true,
+          "value": "together"
         }
       ]
     },
@@ -1473,7 +1495,29 @@
         "value": "\\S"
       }
     },
-    "color_name": {
+    "with": {
+      "type": "STRING",
+      "value": "+"
+    },
+    "with_": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "+"
+      }
+    },
+    "together": {
+      "type": "STRING",
+      "value": ">"
+    },
+    "together_": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": ">"
+      }
+    },
+    "_color_name": {
       "type": "CHOICE",
       "members": [
         {
@@ -5591,8 +5635,13 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "string"
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            "named": true,
+            "value": "string"
           }
         },
         {
@@ -6630,24 +6679,8 @@
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "number"
+            "name": "_font_unit"
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "unit",
-              "content": {
-                "type": "SYMBOL",
-                "name": "font_unit"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         }
       ]
     },
@@ -6680,22 +6713,20 @@
         }
       ]
     },
-    "font_unit": {
+    "_font_unit": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "%"
-          }
+          "type": "SYMBOL",
+          "name": "pixel"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "px"
-          }
+          "type": "SYMBOL",
+          "name": "percentage"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
         }
       ]
     },

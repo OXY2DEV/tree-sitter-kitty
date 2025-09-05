@@ -267,17 +267,7 @@
   {
     "type": "color",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "color_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "color_all",
@@ -346,11 +336,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "color_name",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "color_option",
@@ -1306,11 +1291,6 @@
     }
   },
   {
-    "type": "font_unit",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "generic_action",
     "named": true,
     "fields": {}
@@ -1625,6 +1605,14 @@
         {
           "type": "super",
           "named": true
+        },
+        {
+          "type": "together",
+          "named": true
+        },
+        {
+          "type": "with",
+          "named": true
         }
       ]
     }
@@ -1720,6 +1708,14 @@
         },
         {
           "type": "super",
+          "named": true
+        },
+        {
+          "type": "together",
+          "named": true
+        },
+        {
+          "type": "with",
           "named": true
         }
       ]
@@ -2567,22 +2563,20 @@
           }
         ]
       },
-      "unit": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "font_unit",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "percentage",
+            "named": true
+          },
+          {
+            "type": "pixel",
             "named": true
           }
         ]
@@ -2732,6 +2726,14 @@
         },
         {
           "type": "super",
+          "named": true
+        },
+        {
+          "type": "together",
+          "named": true
+        },
+        {
+          "type": "with",
           "named": true
         }
       ]
@@ -3153,6 +3155,36 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "percentage",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pixel",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4098,10 +4130,6 @@
     "named": false
   },
   {
-    "type": "+",
-    "named": false
-  },
-  {
     "type": ",",
     "named": false
   },
@@ -4367,10 +4395,6 @@
   },
   {
     "type": "=",
-    "named": false
-  },
-  {
-    "type": ">",
     "named": false
   },
   {
@@ -5311,11 +5335,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",
@@ -6422,20 +6446,12 @@
     "named": false
   },
   {
-    "type": "percentage",
-    "named": true
-  },
-  {
     "type": "peru",
     "named": false
   },
   {
     "type": "pink",
     "named": false
-  },
-  {
-    "type": "pixel",
-    "named": true
   },
   {
     "type": "placement_strategy",
@@ -7130,6 +7146,10 @@
     "named": false
   },
   {
+    "type": "together",
+    "named": true
+  },
+  {
     "type": "toggle_fullscreen",
     "named": false
   },
@@ -7364,6 +7384,10 @@
   {
     "type": "window_resize_step_lines",
     "named": false
+  },
+  {
+    "type": "with",
+    "named": true
   },
   {
     "type": "word",

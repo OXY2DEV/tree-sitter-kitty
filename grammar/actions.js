@@ -968,7 +968,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   aliased_action: $ => seq(
-    field("name", $.string),
+    field("name", alias(/\w+/, $.string)),
     optional(
       field("arguments", $.action_arguments)
     )
