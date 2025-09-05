@@ -262,11 +262,7 @@ module.exports.rules = {
   modify_font: $ => seq(
     "modify_font",
     field("type", $.font_modification_type),
-    field("value", $.number),
-
-    optional(
-      field("unit", $.font_unit)
-    ),
+    field("value", $._font_unit),
   ),
 
   font_modification_type: _ => choice(
@@ -279,9 +275,10 @@ module.exports.rules = {
     "baseline",
   ),
 
-  font_unit: _ => choice(
-    token.immediate("%"),
-    token.immediate("px"),
+  _font_unit: $ => choice(
+    $.pixel,
+    $.percentage,
+    $.number,
   ),
 
   ////////////////////////////////////////////////////////////////////////////

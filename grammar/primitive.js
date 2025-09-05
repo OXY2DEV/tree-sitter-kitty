@@ -104,14 +104,20 @@ module.exports.rules = {
     prec(-100, alias(".", $.inherit)),
   ),
 
-  pixel: _ => token(/\d+px/),
-  percentage: _ => token(/[\d\.]+%/),
+  pixel: $ => seq(
+    $.number,
+    token.immediate("px"),
+  ),
+  percentage: $ => seq(
+    $.number,
+    token.immediate("%"),
+  ),
   number: _ => token(/[\d\.\-\+]+/),
   boolean: _ => choice("yes", "no", "true", "false"),
   color: $ => choice(
     "none",
     /#[0-9A-Fa-f]{3,6}/,
-    $.color_name
+    $._color_name
   ),
   string: _ => token(
     choice(
@@ -163,8 +169,8 @@ module.exports.rules = {
     alias($.special_, $.special),
     alias($.key_, $.key),
 
-    token.immediate("+"),
-    token.immediate(">"),
+    alias($.with_, $.with),
+    alias($.together_, $.together),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -222,9 +228,19 @@ module.exports.rules = {
   key: _ => /\S/,
   key_: _ => token.immediate(/\S/),
 
+  ////////////////////////////////////////////////////////////////////////////
+
+  with: _ => "+",
+  with_: _ => token.immediate("+"),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  together: _ => ">",
+  together_: _ => token.immediate(">"),
+
   // X11 color list //////////////////////////////////////////////////////////
 
-  color_name: _ => choice(
+  _color_name: _ => choice(
     "aliceblue",
     "antiquewhite",
     "aqua",
