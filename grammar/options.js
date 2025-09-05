@@ -43,7 +43,6 @@ module.exports.rules = {
     $.resize_debounce_time,
     $.tab_bar_margin_height,
     $.transparent_background_colors,
-    $.transparent_background_colors,
     $.remote_control_password,
     $.env,
     $.filter_notification,
@@ -55,6 +54,12 @@ module.exports.rules = {
     $.wayland_titlebar_color,
     $.narrow_symbols,
     $.pointer_shape_when_dragging,
+
+    $.window_logo_scale,
+    $.confirm_os_window_close,
+    $.tab_fade,
+    $.kitty_mod,
+    $.action_alias,
    ),
 
   numeric_option: $ => seq(
@@ -98,6 +103,9 @@ module.exports.rules = {
     "update_check_interval",
     "macos_thicken_font",
     "macos_menubar_title_max_length",
+    "visual_bell_duration",
+
+    "clipboard_max_size",
   ),
 
 
@@ -131,6 +139,10 @@ module.exports.rules = {
     "macos_custom_beam_cursor",
     "wayland_enable_ime",
     "clear_all_shortcuts",
+    "remember_window_size",
+
+    "dynamic_background_opacity",
+    "allow_hyperlinks",
   ),
 
 
@@ -188,6 +200,8 @@ module.exports.rules = {
     "copy_on_select",
     "pointer_shape_when_grabbed",
     "default_pointer_shape",
+    "window_logo_path",
+    "tab_bar_background",
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -834,12 +848,12 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  // tab_fade: $ => seq(
-  //   "tab_fade",
-  //   field("fade", $.fade_list)
-  // ),
-  //
-  // fade_list: $ => repeat1($.number),
+  tab_fade: $ => seq(
+    "tab_fade",
+    field("fade", $.fade_list)
+  ),
+
+  fade_list: $ => repeat1($.number),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -892,14 +906,14 @@ module.exports.rules = {
     field("value", $.transparency_list)
   ),
 
-  transparency_list: $ => seq(
+  transparency_list: $ => repeat1(
     $.transparent_color,
-    repeat(
-      seq(
-        /[ \t]+/,
-        $.transparent_color
-      )
-    )
+    // repeat(
+    //   seq(
+    //     /[ \t]+/,
+    //     $.transparent_color
+    //   )
+    // )
   ),
 
   transparent_color: $ => seq(
@@ -932,7 +946,10 @@ module.exports.rules = {
 
   remote_control_password: $ => seq(
     "remote_control_password",
-    field("password", $.string),
+    field(
+      "password",
+      alias($.string, $.password)
+    ),
     optional(
       field("actions", $.remote_actions)
     )
@@ -1036,17 +1053,13 @@ module.exports.rules = {
     field("features", $.shell_features)
   ),
 
-  shell_features: $ => seq(
-    $.shell_feature,
-    repeat(
-      seq(
-        /[ \t]+/,
-        $.shell_features
-      )
-    )
+  shell_features: $ => choice(
+    "enabled",
+    "disabled",
+    repeat1($.shell_feature)
   ),
 
-  shell_features: _ => choice(
+  shell_feature: _ => choice(
     "no-rc",
     "no-cursor",
     "no-title",
@@ -1072,11 +1085,17 @@ module.exports.rules = {
     repeat(
       seq(
         token.immediate(","),
-        $.source_strategy
+        alias($.source_strategy_, $.source_strategy)
       )
     )
   ),
-  source_strategy: _ => immediate(
+  source_strategy: _ => choice(
+    "venv",
+    "conda",
+    "env_var",
+    "path"
+  ),
+  source_strategy_: _ => immediate(
     "venv",
     "conda",
     "env_var",
@@ -1211,4 +1230,51 @@ module.exports.rules = {
   //   "x11",
   //   "auto",
   // ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  window_logo_scale: $ => seq(
+    "window_logo_scale",
+    choice(
+      seq(
+        field("scale_w", $.number),
+        field("scale_h", $.number),
+      ),
+      field("scale", $.number),
+    )
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  confirm_os_window_close: $ => seq(
+    "confirm_os_window_close",
+    field("min_win_count", $.number),
+    optional(
+      field(
+        "count_background",
+        alias("count-background", $.string)
+      ),
+    )
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  kitty_mod: $ => seq(
+    "kitty_mod",
+    field("sequence", $.key_sequence)
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  action_alias: $ => seq(
+    choice(
+      "action_alias",
+      "kitten_alias",
+    ),
+    field("name", $.string),
+    field(
+      "action",
+      alias(/[^\n\r]+/, $.string)
+    )
+  ),
 };

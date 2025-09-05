@@ -40,6 +40,8 @@ module.exports.rules = {
 
     $.nth_os_window,
     $.goto_layout,
+
+    $.aliased_action,
   ),
 
   generic_action: _ => choice(
@@ -335,7 +337,10 @@ module.exports.rules = {
     optional(
       field("options", $.launch_options)
     ),
-    field("command", $.string),
+    field(
+      "command",
+      alias(/[^\n\r]+/, $.string)
+    ),
   ),
 
   launch_options: $ => repeat1($._launch_option),
@@ -357,7 +362,7 @@ module.exports.rules = {
     $.launch_next_to,
     $.launch_bias,
     $.launch_remote_control,
-    // $.launch_remote_password,
+    $.launch_remote_password,
     $.launch_stdin_source,
     $.launch_stdin_formatting,
     $.launch_stdin_line_wrap,
@@ -369,10 +374,10 @@ module.exports.rules = {
     $.launch_logo,
     $.launch_logo_position,
     $.launch_logo_alpha,
-    // $.launch_color
-    // $.launch_spacing
+    $.launch_color,
+    $.launch_spacing,
     $.launch_watcher,
-    // $.launch_os_panel
+    $.launch_os_panel,
     $.launch_hold_after_ssh,
   ),
 
@@ -487,6 +492,25 @@ module.exports.rules = {
     "--allow-remote-control"
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
+  launch_remote_password: $ => seq(
+    "--remote-control-password",
+    "=",
+    field("password", $.password),
+    optional(
+      field("actions", $.remote_actions)
+    )
+  ),
+
+  password: _ => choice(
+    token.immediate(/'[^']+'/),
+    token.immediate(/"[^"]+"/),
+    token.immediate(/\S+/),
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
   launch_stdin_source: $ => seq(
     "--stdin-source",
     field("source", $.stdin_source)
@@ -593,6 +617,41 @@ module.exports.rules = {
     "--logo-alpha",
     field("alpha", $.number)
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  launch_color: $ => seq(
+    "--color",
+    field("name", $.color_option_name),
+    token.immediate("="),
+    field("value", $.color),
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  launch_spacing: $ => seq(
+    "--spacing",
+    field(
+      "name",
+      alias(/[^\s\=]+/, $.string)
+    ),
+    token.immediate("="),
+    field("value", $.number),
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  launch_os_panel: $ => seq(
+    "--os-panel",
+    field(
+      "name",
+      alias(/[^\s\=]+/, $.string)
+    ),
+    token.immediate("="),
+    field("value", $.number),
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   launch_watcher: $ => seq(
     choice("--watcher", "-w"),
@@ -737,12 +796,17 @@ module.exports.rules = {
   change_font_size: $ => seq(
     "change_font_size",
     field("target", $.os_window),
-    field("amount", $.number),
+    field("amount", $.font_change_amount),
   ),
 
   os_window: _ => choice(
     "all",
     "current"
+  ),
+
+  font_change_amount: $ => seq(
+    /[\+\-\*\\]?/,
+    $.number
   ),
 
   close_window_with_confirmation: _ => seq(
@@ -901,4 +965,14 @@ module.exports.rules = {
     )
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
+  aliased_action: $ => seq(
+    field("name", $.string),
+    optional(
+      field("arguments", $.action_arguments)
+    )
+  ),
+
+  action_arguments: $ => repeat1($._primitive)
 };
