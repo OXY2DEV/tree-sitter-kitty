@@ -100,6 +100,21 @@
     "fields": {}
   },
   {
+    "type": "background_alpha",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "boolean",
     "named": true,
     "fields": {}
@@ -447,6 +462,10 @@
       "required": true,
       "types": [
         {
+          "type": "aliased_action",
+          "named": true
+        },
+        {
           "type": "clear_terminal",
           "named": true
         },
@@ -507,6 +526,10 @@
           "named": true
         },
         {
+          "type": "new_window",
+          "named": true
+        },
+        {
           "type": "nth_os_window",
           "named": true
         },
@@ -516,6 +539,10 @@
         },
         {
           "type": "open_url",
+          "named": true
+        },
+        {
+          "type": "pass_selection_to_program",
           "named": true
         },
         {
@@ -1441,6 +1468,10 @@
           "named": true
         },
         {
+          "type": "kitty_shell",
+          "named": true
+        },
+        {
           "type": "launch",
           "named": true
         },
@@ -1465,6 +1496,10 @@
           "named": true
         },
         {
+          "type": "new_window",
+          "named": true
+        },
+        {
           "type": "nth_os_window",
           "named": true
         },
@@ -1474,6 +1509,10 @@
         },
         {
           "type": "open_url",
+          "named": true
+        },
+        {
+          "type": "pass_selection_to_program",
           "named": true
         },
         {
@@ -1534,6 +1573,10 @@
         },
         {
           "type": "sleep",
+          "named": true
+        },
+        {
+          "type": "toggle_layout",
           "named": true
         }
       ]
@@ -1725,6 +1768,16 @@
     "type": "kitten",
     "named": true,
     "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "kitten_arguments",
+            "named": true
+          }
+        ]
+      },
       "target": {
         "multiple": false,
         "required": true,
@@ -1735,6 +1788,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "kitten_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1752,6 +1820,27 @@
         ]
       }
     }
+  },
+  {
+    "type": "kitty_shell",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "kitty_shell_open_as",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "kitty_shell_open_as",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "launch",
@@ -2792,6 +2881,10 @@
             "named": true
           },
           {
+            "type": "kitty_shell",
+            "named": true
+          },
+          {
             "type": "launch",
             "named": true
           },
@@ -2816,6 +2909,10 @@
             "named": true
           },
           {
+            "type": "new_window",
+            "named": true
+          },
+          {
             "type": "nth_os_window",
             "named": true
           },
@@ -2825,6 +2922,10 @@
           },
           {
             "type": "open_url",
+            "named": true
+          },
+          {
+            "type": "pass_selection_to_program",
             "named": true
           },
           {
@@ -2885,6 +2986,10 @@
           },
           {
             "type": "sleep",
+            "named": true
+          },
+          {
+            "type": "toggle_layout",
             "named": true
           }
         ]
@@ -2973,6 +3078,22 @@
         "types": [
           {
             "type": "direction",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "new_window",
+    "named": true,
+    "fields": {
+      "program": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
             "named": true
           }
         ]
@@ -3089,6 +3210,22 @@
     "named": true,
     "fields": {
       "url": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pass_selection_to_program",
+    "named": true,
+    "fields": {
+      "program": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3491,7 +3628,7 @@
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "background_alpha",
             "named": true
           }
         ]
@@ -3528,9 +3665,9 @@
     "type": "set_tab_title",
     "named": true,
     "fields": {
-      "tab": {
+      "title": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "title",
@@ -3882,6 +4019,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "toggle_layout",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "layout_name",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -5098,6 +5251,10 @@
     "named": false
   },
   {
+    "type": "default",
+    "named": false
+  },
+  {
     "type": "default_pointer_shape",
     "named": false
   },
@@ -5335,11 +5492,11 @@
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "gainsboro",
@@ -6358,6 +6515,10 @@
     "named": false
   },
   {
+    "type": "os_window",
+    "named": false
+  },
+  {
     "type": "overlay",
     "named": false
   },
@@ -6423,6 +6584,10 @@
   },
   {
     "type": "paste_selection_or_clipboard",
+    "named": false
+  },
+  {
+    "type": "path",
     "named": false
   },
   {

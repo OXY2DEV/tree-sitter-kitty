@@ -41,6 +41,11 @@ module.exports.rules = {
     $.nth_os_window,
     $.goto_layout,
 
+    $.pass_selection_to_program,
+    $.new_window,
+    $.toggle_layout,
+    $.kitty_shell,
+
     $.aliased_action,
   ),
 
@@ -50,7 +55,6 @@ module.exports.rules = {
     "copy_ansi_to_clipboard",
     "copy_or_interrupt",
     "copy_to_clipboard",
-    "pass_selection_to_program",
     "paste",
     "show_first_command_output_on_screen",
     "show_last_command_output",
@@ -69,7 +73,6 @@ module.exports.rules = {
     "last_used_layout",
     "layout_action",
     "next_layout",
-    "toggle_layout",
 
     "remove_marker",
     "scroll_to_mark",
@@ -82,8 +85,6 @@ module.exports.rules = {
     "hide_macos_app",
     "hide_macos_other_apps",
     "input_unicode_character",
-
-    "kitty_shell",
 
     "minimize_macos_window",
     "open_url_with_hints",
@@ -145,7 +146,6 @@ module.exports.rules = {
     "close_window",
     "new_os_window",
     "new_os_window_with_cwd",
-    "new_window",
     "new_window_with_cwd",
     "quit",
     "start_resizing_window",
@@ -303,6 +303,11 @@ module.exports.rules = {
 
     $.nth_os_window,
     $.goto_layout,
+
+    $.pass_selection_to_program,
+    $.new_window,
+
+    $.aliased_action,
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -327,8 +332,13 @@ module.exports.rules = {
 
   kitten: $ => seq(
     "kitten",
-    field("target", $.string)
+    field("target", $.string),
+    optional(
+      field("arguments", $.kitten_arguments)
+    )
   ),
+
+      kitten_arguments: $ => repeat1($.string),
 
   // Launch command //////////////////////////////////////////////////////////
 
@@ -743,7 +753,9 @@ module.exports.rules = {
 
   set_tab_title: $ => seq(
     "set_tab_title",
-    field("tab", $.title),
+    optional(
+      field("title", $.title),
+    )
   ),
 
   set_window_title: $ => seq(
@@ -846,7 +858,12 @@ module.exports.rules = {
 
   set_background_opacity: $ => seq(
     "set_background_opacity",
-    field("alpha", $.number),
+    field("alpha", $.background_alpha),
+  ),
+
+  background_alpha: $ => choice(
+    "default",
+    $.number
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -854,6 +871,13 @@ module.exports.rules = {
   nth_os_window: $ => seq(
     "nth_os_window",
     field("window", $.number),
+  ),
+
+  toggle_layout: $ => seq(
+    "toggle_layout",
+    optional(
+      field("name", $.layout_name)
+    ),
   ),
 
   goto_layout: $ => seq(
@@ -974,5 +998,42 @@ module.exports.rules = {
     )
   ),
 
-  action_arguments: $ => repeat1($._primitive)
+  action_arguments: $ => repeat1($._primitive),
+
+
+  pass_selection_to_program: $ => seq(
+    "pass_selection_to_program",
+    field("program", $.string)
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  new_window: $ => seq(
+    "new_window",
+
+    optional(
+      seq(
+        field("program",
+          alias(/\w+/, $.string)
+        ),
+        optional("@selection")
+      )
+    ),
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  kitty_shell: $ => seq(
+    "kitty_shell",
+    optional(
+      field("arguments", $.kitty_shell_open_as)
+    )
+  ),
+
+  kitty_shell_open_as: _ => choice(
+    "window",
+    "tab",
+    "overlay",
+    "os_window",
+  ),
 };

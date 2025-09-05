@@ -2654,6 +2654,22 @@
         },
         {
           "type": "SYMBOL",
+          "name": "pass_selection_to_program"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "new_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "toggle_layout"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kitty_shell"
+        },
+        {
+          "type": "SYMBOL",
           "name": "aliased_action"
         }
       ]
@@ -2680,10 +2696,6 @@
         {
           "type": "STRING",
           "value": "copy_to_clipboard"
-        },
-        {
-          "type": "STRING",
-          "value": "pass_selection_to_program"
         },
         {
           "type": "STRING",
@@ -2751,10 +2763,6 @@
         },
         {
           "type": "STRING",
-          "value": "toggle_layout"
-        },
-        {
-          "type": "STRING",
           "value": "remove_marker"
         },
         {
@@ -2792,10 +2800,6 @@
         {
           "type": "STRING",
           "value": "input_unicode_character"
-        },
-        {
-          "type": "STRING",
-          "value": "kitty_shell"
         },
         {
           "type": "STRING",
@@ -3012,10 +3016,6 @@
         {
           "type": "STRING",
           "value": "new_os_window_with_cwd"
-        },
-        {
-          "type": "STRING",
-          "value": "new_window"
         },
         {
           "type": "STRING",
@@ -3483,6 +3483,18 @@
         {
           "type": "SYMBOL",
           "name": "goto_layout"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pass_selection_to_program"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "new_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "aliased_action"
         }
       ]
     },
@@ -3559,8 +3571,31 @@
             "type": "SYMBOL",
             "name": "string"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "arguments",
+              "content": {
+                "type": "SYMBOL",
+                "name": "kitten_arguments"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
+    },
+    "kitten_arguments": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "string"
+      }
     },
     "launch": {
       "type": "SEQ",
@@ -4960,12 +4995,20 @@
           "value": "set_tab_title"
         },
         {
-          "type": "FIELD",
-          "name": "tab",
-          "content": {
-            "type": "SYMBOL",
-            "name": "title"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "title",
+              "content": {
+                "type": "SYMBOL",
+                "name": "title"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -5295,8 +5338,21 @@
           "name": "alpha",
           "content": {
             "type": "SYMBOL",
-            "name": "number"
+            "name": "background_alpha"
           }
+        }
+      ]
+    },
+    "background_alpha": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "default"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
         }
       ]
     },
@@ -5314,6 +5370,31 @@
             "type": "SYMBOL",
             "name": "number"
           }
+        }
+      ]
+    },
+    "toggle_layout": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "toggle_layout"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "layout_name"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -5668,6 +5749,116 @@
         "type": "SYMBOL",
         "name": "_primitive"
       }
+    },
+    "pass_selection_to_program": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "pass_selection_to_program"
+        },
+        {
+          "type": "FIELD",
+          "name": "program",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "new_window": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "new_window"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "program",
+                  "content": {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "\\w+"
+                    },
+                    "named": true,
+                    "value": "string"
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "@selection"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "kitty_shell": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "kitty_shell"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "arguments",
+              "content": {
+                "type": "SYMBOL",
+                "name": "kitty_shell_open_as"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "kitty_shell_open_as": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "window"
+        },
+        {
+          "type": "STRING",
+          "value": "tab"
+        },
+        {
+          "type": "STRING",
+          "value": "overlay"
+        },
+        {
+          "type": "STRING",
+          "value": "os_window"
+        }
+      ]
     },
     "include": {
       "type": "CHOICE",
