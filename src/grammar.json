@@ -3594,7 +3594,7 @@
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
-        "name": "string"
+        "name": "_primitive"
       }
     },
     "launch": {
@@ -3621,17 +3621,25 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "command",
-          "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "PATTERN",
-              "value": "[^\\n\\r]+"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "command",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "\\w[^\\n\\r]+"
+                },
+                "named": true,
+                "value": "string"
+              }
             },
-            "named": true,
-            "value": "string"
-          }
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -3847,39 +3855,70 @@
           "value": "--type"
         },
         {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "window"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "window"
+              }
             },
             {
-              "type": "STRING",
-              "value": "tab"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "tab"
+              }
             },
             {
-              "type": "STRING",
-              "value": "os-window"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "os-window"
+              }
             },
             {
-              "type": "STRING",
-              "value": "overlay-main"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "overlay-main"
+              }
             },
             {
-              "type": "STRING",
-              "value": "overlay"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "overlay"
+              }
             },
             {
-              "type": "STRING",
-              "value": "background"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "background"
+              }
             },
             {
-              "type": "STRING",
-              "value": "clipboard,primary"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "clipboard,primary"
+              }
             },
             {
-              "type": "STRING",
-              "value": "os-panel"
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "os-panel"
+              }
             }
           ]
         }
@@ -3914,11 +3953,26 @@
           "value": "--cwd"
         },
         {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
           "type": "FIELD",
           "name": "directory",
           "content": {
-            "type": "SYMBOL",
-            "name": "string"
+            "type": "ALIAS",
+            "content": {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "\\S+"
+              }
+            },
+            "named": true,
+            "value": "string"
           }
         }
       ]
@@ -4057,6 +4111,13 @@
           "value": "--location"
         },
         {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
           "type": "FIELD",
           "name": "location",
           "content": {
@@ -4070,28 +4131,46 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "before"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "before"
+          }
         },
         {
-          "type": "STRING",
-          "value": "after"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "after"
+          }
         },
         {
-          "type": "STRING",
-          "value": "neighbor"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "neighbor"
+          }
         },
         {
-          "type": "STRING",
-          "value": "vsplit"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "vsplit"
+          }
         },
         {
-          "type": "STRING",
-          "value": "hsplit"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "hsplit"
+          }
         },
         {
-          "type": "STRING",
-          "value": "split"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "split"
+          }
         }
       ]
     },
@@ -4218,6 +4297,13 @@
           "value": "--stdin-source"
         },
         {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "="
+          }
+        },
+        {
           "type": "FIELD",
           "name": "source",
           "content": {
@@ -4231,36 +4317,60 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "@selection"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@selection"
+          }
         },
         {
-          "type": "STRING",
-          "value": "@screen_scrollback"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@screen_scrollback"
+          }
         },
         {
-          "type": "STRING",
-          "value": "@screen"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@screen"
+          }
         },
         {
-          "type": "STRING",
-          "value": "@alternate"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@alternate"
+          }
         },
         {
-          "type": "STRING",
-          "value": "@first_cmd_output_on_screen"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@first_cmd_output_on_screen"
+          }
         },
         {
-          "type": "STRING",
-          "value": "@last_cmd_output"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@last_cmd_output"
+          }
         },
         {
-          "type": "STRING",
-          "value": "@last_visited_cmd_output"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "@last_visited_cmd_output"
+          }
         },
         {
-          "type": "STRING",
-          "value": "none"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "none"
+          }
         }
       ]
     },

@@ -37,7 +37,7 @@ module.exports = grammar({
         $._option,
         $.color_option,
         $.keyboard_shortcut,
-        $.mouse_shortcut
+        $.mouse_shortcut,
       ),
       /\r?\n+/,
     ),

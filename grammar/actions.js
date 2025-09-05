@@ -1,3 +1,15 @@
+function immediate (...tokens) {
+  let output = [];
+
+  tokens.forEach(t => {
+    output.push(
+      token.immediate(t)
+    );
+  })
+
+  return choice(...output);
+}
+
 module.exports.rules = {
   _action: $ => choice(
     $.generic_action,
@@ -330,6 +342,8 @@ module.exports.rules = {
     "cursor"
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   kitten: $ => seq(
     "kitten",
     field("target", $.string),
@@ -338,19 +352,18 @@ module.exports.rules = {
     )
   ),
 
-      kitten_arguments: $ => repeat1($.string),
+  kitten_arguments: $ => repeat1($._primitive),
 
   // Launch command //////////////////////////////////////////////////////////
 
   launch: $ => seq(
     "launch",
     optional(
-      field("options", $.launch_options)
+      field("options", $.launch_options),
     ),
-    field(
-      "command",
-      alias(/[^\n\r]+/, $.string)
-    ),
+    optional(
+      field("command", alias(/\w[^\n\r]+/, $.string)),
+    )
   ),
 
   launch_options: $ => repeat1($._launch_option),
@@ -409,7 +422,8 @@ module.exports.rules = {
 
   launch_type: _ => seq(
     "--type",
-    choice(
+    token.immediate("="),
+    immediate(
       "window",
       "tab",
       "os-window",
@@ -430,7 +444,11 @@ module.exports.rules = {
 
   launch_cwd: $ => seq(
     "--cwd",
-    field("directory", $.string)
+    token.immediate("="),
+    field(
+      "directory",
+      alias(token.immediate(/\S+/), $.string)
+    )
   ),
 
   launch_env: $ => seq(
@@ -471,10 +489,11 @@ module.exports.rules = {
 
   launch_window_location: $ => choice(
     "--location",
+    token.immediate("="),
     field("location", $.window_location)
   ),
 
-  window_location: _ => choice(
+  window_location: _ => immediate(
     "before",
     "after",
     "neighbor",
@@ -523,10 +542,11 @@ module.exports.rules = {
 
   launch_stdin_source: $ => seq(
     "--stdin-source",
+    token.immediate("="),
     field("source", $.stdin_source)
   ),
 
-  stdin_source: _ => choice(
+  stdin_source: _ => immediate(
     "@selection",
     "@screen_scrollback",
     "@screen",
