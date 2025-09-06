@@ -6203,21 +6203,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "lines_above",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "number"
-                  }
-                }
-              ]
+              "type": "FIELD",
+              "name": "lines_above",
+              "content": {
+                "type": "SYMBOL",
+                "name": "number"
+              }
             },
             {
               "type": "BLANK"

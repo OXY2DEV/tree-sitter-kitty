@@ -1079,10 +1079,7 @@ module.exports.rules = {
     "scroll_to_prompt",
     field("prompt_number", $.number),
     optional(
-      seq(
-        /[ \t]+/,
-        field("lines_above", $.number),
-      )
+      field("lines_above", $.number),
     ),
   ),
 
