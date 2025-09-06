@@ -411,7 +411,7 @@ module.exports.rules = {
   ),
 
   launch_window_title: $ => seq(
-    choice("--title", "window-title"),
+    choice("--title", "--window-title"),
     field("title", $.string)
   ),
 
@@ -435,12 +435,29 @@ module.exports.rules = {
     )
   ),
 
-  launch_focus: _ => choice(
-    "--dont-take-focus=no",
-    "--dont-take-focus",
-    "--keep_focus=no",
-    "--keep_focus",
-  ),
+  // Take as many characters as possible.
+  launch_focus: _ => prec.right(choice(
+    seq(
+      "--dont-take-focus",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      )
+    ),
+    seq(
+      "--keep-focus",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      )
+    ),
+  )),
 
   launch_cwd: $ => seq(
     "--cwd",
@@ -467,27 +484,60 @@ module.exports.rules = {
     field("value", $.string),
   ),
 
-  launch_hold: _ => choice(
-    "--hold=no",
-    "--hold"
+  // Match as many characters as possible.
+  launch_hold: _ => prec.right(
+    seq(
+      "--hold",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  launch_copy_colors: _ => choice(
-    "--copy-colors=no",
-    "--copy-colors"
+  launch_copy_colors: _ => prec.right(
+    seq(
+      "--copy-colors",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  launch_copy_cmd: _ => choice(
-    "--copy-cmd=no",
-    "--copy-cmd"
+  launch_copy_cmd: _ => prec.right(
+    seq(
+      "--copy-cmd",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  launch_copy_env: _ => choice(
-    "--copy-env=no",
-    "--copy-env"
+  launch_copy_env: _ => prec.right(
+    seq(
+      "--copy-env",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  launch_window_location: $ => choice(
+  launch_window_location: $ => seq(
     "--location",
     token.immediate("="),
     field("location", $.window_location)
@@ -497,6 +547,8 @@ module.exports.rules = {
     "before",
     "after",
     "neighbor",
+    "first",
+    "last",
 
     "vsplit",
     "hsplit",
@@ -512,31 +564,40 @@ module.exports.rules = {
     "--bias",
     field(
       "amount",
-      alias(/[0-9\-]+/, $.number),
+      alias(/[0-9\-\.]+/, $.number),
     ),
   ),
 
-  launch_remote_control: _ => choice(
-    "--allow-remote-control=no",
-    "--allow-remote-control"
+  launch_remote_control: _ => prec.right(
+    seq(
+      "--allow-remote-control",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_remote_password: $ => seq(
     "--remote-control-password",
-    "=",
+
+    "'",
+    '"',
     field("password", $.password),
+    '"',
+
     optional(
       field("actions", $.remote_actions)
-    )
+    ),
+    "'",
   ),
 
-  password: _ => choice(
-    token.immediate(/'[^']+'/),
-    token.immediate(/"[^"]+"/),
-    token.immediate(/\S+/),
-  ),
+  password: _ => token(/[^"]+/),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -557,15 +618,33 @@ module.exports.rules = {
     "none",
   ),
 
-  launch_stdin_formatting: _ => choice(
-    "--stdin-add-formatting=no",
-    "--stdin-add-formatting",
+  launch_stdin_formatting: _ => prec.right(
+    seq(
+      "--stdin-add-formatting",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  launch_stdin_line_wrap: _ => choice(
-    "--stdin-add-line-wrap-markers=no",
-    "--stdin-add-line-wrap-markers",
+  launch_stdin_line_wrap: _ => prec.right(
+    seq(
+      "--stdin-add-line-wrap-markers",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   launch_marker: $ => seq(
     "--marker",
@@ -593,6 +672,8 @@ module.exports.rules = {
   ),
 
   marker_id: _ => choice("1", "2", "3"),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   launch_os_window_class: $ => seq(
     "--os-window-class",
@@ -626,9 +707,11 @@ module.exports.rules = {
     field("path", $.string)
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   launch_logo_position: $ => seq(
     "--logo-position",
-    field("path", $.string)
+    field("position", $.logo_position)
   ),
 
   logo_position: _ => choice(
@@ -642,6 +725,8 @@ module.exports.rules = {
     "bottom",
     "bottom-right"
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   launch_logo_alpha: $ => seq(
     "--logo-alpha",
