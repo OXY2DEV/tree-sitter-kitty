@@ -1123,6 +1123,11 @@
     "fields": {}
   },
   {
+    "type": "edge",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "enabled_layouts",
     "named": true,
     "fields": {
@@ -1254,6 +1259,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "focus_policy",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "font_features",
@@ -2046,12 +2056,12 @@
     "type": "launch_logo_position",
     "named": true,
     "fields": {
-      "path": {
+      "position": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "logo_position",
             "named": true
           }
         ]
@@ -2237,22 +2247,108 @@
     "type": "launch_os_panel",
     "named": true,
     "fields": {
-      "name": {
+      "option": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "os_panel_app_id",
             "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
+          },
           {
-            "type": "number",
+            "type": "os_panel_columns",
+            "named": true
+          },
+          {
+            "type": "os_panel_debug_input",
+            "named": true
+          },
+          {
+            "type": "os_panel_debug_rendering",
+            "named": true
+          },
+          {
+            "type": "os_panel_detach",
+            "named": true
+          },
+          {
+            "type": "os_panel_detach_log",
+            "named": true
+          },
+          {
+            "type": "os_panel_edge",
+            "named": true
+          },
+          {
+            "type": "os_panel_exclusive_zone",
+            "named": true
+          },
+          {
+            "type": "os_panel_focus_policy",
+            "named": true
+          },
+          {
+            "type": "os_panel_grab_keyboard",
+            "named": true
+          },
+          {
+            "type": "os_panel_instance_group",
+            "named": true
+          },
+          {
+            "type": "os_panel_layer",
+            "named": true
+          },
+          {
+            "type": "os_panel_lines",
+            "named": true
+          },
+          {
+            "type": "os_panel_listen_on",
+            "named": true
+          },
+          {
+            "type": "os_panel_margin_bottom",
+            "named": true
+          },
+          {
+            "type": "os_panel_margin_left",
+            "named": true
+          },
+          {
+            "type": "os_panel_margin_right",
+            "named": true
+          },
+          {
+            "type": "os_panel_margin_top",
+            "named": true
+          },
+          {
+            "type": "os_panel_name",
+            "named": true
+          },
+          {
+            "type": "os_panel_output_name",
+            "named": true
+          },
+          {
+            "type": "os_panel_override_exclusive_zone",
+            "named": true
+          },
+          {
+            "type": "os_panel_single_instancw",
+            "named": true
+          },
+          {
+            "type": "os_panel_start_as_hidden",
+            "named": true
+          },
+          {
+            "type": "os_panel_toggle_visibility",
+            "named": true
+          },
+          {
+            "type": "os_panel_wait_for_single_instance_window_close",
             "named": true
           }
         ]
@@ -2491,7 +2587,7 @@
     "fields": {
       "location": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "window_location",
@@ -2516,6 +2612,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "layer",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "layout",
@@ -2563,7 +2664,7 @@
     "fields": {
       "path": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "string",
@@ -2572,6 +2673,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "logo_position",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "marker_entries",
@@ -3250,6 +3356,419 @@
     }
   },
   {
+    "type": "os_panel_app_id",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "output_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_columns",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "pixel",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_debug_input",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_debug_rendering",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_detach",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_detach_log",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_edge",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "edge",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_exclusive_zone",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_focus_policy",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "focus_policy",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_grab_keyboard",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_instance_group",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_layer",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "layer",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_lines",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "pixel",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_listen_on",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_margin_bottom",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_margin_left",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_margin_right",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_margin_top",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_name",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "output_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_output_name",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "output_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_override_exclusive_zone",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_single_instancw",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_start_as_hidden",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_toggle_visibility",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "os_panel_wait_for_single_instance_window_close",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "output_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "pass_selection_to_program",
     "named": true,
     "fields": {
@@ -3264,11 +3783,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "password",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "paste_action",
@@ -4295,11 +4809,19 @@
     "fields": {}
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "#",
     "named": false
   },
   {
     "type": "%",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -4331,10 +4853,6 @@
     "named": false
   },
   {
-    "type": "--allow-remote-control=no",
-    "named": false
-  },
-  {
     "type": "--bias",
     "named": false
   },
@@ -4355,23 +4873,11 @@
     "named": false
   },
   {
-    "type": "--copy-cmd=no",
-    "named": false
-  },
-  {
     "type": "--copy-colors",
     "named": false
   },
   {
-    "type": "--copy-colors=no",
-    "named": false
-  },
-  {
     "type": "--copy-env",
-    "named": false
-  },
-  {
-    "type": "--copy-env=no",
     "named": false
   },
   {
@@ -4380,10 +4886,6 @@
   },
   {
     "type": "--dont-take-focus",
-    "named": false
-  },
-  {
-    "type": "--dont-take-focus=no",
     "named": false
   },
   {
@@ -4399,19 +4901,7 @@
     "named": false
   },
   {
-    "type": "--hold-after-ssh=no",
-    "named": false
-  },
-  {
-    "type": "--hold=no",
-    "named": false
-  },
-  {
-    "type": "--keep_focus",
-    "named": false
-  },
-  {
-    "type": "--keep_focus=no",
+    "type": "--keep-focus",
     "named": false
   },
   {
@@ -4491,15 +4981,7 @@
     "named": false
   },
   {
-    "type": "--stdin-add-formatting=no",
-    "named": false
-  },
-  {
     "type": "--stdin-add-line-wrap-markers",
-    "named": false
-  },
-  {
-    "type": "--stdin-add-line-wrap-markers=no",
     "named": false
   },
   {
@@ -4528,6 +5010,10 @@
   },
   {
     "type": "--when-focus-on",
+    "named": false
+  },
+  {
+    "type": "--window-title",
     "named": false
   },
   {
@@ -4715,6 +5201,10 @@
     "named": false
   },
   {
+    "type": "app-id",
+    "named": false
+  },
+  {
     "type": "application",
     "named": false
   },
@@ -4855,6 +5345,14 @@
     "named": false
   },
   {
+    "type": "bottom-left",
+    "named": false
+  },
+  {
+    "type": "bottom-right",
+    "named": false
+  },
+  {
     "type": "box_drawing_scale",
     "named": false
   },
@@ -4883,11 +5381,23 @@
     "named": false
   },
   {
+    "type": "center",
+    "named": false
+  },
+  {
+    "type": "center-sized",
+    "named": false
+  },
+  {
     "type": "chartreuse",
     "named": false
   },
   {
     "type": "chocolate",
+    "named": false
+  },
+  {
+    "type": "class",
     "named": false
   },
   {
@@ -5040,6 +5550,10 @@
   },
   {
     "type": "color9",
+    "named": false
+  },
+  {
+    "type": "columns",
     "named": false
   },
   {
@@ -5267,6 +5781,14 @@
     "named": false
   },
   {
+    "type": "debug-input",
+    "named": false
+  },
+  {
+    "type": "debug-rendering",
+    "named": false
+  },
+  {
     "type": "debug_config",
     "named": false
   },
@@ -5295,11 +5817,19 @@
     "named": false
   },
   {
+    "type": "detach",
+    "named": false
+  },
+  {
     "type": "detach_tab",
     "named": false
   },
   {
     "type": "detach_window",
+    "named": false
+  },
+  {
+    "type": "detached-log",
     "named": false
   },
   {
@@ -5379,6 +5909,10 @@
     "named": false
   },
   {
+    "type": "edge",
+    "named": false
+  },
+  {
     "type": "edit_config_file",
     "named": false
   },
@@ -5427,6 +5961,14 @@
     "named": false
   },
   {
+    "type": "exclusive",
+    "named": false
+  },
+  {
+    "type": "exclusive-zone",
+    "named": false
+  },
+  {
     "type": "exe_search_path",
     "named": false
   },
@@ -5463,11 +6005,19 @@
     "named": false
   },
   {
+    "type": "first",
+    "named": false
+  },
+  {
     "type": "first_window",
     "named": false
   },
   {
     "type": "floralwhite",
+    "named": false
+  },
+  {
+    "type": "focus-policy",
     "named": false
   },
   {
@@ -5556,6 +6106,10 @@
   },
   {
     "type": "goto_tab",
+    "named": false
+  },
+  {
+    "type": "grab-keyboard",
     "named": false
   },
   {
@@ -5692,6 +6246,10 @@
   },
   {
     "type": "insert",
+    "named": false
+  },
+  {
+    "type": "instance-group",
     "named": false
   },
   {
@@ -5883,6 +6441,10 @@
     "named": false
   },
   {
+    "type": "last",
+    "named": false
+  },
+  {
     "type": "last_used_layout",
     "named": false
   },
@@ -5900,6 +6462,10 @@
   },
   {
     "type": "lawngreen",
+    "named": false
+  },
+  {
+    "type": "layer",
     "named": false
   },
   {
@@ -6023,6 +6589,10 @@
     "named": false
   },
   {
+    "type": "lines",
+    "named": false
+  },
+  {
     "type": "link",
     "named": false
   },
@@ -6035,11 +6605,23 @@
     "named": false
   },
   {
+    "type": "list",
+    "named": false
+  },
+  {
+    "type": "listen-on",
+    "named": false
+  },
+  {
     "type": "listen_on",
     "named": false
   },
   {
-    "type": "loas_config_file",
+    "type": "listjson",
+    "named": false
+  },
+  {
+    "type": "load_config_file",
     "named": false
   },
   {
@@ -6100,6 +6682,22 @@
   },
   {
     "type": "map",
+    "named": false
+  },
+  {
+    "type": "margin-bottom",
+    "named": false
+  },
+  {
+    "type": "margin-left",
+    "named": false
+  },
+  {
+    "type": "margin-right",
+    "named": false
+  },
+  {
+    "type": "margin-top",
     "named": false
   },
   {
@@ -6323,6 +6921,10 @@
     "named": true
   },
   {
+    "type": "name",
+    "named": false
+  },
+  {
     "type": "narrow_symbols",
     "named": false
   },
@@ -6463,6 +7065,10 @@
     "named": false
   },
   {
+    "type": "not-allowed",
+    "named": false
+  },
+  {
     "type": "notify",
     "named": false
   },
@@ -6496,6 +7102,10 @@
   },
   {
     "type": "olivedrab",
+    "named": false
+  },
+  {
+    "type": "on-demand",
     "named": false
   },
   {
@@ -6543,7 +7153,15 @@
     "named": false
   },
   {
+    "type": "os-window-tag",
+    "named": false
+  },
+  {
     "type": "os_window",
+    "named": false
+  },
+  {
+    "type": "output-name",
     "named": false
   },
   {
@@ -6552,6 +7170,10 @@
   },
   {
     "type": "overlay-main",
+    "named": false
+  },
+  {
+    "type": "override-exclusive-zone",
     "named": false
   },
   {
@@ -6585,6 +7207,10 @@
   {
     "type": "pass_selection_to_program",
     "named": false
+  },
+  {
+    "type": "password",
+    "named": true
   },
   {
     "type": "paste",
@@ -7067,6 +7693,10 @@
     "named": false
   },
   {
+    "type": "single-instance",
+    "named": false
+  },
+  {
     "type": "single_window_margin_width",
     "named": false
   },
@@ -7128,6 +7758,10 @@
   },
   {
     "type": "start",
+    "named": false
+  },
+  {
+    "type": "start-as-hidden",
     "named": false
   },
   {
@@ -7339,6 +7973,10 @@
     "named": true
   },
   {
+    "type": "toggle-visibility",
+    "named": false
+  },
+  {
     "type": "toggle_fullscreen",
     "named": false
   },
@@ -7368,6 +8006,14 @@
   },
   {
     "type": "top",
+    "named": false
+  },
+  {
+    "type": "top-left",
+    "named": false
+  },
+  {
+    "type": "top-right",
     "named": false
   },
   {
@@ -7491,6 +8137,10 @@
     "named": false
   },
   {
+    "type": "wait-for-single-instance-window-close",
+    "named": false
+  },
+  {
     "type": "watcher",
     "named": false
   },
@@ -7528,10 +8178,6 @@
   },
   {
     "type": "window",
-    "named": false
-  },
-  {
-    "type": "window-title",
     "named": false
   },
   {

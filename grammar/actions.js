@@ -758,12 +758,231 @@ module.exports.rules = {
 
   launch_os_panel: $ => seq(
     "--os-panel",
+    field("option", $._os_panel_option),
+  ),
+
+  _os_panel_option: $ => choice(
+    $.os_panel_lines,
+    $.os_panel_columns,
+
+    $.os_panel_margin_top,
+    $.os_panel_margin_left,
+    $.os_panel_margin_bottom,
+    $.os_panel_margin_right,
+
+    $.os_panel_edge,
+    $.os_panel_layer,
+    $.os_panel_output_name,
+    $.os_panel_app_id,
+    $.os_panel_name,
+    $.os_panel_focus_policy,
+    $.os_panel_grab_keyboard,
+    $.os_panel_exclusive_zone,
+    $.os_panel_override_exclusive_zone,
+    $.os_panel_single_instancw,
+    $.os_panel_instance_group,
+    $.os_panel_wait_for_single_instance_window_close,
+    $.os_panel_listen_on,
+    $.os_panel_toggle_visibility,
+    $.os_panel_start_as_hidden,
+    $.os_panel_detach,
+    $.os_panel_detach_log,
+    $.os_panel_debug_rendering,
+    $.os_panel_debug_input,
+  ),
+
+  os_panel_lines: $ => seq(
+    "lines",
+    token.immediate("="),
     field(
-      "name",
-      alias(/[^\s\=]+/, $.string)
+      "value",
+      choice($.number, $.pixel)
     ),
+  ),
+
+  os_panel_columns: $ => seq(
+    "columns",
+    token.immediate("="),
+    field(
+      "value",
+      choice($.number, $.pixel)
+    ),
+  ),
+
+  os_panel_margin_top: $ => seq(
+    "margin-top",
     token.immediate("="),
     field("value", $.number),
+  ),
+
+  os_panel_margin_left: $ => seq(
+    "margin-left",
+    token.immediate("="),
+    field("value", $.number),
+  ),
+
+  os_panel_margin_bottom: $ => seq(
+    "margin-bottom",
+    token.immediate("="),
+    field("value", $.number),
+  ),
+
+  os_panel_margin_right: $ => seq(
+    "margin-right",
+    token.immediate("="),
+    field("value", $.number),
+  ),
+
+  os_panel_edge: $ => seq(
+    "edge",
+    token.immediate("="),
+    field("value", $.edge),
+  ),
+
+  edge: _ => immediate(
+    "background",
+    "bottom",
+    "center",
+    "center-sized",
+    "left",
+    "none",
+    "right",
+    "top",
+  ),
+
+  os_panel_layer: $ => seq(
+    "layer",
+    token.immediate("="),
+    field("value", $.layer),
+  ),
+
+  layer: _ => immediate(
+    "background",
+    "bottom",
+    "overlay",
+    "top",
+  ),
+
+  os_panel_output_name: $ => seq(
+    "output-name",
+    token.immediate("="),
+    field("path", $.output_name),
+  ),
+
+  output_name: _ => immediate(
+    "list",
+    "listjson"
+  ),
+
+  os_panel_app_id: $ => seq(
+    choice(
+      "app-id",
+      "class",
+    ),
+    token.immediate("="),
+    field("value", $.output_name),
+  ),
+
+  os_panel_name: $ => seq(
+    choice(
+      "name",
+      "os-window-tag",
+    ),
+    token.immediate("="),
+    field("value", $.output_name),
+  ),
+
+  os_panel_focus_policy: $ => seq(
+    "focus-policy",
+    token.immediate("="),
+    field("value", $.focus_policy),
+  ),
+
+  focus_policy: _ => choice(
+    "exclusive",
+    "not-allowed",
+    "on-demand",
+  ),
+
+  os_panel_grab_keyboard: $ => seq(
+    "grab-keyboard",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_exclusive_zone: $ => seq(
+    "exclusive-zone",
+    token.immediate("="),
+    field("value", $.number),
+  ),
+
+  os_panel_override_exclusive_zone: $ => seq(
+    "override-exclusive-zone",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_single_instancw: $ => seq(
+    choice(
+      "single-instance",
+      "1",
+    ),
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_instance_group: $ => seq(
+    "instance-group",
+    token.immediate("="),
+    field("value", $.string),
+  ),
+
+  os_panel_wait_for_single_instance_window_close: $ => seq(
+    "wait-for-single-instance-window-close",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_listen_on: $ => seq(
+    "listen-on",
+    token.immediate("="),
+    field("value", $.string),
+  ),
+
+  os_panel_toggle_visibility: $ => seq(
+    "toggle-visibility",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_start_as_hidden: $ => seq(
+    "start-as-hidden",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_detach: $ => seq(
+    "detach",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_detach_log: $ => seq(
+    "detached-log",
+    token.immediate("="),
+    field("path", $.string),
+  ),
+
+  os_panel_debug_rendering: $ => seq(
+    "debug-rendering",
+    token.immediate("="),
+    field("value", $.boolean),
+  ),
+
+  os_panel_debug_input: $ => seq(
+    "debug-input",
+    token.immediate("="),
+    field("value", $.boolean),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -773,16 +992,27 @@ module.exports.rules = {
     field("path", $.string)
   ),
 
-  launch_hold_after_ssh: _ => choice(
-    "--hold-after-ssh=no",
-    "--hold-after-ssh",
+  launch_hold_after_ssh: _ => prec.right(
+    seq(
+      "--hold-after-ssh",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   load_config_file: $ => seq(
-    "loas_config_file",
-    field("path", $.string)
+    "load_config_file",
+
+    optional(
+      field("path", $.string)
+    )
   ),
 
   open_url: $ => seq(
