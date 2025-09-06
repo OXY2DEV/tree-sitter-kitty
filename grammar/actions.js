@@ -1023,10 +1023,15 @@ module.exports.rules = {
   remote_control_script: $ => seq(
     "remote_control_script",
     field("path", $.string),
-    field("arguments", $.remote_args)
+
+    optional(
+      field("arguments", $.remote_args)
+    )
   ),
 
-  remote_args: $ => repeat1($.string),
+  remote_args: $ => repeat1($._primitive),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   sleep: $ => seq(
     "sleep",

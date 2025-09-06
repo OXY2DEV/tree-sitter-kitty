@@ -3921,7 +3921,35 @@
       "required": true,
       "types": [
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "color",
+          "named": true
+        },
+        {
+          "type": "inherit",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "percentage",
+          "named": true
+        },
+        {
+          "type": "pixel",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "time",
           "named": true
         }
       ]
@@ -3975,7 +4003,7 @@
     "fields": {
       "arguments": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "remote_args",

@@ -6035,12 +6035,20 @@
           }
         },
         {
-          "type": "FIELD",
-          "name": "arguments",
-          "content": {
-            "type": "SYMBOL",
-            "name": "remote_args"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "arguments",
+              "content": {
+                "type": "SYMBOL",
+                "name": "remote_args"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -6048,7 +6056,7 @@
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
-        "name": "string"
+        "name": "_primitive"
       }
     },
     "sleep": {
