@@ -1050,6 +1050,8 @@ module.exports.rules = {
     "prompt"
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   mouse_selection: $ => seq(
     "mouse_selection",
     field("selection", $.mouse_selection_type)
@@ -1064,14 +1066,12 @@ module.exports.rules = {
     "extend",
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   scroll_prompt_to_top: _ => seq(
     "scroll_prompt_to_top",
-    /[ \t]+/,
     optional(
-      seq(
-        /[ \t]+/,
-        "y",
-      )
+      "y",
     ),
   ),
 

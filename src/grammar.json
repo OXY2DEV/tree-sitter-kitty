@@ -6171,24 +6171,11 @@
           "value": "scroll_prompt_to_top"
         },
         {
-          "type": "PATTERN",
-          "value": "[ \\t]+"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
-                  "type": "STRING",
-                  "value": "y"
-                }
-              ]
+              "type": "STRING",
+              "value": "y"
             },
             {
               "type": "BLANK"
