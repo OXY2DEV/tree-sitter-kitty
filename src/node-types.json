@@ -172,6 +172,32 @@
     }
   },
   {
+    "type": "change_font_size",
+    "named": true,
+    "fields": {
+      "amount": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "font_change_amount",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "os_window",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "character_list",
     "named": true,
     "fields": {},
@@ -463,6 +489,10 @@
       "types": [
         {
           "type": "aliased_action",
+          "named": true
+        },
+        {
+          "type": "change_font_size",
           "named": true
         },
         {
@@ -1266,6 +1296,37 @@
     "fields": {}
   },
   {
+    "type": "font_change_amount",
+    "named": true,
+    "fields": {
+      "sign": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "font_change_sign",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "font_change_sign",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "font_features",
     "named": true,
     "fields": {
@@ -1435,6 +1496,10 @@
       "types": [
         {
           "type": "aliased_action",
+          "named": true
+        },
+        {
+          "type": "change_font_size",
           "named": true
         },
         {
@@ -2975,6 +3040,10 @@
             "named": true
           },
           {
+            "type": "change_font_size",
+            "named": true
+          },
+          {
             "type": "clear_terminal",
             "named": true
           },
@@ -3764,6 +3833,11 @@
     }
   },
   {
+    "type": "os_window",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "output_name",
     "named": true,
     "fields": {}
@@ -4251,7 +4325,7 @@
     "type": "set_window_title",
     "named": true,
     "fields": {
-      "tab": {
+      "title": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4861,6 +4935,10 @@
     "named": false
   },
   {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -5070,6 +5148,10 @@
   },
   {
     "type": "-w",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -5417,6 +5499,10 @@
     "named": false
   },
   {
+    "type": "change_font_size",
+    "named": false
+  },
+  {
     "type": "chartreuse",
     "named": false
   },
@@ -5678,6 +5764,10 @@
   },
   {
     "type": "cubic-bezier(",
+    "named": false
+  },
+  {
+    "type": "current",
     "named": false
   },
   {
@@ -6098,11 +6188,11 @@
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "gainsboro",
@@ -6946,11 +7036,11 @@
   },
   {
     "type": "name",
-    "named": true
+    "named": false
   },
   {
     "type": "name",
-    "named": false
+    "named": true
   },
   {
     "type": "narrow_symbols",
@@ -7270,11 +7360,11 @@
   },
   {
     "type": "path",
-    "named": true
+    "named": false
   },
   {
     "type": "path",
-    "named": false
+    "named": true
   },
   {
     "type": "pattern",

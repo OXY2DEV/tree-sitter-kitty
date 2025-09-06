@@ -2634,6 +2634,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "change_font_size"
+        },
+        {
+          "type": "SYMBOL",
           "name": "close_window_with_confirmation"
         },
         {
@@ -3463,6 +3467,10 @@
         {
           "type": "SYMBOL",
           "name": "resize_window"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "change_font_size"
         },
         {
           "type": "SYMBOL",
@@ -6268,7 +6276,7 @@
         },
         {
           "type": "FIELD",
-          "name": "tab",
+          "name": "title",
           "content": {
             "type": "SYMBOL",
             "name": "title"
@@ -6369,21 +6377,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "amount",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "number"
-                  }
-                }
-              ]
+              "type": "FIELD",
+              "name": "amount",
+              "content": {
+                "type": "SYMBOL",
+                "name": "number"
+              }
             },
             {
               "type": "BLANK"
@@ -6455,14 +6454,59 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[\\+\\-\\*\\\\]?"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "sign",
+              "content": {
+                "type": "SYMBOL",
+                "name": "font_change_sign"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "number"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "font_change_number"
+          },
+          "named": true,
+          "value": "number"
         }
       ]
+    },
+    "font_change_sign": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "+"
+        },
+        {
+          "type": "STRING",
+          "value": "-"
+        },
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        }
+      ]
+    },
+    "font_change_number": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[\\d\\.]+"
+      }
     },
     "close_window_with_confirmation": {
       "type": "SEQ",

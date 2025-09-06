@@ -46,6 +46,7 @@ module.exports.rules = {
     $.neighboring_window,
     $.nth_window,
     $.resize_window,
+    $.change_font_size,
     $.close_window_with_confirmation,
     $.detach_window,
     $.set_background_opacity,
@@ -309,6 +310,7 @@ module.exports.rules = {
     $.neighboring_window,
     $.nth_window,
     $.resize_window,
+    $.change_font_size,
     $.close_window_with_confirmation,
     $.detach_window,
     $.set_background_opacity,
@@ -1097,7 +1099,7 @@ module.exports.rules = {
 
   set_window_title: $ => seq(
     "set_window_title",
-    field("tab", $.title),
+    field("title", $.title),
   ),
 
   title: _ => choice(
@@ -1128,10 +1130,7 @@ module.exports.rules = {
     "resize_window",
     field("layout", $.window_layout),
     optional(
-      seq(
-        /[ \t]+/,
-        field("amount", $.number),
-      )
+      field("amount", $.number),
     ),
   ),
 
@@ -1141,6 +1140,8 @@ module.exports.rules = {
     "taller",
     "shorter",
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   change_font_size: $ => seq(
     "change_font_size",
@@ -1154,18 +1155,20 @@ module.exports.rules = {
   ),
 
   font_change_amount: $ => seq(
-    /[\+\-\*\\]?/,
-    $.number
+    optional(
+      field("sign", $.font_change_sign)
+    ),
+    alias($.font_change_number, $.number)
   ),
+
+  font_change_sign: _ => choice("+", "-", "*", "/"),
+  font_change_number: _ => token(/[\d\.]+/),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   close_window_with_confirmation: _ => seq(
     "close_window_with_confirmation",
-    optional(
-      seq(
-        /[ \t]+/,
-        "ignore-shell"
-      )
-    ),
+    optional("ignore-shell"),
   ),
 
   detach_window: $ => seq(
