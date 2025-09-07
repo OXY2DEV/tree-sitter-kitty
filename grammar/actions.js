@@ -1174,10 +1174,7 @@ module.exports.rules = {
   detach_window: $ => seq(
     "detach_window",
     optional(
-      seq(
-        /[ \t]+/,
-        field("into", $.detach_into),
-      )
+      field("into", $.detach_into),
     ),
   ),
 
@@ -1195,6 +1192,8 @@ module.exports.rules = {
 
     "ask",
   ),
+
+  ////////////////////////////////////////////////////////////////////////////
 
   set_background_opacity: $ => seq(
     "set_background_opacity",
@@ -1224,7 +1223,10 @@ module.exports.rules = {
     "goto_layout",
     field("name", $.layout_name),
     optional(
-      field("options", $.layout)
+      seq(
+        token.immediate(":"),
+        field("options", $.layout_option)
+      )
     ),
   ),
 
@@ -1238,85 +1240,20 @@ module.exports.rules = {
     "vertical",
   ),
 
-  layout: $ => seq(
-    token.immediate(":"),
-    $._layout_item,
-    repeat(
-      seq(
-        ";",
-        $._layout_item
-      )
-    )
-  ),
-
-  _layout_item: $ => choice(
-    $.layout_bias,
-    $.layout_full_size,
-    $.layout_mirrored,
-    $.layout_split_axis,
-  ),
-
-  layout_bias: $ => seq(
+  layout_option: $ => seq(
     field(
       "name",
       alias(
-        token.immediate("bias"),
+        token.immediate(/[\w]+/),
         $.string
       )
     ),
     token.immediate("="),
     field(
       "value",
-      $.number
+      $._primitive
     )
   ),
-
-  layout_full_size: $ => seq(
-    field(
-      "name",
-      alias(
-        token.immediate("full_size"),
-        $.string
-      )
-    ),
-    token.immediate("="),
-    field(
-      "value",
-      $.number
-    )
-  ),
-
-  layout_mirrored: $ => seq(
-    field(
-      "name",
-      alias(
-        token.immediate("mirrored"),
-        $.string
-      )
-    ),
-    token.immediate("="),
-    field(
-      "value",
-      $.boolean
-    )
-  ),
-
-  layout_split_axis: $ => seq(
-    field(
-      "name",
-      alias(
-        token.immediate("split_axis"),
-        $.string
-      )
-    ),
-    token.immediate("="),
-    field(
-      "value",
-      $.axis
-    )
-  ),
-
-  axis: _ => choice("horizontal", "vertical"),
 
   ////////////////////////////////////////////////////////////////////////////
 

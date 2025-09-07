@@ -1412,7 +1412,7 @@
         "required": false,
         "types": [
           {
-            "type": "layout",
+            "type": "layout_option",
             "named": true
           }
         ]
@@ -2707,6 +2707,60 @@
     "type": "layout_name",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "layout_option",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "color",
+            "named": true
+          },
+          {
+            "type": "inherit",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "percentage",
+            "named": true
+          },
+          {
+            "type": "pixel",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "time",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "left",
@@ -6188,11 +6242,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",
@@ -7036,11 +7090,11 @@
   },
   {
     "type": "name",
-    "named": false
+    "named": true
   },
   {
     "type": "name",
-    "named": true
+    "named": false
   },
   {
     "type": "narrow_symbols",
@@ -7365,6 +7419,10 @@
   {
     "type": "path",
     "named": true
+  },
+  {
+    "type": "path",
+    "named": false
   },
   {
     "type": "pattern",
