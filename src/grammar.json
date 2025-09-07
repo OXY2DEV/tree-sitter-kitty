@@ -6923,7 +6923,7 @@
           "members": [
             {
               "type": "FIELD",
-              "name": "arguments",
+              "name": "open_as",
               "content": {
                 "type": "SYMBOL",
                 "name": "kitty_shell_open_as"

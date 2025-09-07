@@ -1928,7 +1928,7 @@
     "type": "kitty_shell",
     "named": true,
     "fields": {
-      "arguments": {
+      "open_as": {
         "multiple": false,
         "required": false,
         "types": [

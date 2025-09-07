@@ -1300,7 +1300,7 @@ module.exports.rules = {
   kitty_shell: $ => seq(
     "kitty_shell",
     optional(
-      field("arguments", $.kitty_shell_open_as)
+      field("open_as", $.kitty_shell_open_as)
     )
   ),
 
