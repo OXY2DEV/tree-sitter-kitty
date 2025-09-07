@@ -6886,13 +6886,8 @@
                   "type": "FIELD",
                   "name": "program",
                   "content": {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "PATTERN",
-                      "value": "\\w+"
-                    },
-                    "named": true,
-                    "value": "string"
+                    "type": "SYMBOL",
+                    "name": "string"
                   }
                 },
                 {

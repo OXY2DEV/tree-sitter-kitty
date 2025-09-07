@@ -1277,7 +1277,6 @@ module.exports.rules = {
 
   action_arguments: $ => repeat1($._primitive),
 
-
   pass_selection_to_program: $ => seq(
     "pass_selection_to_program",
     field("program", $.string)
@@ -1290,9 +1289,7 @@ module.exports.rules = {
 
     optional(
       seq(
-        field("program",
-          alias(/\w+/, $.string)
-        ),
+        field("program", $.string),
         optional("@selection")
       )
     ),
