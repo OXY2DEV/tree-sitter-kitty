@@ -6232,11 +6232,11 @@
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "gainsboro",

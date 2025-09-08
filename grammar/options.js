@@ -652,12 +652,25 @@ module.exports.rules = {
     optional(
       seq(
         token.immediate(","),
-        $.layout
+        alias($.layout_, $.layout)
       )
     )
   ),
 
   layout: _ => choice(
+    "Fat",
+    "Grid",
+    "Horizontal",
+    "Splits",
+    "Stack",
+    "Tall",
+    "Vertical",
+
+    "all",
+    "*"
+  ),
+
+  layout_: _ => immediate(
     "Fat",
     "Grid",
     "Horizontal",
