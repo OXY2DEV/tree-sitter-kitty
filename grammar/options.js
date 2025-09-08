@@ -999,7 +999,7 @@ module.exports.rules = {
     $.boolean_expression
   ),
 
-  _filter_element: _ => seq(
+  _filter_element: $ => seq(
     choice(
       "title",
       "body",
@@ -1007,7 +1007,22 @@ module.exports.rules = {
       "type",
     ),
     token.immediate(":"),
-    token.immediate(/\S+/)
+    $._filter_string
+  ),
+
+  _filter_string: $ => choice(
+    seq(
+      token.immediate('"'),
+      alias(
+        token.immediate(/[^"]*/),
+        $.string
+      ),
+      token.immediate('"'),
+    ),
+    alias(
+      token.immediate(/[^\s"]+/),
+      $.string
+    )
   ),
 
   boolean_expression: _ => choice(

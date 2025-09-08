@@ -9524,11 +9524,56 @@
           }
         },
         {
-          "type": "IMMEDIATE_TOKEN",
+          "type": "SYMBOL",
+          "name": "_filter_string"
+        }
+      ]
+    },
+    "_filter_string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "\""
+              }
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^\"]*"
+                }
+              },
+              "named": true,
+              "value": "string"
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "\""
+              }
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
           "content": {
-            "type": "PATTERN",
-            "value": "\\S+"
-          }
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\s\"]+"
+            }
+          },
+          "named": true,
+          "value": "string"
         }
       ]
     },
