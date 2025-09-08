@@ -7075,10 +7075,10 @@
             "type": "ALIAS",
             "content": {
               "type": "PATTERN",
-              "value": "[^\\s]+"
+              "value": "\\S+"
             },
             "named": true,
-            "value": "path"
+            "value": "string"
           }
         }
       ]
@@ -7097,10 +7097,10 @@
             "type": "ALIAS",
             "content": {
               "type": "PATTERN",
-              "value": "[^\\s]+"
+              "value": "\\S+"
             },
             "named": true,
-            "value": "pattern"
+            "value": "string"
           }
         }
       ]
@@ -7114,15 +7114,15 @@
         },
         {
           "type": "FIELD",
-          "name": "file",
+          "name": "path",
           "content": {
             "type": "ALIAS",
             "content": {
               "type": "PATTERN",
-              "value": "[^\\s]+"
+              "value": "\\S+"
             },
             "named": true,
-            "value": "path"
+            "value": "string"
           }
         }
       ]
@@ -7141,10 +7141,10 @@
             "type": "ALIAS",
             "content": {
               "type": "PATTERN",
-              "value": "[^\\s]+"
+              "value": "\\S+"
             },
             "named": true,
-            "value": "name"
+            "value": "string"
           }
         }
       ]

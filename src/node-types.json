@@ -1455,17 +1455,7 @@
         "required": false,
         "types": [
           {
-            "type": "name",
-            "named": true
-          }
-        ]
-      },
-      "file": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "path",
+            "type": "string",
             "named": true
           }
         ]
@@ -1475,7 +1465,7 @@
         "required": false,
         "types": [
           {
-            "type": "pattern",
+            "type": "string",
             "named": true
           }
         ]
@@ -1485,7 +1475,7 @@
         "required": false,
         "types": [
           {
-            "type": "path",
+            "type": "string",
             "named": true
           }
         ]
@@ -7079,10 +7069,6 @@
     "named": false
   },
   {
-    "type": "name",
-    "named": true
-  },
-  {
     "type": "narrow_symbols",
     "named": false
   },
@@ -7400,15 +7386,7 @@
   },
   {
     "type": "path",
-    "named": true
-  },
-  {
-    "type": "path",
     "named": false
-  },
-  {
-    "type": "pattern",
-    "named": true
   },
   {
     "type": "pause",

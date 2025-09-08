@@ -10,7 +10,7 @@ module.exports.rules = {
     "include",
     field(
       "path",
-      alias(/[^\s]+/, $.path)
+      alias(/\S+/, $.string)
     ),
   ),
 
@@ -18,15 +18,15 @@ module.exports.rules = {
     "globinclude",
     field(
       "glob",
-      alias(/[^\s]+/, $.pattern)
+      alias(/\S+/, $.string)
     ),
   ),
 
   _gen_include: $ => seq(
     "geninclude",
     field(
-      "file",
-      alias(/[^\s]+/, $.path)
+      "path",
+      alias(/\S+/, $.string)
     ),
   ),
 
@@ -34,7 +34,7 @@ module.exports.rules = {
     "envinclude",
     field(
       "environment_variable",
-      alias(/[^\s]+/, $.name)
+      alias(/\S+/, $.string)
     ),
   ),
 };
