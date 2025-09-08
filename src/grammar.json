@@ -9612,29 +9612,11 @@
       ]
     },
     "clipboard_actions": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "clipboard_action"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "[ \\t]+"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "clipboard_action"
-              }
-            ]
-          }
-        }
-      ]
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "clipboard_action"
+      }
     },
     "clipboard_action": {
       "type": "CHOICE",

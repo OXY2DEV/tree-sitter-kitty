@@ -1038,15 +1038,7 @@ module.exports.rules = {
     field("actions", $.clipboard_actions)
   ),
 
-  clipboard_actions: $ => seq(
-    $.clipboard_action,
-    repeat(
-      seq(
-        /[ \t]+/,
-        $.clipboard_action
-      )
-    )
-  ),
+  clipboard_actions: $ => repeat1($.clipboard_action),
 
   clipboard_action: _ => choice(
     "write-clipboard",
