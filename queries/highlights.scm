@@ -1047,3 +1047,6 @@
   ] @keyword
   name: (string) @string.special)
 
+; Comment ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(comment) @comment
