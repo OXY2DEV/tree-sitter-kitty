@@ -160,14 +160,6 @@
         {
           "type": "STRING",
           "value": "no"
-        },
-        {
-          "type": "STRING",
-          "value": "true"
-        },
-        {
-          "type": "STRING",
-          "value": "false"
         }
       ]
     },

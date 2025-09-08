@@ -113,7 +113,7 @@ module.exports.rules = {
     token.immediate("%"),
   ),
   number: _ => token(/[\d\.\-\+]+/),
-  boolean: _ => choice("yes", "no", "true", "false"),
+  boolean: _ => choice("yes", "no"),
   color: $ => choice(
     "none",
     /#[0-9A-Fa-f]{3,6}/,

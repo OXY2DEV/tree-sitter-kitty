@@ -6190,10 +6190,6 @@
     "named": false
   },
   {
-    "type": "false",
-    "named": false
-  },
-  {
     "type": "fat",
     "named": false
   },
@@ -8227,10 +8223,6 @@
   },
   {
     "type": "triplepress",
-    "named": false
-  },
-  {
-    "type": "true",
     "named": false
   },
   {
