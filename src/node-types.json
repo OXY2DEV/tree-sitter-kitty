@@ -141,6 +141,21 @@
     }
   },
   {
+    "type": "border_width",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "box_drawing_scale",
     "named": true,
     "fields": {
@@ -4138,7 +4153,7 @@
         "required": true,
         "types": [
           {
-            "type": "password",
+            "type": "string",
             "named": true
           }
         ]
@@ -4781,9 +4796,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "alpha",
+          "named": true
+        },
         {
           "type": "color",
           "named": true
@@ -5339,6 +5358,10 @@
     "named": false
   },
   {
+    "type": "alpha",
+    "named": true
+  },
+  {
     "type": "alt",
     "named": false
   },
@@ -5493,10 +5516,6 @@
   {
     "type": "bold_italic_font",
     "named": false
-  },
-  {
-    "type": "border_width",
-    "named": true
   },
   {
     "type": "bottom",
@@ -6232,11 +6251,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",
@@ -7460,6 +7479,10 @@
   },
   {
     "type": "prompt",
+    "named": false
+  },
+  {
+    "type": "pt",
     "named": false
   },
   {

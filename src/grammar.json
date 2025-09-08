@@ -9066,43 +9066,40 @@
       ]
     },
     "border_width": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[\\d\\.]+"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "IMMEDIATE_TOKEN",
-                    "content": {
-                      "type": "STRING",
-                      "value": "pt"
-                    }
-                  },
-                  {
-                    "type": "IMMEDIATE_TOKEN",
-                    "content": {
-                      "type": "STRING",
-                      "value": "px"
-                    }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "pt"
                   }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
-      }
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "px"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "box_drawing_scale": {
       "type": "SEQ",
@@ -9348,11 +9345,8 @@
                   }
                 },
                 {
-                  "type": "IMMEDIATE_TOKEN",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[\\d\\.]+"
-                  }
+                  "type": "SYMBOL",
+                  "name": "alpha"
                 }
               ]
             },
@@ -9362,6 +9356,13 @@
           ]
         }
       ]
+    },
+    "alpha": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[\\d\\.]+"
+      }
     },
     "remote_control_password": {
       "type": "SEQ",
@@ -9374,13 +9375,8 @@
           "type": "FIELD",
           "name": "password",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "string"
-            },
-            "named": true,
-            "value": "password"
+            "type": "SYMBOL",
+            "name": "string"
           }
         },
         {

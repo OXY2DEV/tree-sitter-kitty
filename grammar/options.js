@@ -690,14 +690,12 @@ module.exports.rules = {
     field("value", $.border_width),
   ),
 
-  border_width: _ => token(
-    seq(
-      /[\d\.]+/,
-      optional(
-        choice(
-          token.immediate("pt"),
-          token.immediate("px")
-        )
+  border_width: $ => seq(
+    $.number,
+    optional(
+      immediate(
+        "pt",
+        "px"
       )
     )
   ),
@@ -916,12 +914,6 @@ module.exports.rules = {
 
   transparency_list: $ => repeat1(
     $.transparent_color,
-    // repeat(
-    //   seq(
-    //     /[ \t]+/,
-    //     $.transparent_color
-    //   )
-    // )
   ),
 
   transparent_color: $ => seq(
@@ -929,10 +921,12 @@ module.exports.rules = {
     optional(
       seq(
         token.immediate("@"),
-        token.immediate(/[\d\.]+/)
+        $.alpha
       )
     )
   ),
+
+  alpha: _ => token.immediate(/[\d\.]+/),
 
   ////////////////////////////////////////////////////////////////////////////
 
