@@ -466,3 +466,58 @@
   "kitty_shell" @function.call
   open_as: (kitty_shell_open_as)? @type)
 
+; Colors ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(set_colors
+  "set_colors" @function.call)
+
+(color_all
+  [
+    "-a"
+    "--all"
+  ] @constant
+  "="? @punctuation.delimiter
+  "no"? @boolean)
+
+(color_configured
+  [
+    "-c"
+    "--configured"
+  ] @constant
+  "="? @punctuation.delimiter
+  "no"? @boolean)
+
+(color_reset
+  "--reset" @constant
+  "="? @punctuation.delimiter
+  "no"? @boolean)
+
+(color_match
+  [
+   "-m"
+    "--match"
+  ] @constant
+  (string) @string.regex)
+
+(color_match_tab
+  [
+   "-t"
+    "--match-tab"
+  ] @constant
+  (string) @string.regex)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(color_option
+  name: (color_option_name) @variable.builtin)
+
+(color_value
+  .
+  (color_data
+    path: (string) @string.special.path))
+
+(color_data
+  name: (color_option_name) @variable.builtin)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
