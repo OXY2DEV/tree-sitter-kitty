@@ -20,23 +20,49 @@ module.exports.rules = {
     $.color_match_tab,
   ),
 
-  color_all: _ => choice(
-    "-a=no",
-    "-a",
-    "--all=no",
-    "--all",
+  color_all: _ => prec.right(
+    seq(
+      choice(
+        "-a",
+        "--all",
+      ),
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  color_configured: _ => choice(
-    "-c=no",
-    "-c",
-    "--configured=no",
-    "--configured",
+  color_configured: _ => prec.right(
+    seq(
+      choice(
+        "-c",
+        "--configured",
+      ),
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
-  color_reset: _ => choice(
-    "--reset=no",
-    "--reset",
+  color_reset: _ => prec.right(
+    seq(
+      "--reset",
+
+      optional(
+        seq(
+          token.immediate("="),
+          token.immediate("no")
+        )
+      ),
+    )
   ),
 
   color_match: $ => seq(
@@ -48,6 +74,7 @@ module.exports.rules = {
     choice("--match-tab", "-t"),
     field("query", $.string),
   ),
+
   ////////////////////////////////////////////////////////////////////////////
 
   color_option: $ => seq(
@@ -57,16 +84,15 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  color_value: $ => choice(
-    "none",
-    repeat1($.color_data),
-    alias($.string, $.path),
-  ),
+  color_value: $ =>  repeat1($.color_data),
 
-  color_data: $ => seq(
-    field("name", $.color_option_name),
-    token.immediate("="),
-    field("value", $.color),
+  color_data: $ => choice(
+    seq(
+      field("name", $.color_option_name),
+      token.immediate("="),
+      field("value", $.color),
+    ),
+    field("path", alias(/[^\s\=]+/, $.string))
   ),
 
   color_option_name: _ => choice(

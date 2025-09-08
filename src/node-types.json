@@ -326,7 +326,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "color_option_name",
@@ -334,9 +334,19 @@
           }
         ]
       },
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "color",
@@ -451,14 +461,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "color_data",
-          "named": true
-        },
-        {
-          "type": "path",
           "named": true
         }
       ]
@@ -5005,10 +5011,6 @@
     "named": false
   },
   {
-    "type": "--all=no",
-    "named": false
-  },
-  {
     "type": "--allow-remote-control",
     "named": false
   },
@@ -5022,10 +5024,6 @@
   },
   {
     "type": "--configured",
-    "named": false
-  },
-  {
-    "type": "--configured=no",
     "named": false
   },
   {
@@ -5125,10 +5123,6 @@
     "named": false
   },
   {
-    "type": "--reset=no",
-    "named": false
-  },
-  {
     "type": "--source-window",
     "named": false
   },
@@ -5181,15 +5175,7 @@
     "named": false
   },
   {
-    "type": "-a=no",
-    "named": false
-  },
-  {
     "type": "-c",
-    "named": false
-  },
-  {
-    "type": "-c=no",
     "named": false
   },
   {
@@ -6242,11 +6228,11 @@
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "gainsboro",
@@ -7090,11 +7076,11 @@
   },
   {
     "type": "name",
-    "named": true
+    "named": false
   },
   {
     "type": "name",
-    "named": false
+    "named": true
   },
   {
     "type": "narrow_symbols",
@@ -7410,10 +7396,6 @@
   },
   {
     "type": "paste_selection_or_clipboard",
-    "named": false
-  },
-  {
-    "type": "path",
     "named": false
   },
   {
