@@ -948,10 +948,7 @@ module.exports.rules = {
 
   remote_control_password: $ => seq(
     "remote_control_password",
-    field(
-      "password",
-      alias($.string, $.password)
-    ),
+    field("password", $.string),
     optional(
       field("actions", $.remote_actions)
     )
@@ -982,7 +979,7 @@ module.exports.rules = {
     "env",
     field("variable", alias(/[^\s\=]+/, $.string)),
     token.immediate("="),
-    field("value", $.string),
+    field("value", $._primitive),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
