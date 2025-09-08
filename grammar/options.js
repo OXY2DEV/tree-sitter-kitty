@@ -429,10 +429,11 @@ module.exports.rules = {
 
   scrollback_pager: $ => seq(
     "scrollback_pager",
-    field("command", $.command),
+    field(
+      "command",
+      alias(/[^\n\r]+/, $.string)
+    ),
   ),
-
-  command: _ => /[^\n\r]+/,
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -442,11 +443,8 @@ module.exports.rules = {
 
     optional(
       seq(
-        /[ \t]+/,
         field("unhide_wait", $.number),
-        /[ \t]+/,
         field("unhide_threshold", $.number),
-        /[ \t]+/,
         field("scroll_unhide", $.boolean),
       )
     ),
@@ -494,10 +492,8 @@ module.exports.rules = {
 
   url_excluded_characters: $ => seq(
     "url_excluded_characters",
-    field("characters", $.character_list)
+    field("characters", $.string)
   ),
-
-  character_list: $ => repeat1($.string),
 
   ////////////////////////////////////////////////////////////////////////////
 

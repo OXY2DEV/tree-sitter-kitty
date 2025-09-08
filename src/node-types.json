@@ -198,21 +198,6 @@
     }
   },
   {
-    "type": "character_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "clear_action",
     "named": true,
     "fields": {}
@@ -647,11 +632,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "command",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "comment",
@@ -4298,7 +4278,7 @@
         "required": true,
         "types": [
           {
-            "type": "command",
+            "type": "string",
             "named": true
           }
         ]
@@ -4830,7 +4810,7 @@
         "required": true,
         "types": [
           {
-            "type": "character_list",
+            "type": "string",
             "named": true
           }
         ]
@@ -6257,11 +6237,11 @@
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "gainsboro",

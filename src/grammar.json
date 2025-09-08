@@ -8565,15 +8565,16 @@
           "type": "FIELD",
           "name": "command",
           "content": {
-            "type": "SYMBOL",
-            "name": "command"
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\n\\r]+"
+            },
+            "named": true,
+            "value": "string"
           }
         }
       ]
-    },
-    "command": {
-      "type": "PATTERN",
-      "value": "[^\\n\\r]+"
     },
     "mouse_hide_wait": {
       "type": "SEQ",
@@ -8597,10 +8598,6 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
                   "type": "FIELD",
                   "name": "unhide_wait",
                   "content": {
@@ -8609,20 +8606,12 @@
                   }
                 },
                 {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
                   "type": "FIELD",
                   "name": "unhide_threshold",
                   "content": {
                     "type": "SYMBOL",
                     "name": "number"
                   }
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
                 },
                 {
                   "type": "FIELD",
@@ -8677,17 +8666,10 @@
           "name": "characters",
           "content": {
             "type": "SYMBOL",
-            "name": "character_list"
+            "name": "string"
           }
         }
       ]
-    },
-    "character_list": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "string"
-      }
     },
     "paste_actions": {
       "type": "SEQ",
