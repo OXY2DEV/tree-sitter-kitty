@@ -546,3 +546,18 @@
   "--when-focus-on" @constant
   condition: (string) @string.special)
 
+; Mouse shortcuts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(mouse_shortcut
+  "mouse_map" @keyword
+  event_type: (mouse_event) @type)
+
+(mouse_mode
+  [
+    "grabbed"
+    "ungrabbed"
+  ] @variable.parameter)
+
+(mouse_mode
+  "," @punctuation.delimiter)
+
