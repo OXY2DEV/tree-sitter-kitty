@@ -519,5 +519,21 @@
 (color_data
   name: (color_option_name) @variable.builtin)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Includes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(include
+  "include" @keyword
+  path: (string) @string.special.path)
+
+(include
+  "globinclude" @keyword
+  glob: (string) @string.regex)
+
+(include
+  "geninclude" @keyword
+  path: (string) @string.special.path)
+
+(include
+  "envinclude" @keyword
+  environment_variable: (string) @variable.builtin)
 
