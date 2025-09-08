@@ -532,21 +532,23 @@ module.exports.rules = {
     repeat(
       seq(
         token.immediate(","),
-        immediate(
-          "quote-urls-at-prompt",
-          "replace-dangerous-control-codes",
-          "replace-newline",
-          "confirm",
-          "confirm-if-large",
-          "filter",
-
-          "no-op",
-        )
+        alias($.paste_action_, $.paste_action)
       )
     )
   ),
 
   paste_action: _ => choice(
+    "quote-urls-at-prompt",
+    "replace-dangerous-control-codes",
+    "replace-newline",
+    "confirm",
+    "confirm-if-large",
+    "filter",
+
+    "no-op",
+  ),
+
+  paste_action_: _ => immediate(
     "quote-urls-at-prompt",
     "replace-dangerous-control-codes",
     "replace-newline",
