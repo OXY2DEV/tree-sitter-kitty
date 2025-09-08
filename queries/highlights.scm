@@ -54,7 +54,7 @@
 [
  (with)
  (together)
-] @operator
+] @punctuation.delimiter
 
 (special) @constant.macro
 (key) @character
@@ -536,4 +536,13 @@
 (include
   "envinclude" @keyword
   environment_variable: (string) @variable.builtin)
+
+; Keyboard shortcut ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(keyboard_shortcut
+  "map" @keyword)
+
+(key_focus_on
+  "--when-focus-on" @constant
+  condition: (string) @string.special)
 
