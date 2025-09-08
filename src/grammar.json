@@ -10176,7 +10176,7 @@
               "name": "criteria",
               "content": {
                 "type": "SYMBOL",
-                "name": "key_criteria"
+                "name": "key_focus_on"
               }
             },
             {
@@ -10210,7 +10210,7 @@
         }
       ]
     },
-    "key_criteria": {
+    "key_focus_on": {
       "type": "SEQ",
       "members": [
         {
@@ -10218,17 +10218,12 @@
           "value": "--when-focus-on"
         },
         {
-          "type": "PATTERN",
-          "value": "[ \\t]+"
-        },
-        {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "condition",
           "content": {
             "type": "SYMBOL",
             "name": "string"
-          },
-          "named": true,
-          "value": "condition"
+          }
         }
       ]
     },

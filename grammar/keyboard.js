@@ -2,7 +2,7 @@ module.exports.rules = {
   keyboard_shortcut: $ => seq(
     "map",
     optional(
-      field("criteria", $.key_criteria)
+      field("criteria", $.key_focus_on)
     ),
 
     field("sequence", $.key_sequence),
@@ -12,11 +12,11 @@ module.exports.rules = {
     )
   ),
 
-  key_criteria: $ => seq(
+  key_focus_on: $ => seq(
     "--when-focus-on",
-    /[ \t]+/,
-    alias($.string, $.condition)
+    field("condition", $.string)
   ),
+
   key_action: $ => $._action,
   key_sequence: $ => seq(
     $._key,

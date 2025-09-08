@@ -1654,18 +1654,19 @@
     }
   },
   {
-    "type": "key_criteria",
+    "type": "key_focus_on",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "condition",
-          "named": true
-        }
-      ]
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1755,7 +1756,7 @@
         "required": false,
         "types": [
           {
-            "type": "key_criteria",
+            "type": "key_focus_on",
             "named": true
           }
         ]
@@ -5719,10 +5720,6 @@
   {
     "type": "conda",
     "named": false
-  },
-  {
-    "type": "condition",
-    "named": true
   },
   {
     "type": "confirm",
