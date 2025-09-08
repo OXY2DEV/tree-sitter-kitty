@@ -9920,10 +9920,6 @@
               "value": "command"
             },
             {
-              "type": "PATTERN",
-              "value": "[ \\t]+"
-            },
-            {
               "type": "FIELD",
               "name": "command",
               "content": {

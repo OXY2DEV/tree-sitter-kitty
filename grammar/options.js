@@ -1135,7 +1135,6 @@ module.exports.rules = {
 
     seq(
       "command",
-      /[ \t]+/,
       field(
         "command",
         alias(/[^\n\r]+/, $.string)
