@@ -8194,10 +8194,6 @@
               }
             },
             {
-              "type": "PATTERN",
-              "value": "[ \\t]+"
-            },
-            {
               "type": "FIELD",
               "name": "multiplicative_contrast",
               "content": {
@@ -8351,21 +8347,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "ease",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "ease"
-                  }
-                }
-              ]
+              "type": "FIELD",
+              "name": "ease",
+              "content": {
+                "type": "SYMBOL",
+                "name": "ease"
+              }
             },
             {
               "type": "BLANK"
@@ -8436,7 +8423,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "steps("
+          "value": "steps"
+        },
+        {
+          "type": "STRING",
+          "value": "("
         },
         {
           "type": "FIELD",
@@ -8498,7 +8489,11 @@
       "members": [
         {
           "type": "STRING",
-          "value": "cubic-bezier("
+          "value": "cubic-bezier"
+        },
+        {
+          "type": "STRING",
+          "value": "("
         },
         {
           "type": "SYMBOL",

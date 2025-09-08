@@ -297,6 +297,8 @@ module.exports.rules = {
     )
   ),
 
+  ////////////////////////////////////////////////////////////////////////////
+
   text_composition_strategy: $ => seq(
     "text_composition_strategy",
     field("strategy", $.composition_value),
@@ -306,7 +308,6 @@ module.exports.rules = {
     "platform",
     seq(
       field("gamma_adjustment", $.number),
-      /[ \t]+/,
       field("multiplicative_contrast", $.number),
     )
   ),
@@ -321,10 +322,7 @@ module.exports.rules = {
   fg_override_threshold: $ => seq(
     $.number,
     optional(
-      // seq(
-      // /[ \t]+/,
       choice("%", "ratio")
-      // )
     )
   ),
 
@@ -361,10 +359,7 @@ module.exports.rules = {
     field("interval", $.number),
 
     optional(
-      seq(
-        /[ \t]+/,
-        field("ease", $.ease)
-      )
+      field("ease", $.ease)
     )
   ),
 
@@ -390,7 +385,8 @@ module.exports.rules = {
   ),
 
   ease_step: $ => seq(
-    "steps(",
+    "steps",
+    "(",
     field("count", $.number),
     ",",
     field("position", $.ease_step_position),
@@ -409,7 +405,8 @@ module.exports.rules = {
   ),
 
   cubic_bezier: $ => seq(
-    "cubic-bezier(",
+    "cubic-bezier",
+    "(",
     $.number,
     ",",
     $.number,

@@ -5016,6 +5016,10 @@
     "named": false
   },
   {
+    "type": "(",
+    "named": false
+  },
+  {
     "type": ")",
     "named": false
   },
@@ -5828,7 +5832,7 @@
     "named": false
   },
   {
-    "type": "cubic-bezier(",
+    "type": "cubic-bezier",
     "named": false
   },
   {
@@ -6253,11 +6257,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",
@@ -7952,7 +7956,7 @@
     "named": false
   },
   {
-    "type": "steps(",
+    "type": "steps",
     "named": false
   },
   {
