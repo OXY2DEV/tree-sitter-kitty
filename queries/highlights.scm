@@ -21,7 +21,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Hexadecimal colors.
-(color) @string.special
+(color) @constant
 
 ; Color names & `none`.
 ((color) @constant
@@ -56,7 +56,7 @@
  (together)
 ] @punctuation.delimiter
 
-(special) @constant.macro
+(special) @variable.builtin
 (key) @character
 
 ; Actions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -509,7 +509,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (color_option
-  name: (color_option_name) @variable.builtin)
+  name: (color_option_name) @keyword)
 
 (color_value
   .
@@ -560,4 +560,490 @@
 
 (mouse_mode
   "," @punctuation.delimiter)
+
+; Options ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(numeric_option
+  [
+    "font_size"
+    "underline_exclusion"
+    "cursor_beam_thickness"
+    "cursor_underline_thickness"
+    "cursor_stop_blinking_after"
+    "cursor_trail"
+    "cursor_trail_start_threshold"
+    "scrollback_lines"
+    "scrollback_indicator_opacity"
+    "scrollback_pager_history_size"
+    "wheel_scroll_multiplier"
+    "wheel_scroll_min_lines"
+    "touch_scroll_multiplier"
+    "click_interval"
+    "repaint_delay"
+    "input_delay"
+    "initial_window_width"
+    "initial_window_height"
+    "window_resize_step_cells"
+    "window_resize_step_lines"
+    "inactive_text_alpha"
+    "tab_bar_min_tabs"
+    "tab_title_max_length"
+    "background_tint"
+    "background_tint_gaps"
+    "dim_opacity"
+    "background_opacity"
+    "background_blur"
+    "window_logo_alpha"
+    "background_tint"
+    "tab_bar_margin_width"
+    "tab_bar_min_tabs"
+    "update_check_interval"
+    "macos_thicken_font"
+    "macos_menubar_title_max_length"
+    "visual_bell_duration"
+
+    "clipboard_max_size"
+  ] @keyword)
+
+(boolean_option
+  [
+    "force_ltr"
+    "scrollback_fill_enlarged_window"
+    "detect_urls"
+    "show_hyperlink_targets"
+    "clear_selection_on_clipboard_loss"
+    "focus_follows_mouse"
+    "clear_all_mouse_actions"
+    "sync_to_monitor"
+    "enable_audio_bell"
+    "window_alert_on_bell"
+    "remember_window_position"
+    "draw_minimal_borders"
+    "resize_in_steps"
+    "background_image_linear"
+    "close_on_child_death"
+    "forward_stdio"
+    "macos_option_as_alt"
+    "macos_hide_from_tasks"
+    "macos_quit_when_last_window_closed"
+    "macos_window_resizable"
+    "macos_traditional_fullscreen"
+    "macos_custom_beam_cursor"
+    "wayland_enable_ime"
+    "clear_all_shortcuts"
+    "remember_window_size"
+
+    "dynamic_background_opacity"
+    "allow_hyperlinks"
+  ] @keyword)
+
+(string_option
+  [
+    "select_by_word_characters"
+    "select_by_word_characters_forward"
+    "bell_on_tab"
+    "visual_window_select_characters"
+    "tab_separator"
+    "tab_title_template"
+    "active_tab_title_template"
+    "background_image"
+    "shell"
+    "editor"
+    "listen_on"
+    "watcher"
+    "exe_search_path"
+    "startup_session"
+    "file_transfer_confirmation_bypass"
+    "term"
+
+    "strip_trailing_spaces"
+    "pointer_options"
+    "command_on_bell"
+    "bell_path"
+    "linux_bell_theme"
+    "placement_strategy"
+    "hide_window_decorations"
+    "window_logo_position"
+    "tab_bar_edge"
+    "tab_bar_style"
+    "tab_bar_align"
+    "tab_switch_strategy"
+    "tab_powerline_style"
+    "tab_activity_symbol"
+    "active_tab_font_style"
+    "inactive_tab_font_style"
+    "background_image_layout"
+    "allow_remote_control"
+    "allow_cloning"
+    "terminfo_type"
+    "macos_titlebar_color"
+    "macos_show_window_title_in"
+    "macos_colorspace"
+    "linux_display_server"
+    "disable_ligatures"
+    "url_style"
+    "open_url_with"
+    "underline_hyperlinks"
+    "copy_on_select"
+    "pointer_shape_when_grabbed"
+    "default_pointer_shape"
+    "window_logo_path"
+    "tab_bar_background"
+  ] @keyword)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(font_option
+  [
+    "font_family"
+    "bold_font"
+    "italic_font"
+    "bold_italic_font"
+  ] @keyword)
+
+(font_option
+  [
+    "auto"
+    "monospace"
+  ] @constant)
+
+(font_property
+  name: (string) @variable.parameter
+  "=" @punctuation.delimiter)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(symbol_map
+  "symbol_map" @keyword
+  codepoints: (string) @constant
+  font_name: (string) @string.special)
+
+(narrow_symbols
+  "narrow_symbols" @keyword
+  codepoints: (string) @constant)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(font_features
+  "font_features" @keyword
+  font: (string)? @constant)
+
+(font_features
+  "none" @constant)
+
+(feature_list
+  (string) @string.special)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(modify_font
+  "modify_font" @keyword
+  type: (font_modification_type) @type)
+
+(undercurl_style
+  "undercurl_style" @keyword
+  "-" @punctuation.delimiter)
+
+(undercurl_style
+  [
+    "thin"
+    "thick"
+    "sparse"
+    "dense"
+  ] @constant)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(text_composition_strategy
+  "text_composition_strategy" @keyword)
+
+((composition_value) @constant
+  (#eq? @constant "platform"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(text_fg_override_threshold
+  "text_fg_override_threshold" @keyword)
+
+(fg_override_threshold
+  [
+    "ratio"
+    "%"
+  ] @type)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(cursor_shape
+  "cursor_shape" @keyword)
+
+(cursor) @type
+
+(cursor_shape_unfocused
+  "cursor_shape_unfocused" @keyword)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(cursor_blink_interval
+  "cursor_blink_interval" @keyword)
+
+((ease) @type
+  (#match? @type "^\w+$"))
+
+(ease_step
+  "steps" @function.call)
+
+(ease_step
+  [
+    "("
+    ")"
+  ] @punctuation.bracket)
+
+(ease_step
+  "," @punctuation.delimiter)
+
+(ease_step
+  position: (ease_step_position) @type)
+
+(cubic_bezier
+  "cubic-bezier" @function.call)
+
+(cubic_bezier
+  [
+    "("
+    ")"
+  ] @punctuation.bracket)
+
+(cubic_bezier
+  "," @punctuation.delimiter)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(cursor_trail_decay
+  "cursor_trail_decay" @keyword)
+
+(scrollback_pager
+  "scrollback_pager" @keyword
+  command: (string) @string.special) 
+
+(mouse_hide_wait
+  "mouse_hide_wait" @keyword)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(url_prefixes
+  "url_prefixes" @keyword)
+
+(url_prefix_list
+  (string) @constant)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(url_excluded_characters
+  "url_excluded_characters" @keyword
+  characters: (string) @string.special)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(paste_actions
+  "paste_actions" @keyword)
+
+(paste_action_list
+  "," @punctuation.delimiter)
+
+(paste_action) @type
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(pointer_shape_when_dragging
+  "pointer_shape_when_dragging" @keyword)
+
+(pointer) @type
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(visual_bell_color
+  "visual_bell_color" @keyword)
+
+(enabled_layouts
+  "enabled_layouts" @keyword)
+
+(layout_list
+  "," @punctuation.delimiter)
+
+(layout) @type
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(window_border_width
+  "window_border_width" @keyword)
+
+(border_width
+  [
+    "px"
+    "pt"
+  ] @type)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(box_drawing_scale
+  "box_drawing_scale" @keyword)
+
+(scale_value
+  "," @punctuation.delimiter)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(window_margin_width
+  "window_margin_width" @keyword)
+
+(single_window_margin_width
+  "single_window_margin_width" @keyword)
+
+(window_padding_width
+  "window_padding_width" @keyword)
+
+(single_window_padding_width
+  "single_window_padding_width" @keyword)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(resize_debounce_time
+  "resize_debounce_time" @keyword)
+
+(tab_bar_margin_height
+  "tab_bar_margin_height" @keyword)
+
+(tab_fade
+  "tab_fade" @keyword)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(transparent_background_colors
+  "transparent_background_colors" @keyword)
+
+(transparent_color
+  "@" @punctuation.special
+  (alpha) @number)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(remote_control_password
+  "remote_control_password" @keyword
+  password: (string) @string.special)
+
+(remote_actions
+  (string) @type)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(env
+  "env" @keyword
+  variable: (string) @variable.builtin
+  "=" @punctuation.delimiter)
+
+(filter_notification
+  "filter_notification" @keyword)
+
+((filter_sequence) @constant
+  (#eq? @constant "all"))
+
+(boolean_expression) @operator
+
+(filter_element
+  [
+    "title"
+    "body"
+    "app"
+    "type"
+  ] @parameter
+  ":" @punctuation.delimiter
+  (string) @string.regex)
+
+(filter_element
+  "\"" @punctuation.delimiter)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(clipboard_control
+  "clipboard_control" @keyword)
+
+(clipboard_action) @type
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(shell_integration
+  "shell_integration" @keyword)
+
+((shell_features) @constant
+  (#eq? @constant "enabled"))
+
+((shell_features) @constant
+  (#eq? @constant "disabled"))
+
+(shell_feature) @type
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(clone_source_strategies
+  "clone_source_strategies" @keyword)
+
+(source_stratagies
+  "," @punctuation.delimiter)
+
+(source_strategy) @type
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(notify_on_cmd_finish
+  "notify_on_cmd_finish" @keyword)
+
+(notification_time) @type
+
+(notification_action) @function.call
+
+(notification_action
+  "command"
+  command: (string) @string.special)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(menu_map
+  "menu_map" @keyword
+  value: (string) @string.special)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(wayland_titlebar_color
+  "wayland_titlebar_color" @keyword)
+
+((titlebar_color) @constant
+  (#eq? @constant "system"))
+
+((titlebar_color) @constant
+  (#eq? @constant "background"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(window_logo_scale
+  "window_logo_scale" @keyword)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(confirm_os_window_close
+  "confirm_os_window_close" @keyword)
+
+(confirm_os_window_close
+  count_background: (string) @constant)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(kitty_mod
+  "kitty_mod" @keyword)
+
+(action_alias
+  [
+    "action_alias"
+    "kitten_alias"
+  ] @keyword
+  name: (string) @string.special)
 
