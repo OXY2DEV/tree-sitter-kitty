@@ -8264,12 +8264,12 @@
           "name": "shape",
           "content": {
             "type": "SYMBOL",
-            "name": "shape"
+            "name": "cursor"
           }
         }
       ]
     },
-    "shape": {
+    "cursor": {
       "type": "CHOICE",
       "members": [
         {
@@ -8297,13 +8297,18 @@
           "type": "FIELD",
           "name": "shape",
           "content": {
-            "type": "SYMBOL",
-            "name": "shape_unfocused"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "cursor_unfocused"
+            },
+            "named": true,
+            "value": "cursor"
           }
         }
       ]
     },
-    "shape_unfocused": {
+    "cursor_unfocused": {
       "type": "CHOICE",
       "members": [
         {
@@ -8820,28 +8825,19 @@
           "name": "default",
           "content": {
             "type": "SYMBOL",
-            "name": "pointer_type"
+            "name": "pointer"
           }
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[ \\t]+"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "rectangular",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "pointer_type"
-                  }
-                }
-              ]
+              "type": "FIELD",
+              "name": "rectangular",
+              "content": {
+                "type": "SYMBOL",
+                "name": "pointer"
+              }
             },
             {
               "type": "BLANK"
@@ -8850,7 +8846,7 @@
         }
       ]
     },
-    "pointer_type": {
+    "pointer": {
       "type": "CHOICE",
       "members": [
         {

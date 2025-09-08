@@ -953,6 +953,11 @@
     }
   },
   {
+    "type": "cursor",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "cursor_blink_interval",
     "named": true,
     "fields": {
@@ -987,7 +992,7 @@
         "required": true,
         "types": [
           {
-            "type": "shape",
+            "type": "cursor",
             "named": true
           }
         ]
@@ -1003,7 +1008,7 @@
         "required": true,
         "types": [
           {
-            "type": "shape_unfocused",
+            "type": "cursor",
             "named": true
           }
         ]
@@ -4010,6 +4015,11 @@
     }
   },
   {
+    "type": "pointer",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "pointer_shape_when_dragging",
     "named": true,
     "fields": {
@@ -4018,7 +4028,7 @@
         "required": true,
         "types": [
           {
-            "type": "pointer_type",
+            "type": "pointer",
             "named": true
           }
         ]
@@ -4028,17 +4038,12 @@
         "required": false,
         "types": [
           {
-            "type": "pointer_type",
+            "type": "pointer",
             "named": true
           }
         ]
       }
     }
-  },
-  {
-    "type": "pointer_type",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "remote_actions",
@@ -4405,16 +4410,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "shape",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "shape_unfocused",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "shell_feature",
@@ -6237,11 +6232,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",

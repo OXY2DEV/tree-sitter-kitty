@@ -330,10 +330,10 @@ module.exports.rules = {
 
   cursor_shape: $ => seq(
     "cursor_shape",
-    field("shape", $.shape)
+    field("shape", $.cursor)
   ),
 
-  shape: _ => choice(
+  cursor: _ => choice(
     "block",
     "beam",
     "underline",
@@ -341,10 +341,13 @@ module.exports.rules = {
 
   cursor_shape_unfocused: $ => seq(
     "cursor_shape_unfocused",
-    field("shape", $.shape_unfocused)
+    field(
+      "shape",
+      alias($.cursor_unfocused, $.cursor)
+    )
   ),
 
-  shape_unfocused: _ => choice(
+  cursor_unfocused: _ => choice(
     "block",
     "beam",
     "underline",
@@ -584,17 +587,14 @@ module.exports.rules = {
 
   pointer_shape_when_dragging: $ => seq(
     "pointer_shape_when_dragging",
-    field("default", $.pointer_type),
+    field("default", $.pointer),
 
     optional(
-      seq(
-        /[ \t]+/,
-        field("rectangular", $.pointer_type)
-      )
+      field("rectangular", $.pointer)
     ),
   ),
 
-  pointer_type: _ => choice(
+  pointer: _ => choice(
     "arrow",
     "beam",
     "hand",
