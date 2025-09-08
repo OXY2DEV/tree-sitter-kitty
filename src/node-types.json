@@ -6266,10 +6266,6 @@
     "named": false
   },
   {
-    "type": "grabbed,ungrabbed",
-    "named": false
-  },
-  {
     "type": "gray",
     "named": false
   },
@@ -8211,10 +8207,6 @@
   },
   {
     "type": "ungrabbed",
-    "named": false
-  },
-  {
-    "type": "ungrabbed,grabbed",
     "named": false
   },
   {

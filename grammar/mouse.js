@@ -1,15 +1,3 @@
-function immediate (...tokens) {
-  let output = [];
-
-  tokens.forEach(t => {
-    output.push(
-      token.immediate(t)
-    );
-  })
-
-  return choice(...output);
-}
-
 module.exports.rules = {
   mouse_shortcut: $ => seq(
     "mouse_map",
@@ -36,10 +24,17 @@ module.exports.rules = {
     "doubleclick"
   ),
 
-  mouse_mode: _ => choice(
-    "ungrabbed,grabbed",
-    "grabbed,ungrabbed",
-    "grabbed",
-    "ungrabbed",
+  mouse_mode: _ => seq(
+    choice("grabbed", "ungrabbed"),
+
+    optional(
+      seq(
+        token.immediate(","),
+        choice(
+          token.immediate("grabbed"),
+          token.immediate("ungrabbed"),
+        )
+      )
+    ),
   ),
 };

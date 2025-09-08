@@ -10141,23 +10141,59 @@
       ]
     },
     "mouse_mode": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "ungrabbed,grabbed"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "grabbed"
+            },
+            {
+              "type": "STRING",
+              "value": "ungrabbed"
+            }
+          ]
         },
         {
-          "type": "STRING",
-          "value": "grabbed,ungrabbed"
-        },
-        {
-          "type": "STRING",
-          "value": "grabbed"
-        },
-        {
-          "type": "STRING",
-          "value": "ungrabbed"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": ","
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "IMMEDIATE_TOKEN",
+                      "content": {
+                        "type": "STRING",
+                        "value": "grabbed"
+                      }
+                    },
+                    {
+                      "type": "IMMEDIATE_TOKEN",
+                      "content": {
+                        "type": "STRING",
+                        "value": "ungrabbed"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
