@@ -7906,8 +7906,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[^\\s=][^\\s=][^\\s=][^\\s=]+"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\s=][^\\s=][^\\s=][^\\s=]+"
+            },
+            "named": true,
+            "value": "string"
+          }
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7921,7 +7930,7 @@
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "_primitive"
           }
         }
       ]

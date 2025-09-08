@@ -216,9 +216,12 @@ module.exports.rules = {
   ),
 
   font_property: $ => seq(
-    /[^\s=][^\s=][^\s=][^\s=]+/,
+    field(
+      "name",
+      alias(/[^\s=][^\s=][^\s=][^\s=]+/, $.string)
+    ),
     token.immediate("="),
-    field("value", $.string),
+    field("value", $._primitive),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
