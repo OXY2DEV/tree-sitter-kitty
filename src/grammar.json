@@ -943,6 +943,14 @@
         {
           "type": "STRING",
           "value": "iso_level5_shift"
+        },
+        {
+          "type": "STRING",
+          "value": "plus"
+        },
+        {
+          "type": "STRING",
+          "value": "equal"
         }
       ]
     },
@@ -1472,6 +1480,20 @@
           "content": {
             "type": "STRING",
             "value": "iso_level5_shift"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "plus"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "equal"
           }
         }
       ]
@@ -10361,24 +10383,8 @@
   },
   "extras": [
     {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "\\r?\\n"
-          },
-          {
-            "type": "STRING",
-            "value": "\\"
-          }
-        ]
-      }
-    },
-    {
       "type": "PATTERN",
-      "value": "[\\t ]"
+      "value": "\\s"
     }
   ],
   "conflicts": [],

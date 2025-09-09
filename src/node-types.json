@@ -6170,6 +6170,10 @@
     "named": false
   },
   {
+    "type": "equal",
+    "named": false
+  },
+  {
     "type": "escape",
     "named": false
   },
@@ -7471,6 +7475,10 @@
   },
   {
     "type": "plum",
+    "named": false
+  },
+  {
+    "type": "plus",
     "named": false
   },
   {

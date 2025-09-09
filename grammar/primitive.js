@@ -90,6 +90,9 @@ const special_symbols = [
   "right_meta",
   "iso_level3_shift",
   "iso_level5_shift",
+
+  "plus",
+  "equal",
 ];
 
 module.exports.rules = {

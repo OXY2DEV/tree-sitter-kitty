@@ -19,12 +19,6 @@ const keyboard = require("./grammar/keyboard");
 module.exports = grammar({
   name: "kitty",
 
-  extras: _ => [
-    token(
-      seq(/\r?\n/, "\\"),
-    ),
-    /[\t ]/,
-  ],
   rules: {
     configuration_file: $ => repeat(
       $._common_node
