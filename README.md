@@ -29,6 +29,11 @@
 
 ### 💡 nvim-treesitter
 
+>[!IMPORTANT]
+> Make sure to set your `filetype` to `kitty`. You can copy over the example [ftdetect/kitty.lua](https://github.com/OXY2DEV/tree-sitter-kitty/blob/main/ftdetect/kitty.lua) in your config to do this *automatically*.
+>
+> Be aware that this only identifies `.conf` files in `.config/kitty` and `kitty.conf` anywhere else in the filesystem
+
 Put this in your `nvim-treesitter` config,
 
 ```lua
