@@ -21,13 +21,13 @@ geninclude dynamic.py
 
 (configuration_file
   (include
-    path: (path))
+    path: (string))
   (include
-    glob: (pattern))
+    glob: (string))
   (include
-    environment_variable: (name))
+    environment_variable: (string))
   (include
-    file: (path)))
+    path: (string)))
 
 ==============================================================================
 Option set
@@ -40,22 +40,15 @@ url_style curly
 ------------------------------------------------------------------------------
 
 (configuration_file
-  (option
-    key: (string)
-    value: (value
-      (boolean)))
-  (option
-    key: (string)
-    value: (value
-      (number)))
-  (option
-    key: (string)
-    value: (value
-      (color)))
-  (option
-    key: (string)
-    value: (value
-      (string))))
+  (boolean_option
+    value: (boolean))
+  (numeric_option
+    value: (number))
+  (color_option
+    name: (color_option_name)
+    value: (color))
+  (string_option
+    value: (string)))
 
 ==============================================================================
 Keymap
@@ -71,34 +64,34 @@ map cmd+up scroll_line_up
   (keyboard_shortcut
     sequence: (key_sequence
       (ctrl)
-      (together)
+      (with)
       (shift)
-      (together)
+      (with)
       (special))
     action: (key_action
       (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
       (ctrl)
-      (together)
+      (with)
       (shift)
-      (together)
+      (with)
       (key))
     action: (key_action
       (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
       (alt)
-      (together)
+      (with)
       (super)
-      (together)
+      (with)
       (special))
     action: (key_action
       (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
       (super)
-      (together)
+      (with)
       (special))
     action: (key_action
       (generic_action))))
