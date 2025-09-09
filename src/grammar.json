@@ -503,6 +503,10 @@
         {
           "type": "STRING",
           "value": "option"
+        },
+        {
+          "type": "STRING",
+          "value": "⌥"
         }
       ]
     },
@@ -529,19 +533,47 @@
             "type": "STRING",
             "value": "option"
           }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "⌥"
+          }
         }
       ]
     },
     "shift": {
-      "type": "STRING",
-      "value": "shift"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "shift"
+        },
+        {
+          "type": "STRING",
+          "value": "⇧"
+        }
+      ]
     },
     "shift_": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "shift"
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "shift"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "⇧"
+          }
+        }
+      ]
     },
     "mouse_button": {
       "type": "PATTERN",
@@ -612,6 +644,10 @@
         {
           "type": "STRING",
           "value": "command"
+        },
+        {
+          "type": "STRING",
+          "value": "⌘"
         }
       ]
     },
@@ -638,6 +674,13 @@
             "type": "STRING",
             "value": "command"
           }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "⌘"
+          }
         }
       ]
     },
@@ -647,6 +690,10 @@
         {
           "type": "STRING",
           "value": "kitty_mod"
+        },
+        {
+          "type": "STRING",
+          "value": "kitty"
         },
         {
           "type": "STRING",
@@ -962,6 +1009,13 @@
           "content": {
             "type": "STRING",
             "value": "kitty_mod"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "kitty"
           }
         },
         {

@@ -15,6 +15,7 @@ function immediate (...tokens) {
 // Special keymap symbols.
 const special_symbols = [
   "kitty_mod",
+  "kitty",
 
   "escape",
   "tab",
@@ -183,13 +184,13 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  alt: _ => choice("alt", "opt", "option"),
-  alt_: _ => immediate("alt", "opt", "option"),
+  alt: _ => choice("alt", "opt", "option", "⌥"),
+  alt_: _ => immediate("alt", "opt", "option", "⌥"),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  shift: _ => "shift",
-  shift_: _ => token.immediate("shift"),
+  shift: _ => choice("shift", "⇧"),
+  shift_: _ => immediate("shift", "⇧"),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -218,8 +219,8 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  super: _ => choice("super", "cmd", "command"),
-  super_: _ => immediate("super", "cmd", "command"),
+  super: _ => choice("super", "cmd", "command", "⌘"),
+  super_: _ => immediate("super", "cmd", "command", "⌘"),
 
   ////////////////////////////////////////////////////////////////////////////
 

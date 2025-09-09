@@ -4495,6 +4495,11 @@
     }
   },
   {
+    "type": "shift",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "show_kitty_doc",
     "named": true,
     "fields": {
@@ -6283,11 +6288,11 @@
   },
   {
     "type": "function",
-    "named": true
+    "named": false
   },
   {
     "type": "function",
-    "named": false
+    "named": true
   },
   {
     "type": "gainsboro",
@@ -7835,7 +7840,7 @@
   },
   {
     "type": "shift",
-    "named": true
+    "named": false
   },
   {
     "type": "shorter",
@@ -8451,6 +8456,18 @@
   },
   {
     "type": "|",
+    "named": false
+  },
+  {
+    "type": "⇧",
+    "named": false
+  },
+  {
+    "type": "⌘",
+    "named": false
+  },
+  {
+    "type": "⌥",
     "named": false
   }
 ]
