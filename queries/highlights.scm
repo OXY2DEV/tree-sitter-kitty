@@ -1040,6 +1040,15 @@
 (kitty_mod
   "kitty_mod" @keyword)
 
+(initial_window_size
+  [
+    "initial_window_width"
+    "initial_window_height"
+  ] @keyword)
+
+(initial_window_size
+  "c" @type)
+
 (action_alias
   [
     "action_alias"

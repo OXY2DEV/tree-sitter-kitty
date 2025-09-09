@@ -59,6 +59,7 @@ module.exports.rules = {
     $.confirm_os_window_close,
     $.tab_fade,
     $.kitty_mod,
+    $.initial_window_size,
     $.action_alias,
    ),
 
@@ -84,8 +85,6 @@ module.exports.rules = {
     "click_interval",
     "repaint_delay",
     "input_delay",
-    "initial_window_width",
-    "initial_window_height",
     "window_resize_step_cells",
     "window_resize_step_lines",
     "inactive_text_alpha",
@@ -1264,6 +1263,19 @@ module.exports.rules = {
   kitty_mod: $ => seq(
     "kitty_mod",
     field("sequence", $.key_sequence)
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  initial_window_size: $ => seq(
+    choice(
+      "initial_window_width",
+      "initial_window_height",
+    ),
+    field("value", $.number),
+    optional(
+      token.immediate("c")
+    ),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
