@@ -36,6 +36,23 @@
 
 Put this in your `nvim-treesitter` config,
 
+#### Branch: **main**
+
+```lua
+vim.api.nvim_create_autocmd("User", {
+    pattern = "TSUpdate",
+    callback = function()
+        require("nvim-treesitter.parsers").kitty = {
+            install_info = {
+                url = "https://github.com/OXY2DEV/tree-sitter-kitty",
+            },
+        }
+    end
+})
+```
+
+#### Branch: **master**
+
 ```lua
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs();
 
