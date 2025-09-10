@@ -8018,8 +8018,13 @@
           "type": "FIELD",
           "name": "font_name",
           "content": {
-            "type": "SYMBOL",
-            "name": "string"
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "\\S[^\\n\\r]*"
+            },
+            "named": true,
+            "value": "string"
           }
         }
       ]

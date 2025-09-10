@@ -228,7 +228,10 @@ module.exports.rules = {
   symbol_map: $ => seq(
     "symbol_map",
     field("codepoints", $.string),
-    field("font_name", $.string),
+    field(
+      "font_name",
+      alias(/\S[^\n\r]*/, $.string)
+    ),
   ),
 
   narrow_symbols: $ => seq(
