@@ -34,6 +34,9 @@
 >
 > Be aware that this only identifies `.conf` files in `.config/kitty` and `kitty.conf` anywhere else in the filesystem
 
+>[!NOTE]
+> This **will not** add syntax highlighting. For adding syntax highlighting see [this section](https://github.com/OXY2DEV/tree-sitter-kitty?tab=readme-ov-file#-query-filessyntax-highlighting--injections).
+
 Put this in your `nvim-treesitter` config,
 
 #### Branch: **main**
@@ -83,5 +86,5 @@ Now, quit & open Neovim and run this command,
 
 ## 💥 Query files(syntax highlighting & injections)
 
-Copy everything inside `queries/` to `~/.config/nvim/queries/kitty/` in your machine.
+Copy everything inside [queries/](https://github.com/OXY2DEV/tree-sitter-kitty/tree/main/queries) into `~/.config/nvim/queries/kitty/` in your machine.
 
