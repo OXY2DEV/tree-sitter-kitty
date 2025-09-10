@@ -1405,7 +1405,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "font_property",
@@ -1430,7 +1430,7 @@
       },
       "value": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "boolean",
@@ -5463,10 +5463,6 @@
     "named": false
   },
   {
-    "type": "auto",
-    "named": false
-  },
-  {
     "type": "azure",
     "named": false
   },
@@ -7084,10 +7080,6 @@
   },
   {
     "type": "modify_font",
-    "named": false
-  },
-  {
-    "type": "monospace",
     "named": false
   },
   {

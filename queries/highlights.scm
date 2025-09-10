@@ -701,11 +701,10 @@
     "bold_italic_font"
   ] @keyword)
 
-(font_option
-  [
-    "auto"
-    "monospace"
-  ] @constant)
+(font_property
+  .
+  name: (string) @variable.parameter
+  .)
 
 (font_property
   name: (string) @variable.parameter

@@ -207,11 +207,7 @@ module.exports.rules = {
 
   font_option: $ => seq(
     choice("font_family", "bold_font", "italic_font", "bold_italic_font"),
-    choice(
-      "monospace",
-      "auto",
-      repeat1($.font_property)
-    )
+    repeat1($.font_property)
   ),
 
   font_property: $ => seq(
@@ -219,8 +215,12 @@ module.exports.rules = {
       "name",
       alias(/[^\s=][^\s=][^\s=][^\s=]+/, $.string)
     ),
-    token.immediate("="),
-    field("value", $._primitive),
+    optional(
+      seq(
+        token.immediate("="),
+        field("value", $._primitive),
+      ),
+    )
   ),
 
   ////////////////////////////////////////////////////////////////////////////
