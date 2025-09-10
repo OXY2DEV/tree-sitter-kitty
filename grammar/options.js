@@ -207,20 +207,33 @@ module.exports.rules = {
 
   font_option: $ => seq(
     choice("font_family", "bold_font", "italic_font", "bold_italic_font"),
-    repeat1($.font_property)
+    field("value", $.font_value),
+  ),
+
+  font_value: $ => repeat1(
+    choice(
+      $.font_property,
+      alias(/[^\s=]+/, $.string)
+    ),
   ),
 
   font_property: $ => seq(
     field(
       "name",
-      alias(/[^\s=][^\s=][^\s=][^\s=]+/, $.string)
+      alias($._font_property_name, $.string)
     ),
-    optional(
-      seq(
-        token.immediate("="),
-        field("value", $._primitive),
-      ),
-    )
+    seq(
+      token.immediate("="),
+      field("value", $._primitive),
+    ),
+  ),
+  _font_property_name: _ => choice(
+    "family",
+    "style",
+    "postscript_name",
+    "full_name",
+    "features",
+    "system",
   ),
 
   ////////////////////////////////////////////////////////////////////////////

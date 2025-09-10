@@ -1402,16 +1402,17 @@
   {
     "type": "font_option",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "font_property",
-          "named": true
-        }
-      ]
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "font_value",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1430,7 +1431,7 @@
       },
       "value": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "boolean",
@@ -1466,6 +1467,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "font_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "font_property",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4635,6 +4655,11 @@
     "fields": {}
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "string_option",
     "named": true,
     "fields": {
@@ -6232,7 +6257,15 @@
     "named": false
   },
   {
+    "type": "family",
+    "named": false
+  },
+  {
     "type": "fat",
+    "named": false
+  },
+  {
+    "type": "features",
     "named": false
   },
   {
@@ -6313,6 +6346,10 @@
   },
   {
     "type": "fuchsia",
+    "named": false
+  },
+  {
+    "type": "full_name",
     "named": false
   },
   {
@@ -7544,6 +7581,10 @@
     "named": false
   },
   {
+    "type": "postscript_name",
+    "named": false
+  },
+  {
     "type": "powderblue",
     "named": false
   },
@@ -8060,11 +8101,11 @@
     "named": false
   },
   {
-    "type": "string",
-    "named": true
+    "type": "strip_trailing_spaces",
+    "named": false
   },
   {
-    "type": "strip_trailing_spaces",
+    "type": "style",
     "named": false
   },
   {

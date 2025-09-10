@@ -8041,13 +8041,35 @@
           ]
         },
         {
-          "type": "REPEAT1",
+          "type": "FIELD",
+          "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "font_property"
+            "name": "font_value"
           }
         }
       ]
+    },
+    "font_value": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "font_property"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^\\s=]+"
+            },
+            "named": true,
+            "value": "string"
+          }
+        ]
+      }
     },
     "font_property": {
       "type": "SEQ",
@@ -8058,40 +8080,61 @@
           "content": {
             "type": "ALIAS",
             "content": {
-              "type": "PATTERN",
-              "value": "[^\\s=][^\\s=][^\\s=][^\\s=]+"
+              "type": "SYMBOL",
+              "name": "_font_property_name"
             },
             "named": true,
             "value": "string"
           }
         },
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "IMMEDIATE_TOKEN",
-                  "content": {
-                    "type": "STRING",
-                    "value": "="
-                  }
-                },
-                {
-                  "type": "FIELD",
-                  "name": "value",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_primitive"
-                  }
-                }
-              ]
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "="
+              }
             },
             {
-              "type": "BLANK"
+              "type": "FIELD",
+              "name": "value",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_primitive"
+              }
             }
           ]
+        }
+      ]
+    },
+    "_font_property_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "family"
+        },
+        {
+          "type": "STRING",
+          "value": "style"
+        },
+        {
+          "type": "STRING",
+          "value": "postscript_name"
+        },
+        {
+          "type": "STRING",
+          "value": "full_name"
+        },
+        {
+          "type": "STRING",
+          "value": "features"
+        },
+        {
+          "type": "STRING",
+          "value": "system"
         }
       ]
     },

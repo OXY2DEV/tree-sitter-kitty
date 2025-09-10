@@ -701,9 +701,13 @@
     "bold_italic_font"
   ] @keyword)
 
-(font_property
+(font_value
+  (string) @variable.parameter)
+
+(font_value
   .
-  name: (string) @variable.parameter
+  (string) @constant
+  (#eq? @constant "auto")
   .)
 
 (font_property
