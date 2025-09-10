@@ -12,28 +12,42 @@ function immediate (...tokens) {
   return choice(...output);
 }
 
+function function_keys (use_as_immediate) {
+  let output = [];
+
+  for (f = 1; f == 35; f++) {
+    output.push(
+      "f" + toString(f)
+    );
+  }
+
+  if (use_as_immediate == true) {
+    return choice(...output);
+  } else {
+    return immediate(...output);
+  }
+}
+
 // Special keymap symbols.
 const special_symbols = [
   "kitty_mod",
   "kitty",
 
   "escape",
-  "tab",
-  "insert",
-  "up",
-  "page_up",
-  "home",
-  "caps_lock",
-  "num_lock",
-  "pause",
   "enter",
+  "tab",
   "backspace",
-  "space",
+  "insert",
   "delete",
-  "down",
+  "page_up",
   "page_down",
+  "home",
   "end",
+  "caps_lock",
   "scroll_lock",
+  "num_lock",
+  "print_screen",
+  "pause",
   "menu",
   "kp_0",
   "kp_1",
@@ -94,6 +108,18 @@ const special_symbols = [
 
   "plus",
   "equal",
+
+  "space",
+  "minus",
+  "apostrophe",
+  "comma",
+  "period",
+  "semicolon",
+  "slash",
+  "backslash",
+  "left_bracket",
+  "right_bracket",
+  "grave_accent",
 ];
 
 module.exports.rules = {
@@ -214,8 +240,8 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  function: _ => /f[1-9]/,
-  function_: _ => token.immediate(/f[1-9]/),
+  function: _ => function_keys(false),
+  function_: _ => function_keys(true),
 
   ////////////////////////////////////////////////////////////////////////////
 

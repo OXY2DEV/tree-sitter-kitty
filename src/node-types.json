@@ -1469,6 +1469,11 @@
     }
   },
   {
+    "type": "function",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "generic_action",
     "named": true,
     "fields": {}
@@ -5435,6 +5440,10 @@
     "named": false
   },
   {
+    "type": "apostrophe",
+    "named": false
+  },
+  {
     "type": "app",
     "named": false
   },
@@ -5496,6 +5505,10 @@
   },
   {
     "type": "background_tint_gaps",
+    "named": false
+  },
+  {
+    "type": "backslash",
     "named": false
   },
   {
@@ -5796,6 +5809,10 @@
   },
   {
     "type": "combine",
+    "named": false
+  },
+  {
+    "type": "comma",
     "named": false
   },
   {
@@ -6115,10 +6132,6 @@
     "named": false
   },
   {
-    "type": "down",
-    "named": false
-  },
-  {
     "type": "draw_minimal_borders",
     "named": false
   },
@@ -6308,10 +6321,6 @@
   },
   {
     "type": "function",
-    "named": true
-  },
-  {
-    "type": "function",
     "named": false
   },
   {
@@ -6356,6 +6365,10 @@
   },
   {
     "type": "grabbed",
+    "named": false
+  },
+  {
+    "type": "grave_accent",
     "named": false
   },
   {
@@ -6715,6 +6728,10 @@
     "named": false
   },
   {
+    "type": "left_bracket",
+    "named": false
+  },
+  {
     "type": "left_control",
     "named": false
   },
@@ -7068,6 +7085,10 @@
   },
   {
     "type": "mintcream",
+    "named": false
+  },
+  {
+    "type": "minus",
     "named": false
   },
   {
@@ -7479,6 +7500,10 @@
     "named": false
   },
   {
+    "type": "period",
+    "named": false
+  },
+  {
     "type": "peru",
     "named": false
   },
@@ -7532,6 +7557,10 @@
   },
   {
     "type": "previous_window",
+    "named": false
+  },
+  {
+    "type": "print_screen",
     "named": false
   },
   {
@@ -7664,6 +7693,10 @@
   },
   {
     "type": "right_alt",
+    "named": false
+  },
+  {
+    "type": "right_bracket",
     "named": false
   },
   {
@@ -7819,6 +7852,10 @@
     "named": false
   },
   {
+    "type": "semicolon",
+    "named": false
+  },
+  {
     "type": "send_key",
     "named": false
   },
@@ -7936,6 +7973,10 @@
   },
   {
     "type": "skyblue",
+    "named": false
+  },
+  {
+    "type": "slash",
     "named": false
   },
   {
@@ -8300,10 +8341,6 @@
   },
   {
     "type": "ungrabbed",
-    "named": false
-  },
-  {
-    "type": "up",
     "named": false
   },
   {

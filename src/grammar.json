@@ -620,15 +620,12 @@
       }
     },
     "function": {
-      "type": "PATTERN",
-      "value": "f[1-9]"
+      "type": "CHOICE",
+      "members": []
     },
     "function_": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "f[1-9]"
-      }
+      "type": "CHOICE",
+      "members": []
     },
     "super": {
       "type": "CHOICE",
@@ -701,39 +698,11 @@
         },
         {
           "type": "STRING",
-          "value": "tab"
-        },
-        {
-          "type": "STRING",
-          "value": "insert"
-        },
-        {
-          "type": "STRING",
-          "value": "up"
-        },
-        {
-          "type": "STRING",
-          "value": "page_up"
-        },
-        {
-          "type": "STRING",
-          "value": "home"
-        },
-        {
-          "type": "STRING",
-          "value": "caps_lock"
-        },
-        {
-          "type": "STRING",
-          "value": "num_lock"
-        },
-        {
-          "type": "STRING",
-          "value": "pause"
-        },
-        {
-          "type": "STRING",
           "value": "enter"
+        },
+        {
+          "type": "STRING",
+          "value": "tab"
         },
         {
           "type": "STRING",
@@ -741,7 +710,7 @@
         },
         {
           "type": "STRING",
-          "value": "space"
+          "value": "insert"
         },
         {
           "type": "STRING",
@@ -749,7 +718,7 @@
         },
         {
           "type": "STRING",
-          "value": "down"
+          "value": "page_up"
         },
         {
           "type": "STRING",
@@ -757,11 +726,31 @@
         },
         {
           "type": "STRING",
+          "value": "home"
+        },
+        {
+          "type": "STRING",
           "value": "end"
         },
         {
           "type": "STRING",
+          "value": "caps_lock"
+        },
+        {
+          "type": "STRING",
           "value": "scroll_lock"
+        },
+        {
+          "type": "STRING",
+          "value": "num_lock"
+        },
+        {
+          "type": "STRING",
+          "value": "print_screen"
+        },
+        {
+          "type": "STRING",
+          "value": "pause"
         },
         {
           "type": "STRING",
@@ -998,6 +987,50 @@
         {
           "type": "STRING",
           "value": "equal"
+        },
+        {
+          "type": "STRING",
+          "value": "space"
+        },
+        {
+          "type": "STRING",
+          "value": "minus"
+        },
+        {
+          "type": "STRING",
+          "value": "apostrophe"
+        },
+        {
+          "type": "STRING",
+          "value": "comma"
+        },
+        {
+          "type": "STRING",
+          "value": "period"
+        },
+        {
+          "type": "STRING",
+          "value": "semicolon"
+        },
+        {
+          "type": "STRING",
+          "value": "slash"
+        },
+        {
+          "type": "STRING",
+          "value": "backslash"
+        },
+        {
+          "type": "STRING",
+          "value": "left_bracket"
+        },
+        {
+          "type": "STRING",
+          "value": "right_bracket"
+        },
+        {
+          "type": "STRING",
+          "value": "grave_accent"
         }
       ]
     },
@@ -1029,63 +1062,14 @@
           "type": "IMMEDIATE_TOKEN",
           "content": {
             "type": "STRING",
-            "value": "tab"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "insert"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "up"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "page_up"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "home"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "caps_lock"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "num_lock"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "pause"
-          }
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
             "value": "enter"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "tab"
           }
         },
         {
@@ -1099,7 +1083,7 @@
           "type": "IMMEDIATE_TOKEN",
           "content": {
             "type": "STRING",
-            "value": "space"
+            "value": "insert"
           }
         },
         {
@@ -1113,7 +1097,7 @@
           "type": "IMMEDIATE_TOKEN",
           "content": {
             "type": "STRING",
-            "value": "down"
+            "value": "page_up"
           }
         },
         {
@@ -1127,6 +1111,13 @@
           "type": "IMMEDIATE_TOKEN",
           "content": {
             "type": "STRING",
+            "value": "home"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
             "value": "end"
           }
         },
@@ -1134,7 +1125,35 @@
           "type": "IMMEDIATE_TOKEN",
           "content": {
             "type": "STRING",
+            "value": "caps_lock"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
             "value": "scroll_lock"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "num_lock"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "print_screen"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "pause"
           }
         },
         {
@@ -1548,6 +1567,83 @@
           "content": {
             "type": "STRING",
             "value": "equal"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "space"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "minus"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "apostrophe"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "comma"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "period"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "semicolon"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "slash"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "backslash"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "left_bracket"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "right_bracket"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "grave_accent"
           }
         }
       ]
