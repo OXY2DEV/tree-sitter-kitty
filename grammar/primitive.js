@@ -15,9 +15,9 @@ function immediate (...tokens) {
 function function_keys (use_as_immediate) {
   let output = [];
 
-  for (f = 1; f == 35; f++) {
+  for (let f = 1; f <= 35; f++) {
     output.push(
-      "f" + toString(f)
+      "f" + f
     );
   }
 
@@ -168,14 +168,74 @@ module.exports.rules = {
   // Keyboard & mouse primitives /////////////////////////////////////////////
 
   _key: $ => choice(
-    $.ctrl,
-    $.alt,
-    $.shift,
-    $.function,
-    $.super,
+    $.modified_key,
+    $._non_modified_key,
+  ),
+  _key_later: $ => choice(
+    alias($.modified_key_, $.modified_key),
+    $._non_modified_key_,
 
+    $._and,
+    $._also,
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  modified_key: $ => prec.right(seq(
+    choice(
+      $.ctrl,
+      $.alt,
+      $.shift,
+      $.super
+    ),
+    repeat($._sub_modifier),
+
+    optional(
+      seq(
+      $._and,
+      $._non_modified_key_,
+      )
+    ),
+  )),
+
+  modified_key_: $ => prec.right(seq(
+    choice(
+      alias($.ctrl_, $.ctrl),
+      alias($.alt_, $.alt),
+      alias($.shift_, $.shift),
+      alias($.super_, $.super),
+    ),
+    repeat($._sub_modifier),
+
+    optional(
+      seq(
+      $._and,
+      $._non_modified_key_,
+      )
+    ),
+  )),
+
+  _sub_modifier: $ => seq(
+    $._and,
+    choice(
+      alias($.ctrl_, $.ctrl),
+      alias($.alt_, $.alt),
+      alias($.shift_, $.shift),
+      alias($.super_, $.super),
+    ),
+  ),
+
+  _and: _ => token.immediate("+"),
+  _also: _ => token.immediate(">"),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  _non_modified_key: $ => choice(
+    $.function,
     $.mouse_button,
 
+    $.up,
+    $.down,
     $.left,
     $.right,
     $.middle,
@@ -183,24 +243,19 @@ module.exports.rules = {
     $.special,
     $.key,
   ),
-  _key_later: $ => choice(
-    alias($.ctrl_, $.ctrl),
-    alias($.alt_, $.alt),
-    alias($.shift_, $.shift),
-    alias($.function_, $.function),
-    alias($.super_, $.super),
 
+  _non_modified_key_: $ => choice(
+    alias($.function_, $.function),
     alias($.mouse_button_, $.mouse_button),
 
+    alias($.up_, $.up),
+    alias($.down_, $.down),
     alias($.left_, $.left),
     alias($.middle_, $.middle),
     alias($.right_, $.right),
 
     alias($.special_, $.special),
     alias($.key_, $.key),
-
-    alias($.with_, $.with),
-    alias($.together_, $.together),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -222,6 +277,16 @@ module.exports.rules = {
 
   mouse_button: _ => /b[1-8]/,
   mouse_button_: _ => token.immediate(/b[1-8]/),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  up: _ => "up",
+  up_: _ => token.immediate("up"),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  down: _ => "down",
+  down_: _ => token.immediate("down"),
 
   ////////////////////////////////////////////////////////////////////////////
 

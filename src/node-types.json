@@ -1793,11 +1793,7 @@
       "required": true,
       "types": [
         {
-          "type": "alt",
-          "named": true
-        },
-        {
-          "type": "ctrl",
+          "type": "down",
           "named": true
         },
         {
@@ -1817,6 +1813,10 @@
           "named": true
         },
         {
+          "type": "modified_key",
+          "named": true
+        },
+        {
           "type": "mouse_button",
           "named": true
         },
@@ -1825,23 +1825,11 @@
           "named": true
         },
         {
-          "type": "shift",
-          "named": true
-        },
-        {
           "type": "special",
           "named": true
         },
         {
-          "type": "super",
-          "named": true
-        },
-        {
-          "type": "together",
-          "named": true
-        },
-        {
-          "type": "with",
+          "type": "up",
           "named": true
         }
       ]
@@ -1897,11 +1885,7 @@
       "required": true,
       "types": [
         {
-          "type": "alt",
-          "named": true
-        },
-        {
-          "type": "ctrl",
+          "type": "down",
           "named": true
         },
         {
@@ -1921,6 +1905,10 @@
           "named": true
         },
         {
+          "type": "modified_key",
+          "named": true
+        },
+        {
           "type": "mouse_button",
           "named": true
         },
@@ -1929,23 +1917,11 @@
           "named": true
         },
         {
-          "type": "shift",
-          "named": true
-        },
-        {
           "type": "special",
           "named": true
         },
         {
-          "type": "super",
-          "named": true
-        },
-        {
-          "type": "together",
-          "named": true
-        },
-        {
-          "type": "with",
+          "type": "up",
           "named": true
         }
       ]
@@ -3010,6 +2986,69 @@
     }
   },
   {
+    "type": "modified_key",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alt",
+          "named": true
+        },
+        {
+          "type": "ctrl",
+          "named": true
+        },
+        {
+          "type": "down",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "key",
+          "named": true
+        },
+        {
+          "type": "left",
+          "named": true
+        },
+        {
+          "type": "middle",
+          "named": true
+        },
+        {
+          "type": "mouse_button",
+          "named": true
+        },
+        {
+          "type": "right",
+          "named": true
+        },
+        {
+          "type": "shift",
+          "named": true
+        },
+        {
+          "type": "special",
+          "named": true
+        },
+        {
+          "type": "super",
+          "named": true
+        },
+        {
+          "type": "up",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "modify_font",
     "named": true,
     "fields": {
@@ -3145,11 +3184,7 @@
       "required": true,
       "types": [
         {
-          "type": "alt",
-          "named": true
-        },
-        {
-          "type": "ctrl",
+          "type": "down",
           "named": true
         },
         {
@@ -3169,6 +3204,10 @@
           "named": true
         },
         {
+          "type": "modified_key",
+          "named": true
+        },
+        {
           "type": "mouse_button",
           "named": true
         },
@@ -3177,23 +3216,11 @@
           "named": true
         },
         {
-          "type": "shift",
-          "named": true
-        },
-        {
           "type": "special",
           "named": true
         },
         {
-          "type": "super",
-          "named": true
-        },
-        {
-          "type": "together",
-          "named": true
-        },
-        {
-          "type": "with",
+          "type": "up",
           "named": true
         }
       ]
@@ -5335,6 +5362,10 @@
     "named": false
   },
   {
+    "type": ">",
+    "named": false
+  },
+  {
     "type": "@",
     "named": false
   },
@@ -6163,6 +6194,10 @@
     "named": false
   },
   {
+    "type": "down",
+    "named": true
+  },
+  {
     "type": "draw_minimal_borders",
     "named": false
   },
@@ -6260,6 +6295,146 @@
   },
   {
     "type": "extend",
+    "named": false
+  },
+  {
+    "type": "f1",
+    "named": false
+  },
+  {
+    "type": "f10",
+    "named": false
+  },
+  {
+    "type": "f11",
+    "named": false
+  },
+  {
+    "type": "f12",
+    "named": false
+  },
+  {
+    "type": "f13",
+    "named": false
+  },
+  {
+    "type": "f14",
+    "named": false
+  },
+  {
+    "type": "f15",
+    "named": false
+  },
+  {
+    "type": "f16",
+    "named": false
+  },
+  {
+    "type": "f17",
+    "named": false
+  },
+  {
+    "type": "f18",
+    "named": false
+  },
+  {
+    "type": "f19",
+    "named": false
+  },
+  {
+    "type": "f2",
+    "named": false
+  },
+  {
+    "type": "f20",
+    "named": false
+  },
+  {
+    "type": "f21",
+    "named": false
+  },
+  {
+    "type": "f22",
+    "named": false
+  },
+  {
+    "type": "f23",
+    "named": false
+  },
+  {
+    "type": "f24",
+    "named": false
+  },
+  {
+    "type": "f25",
+    "named": false
+  },
+  {
+    "type": "f26",
+    "named": false
+  },
+  {
+    "type": "f27",
+    "named": false
+  },
+  {
+    "type": "f28",
+    "named": false
+  },
+  {
+    "type": "f29",
+    "named": false
+  },
+  {
+    "type": "f3",
+    "named": false
+  },
+  {
+    "type": "f30",
+    "named": false
+  },
+  {
+    "type": "f31",
+    "named": false
+  },
+  {
+    "type": "f32",
+    "named": false
+  },
+  {
+    "type": "f33",
+    "named": false
+  },
+  {
+    "type": "f34",
+    "named": false
+  },
+  {
+    "type": "f35",
+    "named": false
+  },
+  {
+    "type": "f4",
+    "named": false
+  },
+  {
+    "type": "f5",
+    "named": false
+  },
+  {
+    "type": "f6",
+    "named": false
+  },
+  {
+    "type": "f7",
+    "named": false
+  },
+  {
+    "type": "f8",
+    "named": false
+  },
+  {
+    "type": "f9",
     "named": false
   },
   {
@@ -8283,10 +8458,6 @@
     "named": false
   },
   {
-    "type": "together",
-    "named": true
-  },
-  {
     "type": "toggle-visibility",
     "named": false
   },
@@ -8389,6 +8560,10 @@
   {
     "type": "ungrabbed",
     "named": false
+  },
+  {
+    "type": "up",
+    "named": true
   },
   {
     "type": "update_check_interval",
@@ -8521,10 +8696,6 @@
   {
     "type": "window_resize_step_lines",
     "named": false
-  },
-  {
-    "type": "with",
-    "named": true
   },
   {
     "type": "word",

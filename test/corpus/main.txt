@@ -63,36 +63,33 @@ map cmd+up scroll_line_up
 (configuration_file
   (keyboard_shortcut
     sequence: (key_sequence
-      (ctrl)
-      (with)
-      (shift)
-      (with)
-      (special))
+      (modified_key
+        (ctrl)
+        (shift)
+        (up)))
     action: (key_action
       (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
-      (ctrl)
-      (with)
-      (shift)
-      (with)
-      (key))
+      (modified_key
+        (ctrl)
+        (shift)
+        (key)))
     action: (key_action
       (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
-      (alt)
-      (with)
-      (super)
-      (with)
-      (special))
+      (modified_key
+        (alt)
+        (super)
+        (special)))
     action: (key_action
       (generic_action)))
   (keyboard_shortcut
     sequence: (key_sequence
-      (super)
-      (with)
-      (special))
+      (modified_key
+        (super)
+        (up)))
     action: (key_action
       (generic_action))))
 
