@@ -6,38 +6,46 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "_common_node"
+        "name": "_line"
       }
     },
-    "_common_node": {
+    "_line": {
       "type": "SEQ",
       "members": [
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "comment"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "comment"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "include"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_option"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "color_option"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "keyboard_shortcut"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "mouse_shortcut"
+                }
+              ]
             },
             {
-              "type": "SYMBOL",
-              "name": "include"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_option"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "color_option"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "keyboard_shortcut"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "mouse_shortcut"
+              "type": "BLANK"
             }
           ]
         },

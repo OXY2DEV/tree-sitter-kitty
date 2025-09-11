@@ -25,17 +25,19 @@ module.exports = grammar({
   ],
   rules: {
     configuration_file: $ => repeat(
-      $._common_node
+      $._line
     ),
 
-    _common_node: $ => seq(
-      choice(
-        $.comment,
-        $.include,
-        $._option,
-        $.color_option,
-        $.keyboard_shortcut,
-        $.mouse_shortcut,
+    _line: $ => seq(
+      optional(
+        choice(
+          $.comment,
+          $.include,
+          $._option,
+          $.color_option,
+          $.keyboard_shortcut,
+          $.mouse_shortcut,
+        )
       ),
       /\r?\n+/,
     ),
