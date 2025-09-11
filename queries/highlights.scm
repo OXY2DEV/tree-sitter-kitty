@@ -706,7 +706,7 @@
   ] @keyword)
 
 (font_value
-  (string) @variable.parameter)
+  (string) @string.special)
 
 (font_value
   .
