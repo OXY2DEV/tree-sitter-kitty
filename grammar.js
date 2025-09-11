@@ -19,6 +19,10 @@ const keyboard = require("./grammar/keyboard");
 module.exports = grammar({
   name: "kitty",
 
+  extras: $ => [
+    $.line_continuation,
+    /[ \t]/,
+  ],
   rules: {
     configuration_file: $ => repeat(
       $._common_node
@@ -39,6 +43,15 @@ module.exports = grammar({
     comment: $ => seq(
         "#",
         alias(/[^\n\r]*/, $.comment_content),
+    ),
+
+    line_continuation: _ => prec(1000,
+      token(
+        seq(
+          /\n[ \t]*/,
+          token.immediate("\\"),
+        )
+      )
     ),
 
     ...primitives.rules,

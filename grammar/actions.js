@@ -364,7 +364,7 @@ module.exports.rules = {
       field("options", $.launch_options),
     ),
     optional(
-      field("command", alias(/\w[^\n\r]+/, $.string)),
+      field("command", alias(/[^-\s][^\n\r]+/, $.string)),
     )
   ),
 

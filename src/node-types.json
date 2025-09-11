@@ -2890,6 +2890,12 @@
     "fields": {}
   },
   {
+    "type": "line_continuation",
+    "named": true,
+    "extra": true,
+    "fields": {}
+  },
+  {
     "type": "load_config_file",
     "named": true,
     "fields": {

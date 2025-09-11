@@ -213,7 +213,7 @@ module.exports.rules = {
   font_value: $ => repeat1(
     choice(
       $.font_property,
-      alias(/[^\s=]+/, $.string)
+      alias(/[^\s=\\]+/, $.string)
     ),
   ),
 
