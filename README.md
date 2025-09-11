@@ -7,14 +7,14 @@
 ## 💡 Features
 
 - Supports various syntax,
-	+ Comments
+    + Comments
     + Includes(+ variants)
     + Options
     + Keyboard shortcuts
     + Mouse shortcuts
     + Action alias
 - Extensive primitive data type support,
-	+ Pixel(`7px`)
+    + Pixel(`7px`)
     + Percentage
     + Number
     + Boolean
@@ -22,6 +22,7 @@
     + String
     + Time
     + Others(e.g. `axis`, `cursor`, `pointer` etc.)
+- Supports line continuation via `\`.
 - Syntax highlighting queries.
 - Injection support.
 
