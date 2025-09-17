@@ -794,7 +794,7 @@
   "cursor_blink_interval" @keyword)
 
 ((ease) @type
-  (#match? @type "^\w+$"))
+  (#match? @type "^[a-z-]$"))
 
 (ease_step
   "steps" @function.call)
