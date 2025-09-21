@@ -439,7 +439,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ((ease) @type
-  (#match? @type "^[a-z-]$"))
+  (#any-of? @type
+    "linear"
+
+    "ease"
+    "ease-in-out"
+    "ease-in"
+    "ease-out"
+
+    "step-start"
+    "step-end"
+
+    "ease"
+    "ease-in"
+    "ease-out"
+    "ease-in-out"))
 
 (ease_step
   "steps" @function.call)
