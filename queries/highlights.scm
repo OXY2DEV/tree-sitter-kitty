@@ -381,7 +381,7 @@
 (font_value
   .
   (string) @constant
-  (#eq? @constant "auto")
+  (#any-of? @constant "auto" "monospace" "bold" "italic" "bold-italic")
   .)
 
 (font_property
