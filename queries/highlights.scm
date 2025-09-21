@@ -130,7 +130,7 @@
   type: _ @type)
 
 (launch_source_window
-  pattern: (string) @string.regex)
+  pattern: (string) @string.regexp)
 
 (launch_cwd
   directory: (string) @string.special.path)
@@ -145,7 +145,7 @@
   location: (window_location) @type)
 
 (launch_next_to
-  pattern: (string) @string.regex)
+  pattern: (string) @string.regexp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -173,7 +173,7 @@
 
 (marker_entry
   id: (marker_id) @label
-  pattern: (string) @string.regex)
+  pattern: (string) @string.regexp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -309,10 +309,10 @@
   "set_colors" @function.call)
 
 (color_match
-  (string) @string.regex)
+  (string) @string.regexp)
 
 (color_match_tab
-  (string) @string.regex)
+  (string) @string.regexp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -335,7 +335,7 @@
 
 (include
   "globinclude" @keyword
-  glob: (string) @string.regex)
+  glob: (string) @string.regexp)
 
 (include
   "geninclude" @keyword
@@ -550,9 +550,9 @@
     "body"
     "app"
     "type"
-  ] @parameter
+  ] @variable.parameter
   ":" @punctuation.delimiter
-  (string) @string.regex)
+  (string) @string.regexp)
 
 (filter_element
   "\"" @punctuation.delimiter)
