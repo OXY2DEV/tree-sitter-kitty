@@ -11,6 +11,8 @@ function immediate (...tokens) {
 }
 
 module.exports.rules = {
+  _boolean: $ => immediate("yes", "no"),
+
   _action: $ => choice(
     $.generic_action,
 
@@ -172,7 +174,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   copy_to_buffer: $ => seq(
-    "copy_to_buffer",
+    alias("copy_to_buffer", $.action_name),
     field(
       "buffer",
       $.string
@@ -180,7 +182,7 @@ module.exports.rules = {
   ),
 
   paste_from_buffer: $ => seq(
-    "paste_from_buffer",
+    alias("paste_from_buffer", $.action_name),
     field(
       "buffer",
       $.string
@@ -190,7 +192,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   send_key: $ => seq(
-    "send_key",
+    alias("send_key", $.action_name),
     field(
       "keys",
       $.keys
@@ -207,7 +209,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   send_text: $ => seq(
-    "send_text",
+    alias("send_text", $.action_name),
     field("mode", $.keyboard_mode),
     /[\t ]+/,
     field("text", alias(/[^\n\r]+/, $.string))
@@ -231,12 +233,12 @@ module.exports.rules = {
   ),
 
   show_kitty_doc: $ => seq(
-    "show_kitty_doc",
+    alias("show_kitty_doc", $.action_name),
     field("topic", $.string)
   ),
 
   signal_child: $ => seq(
-    "signal_child",
+    alias("signal_child", $.action_name),
     field(
       "signal",
       alias(/[A-Z0-9]+/, $.signal_name)
@@ -244,7 +246,7 @@ module.exports.rules = {
   ),
 
   clear_terminal: $ => seq(
-    "clear_terminal",
+    alias("clear_terminal", $.action_name),
     field("action", $.clear_action),
     field("target", $.clear_target)
   ),
@@ -266,7 +268,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   combine: $ => prec.left(seq(
-    "combine",
+    alias("combine", $.action_name),
     repeat1($.combine_action)
   )),
 
@@ -327,7 +329,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   disable_ligatures_in: $ => seq(
-    "disable_ligatures_in",
+    alias("disable_ligatures_in", $.action_name),
     field("target", $.ligature_target),
     field("type", $.ligature_disabled)
   ),
@@ -347,7 +349,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   kitten: $ => seq(
-    "kitten",
+    alias("kitten", $.action_name),
     field("target", $.string),
     optional(
       field("arguments", $.kitten_arguments)
@@ -359,12 +361,16 @@ module.exports.rules = {
   // Launch command //////////////////////////////////////////////////////////
 
   launch: $ => seq(
-    "launch",
+    alias("launch", $.action_name),
     optional(
       field("options", $.launch_options),
     ),
     optional(
-      field("command", alias(/[^-\s][^\n\r]+/, $.string)),
+      field("command", alias(
+        // Command can't start with **special characters**!
+        token(/[^-=\s][^\n\r]+/),
+        $.string
+      )),
     )
   ),
 
@@ -408,61 +414,56 @@ module.exports.rules = {
 
 
   launch_source_window: $ => seq(
-    "--source-window",
+    alias("--source-window", $.flag),
     field("pattern", $.string),
   ),
 
   launch_window_title: $ => seq(
-    choice("--title", "--window-title"),
+    alias(
+      choice("--title", "--window-title"),
+      $.flag
+    ),
     field("title", $.string)
   ),
 
   launch_tab_title: $ => seq(
-    "--tab-title",
+    alias("--tab-title", $.flag),
     field("title", $.string)
   ),
 
-  launch_type: _ => seq(
-    "--type",
+  launch_type: $ => seq(
+    alias("--type", $.flag),
     token.immediate("="),
-    immediate(
-      "window",
-      "tab",
-      "os-window",
-      "overlay-main",
-      "overlay",
-      "background",
-      "clipboard,primary",
-      "os-panel"
+    field("type", $._launch_type_value),
+  ),
+
+  _launch_type_value: _ => immediate(
+    "window",
+    "tab",
+    "os-window",
+    "overlay-main",
+    "overlay",
+    "background",
+    "clipboard,primary",
+    "os-panel"
+  ),
+
+  launch_focus: $ => seq(
+    alias(
+      choice("--dont-take-focus", "--keep-focus"),
+      $.flag
+    ),
+
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
     )
   ),
 
-  // Take as many characters as possible.
-  launch_focus: _ => prec.right(choice(
-    seq(
-      "--dont-take-focus",
-
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      )
-    ),
-    seq(
-      "--keep-focus",
-
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      )
-    ),
-  )),
-
   launch_cwd: $ => seq(
-    "--cwd",
+    alias("--cwd", $.flag),
     token.immediate("="),
     field(
       "directory",
@@ -471,7 +472,7 @@ module.exports.rules = {
   ),
 
   launch_env: $ => seq(
-    "--env",
+    alias("--env", $.flag),
 
     field("variable", alias(/[^\s=]+/, $.string)),
     token.immediate("="),
@@ -479,7 +480,7 @@ module.exports.rules = {
   ),
 
   launch_var: $ => seq(
-    "--var",
+    alias("--var", $.flag),
 
     field("variable", alias(/[^\s=]+/, $.string)),
     token.immediate("="),
@@ -487,60 +488,52 @@ module.exports.rules = {
   ),
 
   // Match as many characters as possible.
-  launch_hold: _ => prec.right(
-    seq(
-      "--hold",
+  launch_hold: $ => seq(
+    alias("--hold", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
+  ),
+
+  launch_copy_colors: $ => seq(
+    alias("--copy-colors", $.flag),
+
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
     )
   ),
 
-  launch_copy_colors: _ => prec.right(
-    seq(
-      "--copy-colors",
+  launch_copy_cmd: $ => seq(
+    alias("--copy-cmd", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
-  launch_copy_cmd: _ => prec.right(
-    seq(
-      "--copy-cmd",
+  launch_copy_env: $ => seq(
+    alias("--copy-env", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
-  ),
-
-  launch_copy_env: _ => prec.right(
-    seq(
-      "--copy-env",
-
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
   launch_window_location: $ => seq(
-    "--location",
+    alias("--location", $.flag),
     token.immediate("="),
     field("location", $.window_location)
   ),
@@ -558,35 +551,33 @@ module.exports.rules = {
   ),
 
   launch_next_to: $ => seq(
-    "--next-to",
+    alias("--next-to", $.flag),
     field("pattern", $.string),
   ),
 
   launch_bias: $ => seq(
-    "--bias",
+    alias("--bias", $.flag),
     field(
       "amount",
       alias(/[0-9\-\.]+/, $.number),
     ),
   ),
 
-  launch_remote_control: _ => prec.right(
-    seq(
-      "--allow-remote-control",
+  launch_remote_control: $ => seq(
+    alias("--allow-remote-control", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_remote_password: $ => seq(
-    "--remote-control-password",
+    alias("--remote-control-password", $.flag),
 
     "'",
     '"',
@@ -604,7 +595,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   launch_stdin_source: $ => seq(
-    "--stdin-source",
+    alias("--stdin-source", $.flag),
     token.immediate("="),
     field("source", $.stdin_source)
   ),
@@ -620,36 +611,32 @@ module.exports.rules = {
     "none",
   ),
 
-  launch_stdin_formatting: _ => prec.right(
-    seq(
-      "--stdin-add-formatting",
+  launch_stdin_formatting: $ => seq(
+    alias("--stdin-add-formatting", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
-  launch_stdin_line_wrap: _ => prec.right(
-    seq(
-      "--stdin-add-line-wrap-markers",
+  launch_stdin_line_wrap: $ => seq(
+    alias("--stdin-add-line-wrap-markers", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_marker: $ => seq(
-    "--marker",
+    alias("--marker", $.flag),
     field("markers", $.markers)
   ),
 
@@ -678,22 +665,22 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   launch_os_window_class: $ => seq(
-    "--os-window-class",
+    alias("--os-window-class", $.flag),
     field("class", $.string)
   ),
 
   launch_os_window_name: $ => seq(
-    "--os-window-name",
+    alias("--os-window-name", $.flag),
     field("name", $.string)
   ),
 
   launch_os_window_title: $ => seq(
-    "--os-window-title",
+    alias("--os-window-title", $.flag),
     field("title", $.string)
   ),
 
   launch_os_window_state: $ => seq(
-    "--os-window-state",
+    alias("--os-window-state", $.flag),
     field("state", $.window_state)
   ),
 
@@ -705,14 +692,14 @@ module.exports.rules = {
   ),
 
   launch_logo: $ => seq(
-    "--logo",
+    alias("--logo", $.flag),
     field("path", $.string)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_logo_position: $ => seq(
-    "--logo-position",
+    alias("--logo-position", $.flag),
     field("position", $.logo_position)
   ),
 
@@ -731,14 +718,14 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   launch_logo_alpha: $ => seq(
-    "--logo-alpha",
+    alias("--logo-alpha", $.flag),
     field("alpha", $.number)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_color: $ => seq(
-    "--color",
+    alias("--color", $.flag),
     field("name", $.color_option_name),
     token.immediate("="),
     field("value", $.color),
@@ -747,7 +734,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   launch_spacing: $ => seq(
-    "--spacing",
+    alias("--spacing", $.flag),
     field(
       "name",
       alias(/[^\s\=]+/, $.string)
@@ -759,7 +746,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   launch_os_panel: $ => seq(
-    "--os-panel",
+    alias("--os-panel", $.flag),
     field("option", $._os_panel_option),
   ),
 
@@ -794,7 +781,7 @@ module.exports.rules = {
   ),
 
   os_panel_lines: $ => seq(
-    "lines",
+    alias("lines", $.option),
     token.immediate("="),
     field(
       "value",
@@ -803,7 +790,7 @@ module.exports.rules = {
   ),
 
   os_panel_columns: $ => seq(
-    "columns",
+    alias("columns", $.option),
     token.immediate("="),
     field(
       "value",
@@ -812,31 +799,31 @@ module.exports.rules = {
   ),
 
   os_panel_margin_top: $ => seq(
-    "margin-top",
+    alias("margin-top", $.option),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_margin_left: $ => seq(
-    "margin-left",
+    alias("margin-left", $.option),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_margin_bottom: $ => seq(
-    "margin-bottom",
+    alias("margin-bottom", $.option),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_margin_right: $ => seq(
-    "margin-right",
+    alias("margin-right", $.option),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_edge: $ => seq(
-    "edge",
+    alias("edge", $.option),
     token.immediate("="),
     field("value", $.edge),
   ),
@@ -853,7 +840,7 @@ module.exports.rules = {
   ),
 
   os_panel_layer: $ => seq(
-    "layer",
+    alias("layer", $.option),
     token.immediate("="),
     field("value", $.layer),
   ),
@@ -866,7 +853,7 @@ module.exports.rules = {
   ),
 
   os_panel_output_name: $ => seq(
-    "output-name",
+    alias("output-name", $.option),
     token.immediate("="),
     field("path", $.output_name),
   ),
@@ -877,25 +864,31 @@ module.exports.rules = {
   ),
 
   os_panel_app_id: $ => seq(
-    choice(
-      "app-id",
-      "class",
+    alias(
+      choice(
+        "app-id",
+        "class",
+      ),
+      $.option
     ),
     token.immediate("="),
     field("value", $.output_name),
   ),
 
   os_panel_name: $ => seq(
-    choice(
-      "name",
-      "os-window-tag",
+    alias(
+      choice(
+        "name",
+        "os-window-tag",
+      ),
+      $.option
     ),
     token.immediate("="),
     field("value", $.output_name),
   ),
 
   os_panel_focus_policy: $ => seq(
-    "focus-policy",
+    alias("focus-policy", $.option),
     token.immediate("="),
     field("value", $.focus_policy),
   ),
@@ -907,82 +900,85 @@ module.exports.rules = {
   ),
 
   os_panel_grab_keyboard: $ => seq(
-    "grab-keyboard",
+    alias("grab-keyboard", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_exclusive_zone: $ => seq(
-    "exclusive-zone",
+    alias("exclusive-zone", $.option),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_override_exclusive_zone: $ => seq(
-    "override-exclusive-zone",
+    alias("override-exclusive-zone", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_single_instancw: $ => seq(
-    choice(
-      "single-instance",
-      "1",
+    alias(
+      choice(
+        "single-instance",
+        "1"
+      ),
+      $.option
     ),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_instance_group: $ => seq(
-    "instance-group",
+    alias("instance-group", $.option),
     token.immediate("="),
     field("value", $.string),
   ),
 
   os_panel_wait_for_single_instance_window_close: $ => seq(
-    "wait-for-single-instance-window-close",
+    alias("wait-for-single-instance-window-close", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_listen_on: $ => seq(
-    "listen-on",
+    alias("listen-on", $.option),
     token.immediate("="),
     field("value", $.string),
   ),
 
   os_panel_toggle_visibility: $ => seq(
-    "toggle-visibility",
+    alias("toggle-visibility", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_start_as_hidden: $ => seq(
-    "start-as-hidden",
+    alias("start-as-hidden", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_detach: $ => seq(
-    "detach",
+    alias("detach", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_detach_log: $ => seq(
-    "detached-log",
+    alias("detached-log", $.option),
     token.immediate("="),
     field("path", $.string),
   ),
 
   os_panel_debug_rendering: $ => seq(
-    "debug-rendering",
+    alias("debug-rendering", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_debug_input: $ => seq(
-    "debug-input",
+    alias("debug-input", $.option),
     token.immediate("="),
     field("value", $.boolean),
   ),
@@ -994,23 +990,21 @@ module.exports.rules = {
     field("path", $.string)
   ),
 
-  launch_hold_after_ssh: _ => prec.right(
-    seq(
-      "--hold-after-ssh",
+  launch_hold_after_ssh: $ => seq(
+    alias("--hold-after-ssh", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   load_config_file: $ => seq(
-    "load_config_file",
+    alias("load_config_file", $.action_name),
 
     optional(
       field("path", $.string)
@@ -1018,12 +1012,12 @@ module.exports.rules = {
   ),
 
   open_url: $ => seq(
-    "open_url",
+    alias("open_url", $.action_name),
     field("url", $.string)
   ),
 
   remote_control_script: $ => seq(
-    "remote_control_script",
+    alias("remote_control_script", $.action_name),
     field("path", $.string),
 
     optional(
@@ -1036,17 +1030,17 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   sleep: $ => seq(
-    "sleep",
+    alias("sleep", $.action_name),
     field("time", $.time)
   ),
 
   mouse_handle_click: $ => seq(
-    "mouse_handle_click",
+    alias("mouse_handle_click", $.action_name),
     field("actions", $.handle_click_actions)
   ),
 
-  handle_click_actions: $ => repeat1($._handle_click_action),
-  _handle_click_action: _ => choice(
+  handle_click_actions: $ => repeat1($.click_action),
+  click_action: _ => choice(
     "selection",
     "link",
     "prompt"
@@ -1055,7 +1049,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   mouse_selection: $ => seq(
-    "mouse_selection",
+    alias("mouse_selection", $.action_name),
     field("selection", $.mouse_selection_type)
   ),
 
@@ -1070,15 +1064,15 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  scroll_prompt_to_top: _ => seq(
-    "scroll_prompt_to_top",
+  scroll_prompt_to_top: $ => seq(
+    alias("scroll_prompt_to_top", $.action_name),
     optional(
-      "y",
+      alias("y", $.boolean)
     ),
   ),
 
   scroll_to_prompt: $ => seq(
-    "scroll_to_prompt",
+    alias("scroll_to_prompt", $.action_name),
     field("prompt_number", $.number),
     optional(
       field("lines_above", $.number),
@@ -1086,19 +1080,19 @@ module.exports.rules = {
   ),
 
   goto_tab: $ => seq(
-    "goto_tab",
+    alias("goto_tab", $.action_name),
     field("tab", $.number),
   ),
 
   set_tab_title: $ => seq(
-    "set_tab_title",
+    alias("set_tab_title", $.action_name),
     optional(
       field("title", $.title),
     )
   ),
 
   set_window_title: $ => seq(
-    "set_window_title",
+    alias("set_window_title", $.action_name),
     field("title", $.title),
   ),
 
@@ -1108,26 +1102,26 @@ module.exports.rules = {
   ),
 
   move_window: $ => seq(
-    "move_window",
+    alias("move_window", $.action_name),
     field("direction", $.direction),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   neighboring_window: $ => seq(
-    "neighboring_window",
+    alias("neighboring_window", $.action_name),
     field("direction", $.direction),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   nth_window: $ => seq(
-    "nth_window",
+    alias("nth_window", $.action_name),
     field("window", $.number),
   ),
 
   resize_window: $ => seq(
-    "resize_window",
+    alias("resize_window", $.action_name),
     field("layout", $.window_layout),
     optional(
       field("amount", $.number),
@@ -1144,7 +1138,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   change_font_size: $ => seq(
-    "change_font_size",
+    alias("change_font_size", $.action_name),
     field("target", $.os_window),
     field("amount", $.font_change_amount),
   ),
@@ -1166,13 +1160,13 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  close_window_with_confirmation: _ => seq(
-    "close_window_with_confirmation",
+  close_window_with_confirmation: $ => seq(
+    alias("close_window_with_confirmation", $.action_name),
     optional("ignore-shell"),
   ),
 
   detach_window: $ => seq(
-    "detach_window",
+    alias("detach_window", $.action_name),
     optional(
       field("into", $.detach_into),
     ),
@@ -1196,7 +1190,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   set_background_opacity: $ => seq(
-    "set_background_opacity",
+    alias("set_background_opacity", $.action_name),
     field("alpha", $.background_alpha),
   ),
 
@@ -1208,36 +1202,26 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   nth_os_window: $ => seq(
-    "nth_os_window",
+    alias("nth_os_window", $.action_name),
     field("window", $.number),
   ),
 
   toggle_layout: $ => seq(
-    "toggle_layout",
+    alias("toggle_layout", $.action_name),
     optional(
-      field("name", $.layout_name)
+      field("name", $.layout_type)
     ),
   ),
 
   goto_layout: $ => seq(
-    "goto_layout",
-    field("name", $.layout_name),
+    alias("goto_layout", $.action_name),
+    field("name", $.layout_type),
     optional(
       seq(
         token.immediate(":"),
         field("options", $.layout_option)
       )
     ),
-  ),
-
-  layout_name: _ => choice(
-    "stack",
-    "tall",
-    "fat",
-    "grid",
-    "splits",
-    "horizontal",
-    "vertical",
   ),
 
   layout_option: $ => seq(
@@ -1258,7 +1242,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   remote_control: $ => seq(
-    "remote_control",
+    alias("remote_control", $.action_name),
     /[ \t]+/,
     field(
       "commands",
@@ -1278,14 +1262,14 @@ module.exports.rules = {
   action_arguments: $ => repeat1($._primitive),
 
   pass_selection_to_program: $ => seq(
-    "pass_selection_to_program",
+    alias("pass_selection_to_program", $.action_name),
     field("program", $.string)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   new_window: $ => seq(
-    "new_window",
+    alias("new_window", $.action_name),
 
     optional(
       seq(
@@ -1298,7 +1282,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   kitty_shell: $ => seq(
-    "kitty_shell",
+    alias("kitty_shell", $.action_name),
     optional(
       field("open_as", $.kitty_shell_open_as)
     )

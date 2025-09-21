@@ -41,13 +41,16 @@ url_style curly
 
 (configuration_file
   (boolean_option
+    (option_name)
     value: (boolean))
   (numeric_option
+    (option_name)
     value: (number))
   (color_option
     name: (color_option_name)
     value: (color))
   (string_option
+    (option_name)
     value: (string)))
 
 ==============================================================================

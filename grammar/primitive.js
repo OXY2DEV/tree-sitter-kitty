@@ -165,6 +165,16 @@ module.exports.rules = {
   time_suffix: _ => immediate("s", "m", "h", "d"),
   direction: _ => choice("top", "bottom", "left", "right"),
 
+  layout_type: _ => choice(
+    "fat",
+    "grid",
+    "horizontal",
+    "splits",
+    "stack",
+    "tall",
+    "vertical"
+  ),
+
   // Keyboard & mouse primitives /////////////////////////////////////////////
 
   _key: $ => choice(

@@ -64,7 +64,7 @@ module.exports.rules = {
    ),
 
   numeric_option: $ => seq(
-    $._numeric_option_name,
+    alias($._numeric_option_name, $.option_name),
     field("value", $.number)
   ),
 
@@ -109,7 +109,7 @@ module.exports.rules = {
 
 
   boolean_option: $ => seq(
-    $._boolean_option_name,
+    alias($._boolean_option_name, $.option_name),
     field("value", $.boolean)
   ),
 
@@ -146,7 +146,7 @@ module.exports.rules = {
 
 
  string_option: $ => seq(
-    $._string_option_name,
+    alias($._string_option_name, $.option_name),
     field("value", $.string)
   ),
 
@@ -206,7 +206,15 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   font_option: $ => seq(
-    choice("font_family", "bold_font", "italic_font", "bold_italic_font"),
+    alias(
+      choice(
+        "font_family",
+        "bold_font",
+        "italic_font",
+        "bold_italic_font"
+      ),
+      $.option_name
+    ),
     field("value", $.font_value),
   ),
 
@@ -239,7 +247,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   symbol_map: $ => seq(
-    "symbol_map",
+    alias("symbol_map", $.option_name),
     field("codepoints", $.string),
     field(
       "font_name",
@@ -248,7 +256,7 @@ module.exports.rules = {
   ),
 
   narrow_symbols: $ => seq(
-    "narrow_symbols",
+    alias("narrow_symbols", $.option_name),
     field("codepoints", $.string),
     optional(
       field("width", $.number)
@@ -263,7 +271,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   font_features: $ => seq(
-    "font_features",
+    alias("font_features", $.option_name),
     choice(
       "none",
       seq(
@@ -278,7 +286,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   modify_font: $ => seq(
-    "modify_font",
+    alias("modify_font", $.option_name),
     field("type", $.font_modification_type),
     field("value", $._font_unit),
   ),
@@ -301,8 +309,8 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  undercurl_style: _ => seq(
-    "undercurl_style",
+  undercurl_style: $ => seq(
+    alias("undercurl_style", $.option_name),
 
     choice("thin", "thick"),
     token.immediate("-"),
@@ -315,12 +323,12 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   text_composition_strategy: $ => seq(
-    "text_composition_strategy",
+    alias("text_composition_strategy", $.option_name),
     field("strategy", $.composition_value),
   ),
 
   composition_value: $ => choice(
-    "platform",
+    alias("platform", $.option_name),
     seq(
       field("gamma_adjustment", $.number),
       field("multiplicative_contrast", $.number),
@@ -330,7 +338,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   text_fg_override_threshold: $ => seq(
-    "text_fg_override_threshold",
+    alias("text_fg_override_threshold", $.option_name),
     field("threshold", $.fg_override_threshold)
   ),
 
@@ -344,7 +352,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   cursor_shape: $ => seq(
-    "cursor_shape",
+    alias("cursor_shape", $.option_name),
     field("shape", $.cursor)
   ),
 
@@ -355,7 +363,7 @@ module.exports.rules = {
   ),
 
   cursor_shape_unfocused: $ => seq(
-    "cursor_shape_unfocused",
+    alias("cursor_shape_unfocused", $.option_name),
     field(
       "shape",
       alias($.cursor_unfocused, $.cursor)
@@ -373,7 +381,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   cursor_blink_interval: $ => seq(
-    "cursor_blink_interval",
+    alias("cursor_blink_interval", $.option_name),
     field("interval", $.number),
 
     optional(
@@ -438,7 +446,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   cursor_trail_decay: $ => seq(
-    "cursor_trail_decay",
+    alias("cursor_trail_decay", $.option_name),
     field("fastest_time", $.number),
     field("slowest_time", $.number),
   ),
@@ -446,7 +454,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   scrollback_pager: $ => seq(
-    "scrollback_pager",
+    alias("scrollback_pager", $.option_name),
     field(
       "command",
       alias(/[^\n\r]+/, $.string)
@@ -456,7 +464,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   mouse_hide_wait: $ => seq(
-    "mouse_hide_wait",
+    alias("mouse_hide_wait", $.option_name),
     field("hide_wait", $.number),
 
     optional(
@@ -500,7 +508,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   url_prefixes: $ => seq(
-    "url_prefixes",
+    alias("url_prefixes", $.option_name),
     field("prefixes", $.url_prefix_list),
   ),
 
@@ -509,7 +517,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   url_excluded_characters: $ => seq(
-    "url_excluded_characters",
+    alias("url_excluded_characters", $.option_name),
     field("characters", $.string)
   ),
 
@@ -541,7 +549,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   paste_actions: $ => seq(
-    "paste_actions",
+    alias("paste_actions", $.option_name),
     field("actions", $.paste_action_list)
   ),
 
@@ -601,7 +609,7 @@ module.exports.rules = {
   // ),
 
   pointer_shape_when_dragging: $ => seq(
-    "pointer_shape_when_dragging",
+    alias("pointer_shape_when_dragging", $.option_name),
     field("default", $.pointer),
 
     optional(
@@ -619,7 +627,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   visual_bell_color: $ => seq(
-    "visual_bell_color",
+    alias("visual_bell_color", $.option_name),
     field("color", $.color)
   ),
 
@@ -657,7 +665,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   enabled_layouts: $ => seq(
-    "enabled_layouts",
+    alias("enabled_layouts", $.option_name),
     field("layouts", $.layout_list)
   ),
 
@@ -701,7 +709,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   window_border_width: $ => seq(
-    "window_border_width",
+    alias("window_border_width", $.option_name),
     field("value", $.border_width),
   ),
 
@@ -718,7 +726,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   box_drawing_scale: $ => seq(
-    "box_drawing_scale",
+    alias("box_drawing_scale", $.option_name),
     field("value", $.scale_value)
   ),
 
@@ -733,22 +741,22 @@ module.exports.rules = {
   ),
 
   window_margin_width: $ => seq(
-    "window_margin_width",
+    alias("window_margin_width", $.option_name),
     field("value", $.box_value)
   ),
 
   single_window_margin_width: $ => seq(
-    "single_window_margin_width",
+    alias("single_window_margin_width", $.option_name),
     field("value", $.box_value)
   ),
 
   window_padding_width: $ => seq(
-    "window_padding_width",
+    alias("window_padding_width", $.option_name),
     field("value", $.box_value)
   ),
 
   single_window_padding_width: $ => seq(
-    "single_window_padding_width",
+    alias("single_window_padding_width", $.option_name),
     field("value", $.box_value)
   ),
 
@@ -797,7 +805,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   resize_debounce_time: $ => seq(
-    "resize_debounce_time",
+    alias("resize_debounce_time", $.option_name),
     field("debounce", $.number),
     field("after_pause", $.number),
   ),
@@ -817,7 +825,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   tab_bar_margin_height: $ => seq(
-    "tab_bar_margin_height",
+    alias("tab_bar_margin_height", $.option_name),
     field("outer", $.number),
     field("inner", $.number),
   ),
@@ -870,7 +878,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   tab_fade: $ => seq(
-    "tab_fade",
+    alias("tab_fade", $.option_name),
     field("fade", $.fade_list)
   ),
 
@@ -923,7 +931,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   transparent_background_colors: $ => seq(
-    "transparent_background_colors",
+    alias("transparent_background_colors", $.option_name),
     field("value", $.transparency_list)
   ),
 
@@ -962,7 +970,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   remote_control_password: $ => seq(
-    "remote_control_password",
+    alias("remote_control_password", $.option_name),
     field("password", $.string),
     optional(
       field("actions", $.remote_actions)
@@ -991,7 +999,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   env: $ => seq(
-    "env",
+    alias("env", $.option_name),
     field("variable", alias(/[^\s\=]+/, $.string)),
     token.immediate("="),
     field("value", $._primitive),
@@ -1000,7 +1008,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   filter_notification: $ => seq(
-    "filter_notification",
+    alias("filter_notification", $.option_name),
     field("filter", $.filter_sequence)
   ),
 
@@ -1049,7 +1057,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   clipboard_control: $ => seq(
-    "clipboard_control",
+    alias("clipboard_control", $.option_name),
     field("actions", $.clipboard_actions)
   ),
 
@@ -1067,7 +1075,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   shell_integration: $ => seq(
-    "shell_integration",
+    alias("shell_integration", $.option_name),
     field("features", $.shell_features)
   ),
 
@@ -1094,7 +1102,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   clone_source_strategies: $ => seq(
-    "clone_source_strategies",
+    alias("clone_source_strategies", $.option_name),
     field("strategy", $.source_stratagies)
   ),
 
@@ -1123,7 +1131,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   notify_on_cmd_finish: $ => seq(
-    "notify_on_cmd_finish",
+    alias("notify_on_cmd_finish", $.option_name),
     field("when", $.notification_time),
 
     optional(
@@ -1173,7 +1181,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   menu_map: $ => seq(
-    "menu_map",
+    alias("menu_map", $.option_name),
     field(
       "value",
       alias(/[^\n\r]+/, $.string)
@@ -1183,7 +1191,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   wayland_titlebar_color: $ => seq(
-    "wayland_titlebar_color",
+    alias("wayland_titlebar_color", $.option_name),
     field("value", $.titlebar_color)
   ),
 
@@ -1251,7 +1259,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   window_logo_scale: $ => seq(
-    "window_logo_scale",
+    alias("window_logo_scale", $.option_name),
     choice(
       seq(
         field("scale_w", $.number),
@@ -1264,7 +1272,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   confirm_os_window_close: $ => seq(
-    "confirm_os_window_close",
+    alias("confirm_os_window_close", $.option_name),
     field("min_win_count", $.number),
     optional(
       field(
@@ -1277,7 +1285,7 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   kitty_mod: $ => seq(
-    "kitty_mod",
+    alias("kitty_mod", $.option_name),
     field("sequence", $.key_sequence)
   ),
 

@@ -20,58 +20,64 @@ module.exports.rules = {
     $.color_match_tab,
   ),
 
-  color_all: _ => prec.right(
-    seq(
+  color_all: $ => seq(
+    alias(
       choice(
         "-a",
-        "--all",
+        "--all"
       ),
+      $.flag
+    ),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
-  color_configured: _ => prec.right(
-    seq(
+  color_configured: $ => seq(
+    alias(
       choice(
         "-c",
-        "--configured",
+        "--configured"
       ),
+      $.flag
+    ),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
-  color_reset: _ => prec.right(
-    seq(
-      "--reset",
+  color_reset: $ => seq(
+    alias("--reset", $.flag),
 
-      optional(
-        seq(
-          token.immediate("="),
-          token.immediate("no")
-        )
-      ),
-    )
+    optional(
+      seq(
+        token.immediate("="),
+        alias($._boolean, $.boolean),
+      )
+    ),
   ),
 
   color_match: $ => seq(
-    choice("--match", "-m"),
+    alias(
+      choice("--match", "-m"),
+      $.flag
+    ),
     field("query", $.string),
   ),
 
   color_match_tab: $ => seq(
-    choice("--match-tab", "-t"),
+    alias(
+      choice("--match-tab", "-t"),
+      $.flag
+    ),
     field("query", $.string),
   ),
 

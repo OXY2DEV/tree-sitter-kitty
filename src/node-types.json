@@ -138,6 +138,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -169,6 +179,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -210,6 +230,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -246,7 +276,22 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
+  },
+  {
+    "type": "click_action",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "clipboard_action",
@@ -282,6 +327,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -298,12 +353,32 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "close_window_with_confirmation",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "color",
@@ -313,12 +388,40 @@
   {
     "type": "color_all",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "color_configured",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "color_data",
@@ -370,6 +473,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -386,6 +499,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -453,7 +576,21 @@
   {
     "type": "color_reset",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "color_value",
@@ -478,6 +615,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "action_name",
+          "named": true
+        },
         {
           "type": "combine_action",
           "named": true
@@ -687,6 +828,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -933,6 +1084,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -949,6 +1110,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1000,6 +1171,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1016,6 +1197,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1032,6 +1223,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1058,6 +1259,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1079,6 +1290,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1110,6 +1331,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1181,6 +1412,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1235,6 +1476,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1315,6 +1566,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1392,6 +1653,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1413,6 +1684,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1507,7 +1788,7 @@
         "required": true,
         "types": [
           {
-            "type": "layout_name",
+            "type": "layout_type",
             "named": true
           }
         ]
@@ -1522,6 +1803,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1538,12 +1829,32 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "handle_click_actions",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "click_action",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "include",
@@ -1951,6 +2262,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2010,6 +2331,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2026,6 +2357,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2057,6 +2398,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2073,6 +2424,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2099,22 +2460,74 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "launch_copy_cmd",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_copy_colors",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_copy_env",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_cwd",
@@ -2130,6 +2543,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2156,22 +2579,74 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "launch_focus",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_hold",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_hold_after_ssh",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_logo",
@@ -2187,6 +2662,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2203,6 +2688,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2219,6 +2714,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2235,6 +2740,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2251,6 +2766,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2506,6 +3031,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2522,6 +3057,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2538,6 +3083,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2554,6 +3109,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2570,12 +3135,36 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "launch_remote_control",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_remote_password",
@@ -2601,6 +3190,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2617,6 +3216,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2643,17 +3252,55 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "launch_stdin_formatting",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_stdin_line_wrap",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_stdin_source",
@@ -2669,6 +3316,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2685,12 +3342,71 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "launch_type",
     "named": true,
-    "fields": {}
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "background",
+            "named": false
+          },
+          {
+            "type": "clipboard,primary",
+            "named": false
+          },
+          {
+            "type": "os-panel",
+            "named": false
+          },
+          {
+            "type": "os-window",
+            "named": false
+          },
+          {
+            "type": "overlay",
+            "named": false
+          },
+          {
+            "type": "overlay-main",
+            "named": false
+          },
+          {
+            "type": "tab",
+            "named": false
+          },
+          {
+            "type": "window",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch_var",
@@ -2716,6 +3432,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2748,6 +3474,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2764,6 +3500,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2790,11 +3536,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "layout_name",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "layout_option",
@@ -2851,6 +3592,11 @@
     }
   },
   {
+    "type": "layout_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "left",
     "named": true,
     "fields": {}
@@ -2885,6 +3631,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2983,6 +3739,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3080,6 +3846,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3101,6 +3877,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3147,6 +3933,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3168,6 +3964,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3442,6 +4248,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3468,6 +4284,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3484,6 +4310,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3500,6 +4336,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3557,6 +4403,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3573,6 +4429,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3589,6 +4455,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3605,6 +4481,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3621,7 +4507,22 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
+  },
+  {
+    "type": "option_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "os_panel_app_id",
@@ -3637,6 +4538,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3657,6 +4568,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3673,6 +4594,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3689,6 +4620,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3705,6 +4646,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3721,6 +4672,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3737,6 +4698,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3753,6 +4724,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3769,6 +4750,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3785,6 +4776,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3801,6 +4802,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3817,6 +4828,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3837,6 +4858,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3853,6 +4884,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3869,6 +4910,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3885,6 +4936,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3901,6 +4962,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3917,6 +4988,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3933,6 +5014,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3949,6 +5040,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3965,6 +5066,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3981,6 +5092,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3997,6 +5118,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4013,6 +5144,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4029,6 +5170,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4055,6 +5206,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4091,6 +5252,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4107,6 +5278,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4168,6 +5349,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4242,6 +5433,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4268,6 +5469,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4294,6 +5505,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4320,6 +5541,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4346,6 +5577,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4371,7 +5612,21 @@
   {
     "type": "scroll_prompt_to_top",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "scroll_to_prompt",
@@ -4397,6 +5652,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4413,6 +5678,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4429,6 +5704,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4455,6 +5740,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4476,6 +5771,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4518,6 +5823,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4534,6 +5849,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4570,6 +5895,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4591,6 +5926,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4607,6 +5952,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4623,6 +5978,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4639,6 +6004,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4655,6 +6030,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4706,6 +6091,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4737,6 +6132,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4763,6 +6168,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4779,6 +6194,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4795,6 +6220,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4811,6 +6246,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4873,11 +6318,21 @@
         "required": false,
         "types": [
           {
-            "type": "layout_name",
+            "type": "layout_type",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "action_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4909,6 +6364,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4933,7 +6398,17 @@
   {
     "type": "undercurl_style",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "url_excluded_characters",
@@ -4949,6 +6424,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4980,6 +6465,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4996,6 +6491,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5012,6 +6517,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5028,6 +6543,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5074,6 +6599,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5090,6 +6625,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5106,6 +6651,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5154,183 +6709,11 @@
     "named": false
   },
   {
-    "type": "--all",
-    "named": false
-  },
-  {
-    "type": "--allow-remote-control",
-    "named": false
-  },
-  {
-    "type": "--bias",
-    "named": false
-  },
-  {
-    "type": "--color",
-    "named": false
-  },
-  {
-    "type": "--configured",
-    "named": false
-  },
-  {
-    "type": "--copy-cmd",
-    "named": false
-  },
-  {
-    "type": "--copy-colors",
-    "named": false
-  },
-  {
-    "type": "--copy-env",
-    "named": false
-  },
-  {
-    "type": "--cwd",
-    "named": false
-  },
-  {
-    "type": "--dont-take-focus",
-    "named": false
-  },
-  {
-    "type": "--env",
-    "named": false
-  },
-  {
-    "type": "--hold",
-    "named": false
-  },
-  {
-    "type": "--hold-after-ssh",
-    "named": false
-  },
-  {
-    "type": "--keep-focus",
-    "named": false
-  },
-  {
-    "type": "--location",
-    "named": false
-  },
-  {
-    "type": "--logo",
-    "named": false
-  },
-  {
-    "type": "--logo-alpha",
-    "named": false
-  },
-  {
-    "type": "--logo-position",
-    "named": false
-  },
-  {
-    "type": "--marker",
-    "named": false
-  },
-  {
-    "type": "--match",
-    "named": false
-  },
-  {
-    "type": "--match-tab",
-    "named": false
-  },
-  {
-    "type": "--next-to",
-    "named": false
-  },
-  {
-    "type": "--os-panel",
-    "named": false
-  },
-  {
-    "type": "--os-window-class",
-    "named": false
-  },
-  {
-    "type": "--os-window-name",
-    "named": false
-  },
-  {
-    "type": "--os-window-state",
-    "named": false
-  },
-  {
-    "type": "--os-window-title",
-    "named": false
-  },
-  {
-    "type": "--remote-control-password",
-    "named": false
-  },
-  {
-    "type": "--reset",
-    "named": false
-  },
-  {
-    "type": "--source-window",
-    "named": false
-  },
-  {
-    "type": "--spacing",
-    "named": false
-  },
-  {
-    "type": "--stdin-add-formatting",
-    "named": false
-  },
-  {
-    "type": "--stdin-add-line-wrap-markers",
-    "named": false
-  },
-  {
-    "type": "--stdin-source",
-    "named": false
-  },
-  {
-    "type": "--tab-title",
-    "named": false
-  },
-  {
-    "type": "--title",
-    "named": false
-  },
-  {
-    "type": "--type",
-    "named": false
-  },
-  {
-    "type": "--var",
-    "named": false
-  },
-  {
     "type": "--watcher",
     "named": false
   },
   {
     "type": "--when-focus-on",
-    "named": false
-  },
-  {
-    "type": "--window-title",
-    "named": false
-  },
-  {
-    "type": "-a",
-    "named": false
-  },
-  {
-    "type": "-c",
-    "named": false
-  },
-  {
-    "type": "-m",
-    "named": false
-  },
-  {
-    "type": "-t",
     "named": false
   },
   {
@@ -5434,6 +6817,10 @@
     "named": false
   },
   {
+    "type": "action_name",
+    "named": true
+  },
+  {
     "type": "active",
     "named": false
   },
@@ -5507,10 +6894,6 @@
   },
   {
     "type": "app",
-    "named": false
-  },
-  {
-    "type": "app-id",
     "named": false
   },
   {
@@ -5638,14 +7021,6 @@
     "named": false
   },
   {
-    "type": "bold_font",
-    "named": false
-  },
-  {
-    "type": "bold_italic_font",
-    "named": false
-  },
-  {
     "type": "bottom",
     "named": false
   },
@@ -5655,10 +7030,6 @@
   },
   {
     "type": "bottom-right",
-    "named": false
-  },
-  {
-    "type": "box_drawing_scale",
     "named": false
   },
   {
@@ -5698,19 +7069,11 @@
     "named": false
   },
   {
-    "type": "change_font_size",
-    "named": false
-  },
-  {
     "type": "chartreuse",
     "named": false
   },
   {
     "type": "chocolate",
-    "named": false
-  },
-  {
-    "type": "class",
     "named": false
   },
   {
@@ -5734,10 +7097,6 @@
     "named": false
   },
   {
-    "type": "clear_terminal",
-    "named": false
-  },
-  {
     "type": "click",
     "named": false
   },
@@ -5750,15 +7109,7 @@
     "named": false
   },
   {
-    "type": "clipboard_control",
-    "named": false
-  },
-  {
     "type": "clipboard_max_size",
-    "named": false
-  },
-  {
-    "type": "clone_source_strategies",
     "named": false
   },
   {
@@ -5791,10 +7142,6 @@
   },
   {
     "type": "close_window",
-    "named": false
-  },
-  {
-    "type": "close_window_with_confirmation",
     "named": false
   },
   {
@@ -5866,14 +7213,6 @@
     "named": false
   },
   {
-    "type": "columns",
-    "named": false
-  },
-  {
-    "type": "combine",
-    "named": false
-  },
-  {
     "type": "comma",
     "named": false
   },
@@ -5902,10 +7241,6 @@
     "named": false
   },
   {
-    "type": "confirm_os_window_close",
-    "named": false
-  },
-  {
     "type": "control",
     "named": false
   },
@@ -5923,10 +7258,6 @@
   },
   {
     "type": "copy_or_interrupt",
-    "named": false
-  },
-  {
-    "type": "copy_to_buffer",
     "named": false
   },
   {
@@ -5978,18 +7309,6 @@
     "named": false
   },
   {
-    "type": "cursor_blink_interval",
-    "named": false
-  },
-  {
-    "type": "cursor_shape",
-    "named": false
-  },
-  {
-    "type": "cursor_shape_unfocused",
-    "named": false
-  },
-  {
     "type": "cursor_stop_blinking_after",
     "named": false
   },
@@ -5999,10 +7318,6 @@
   },
   {
     "type": "cursor_trail",
-    "named": false
-  },
-  {
-    "type": "cursor_trail_decay",
     "named": false
   },
   {
@@ -6098,14 +7413,6 @@
     "named": false
   },
   {
-    "type": "debug-input",
-    "named": false
-  },
-  {
-    "type": "debug-rendering",
-    "named": false
-  },
-  {
     "type": "debug_config",
     "named": false
   },
@@ -6134,19 +7441,7 @@
     "named": false
   },
   {
-    "type": "detach",
-    "named": false
-  },
-  {
     "type": "detach_tab",
-    "named": false
-  },
-  {
-    "type": "detach_window",
-    "named": false
-  },
-  {
-    "type": "detached-log",
     "named": false
   },
   {
@@ -6167,10 +7462,6 @@
   },
   {
     "type": "disable_ligatures",
-    "named": false
-  },
-  {
-    "type": "disable_ligatures_in",
     "named": false
   },
   {
@@ -6226,10 +7517,6 @@
     "named": false
   },
   {
-    "type": "edge",
-    "named": false
-  },
-  {
     "type": "edit_config_file",
     "named": false
   },
@@ -6250,19 +7537,11 @@
     "named": false
   },
   {
-    "type": "enabled_layouts",
-    "named": false
-  },
-  {
     "type": "end",
     "named": false
   },
   {
     "type": "enter",
-    "named": false
-  },
-  {
-    "type": "env",
     "named": false
   },
   {
@@ -6283,10 +7562,6 @@
   },
   {
     "type": "exclusive",
-    "named": false
-  },
-  {
-    "type": "exclusive-zone",
     "named": false
   },
   {
@@ -6462,10 +7737,6 @@
     "named": false
   },
   {
-    "type": "filter_notification",
-    "named": false
-  },
-  {
     "type": "firebrick",
     "named": false
   },
@@ -6478,11 +7749,11 @@
     "named": false
   },
   {
-    "type": "floralwhite",
-    "named": false
+    "type": "flag",
+    "named": true
   },
   {
-    "type": "focus-policy",
+    "type": "floralwhite",
     "named": false
   },
   {
@@ -6491,14 +7762,6 @@
   },
   {
     "type": "focus_visible_window",
-    "named": false
-  },
-  {
-    "type": "font_family",
-    "named": false
-  },
-  {
-    "type": "font_features",
     "named": false
   },
   {
@@ -6563,18 +7826,6 @@
   },
   {
     "type": "goldenrod",
-    "named": false
-  },
-  {
-    "type": "goto_layout",
-    "named": false
-  },
-  {
-    "type": "goto_tab",
-    "named": false
-  },
-  {
-    "type": "grab-keyboard",
     "named": false
   },
   {
@@ -6714,10 +7965,6 @@
     "named": false
   },
   {
-    "type": "instance-group",
-    "named": false
-  },
-  {
     "type": "invisible",
     "named": false
   },
@@ -6731,10 +7978,6 @@
   },
   {
     "type": "iso_level5_shift",
-    "named": false
-  },
-  {
-    "type": "italic_font",
     "named": false
   },
   {
@@ -6770,10 +8013,6 @@
     "named": false
   },
   {
-    "type": "kitten",
-    "named": false
-  },
-  {
     "type": "kitten_alias",
     "named": false
   },
@@ -6783,10 +8022,6 @@
   },
   {
     "type": "kitty_mod",
-    "named": false
-  },
-  {
-    "type": "kitty_shell",
     "named": false
   },
   {
@@ -6914,10 +8149,6 @@
     "named": false
   },
   {
-    "type": "launch",
-    "named": false
-  },
-  {
     "type": "lavender",
     "named": false
   },
@@ -6927,10 +8158,6 @@
   },
   {
     "type": "lawngreen",
-    "named": false
-  },
-  {
-    "type": "layer",
     "named": false
   },
   {
@@ -7058,10 +8285,6 @@
     "named": false
   },
   {
-    "type": "lines",
-    "named": false
-  },
-  {
     "type": "link",
     "named": false
   },
@@ -7078,19 +8301,11 @@
     "named": false
   },
   {
-    "type": "listen-on",
-    "named": false
-  },
-  {
     "type": "listen_on",
     "named": false
   },
   {
     "type": "listjson",
-    "named": false
-  },
-  {
-    "type": "load_config_file",
     "named": false
   },
   {
@@ -7151,22 +8366,6 @@
   },
   {
     "type": "map",
-    "named": false
-  },
-  {
-    "type": "margin-bottom",
-    "named": false
-  },
-  {
-    "type": "margin-left",
-    "named": false
-  },
-  {
-    "type": "margin-right",
-    "named": false
-  },
-  {
-    "type": "margin-top",
     "named": false
   },
   {
@@ -7282,10 +8481,6 @@
     "named": false
   },
   {
-    "type": "menu_map",
-    "named": false
-  },
-  {
     "type": "middle",
     "named": true
   },
@@ -7318,10 +8513,6 @@
     "named": false
   },
   {
-    "type": "modify_font",
-    "named": false
-  },
-  {
     "type": "mouse_button",
     "named": true
   },
@@ -7334,23 +8525,11 @@
     "named": false
   },
   {
-    "type": "mouse_handle_click",
-    "named": false
-  },
-  {
-    "type": "mouse_hide_wait",
-    "named": false
-  },
-  {
     "type": "mouse_map",
     "named": false
   },
   {
     "type": "mouse_select_command_output",
-    "named": false
-  },
-  {
-    "type": "mouse_selection",
     "named": false
   },
   {
@@ -7363,10 +8542,6 @@
   },
   {
     "type": "move_tab_forward",
-    "named": false
-  },
-  {
-    "type": "move_window",
     "named": false
   },
   {
@@ -7386,14 +8561,6 @@
     "named": false
   },
   {
-    "type": "name",
-    "named": false
-  },
-  {
-    "type": "narrow_symbols",
-    "named": false
-  },
-  {
     "type": "narrowee",
     "named": false
   },
@@ -7407,10 +8574,6 @@
   },
   {
     "type": "neighbor",
-    "named": false
-  },
-  {
-    "type": "neighboring_window",
     "named": false
   },
   {
@@ -7451,10 +8614,6 @@
   },
   {
     "type": "new_tab_with_cwd",
-    "named": false
-  },
-  {
-    "type": "new_window",
     "named": false
   },
   {
@@ -7538,18 +8697,6 @@
     "named": false
   },
   {
-    "type": "notify_on_cmd_finish",
-    "named": false
-  },
-  {
-    "type": "nth_os_window",
-    "named": false
-  },
-  {
-    "type": "nth_window",
-    "named": false
-  },
-  {
     "type": "num_lock",
     "named": false
   },
@@ -7574,10 +8721,6 @@
     "named": false
   },
   {
-    "type": "open_url",
-    "named": false
-  },
-  {
     "type": "open_url_with",
     "named": false
   },
@@ -7588,6 +8731,14 @@
   {
     "type": "opt",
     "named": false
+  },
+  {
+    "type": "option",
+    "named": false
+  },
+  {
+    "type": "option",
+    "named": true
   },
   {
     "type": "option",
@@ -7618,15 +8769,7 @@
     "named": false
   },
   {
-    "type": "os-window-tag",
-    "named": false
-  },
-  {
     "type": "os_window",
-    "named": false
-  },
-  {
-    "type": "output-name",
     "named": false
   },
   {
@@ -7635,10 +8778,6 @@
   },
   {
     "type": "overlay-main",
-    "named": false
-  },
-  {
-    "type": "override-exclusive-zone",
     "named": false
   },
   {
@@ -7670,23 +8809,11 @@
     "named": false
   },
   {
-    "type": "pass_selection_to_program",
-    "named": false
-  },
-  {
     "type": "password",
     "named": true
   },
   {
     "type": "paste",
-    "named": false
-  },
-  {
-    "type": "paste_actions",
-    "named": false
-  },
-  {
-    "type": "paste_from_buffer",
     "named": false
   },
   {
@@ -7734,10 +8861,6 @@
     "named": false
   },
   {
-    "type": "platform",
-    "named": false
-  },
-  {
     "type": "plum",
     "named": false
   },
@@ -7747,10 +8870,6 @@
   },
   {
     "type": "pointer_options",
-    "named": false
-  },
-  {
-    "type": "pointer_shape_when_dragging",
     "named": false
   },
   {
@@ -7862,18 +8981,6 @@
     "named": false
   },
   {
-    "type": "remote_control",
-    "named": false
-  },
-  {
-    "type": "remote_control_password",
-    "named": false
-  },
-  {
-    "type": "remote_control_script",
-    "named": false
-  },
-  {
     "type": "remove_marker",
     "named": false
   },
@@ -7898,15 +9005,7 @@
     "named": false
   },
   {
-    "type": "resize_debounce_time",
-    "named": false
-  },
-  {
     "type": "resize_in_steps",
-    "named": false
-  },
-  {
-    "type": "resize_window",
     "named": false
   },
   {
@@ -8002,15 +9101,7 @@
     "named": false
   },
   {
-    "type": "scroll_prompt_to_top",
-    "named": false
-  },
-  {
     "type": "scroll_to_mark",
-    "named": false
-  },
-  {
-    "type": "scroll_to_prompt",
     "named": false
   },
   {
@@ -8027,10 +9118,6 @@
   },
   {
     "type": "scrollback_lines",
-    "named": false
-  },
-  {
-    "type": "scrollback_pager",
     "named": false
   },
   {
@@ -8078,27 +9165,7 @@
     "named": false
   },
   {
-    "type": "send_key",
-    "named": false
-  },
-  {
-    "type": "send_text",
-    "named": false
-  },
-  {
-    "type": "set_background_opacity",
-    "named": false
-  },
-  {
     "type": "set_colors",
-    "named": false
-  },
-  {
-    "type": "set_tab_title",
-    "named": false
-  },
-  {
-    "type": "set_window_title",
     "named": false
   },
   {
@@ -8107,10 +9174,6 @@
   },
   {
     "type": "shell",
-    "named": false
-  },
-  {
-    "type": "shell_integration",
     "named": false
   },
   {
@@ -8131,10 +9194,6 @@
   },
   {
     "type": "show_hyperlink_targets",
-    "named": false
-  },
-  {
-    "type": "show_kitty_doc",
     "named": false
   },
   {
@@ -8162,10 +9221,6 @@
     "named": false
   },
   {
-    "type": "signal_child",
-    "named": false
-  },
-  {
     "type": "signal_name",
     "named": true
   },
@@ -8175,18 +9230,6 @@
   },
   {
     "type": "simulate_color_scheme_preference_change",
-    "named": false
-  },
-  {
-    "type": "single-instance",
-    "named": false
-  },
-  {
-    "type": "single_window_margin_width",
-    "named": false
-  },
-  {
-    "type": "single_window_padding_width",
     "named": false
   },
   {
@@ -8211,10 +9254,6 @@
   },
   {
     "type": "slategrey",
-    "named": false
-  },
-  {
-    "type": "sleep",
     "named": false
   },
   {
@@ -8247,10 +9286,6 @@
   },
   {
     "type": "start",
-    "named": false
-  },
-  {
-    "type": "start-as-hidden",
     "named": false
   },
   {
@@ -8295,10 +9330,6 @@
   },
   {
     "type": "swap_with_window",
-    "named": false
-  },
-  {
-    "type": "symbol_map",
     "named": false
   },
   {
@@ -8350,10 +9381,6 @@
     "named": false
   },
   {
-    "type": "tab_bar_margin_height",
-    "named": false
-  },
-  {
     "type": "tab_bar_margin_width",
     "named": false
   },
@@ -8363,10 +9390,6 @@
   },
   {
     "type": "tab_bar_style",
-    "named": false
-  },
-  {
-    "type": "tab_fade",
     "named": false
   },
   {
@@ -8422,14 +9445,6 @@
     "named": false
   },
   {
-    "type": "text_composition_strategy",
-    "named": false
-  },
-  {
-    "type": "text_fg_override_threshold",
-    "named": false
-  },
-  {
     "type": "thick",
     "named": false
   },
@@ -8458,15 +9473,7 @@
     "named": false
   },
   {
-    "type": "toggle-visibility",
-    "named": false
-  },
-  {
     "type": "toggle_fullscreen",
-    "named": false
-  },
-  {
-    "type": "toggle_layout",
     "named": false
   },
   {
@@ -8506,10 +9513,6 @@
     "named": false
   },
   {
-    "type": "transparent_background_colors",
-    "named": false
-  },
-  {
     "type": "triplepress",
     "named": false
   },
@@ -8523,10 +9526,6 @@
   },
   {
     "type": "unchanged",
-    "named": false
-  },
-  {
-    "type": "undercurl_style",
     "named": false
   },
   {
@@ -8574,14 +9573,6 @@
     "named": false
   },
   {
-    "type": "url_excluded_characters",
-    "named": false
-  },
-  {
-    "type": "url_prefixes",
-    "named": false
-  },
-  {
     "type": "url_style",
     "named": false
   },
@@ -8598,10 +9589,6 @@
     "named": false
   },
   {
-    "type": "visual_bell_color",
-    "named": false
-  },
-  {
     "type": "visual_bell_duration",
     "named": false
   },
@@ -8614,19 +9601,11 @@
     "named": false
   },
   {
-    "type": "wait-for-single-instance-window-close",
-    "named": false
-  },
-  {
     "type": "watcher",
     "named": false
   },
   {
     "type": "wayland_enable_ime",
-    "named": false
-  },
-  {
-    "type": "wayland_titlebar_color",
     "named": false
   },
   {
@@ -8662,10 +9641,6 @@
     "named": false
   },
   {
-    "type": "window_border_width",
-    "named": false
-  },
-  {
     "type": "window_logo_alpha",
     "named": false
   },
@@ -8675,18 +9650,6 @@
   },
   {
     "type": "window_logo_position",
-    "named": false
-  },
-  {
-    "type": "window_logo_scale",
-    "named": false
-  },
-  {
-    "type": "window_margin_width",
-    "named": false
-  },
-  {
-    "type": "window_padding_width",
     "named": false
   },
   {
@@ -8707,10 +9670,6 @@
   },
   {
     "type": "write-primary",
-    "named": false
-  },
-  {
-    "type": "y",
     "named": false
   },
   {
