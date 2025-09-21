@@ -79,9 +79,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (keyboard_mode
-  "," @punctuation.delimiter)
-
-(keyboard_mode
   [
     "normal"
     "application"
@@ -125,6 +122,7 @@
 
 (flag) @constant
 ("=" @punctuation.delimiter)
+("," @punctuation.delimiter)
 
 (launch_type
   type: _ @type)
@@ -366,9 +364,6 @@
     "ungrabbed"
   ] @variable.parameter)
 
-(mouse_mode
-  "," @punctuation.delimiter)
-
 ; Options ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (option_name) @keyword
@@ -456,9 +451,6 @@
   ] @punctuation.bracket)
 
 (ease_step
-  "," @punctuation.delimiter)
-
-(ease_step
   position: (ease_step_position) @type)
 
 (cubic_bezier
@@ -469,9 +461,6 @@
     "("
     ")"
   ] @punctuation.bracket)
-
-(cubic_bezier
-  "," @punctuation.delimiter)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -490,9 +479,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(paste_action_list
-  "," @punctuation.delimiter)
-
 (paste_action) @type
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -500,9 +486,6 @@
 (pointer) @type
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(layout_list
-  "," @punctuation.delimiter)
 
 (layout) @type
 
@@ -515,9 +498,6 @@
   ] @type)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(scale_value
-  "," @punctuation.delimiter)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -572,9 +552,6 @@
 (shell_feature) @type
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(source_stratagies
-  "," @punctuation.delimiter)
 
 (source_strategy) @type
 
