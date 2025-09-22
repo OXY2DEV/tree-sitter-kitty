@@ -492,10 +492,7 @@
   value: (string) @string.special)
 
 ((titlebar_color) @constant
-  (#eq? @constant "system"))
-
-((titlebar_color) @constant
-  (#eq? @constant "background"))
+  (#any-of? @constant "system" "background"))
 
 (confirm_os_window_close
   count_background: (string) @constant)
