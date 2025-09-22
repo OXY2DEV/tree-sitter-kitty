@@ -431,12 +431,6 @@
 (url_excluded_characters
   characters: (string) @string.special)
 
-(paste_action) @type
-
-(pointer) @type
-
-(layout) @type
-
 (border_width
   [
     "px"
@@ -480,6 +474,9 @@
   (shell_feature)
   (source_strategy)
   (notification_time)
+  (paste_action)
+  (pointer)
+  (layout)
 ] @type
 
 (notification_action) @function.call

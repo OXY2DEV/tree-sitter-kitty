@@ -61,6 +61,8 @@ module.exports.rules = {
     $.kitty_mod,
     $.initial_window_size,
     $.action_alias,
+
+    $.pointer_option,
    ),
 
   numeric_option: $ => seq(
@@ -197,8 +199,6 @@ module.exports.rules = {
     "open_url_with",
     "underline_hyperlinks",
     "copy_on_select",
-    "pointer_shape_when_grabbed",
-    "default_pointer_shape",
     "window_logo_path",
     "tab_bar_background",
   ),
@@ -600,13 +600,16 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  // pointer_options: $ => seq(
-  //   choice(
-  //     "pointer_shape_when_grabbed",
-  //     "default_pointer_shape",
-  //   ),
-  //   field("type", $.pointer_type)
-  // ),
+  pointer_option: $ => seq(
+    alias(
+      choice(
+        "pointer_shape_when_grabbed",
+        "default_pointer_shape",
+      ),
+      $.option_name
+    ),
+    field("type", $.pointer)
+  ),
 
   pointer_shape_when_dragging: $ => seq(
     alias("pointer_shape_when_dragging", $.option_name),

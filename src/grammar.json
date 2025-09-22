@@ -8612,6 +8612,10 @@
         {
           "type": "SYMBOL",
           "name": "action_alias"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pointer_option"
         }
       ]
     },
@@ -9121,14 +9125,6 @@
         {
           "type": "STRING",
           "value": "copy_on_select"
-        },
-        {
-          "type": "STRING",
-          "value": "pointer_shape_when_grabbed"
-        },
-        {
-          "type": "STRING",
-          "value": "default_pointer_shape"
         },
         {
           "type": "STRING",
@@ -10231,6 +10227,37 @@
           "content": {
             "type": "STRING",
             "value": "no-op"
+          }
+        }
+      ]
+    },
+    "pointer_option": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "pointer_shape_when_grabbed"
+              },
+              {
+                "type": "STRING",
+                "value": "default_pointer_shape"
+              }
+            ]
+          },
+          "named": true,
+          "value": "option_name"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "pointer"
           }
         }
       ]
