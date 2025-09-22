@@ -527,4 +527,5 @@
 
 ; Comment ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(comment) @comment
+(comment
+  (comment_content) @spell) @comment
