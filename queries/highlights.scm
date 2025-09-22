@@ -340,8 +340,7 @@
   .)
 
 (font_property
-  name: (string) @variable.parameter
-  "=" @punctuation.delimiter)
+  name: (string) @variable.parameter)
 
 (symbol_map
   codepoints: (string) @constant
@@ -441,8 +440,7 @@
   (string) @type)
 
 (env
-  variable: (string) @variable.builtin
-  "=" @punctuation.delimiter)
+  variable: (string) @variable.builtin)
 
 ((filter_sequence) @constant
   (#eq? @constant "all"))
