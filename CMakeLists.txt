@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-kitty
-        VERSION "2.2.0"
+        VERSION "2.2.1"
         DESCRIPTION "Tree-sitter grammar for kitty.conf files."
         HOMEPAGE_URL "https://github.com/tree-sitter/tree-sitter-kitty"
         LANGUAGES C)

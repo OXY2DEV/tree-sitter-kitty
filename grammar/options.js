@@ -1037,18 +1037,20 @@ module.exports.rules = {
   ),
 
   _filter_string: $ => choice(
-    seq(
-      token.immediate('"'),
-      alias(
-        token.immediate(/[^"]*/),
-        $.string
-      ),
-      token.immediate('"'),
-    ),
+    alias($.filter_string, $.string),
     alias(
       token.immediate(/[^\s"]+/),
       $.string
     )
+  ),
+
+  filter_string: $ => seq(
+    token.immediate('"'),
+    alias(
+      token.immediate(/[^"]*/),
+      $.string_content
+    ),
+    token.immediate('"'),
   ),
 
   boolean_operator: _ => choice(

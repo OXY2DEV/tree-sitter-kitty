@@ -459,9 +459,6 @@
   ":" @punctuation.delimiter
   (string) @string.regexp)
 
-(filter_element
-  "\"" @punctuation.delimiter)
-
 [
   (clipboard_action)
   (shell_feature)

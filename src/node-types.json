@@ -6109,7 +6109,17 @@
   {
     "type": "string",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "string_content",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "string_option",
@@ -8763,10 +8773,6 @@
     "named": true
   },
   {
-    "type": "option",
-    "named": false
-  },
-  {
     "type": "or",
     "named": false
   },
@@ -9333,6 +9339,10 @@
   {
     "type": "strikethrough_position",
     "named": false
+  },
+  {
+    "type": "string_content",
+    "named": true
   },
   {
     "type": "strip_trailing_spaces",
