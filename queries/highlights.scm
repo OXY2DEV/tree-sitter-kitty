@@ -454,7 +454,7 @@
 ((filter_sequence) @constant
   (#eq? @constant "all"))
 
-(boolean_expression) @operator
+(boolean_operator) @keyword.operator
 
 (filter_element
   [

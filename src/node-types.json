@@ -120,7 +120,7 @@
     "fields": {}
   },
   {
-    "type": "boolean_expression",
+    "type": "boolean_operator",
     "named": true,
     "fields": {}
   },
@@ -1546,7 +1546,7 @@
       "required": false,
       "types": [
         {
-          "type": "boolean_expression",
+          "type": "boolean_operator",
           "named": true
         },
         {

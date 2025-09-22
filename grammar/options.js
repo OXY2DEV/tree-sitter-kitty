@@ -1022,7 +1022,7 @@ module.exports.rules = {
 
   filter_element: $ => choice(
     $._filter_element,
-    $.boolean_expression
+    $.boolean_operator
   ),
 
   _filter_element: $ => seq(
@@ -1051,7 +1051,7 @@ module.exports.rules = {
     )
   ),
 
-  boolean_expression: _ => choice(
+  boolean_operator: _ => choice(
     "and",
     "or",
     "not"

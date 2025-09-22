@@ -11017,7 +11017,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "boolean_expression"
+          "name": "boolean_operator"
         }
       ]
     },
@@ -11106,7 +11106,7 @@
         }
       ]
     },
-    "boolean_expression": {
+    "boolean_operator": {
       "type": "CHOICE",
       "members": [
         {
