@@ -475,13 +475,12 @@
 (filter_element
   "\"" @punctuation.delimiter)
 
-(clipboard_action) @type
-
-(shell_feature) @type
-
-(source_strategy) @type
-
-(notification_time) @type
+[
+  (clipboard_action)
+  (shell_feature)
+  (source_strategy)
+  (notification_time)
+] @type
 
 (notification_action) @function.call
 
