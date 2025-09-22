@@ -10,17 +10,12 @@
  (number)
 ] @number
 
-(pixel
-  "px" @type)
-
-(percentage
-  "%" @type)
-
 [
- (boolean)
- "enabled"
- "disabled"
-] @boolean
+ "px"
+ "%"
+] @type
+
+(boolean) @boolean
 
 (layout_type) @type
 

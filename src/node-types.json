@@ -5872,8 +5872,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "hoolean",
+          "named": true
+        },
         {
           "type": "shell_feature",
           "named": true
@@ -7465,10 +7469,6 @@
     "named": false
   },
   {
-    "type": "disabled",
-    "named": false
-  },
-  {
     "type": "discard_event",
     "named": false
   },
@@ -7530,10 +7530,6 @@
   },
   {
     "type": "enable_audio_bell",
-    "named": false
-  },
-  {
-    "type": "enabled",
     "named": false
   },
   {
@@ -7891,6 +7887,10 @@
   {
     "type": "honeydew",
     "named": false
+  },
+  {
+    "type": "hoolean",
+    "named": true
   },
   {
     "type": "horizontal",
@@ -8730,10 +8730,6 @@
   },
   {
     "type": "opt",
-    "named": false
-  },
-  {
-    "type": "option",
     "named": false
   },
   {

@@ -1080,8 +1080,13 @@ module.exports.rules = {
   ),
 
   shell_features: $ => choice(
-    "enabled",
-    "disabled",
+    alias(
+      choice(
+        "enabled",
+        "disabled"
+      ),
+      $.hoolean
+    ),
     repeat1($.shell_feature)
   ),
 

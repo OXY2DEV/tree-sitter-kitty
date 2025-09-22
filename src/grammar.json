@@ -11180,12 +11180,22 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "enabled"
-        },
-        {
-          "type": "STRING",
-          "value": "disabled"
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "enabled"
+              },
+              {
+                "type": "STRING",
+                "value": "disabled"
+              }
+            ]
+          },
+          "named": true,
+          "value": "hoolean"
         },
         {
           "type": "REPEAT1",
