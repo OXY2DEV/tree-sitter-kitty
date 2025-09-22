@@ -2,6 +2,9 @@
 
 (line_continuation) @comment
 
+(comment
+  (comment_content) @spell) @comment
+
 ; Primitive data types ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [
@@ -519,8 +522,3 @@
     "kitten_alias"
   ] @keyword
   name: (string) @string.special)
-
-; Comment ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(comment
-  (comment_content) @spell) @comment
