@@ -477,12 +477,6 @@
 
 (clipboard_action) @type
 
-((shell_features) @constant
-  (#eq? @constant "enabled"))
-
-((shell_features) @constant
-  (#eq? @constant "disabled"))
-
 (shell_feature) @type
 
 (source_strategy) @type

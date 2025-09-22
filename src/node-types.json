@@ -5875,7 +5875,7 @@
       "required": true,
       "types": [
         {
-          "type": "hoolean",
+          "type": "boolean",
           "named": true
         },
         {
@@ -7889,10 +7889,6 @@
     "named": false
   },
   {
-    "type": "hoolean",
-    "named": true
-  },
-  {
     "type": "horizontal",
     "named": false
   },
@@ -8734,11 +8730,11 @@
   },
   {
     "type": "option",
-    "named": true
+    "named": false
   },
   {
     "type": "option",
-    "named": false
+    "named": true
   },
   {
     "type": "or",

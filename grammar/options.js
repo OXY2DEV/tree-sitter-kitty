@@ -1085,7 +1085,7 @@ module.exports.rules = {
         "enabled",
         "disabled"
       ),
-      $.hoolean
+      $.boolean
     ),
     repeat1($.shell_feature)
   ),

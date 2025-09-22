@@ -11195,7 +11195,7 @@
             ]
           },
           "named": true,
-          "value": "hoolean"
+          "value": "boolean"
         },
         {
           "type": "REPEAT1",
