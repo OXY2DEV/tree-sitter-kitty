@@ -401,26 +401,19 @@
     "ease-out"
     "ease-in-out"))
 
-(ease_step
-  "steps" @function.call)
+[
+  "("
+  ")"
+] @punctuation.bracket
 
 (ease_step
-  [
-    "("
-    ")"
-  ] @punctuation.bracket)
+  "steps" @function.call)
 
 (ease_step
   position: (ease_step_position) @type)
 
 (cubic_bezier
   "cubic-bezier" @function.call)
-
-(cubic_bezier
-  [
-    "("
-    ")"
-  ] @punctuation.bracket)
 
 (scrollback_pager
   command: (string) @string.special) 
