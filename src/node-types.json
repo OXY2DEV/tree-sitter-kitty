@@ -23,6 +23,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1910,6 +1920,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -6857,10 +6877,6 @@
     "named": false
   },
   {
-    "type": "action_alias",
-    "named": false
-  },
-  {
     "type": "action_name",
     "named": true
   },
@@ -7977,14 +7993,6 @@
     "named": true
   },
   {
-    "type": "initial_window_height",
-    "named": false
-  },
-  {
-    "type": "initial_window_width",
-    "named": false
-  },
-  {
     "type": "input_delay",
     "named": false
   },
@@ -8042,10 +8050,6 @@
   },
   {
     "type": "khaki",
-    "named": false
-  },
-  {
-    "type": "kitten_alias",
     "named": false
   },
   {
@@ -8766,11 +8770,11 @@
   },
   {
     "type": "option",
-    "named": false
+    "named": true
   },
   {
     "type": "option",
-    "named": true
+    "named": false
   },
   {
     "type": "or",

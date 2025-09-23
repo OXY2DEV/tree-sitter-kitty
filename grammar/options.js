@@ -1302,9 +1302,12 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   initial_window_size: $ => seq(
-    choice(
-      "initial_window_width",
-      "initial_window_height",
+    alias(
+      choice(
+        "initial_window_width",
+        "initial_window_height",
+      ),
+      $.option_name
     ),
     field("value", $.number),
     optional(
@@ -1315,9 +1318,12 @@ module.exports.rules = {
   ////////////////////////////////////////////////////////////////////////////
 
   action_alias: $ => seq(
-    choice(
-      "action_alias",
-      "kitten_alias",
+    alias(
+      choice(
+        "action_alias",
+        "kitten_alias",
+      ),
+      $.option_name
     ),
     field("name", $.string),
     field(
