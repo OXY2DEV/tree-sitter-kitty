@@ -1207,7 +1207,6 @@ module.exports.rules = {
 
   titlebar_color: $ => choice(
     "system",
-    "background",
     $.color,
   ),
 

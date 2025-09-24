@@ -146,6 +146,7 @@ module.exports.rules = {
   boolean: _ => choice("yes", "no"),
   color: $ => choice(
     "none",
+    "background",
     /#[0-9A-Fa-f]{3,6}/,
     $._color_name
   ),

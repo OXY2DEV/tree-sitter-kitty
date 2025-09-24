@@ -14,7 +14,7 @@
     }
   ],
   "metadata": {
-    "version": "2.2.3",
+    "version": "2.3.0",
     "license": "MIT",
     "description": "Tree-sitter grammar for kitty.conf files.",
     "authors": [

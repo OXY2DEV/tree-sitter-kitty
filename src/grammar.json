@@ -202,6 +202,10 @@
           "value": "none"
         },
         {
+          "type": "STRING",
+          "value": "background"
+        },
+        {
           "type": "PATTERN",
           "value": "#[0-9A-Fa-f]{3,6}"
         },
@@ -11559,10 +11563,6 @@
         {
           "type": "STRING",
           "value": "system"
-        },
-        {
-          "type": "STRING",
-          "value": "background"
         },
         {
           "type": "SYMBOL",
