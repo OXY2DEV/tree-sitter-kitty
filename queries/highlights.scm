@@ -187,7 +187,7 @@
   path: (string) @string.special.path)
 
 (load_config_file
-  path: (string)? @string.special.path)
+  path: (string) @string.special.path)
 
 (open_url
   url: (string) @string.special.url)
@@ -211,7 +211,7 @@
   tab: (number) @label)
 
 (set_tab_title
-  title: (title)? @string.special)
+  title: (title) @string.special)
 
 (set_window_title
   title: (title) @string.special)
@@ -232,13 +232,13 @@
   target: (os_window) @type)
 
 (font_change_amount
-  sign: (font_change_sign)? @operator)
+  sign: (font_change_sign) @operator)
 
 (close_window_with_confirmation
   "ignore-shell"? @type)
 
 (detach_window
-  into: (detach_into)? @type)
+  into: (detach_into) @type)
 
 ((background_alpha) @constant
   (#eq? @constant "default"))
@@ -260,11 +260,11 @@
   program: (string) @string.special)
 
 (new_window
-  program: (string)? @string.special
+  program: (string) @string.special
   "@selection"? @type)
 
 (kitty_shell
-  open_as: (kitty_shell_open_as)? @type)
+  open_as: (kitty_shell_open_as) @type)
 
 ; Colors ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -351,7 +351,7 @@
   codepoints: (string) @constant)
 
 (font_features
-  font: (string)? @constant)
+  font: (string) @constant)
 
 (font_features
   "none" @constant)
