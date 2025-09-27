@@ -202,8 +202,10 @@
   selection: (mouse_selection_type) @type)
 
 (scroll_to_prompt
-  prompt_number: (number) @number
-  lines_above: (number)? @operator)
+  prompt_number: (number) @number)
+
+(scroll_to_prompt
+  lines_above: (number) @operator)
 
 (goto_tab
   tab: (number) @label)
