@@ -8328,8 +8328,13 @@
                   "type": "FIELD",
                   "name": "value",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "string"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "string"
+                    },
+                    "named": true,
+                    "value": "title"
                   }
                 },
                 {
@@ -9499,8 +9504,13 @@
     "feature_list": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "string"
+        "type": "ALIAS",
+        "content": {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        "named": true,
+        "value": "font_feature"
       }
     },
     "modify_font": {
@@ -11116,7 +11126,7 @@
           "value": "[^'\\s]+"
         },
         "named": true,
-        "value": "string"
+        "value": "remote_action"
       }
     },
     "env": {

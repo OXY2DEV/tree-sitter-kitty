@@ -122,6 +122,8 @@
   (cursor)
 
   (spacing_type)
+  (remote_action)
+  (font_feature)
 ] @type
 
 (kitten
@@ -171,9 +173,6 @@
 (aliased_action
   name: (string) @function.call)
 
-(new_window
-  value: (string) @string.special)
-
 ; Colors ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (set_colors
@@ -211,18 +210,12 @@
 (font_property
   name: (string) @variable.parameter)
 
-(feature_list
-  (string) @string.special)
-
 (url_excluded_characters
   value: (string) @character)
 
 (transparent_color
   "@" @punctuation.special
   (alpha) @number)
-
-(remote_actions
-  (string) @type)
 
 (env
   variable: (string) @variable.builtin)

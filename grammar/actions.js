@@ -1271,7 +1271,7 @@ module.exports.rules = {
 
     optional(
       seq(
-        field("value", $.string),
+        field("value", alias($.string, $.title)),
         optional("@selection")
       )
     ),

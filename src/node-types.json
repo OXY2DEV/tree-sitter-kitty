@@ -1561,7 +1561,7 @@
       "required": true,
       "types": [
         {
-          "type": "string",
+          "type": "font_feature",
           "named": true
         }
       ]
@@ -4480,7 +4480,7 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "title",
             "named": true
           }
         ]
@@ -5560,7 +5560,7 @@
       "required": true,
       "types": [
         {
-          "type": "string",
+          "type": "remote_action",
           "named": true
         }
       ]
@@ -7944,6 +7944,10 @@
     "named": false
   },
   {
+    "type": "font_feature",
+    "named": true
+  },
+  {
     "type": "font_size",
     "named": false
   },
@@ -9118,6 +9122,10 @@
   {
     "type": "remember_window_size",
     "named": false
+  },
+  {
+    "type": "remote_action",
+    "named": true
   },
   {
     "type": "remove_marker",

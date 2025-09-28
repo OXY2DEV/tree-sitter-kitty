@@ -21,13 +21,17 @@ geninclude dynamic.py
 
 (configuration_file
   (include
-    path: (string))
+	(option_name)
+	path: (path))
   (include
-    glob: (string))
+	(option_name)
+	glob: (string))
   (include
-    environment_variable: (string))
+	(option_name)
+	environment_variable: (string))
   (include
-    path: (string)))
+	(option_name)
+	path: (path)))
 
 ==============================================================================
 Option set

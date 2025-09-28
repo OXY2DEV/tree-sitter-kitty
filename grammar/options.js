@@ -276,7 +276,9 @@ module.exports.rules = {
     )
   ),
 
-  feature_list: $ => repeat1($.string),
+  feature_list: $ => repeat1(
+    alias($.string, $.font_feature)
+  ),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -821,7 +823,7 @@ module.exports.rules = {
   ),
 
   remote_actions: $ => repeat1(
-    alias(/[^'\s]+/, $.string)
+    alias(/[^'\s]+/, $.remote_action)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
