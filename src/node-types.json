@@ -18,7 +18,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
@@ -82,22 +82,22 @@
     "type": "aliased_action",
     "named": true,
     "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "action_arguments",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "action_arguments",
             "named": true
           }
         ]
@@ -115,8 +115,12 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
         {
           "type": "number",
           "named": true
@@ -253,11 +257,6 @@
     }
   },
   {
-    "type": "clear_action",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "clear_target",
     "named": true,
     "fields": {}
@@ -271,7 +270,7 @@
         "required": true,
         "types": [
           {
-            "type": "clear_action",
+            "type": "constant",
             "named": true
           }
         ]
@@ -327,7 +326,7 @@
     "type": "clipboard_control",
     "named": true,
     "fields": {
-      "actions": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -353,7 +352,7 @@
     "type": "clone_source_strategies",
     "named": true,
     "fields": {
-      "strategy": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -452,7 +451,7 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
@@ -844,7 +843,7 @@
       "required": false,
       "types": [
         {
-          "type": "option_name",
+          "type": "constant",
           "named": true
         }
       ]
@@ -1083,12 +1082,12 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
       },
-      "min_win_count": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1111,10 +1110,25 @@
     }
   },
   {
+    "type": "constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "copy_to_buffer",
     "named": true,
     "fields": {
-      "buffer": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1201,7 +1215,7 @@
     "type": "cursor_shape",
     "named": true,
     "fields": {
-      "shape": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1294,7 +1308,7 @@
     "type": "detach_window",
     "named": true,
     "fields": {
-      "into": {
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
@@ -1363,8 +1377,12 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
         {
           "type": "cubic_bezier",
           "named": true
@@ -1416,7 +1434,7 @@
     "type": "enabled_layouts",
     "named": true,
     "fields": {
-      "layouts": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1552,11 +1570,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "boolean_operator",
+          "named": true
+        },
+        {
+          "type": "filter_element_type",
           "named": true
         },
         {
@@ -1567,10 +1589,15 @@
     }
   },
   {
+    "type": "filter_element_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "filter_notification",
     "named": true,
     "fields": {
-      "filter": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1662,16 +1689,20 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
         {
           "type": "option_name",
           "named": true
@@ -1773,11 +1804,11 @@
       "required": true,
       "types": [
         {
-          "type": "font_property",
+          "type": "constant",
           "named": true
         },
         {
-          "type": "string",
+          "type": "font_property",
           "named": true
         }
       ]
@@ -1833,12 +1864,12 @@
     "type": "goto_tab",
     "named": true,
     "fields": {
-      "tab": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "label",
             "named": true
           }
         ]
@@ -1899,11 +1930,21 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2345,7 +2386,7 @@
     "type": "kitty_mod",
     "named": true,
     "fields": {
-      "sequence": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2371,7 +2412,7 @@
     "type": "kitty_shell",
     "named": true,
     "fields": {
-      "open_as": {
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
@@ -2397,6 +2438,21 @@
     "type": "kitty_shell_open_as",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "label",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "launch",
@@ -2438,7 +2494,7 @@
     "type": "launch_bias",
     "named": true,
     "fields": {
-      "amount": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2557,12 +2613,12 @@
     "type": "launch_cwd",
     "named": true,
     "fields": {
-      "directory": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
@@ -2676,12 +2732,12 @@
     "type": "launch_logo",
     "named": true,
     "fields": {
-      "path": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
@@ -2702,7 +2758,7 @@
     "type": "launch_logo_alpha",
     "named": true,
     "fields": {
-      "alpha": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2728,7 +2784,7 @@
     "type": "launch_logo_position",
     "named": true,
     "fields": {
-      "position": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2754,7 +2810,7 @@
     "type": "launch_marker",
     "named": true,
     "fields": {
-      "markers": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2780,7 +2836,7 @@
     "type": "launch_next_to",
     "named": true,
     "fields": {
-      "pattern": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2949,7 +3005,7 @@
     "type": "launch_os_panel",
     "named": true,
     "fields": {
-      "option": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3071,12 +3127,12 @@
     "type": "launch_os_window_class",
     "named": true,
     "fields": {
-      "class": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "os_window_class",
             "named": true
           }
         ]
@@ -3097,7 +3153,7 @@
     "type": "launch_os_window_name",
     "named": true,
     "fields": {
-      "name": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3123,7 +3179,7 @@
     "type": "launch_os_window_state",
     "named": true,
     "fields": {
-      "state": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3149,7 +3205,7 @@
     "type": "launch_os_window_title",
     "named": true,
     "fields": {
-      "title": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3209,7 +3265,7 @@
         "required": true,
         "types": [
           {
-            "type": "password",
+            "type": "string",
             "named": true
           }
         ]
@@ -3230,7 +3286,7 @@
     "type": "launch_source_window",
     "named": true,
     "fields": {
-      "pattern": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3330,7 +3386,7 @@
     "type": "launch_stdin_source",
     "named": true,
     "fields": {
-      "source": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3356,7 +3412,7 @@
     "type": "launch_tab_title",
     "named": true,
     "fields": {
-      "title": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3382,41 +3438,13 @@
     "type": "launch_type",
     "named": true,
     "fields": {
-      "type": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "background",
-            "named": false
-          },
-          {
-            "type": "clipboard,primary",
-            "named": false
-          },
-          {
-            "type": "os-panel",
-            "named": false
-          },
-          {
-            "type": "os-window",
-            "named": false
-          },
-          {
-            "type": "overlay",
-            "named": false
-          },
-          {
-            "type": "overlay-main",
-            "named": false
-          },
-          {
-            "type": "tab",
-            "named": false
-          },
-          {
-            "type": "window",
-            "named": false
+            "type": "launch_type_value",
+            "named": true
           }
         ]
       }
@@ -3431,6 +3459,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "launch_type_value",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "launch_var",
@@ -3472,12 +3505,12 @@
     "type": "launch_watcher",
     "named": true,
     "fields": {
-      "path": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
@@ -3488,7 +3521,7 @@
     "type": "launch_window_location",
     "named": true,
     "fields": {
-      "location": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3514,7 +3547,7 @@
     "type": "launch_window_title",
     "named": true,
     "fields": {
-      "title": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3570,7 +3603,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
@@ -3645,12 +3678,12 @@
     "type": "load_config_file",
     "named": true,
     "fields": {
-      "path": {
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
@@ -3696,7 +3729,7 @@
         "required": true,
         "types": [
           {
-            "type": "marker_id",
+            "type": "label",
             "named": true
           }
         ]
@@ -3712,11 +3745,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "marker_id",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "marker_type",
@@ -3891,7 +3919,7 @@
     "type": "mouse_handle_click",
     "named": true,
     "fields": {
-      "actions": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3978,7 +4006,7 @@
     "type": "mouse_selection",
     "named": true,
     "fields": {
-      "selection": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4262,7 +4290,7 @@
     "type": "move_window",
     "named": true,
     "fields": {
-      "direction": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4293,7 +4321,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
@@ -4324,7 +4352,7 @@
     "type": "neighboring_window",
     "named": true,
     "fields": {
-      "direction": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4350,7 +4378,7 @@
     "type": "new_window",
     "named": true,
     "fields": {
-      "program": {
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
@@ -4443,12 +4471,12 @@
     "type": "nth_os_window",
     "named": true,
     "fields": {
-      "window": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "label",
             "named": true
           }
         ]
@@ -4469,12 +4497,12 @@
     "type": "nth_window",
     "named": true,
     "fields": {
-      "window": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "label",
             "named": true
           }
         ]
@@ -4521,7 +4549,7 @@
     "type": "open_url",
     "named": true,
     "fields": {
-      "url": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -4686,7 +4714,7 @@
     "type": "os_panel_detach_log",
     "named": true,
     "fields": {
-      "path": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5054,7 +5082,7 @@
     "type": "os_panel_output_name",
     "named": true,
     "fields": {
-      "path": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5220,12 +5248,12 @@
     "type": "pass_selection_to_program",
     "named": true,
     "fields": {
-      "program": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
@@ -5266,7 +5294,7 @@
     "type": "paste_actions",
     "named": true,
     "fields": {
-      "actions": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5292,7 +5320,7 @@
     "type": "paste_from_buffer",
     "named": true,
     "fields": {
-      "buffer": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5309,6 +5337,21 @@
       "types": [
         {
           "type": "action_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "path",
           "named": true
         }
       ]
@@ -5353,7 +5396,7 @@
     "type": "pointer_option",
     "named": true,
     "fields": {
-      "type": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5473,7 +5516,7 @@
     "type": "remote_control",
     "named": true,
     "fields": {
-      "commands": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5550,7 +5593,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "path",
             "named": true
           }
         ]
@@ -5744,7 +5787,7 @@
     "type": "send_key",
     "named": true,
     "fields": {
-      "keys": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5863,7 +5906,7 @@
     "type": "set_tab_title",
     "named": true,
     "fields": {
-      "title": {
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
@@ -5939,7 +5982,7 @@
     "type": "shell_integration",
     "named": true,
     "fields": {
-      "features": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -5970,12 +6013,12 @@
     "type": "show_kitty_doc",
     "named": true,
     "fields": {
-      "topic": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "label",
             "named": true
           }
         ]
@@ -6074,7 +6117,7 @@
     "type": "sleep",
     "named": true,
     "fields": {
-      "time": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6181,7 +6224,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "constant",
             "named": true
           }
         ]
@@ -6248,7 +6291,7 @@
     "type": "tab_fade",
     "named": true,
     "fields": {
-      "fade": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6274,7 +6317,7 @@
     "type": "text_composition_strategy",
     "named": true,
     "fields": {
-      "strategy": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6300,7 +6343,7 @@
     "type": "text_fg_override_threshold",
     "named": true,
     "fields": {
-      "threshold": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6364,10 +6407,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "color",
+          "named": true
+        },
+        {
+          "type": "constant",
           "named": true
         }
       ]
@@ -6377,7 +6424,7 @@
     "type": "toggle_layout",
     "named": true,
     "fields": {
-      "name": {
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
@@ -6464,9 +6511,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
         {
           "type": "option_name",
           "named": true
@@ -6478,7 +6529,7 @@
     "type": "url_excluded_characters",
     "named": true,
     "fields": {
-      "characters": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6509,7 +6560,7 @@
       "required": true,
       "types": [
         {
-          "type": "string",
+          "type": "constant",
           "named": true
         }
       ]
@@ -6519,7 +6570,7 @@
     "type": "url_prefixes",
     "named": true,
     "fields": {
-      "prefixes": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6545,7 +6596,7 @@
     "type": "visual_bell_color",
     "named": true,
     "fields": {
-      "color": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
@@ -6633,16 +6684,6 @@
     "type": "window_logo_scale",
     "named": true,
     "fields": {
-      "scale": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "number",
-            "named": true
-          }
-        ]
-      },
       "scale_h": {
         "multiple": false,
         "required": false,
@@ -6654,6 +6695,16 @@
         ]
       },
       "scale_w": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number",
+            "named": true
+          }
+        ]
+      },
+      "value": {
         "multiple": false,
         "required": false,
         "types": [
@@ -7485,15 +7536,7 @@
     "named": false
   },
   {
-    "type": "default",
-    "named": false
-  },
-  {
     "type": "delete",
-    "named": false
-  },
-  {
-    "type": "dense",
     "named": false
   },
   {
@@ -7553,22 +7596,6 @@
     "named": false
   },
   {
-    "type": "ease",
-    "named": false
-  },
-  {
-    "type": "ease-in",
-    "named": false
-  },
-  {
-    "type": "ease-in-out",
-    "named": false
-  },
-  {
-    "type": "ease-out",
-    "named": false
-  },
-  {
     "type": "edit_config_file",
     "named": false
   },
@@ -7594,10 +7621,6 @@
   },
   {
     "type": "env_var",
-    "named": false
-  },
-  {
-    "type": "envinclude",
     "named": false
   },
   {
@@ -7857,15 +7880,7 @@
     "named": false
   },
   {
-    "type": "geninclude",
-    "named": false
-  },
-  {
     "type": "ghostwhite",
-    "named": false
-  },
-  {
-    "type": "globinclude",
     "named": false
   },
   {
@@ -7974,10 +7989,6 @@
   },
   {
     "type": "inactive_text_alpha",
-    "named": false
-  },
-  {
-    "type": "include",
     "named": false
   },
   {
@@ -8310,10 +8321,6 @@
   },
   {
     "type": "line_from_point",
-    "named": false
-  },
-  {
-    "type": "linear",
     "named": false
   },
   {
@@ -8805,6 +8812,10 @@
     "named": false
   },
   {
+    "type": "os_window_class",
+    "named": true
+  },
+  {
     "type": "overlay",
     "named": false
   },
@@ -8839,10 +8850,6 @@
   {
     "type": "papayawhip",
     "named": false
-  },
-  {
-    "type": "password",
-    "named": true
   },
   {
     "type": "paste",
@@ -9293,10 +9300,6 @@
     "named": false
   },
   {
-    "type": "sparse",
-    "named": false
-  },
-  {
     "type": "split",
     "named": false
   },
@@ -9326,14 +9329,6 @@
   },
   {
     "type": "steelblue",
-    "named": false
-  },
-  {
-    "type": "step-end",
-    "named": false
-  },
-  {
-    "type": "step-start",
     "named": false
   },
   {
@@ -9474,14 +9469,6 @@
   },
   {
     "type": "text",
-    "named": false
-  },
-  {
-    "type": "thick",
-    "named": false
-  },
-  {
-    "type": "thin",
     "named": false
   },
   {

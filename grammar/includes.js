@@ -7,15 +7,15 @@ module.exports.rules = {
   ),
 
   _path_include: $ => seq(
-    "include",
+    alias("include", $.option_name),
     field(
       "path",
-      alias(/\S+/, $.string)
+      alias(/\S+/, $.path)
     ),
   ),
 
   _glob_include: $ => seq(
-    "globinclude",
+    alias("globinclude", $.option_name),
     field(
       "glob",
       alias(/\S+/, $.string)
@@ -23,15 +23,15 @@ module.exports.rules = {
   ),
 
   _gen_include: $ => seq(
-    "geninclude",
+    alias("geninclude", $.option_name),
     field(
       "path",
-      alias(/\S+/, $.string)
+      alias(/\S+/, $.path)
     ),
   ),
 
   _env_include: $ => seq(
-    "envinclude",
+    alias("envinclude", $.option_name),
     field(
       "environment_variable",
       alias(/\S+/, $.string)

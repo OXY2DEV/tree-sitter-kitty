@@ -221,7 +221,7 @@ module.exports.rules = {
   font_value: $ => repeat1(
     choice(
       $.font_property,
-      alias(/[^\s=\\]+/, $.string)
+      alias(/[^\s=\\]+/, $.constant)
     ),
   ),
 
@@ -248,7 +248,7 @@ module.exports.rules = {
 
   symbol_map: $ => seq(
     alias("symbol_map", $.option_name),
-    field("codepoints", $.string),
+    field("codepoints", $.constant),
     field(
       "font_name",
       alias(/\S[^\n\r]*/, $.string)
@@ -257,25 +257,20 @@ module.exports.rules = {
 
   narrow_symbols: $ => seq(
     alias("narrow_symbols", $.option_name),
-    field("codepoints", $.string),
+    field("codepoints", $.constant),
     optional(
       field("width", $.number)
     ),
   ),
-
-  // disable_ligatures: $ => seq(
-  //   "disable_ligatures",
-  //   field("type", $.ligature_disabled),
-  // ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   font_features: $ => seq(
     alias("font_features", $.option_name),
     choice(
-      "none",
+      alias("none", $.constant),
       seq(
-        field("font", $.string),
+        field("font", $.constant),
         field("features", $.feature_list),
       )
     )
@@ -312,11 +307,14 @@ module.exports.rules = {
   undercurl_style: $ => seq(
     alias("undercurl_style", $.option_name),
 
-    choice("thin", "thick"),
+    choice(
+      alias("thin", $.constant),
+      alias("thick", $.constant)
+    ),
     token.immediate("-"),
     choice(
-      token.immediate("sparse"),
-      token.immediate("dense"),
+      alias(token.immediate("sparse"), $.constant),
+      alias(token.immediate("dense"), $.constant)
     )
   ),
 
@@ -324,11 +322,11 @@ module.exports.rules = {
 
   text_composition_strategy: $ => seq(
     alias("text_composition_strategy", $.option_name),
-    field("strategy", $.composition_value),
+    field("value", $.composition_value),
   ),
 
   composition_value: $ => choice(
-    alias("platform", $.option_name),
+    alias("platform", $.constant),
     seq(
       field("gamma_adjustment", $.number),
       field("multiplicative_contrast", $.number),
@@ -339,7 +337,7 @@ module.exports.rules = {
 
   text_fg_override_threshold: $ => seq(
     alias("text_fg_override_threshold", $.option_name),
-    field("threshold", $.fg_override_threshold)
+    field("value", $.fg_override_threshold)
   ),
 
   fg_override_threshold: $ => seq(
@@ -353,7 +351,7 @@ module.exports.rules = {
 
   cursor_shape: $ => seq(
     alias("cursor_shape", $.option_name),
-    field("shape", $.cursor)
+    field("value", $.cursor)
   ),
 
   cursor: _ => choice(
@@ -390,22 +388,22 @@ module.exports.rules = {
   ),
 
   ease: $ => choice(
-    "linear",
+    alias("linear", $.constant),
 
-    "ease",
-    "ease-in-out",
-    "ease-in",
-    "ease-out",
+    alias("ease", $.constant),
+    alias("ease-in-out", $.constant),
+    alias("ease-in", $.constant),
+    alias("ease-out", $.constant),
 
-    "step-start",
-    "step-end",
+    alias("step-start", $.constant),
+    alias("step-end", $.constant),
 
     $.ease_step,
 
-    "ease",
-    "ease-in",
-    "ease-out",
-    "ease-in-out",
+    alias("ease", $.constant),
+    alias("ease-in", $.constant),
+    alias("ease-out", $.constant),
+    alias("ease-in-out", $.constant),
 
     $.cubic_bezier
   ),
@@ -509,48 +507,23 @@ module.exports.rules = {
 
   url_prefixes: $ => seq(
     alias("url_prefixes", $.option_name),
-    field("prefixes", $.url_prefix_list),
+    field("value", $.url_prefix_list),
   ),
 
-  url_prefix_list: $ => repeat1($.string),
+  url_prefix_list: $ => repeat1($.constant),
 
   ////////////////////////////////////////////////////////////////////////////
 
   url_excluded_characters: $ => seq(
     alias("url_excluded_characters", $.option_name),
-    field("characters", $.string)
+    field("value", $.string)
   ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // underline_hyperlinks: $ => seq(
-  //   "underline_hyperlinks",
-  //   field("value", $.underline_condition)
-  // ),
-  //
-  // underline_condition: _ => choice(
-  //   "always",
-  //   "never",
-  //   "hover",
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // copy_on_select: $ => seq(
-  //   "copy_on_select",
-  //   field("target", $.copy_target),
-  // ),
-  //
-  // copy_target: $ => choice(
-  //   "no",
-  //   $.string
-  // ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   paste_actions: $ => seq(
     alias("paste_actions", $.option_name),
-    field("actions", $.paste_action_list)
+    field("value", $.paste_action_list)
   ),
 
   paste_action_list: $ => seq(
@@ -587,19 +560,6 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  // strip_trailing_spaces: $ => seq(
-  //   "strip_trailing_spaces",
-  //   field("value", $.strip_space_condition)
-  // ),
-  //
-  // strip_space_condition: _ => choice(
-  //   "always",
-  //   "never",
-  //   "smart",
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
   pointer_option: $ => seq(
     alias(
       choice(
@@ -608,7 +568,7 @@ module.exports.rules = {
       ),
       $.option_name
     ),
-    field("type", $.pointer)
+    field("value", $.pointer)
   ),
 
   pointer_shape_when_dragging: $ => seq(
@@ -631,45 +591,14 @@ module.exports.rules = {
 
   visual_bell_color: $ => seq(
     alias("visual_bell_color", $.option_name),
-    field("color", $.color)
+    field("value", $.color)
   ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // command_on_bell: $ => seq(
-  //   "command_on_bell",
-  //   field("command", $.bell_command)
-  // ),
-  //
-  // bell_command: $ => choice(
-  //   "none",
-  //   $.string
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // bell_path: $ => seq(
-  //   "bell_path",
-  //   field("path", $.bell_path_value)
-  // ),
-  //
-  // bell_path_value: $ => choice(
-  //   "none",
-  //   $.string
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // linux_bell_theme: $ => seq(
-  //   "linux_bell_theme",
-  //   field("theme", $.string)
-  // ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   enabled_layouts: $ => seq(
     alias("enabled_layouts", $.option_name),
-    field("layouts", $.layout_list)
+    field("value", $.layout_list)
   ),
 
   layout_list: $ => seq(
@@ -835,101 +764,12 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  // tab_bar_style: $ => seq(
-  //   "tab_bar_style",
-  //   field("style", $.tab_bar_style_value)
-  // ),
-  //
-  // tab_bar_style_value: _ => choice(
-  //   "fade",
-  //   "slant",
-  //   "separtor",
-  //   "powerline",
-  //   "custom",
-  //   "hidden",
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // tab_bar_align: $ => seq(
-  //   "tab_bar_align",
-  //   field("alignment", $.tab_bar_align_value)
-  // ),
-  //
-  // tab_bar_align_value: _ => choice(
-  //   "left",
-  //   "center",
-  //   "right",
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // tab_switch_strategy: $ => seq(
-  //   "tab_switch_strategy",
-  //   field("strategy", $.switch_strategy)
-  // ),
-  //
-  // switch_strategy: _ => choice(
-  //   "previous",
-  //
-  //   "left",
-  //   "right",
-  //
-  //   "last"
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
   tab_fade: $ => seq(
     alias("tab_fade", $.option_name),
-    field("fade", $.fade_list)
+    field("value", $.fade_list)
   ),
 
   fade_list: $ => repeat1($.number),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // tab_powerline_style: $ => seq(
-  //   "tab_powerline_style",
-  //   field("style", $.powerline_style)
-  // ),
-  //
-  // powerline_style: _ => choice(
-  //   "angled",
-  //   "round",
-  //   "slanted"
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // tab_activity_symbol: $ => seq(
-  //   "tab_activity_symbol",
-  //   field("style", $.activity_symbol)
-  // ),
-  //
-  // activity_symbol: $ => choice(
-  //   "none",
-  //   $.string
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
-  // active_tab_font_style: $ => seq(
-  //   "active_tab_font_style",
-  //   field("style", $.font_style)
-  // ),
-  //
-  // inactive_tab_font_style: $ => seq(
-  //   "inactive_tab_font_style",
-  //   field("style", $.font_style)
-  // ),
-  //
-  // font_style: _ => choice(
-  //   "normal",
-  //   "italic",
-  //   "bold-italic",
-  //   "bold",
-  // ),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -986,21 +826,6 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  // allow_remote_control: $ => seq(
-  //   "allow_remote_control",
-  //   field("type", $.remote_control_type)
-  // ),
-  //
-  // remote_control_type: _ => choice(
-  //   "password",
-  //   "socket-only",
-  //   "socket",
-  //   "no",
-  //   "yes",
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
   env: $ => seq(
     alias("env", $.option_name),
     field("variable", alias(/[^\s\=]+/, $.string)),
@@ -1012,7 +837,7 @@ module.exports.rules = {
 
   filter_notification: $ => seq(
     alias("filter_notification", $.option_name),
-    field("filter", $.filter_sequence)
+    field("value", $.filter_sequence)
   ),
 
   filter_sequence: $ => choice(
@@ -1026,14 +851,16 @@ module.exports.rules = {
   ),
 
   _filter_element: $ => seq(
-    choice(
-      "title",
-      "body",
-      "app",
-      "type",
-    ),
+    $.filter_element_type,
     token.immediate(":"),
     $._filter_string
+  ),
+
+  filter_element_type: _ => choice(
+    "title",
+    "body",
+    "app",
+    "type",
   ),
 
   _filter_string: $ => choice(
@@ -1063,7 +890,7 @@ module.exports.rules = {
 
   clipboard_control: $ => seq(
     alias("clipboard_control", $.option_name),
-    field("actions", $.clipboard_actions)
+    field("value", $.clipboard_actions)
   ),
 
   clipboard_actions: $ => repeat1($.clipboard_action),
@@ -1081,7 +908,7 @@ module.exports.rules = {
 
   shell_integration: $ => seq(
     alias("shell_integration", $.option_name),
-    field("features", $.shell_features)
+    field("value", $.shell_features)
   ),
 
   shell_features: $ => choice(
@@ -1113,7 +940,7 @@ module.exports.rules = {
 
   clone_source_strategies: $ => seq(
     alias("clone_source_strategies", $.option_name),
-    field("strategy", $.source_stratagies)
+    field("value", $.source_stratagies)
   ),
 
   source_stratagies: $ => seq(
@@ -1177,19 +1004,6 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  // terminfo_type: $ => seq(
-  //   "terminfo_type",
-  //   field("value", $.terminfo_type)
-  // ),
-  //
-  // terminfo_type: _ => choice(
-  //   "path",
-  //   "direct",
-  //   "none",
-  // ),
-
-  ////////////////////////////////////////////////////////////////////////////
-
   menu_map: $ => seq(
     alias("menu_map", $.option_name),
     field(
@@ -1206,7 +1020,8 @@ module.exports.rules = {
   ),
 
   titlebar_color: $ => choice(
-    "system",
+    prec(-1, alias("system", $.constant)),
+    prec(-1, alias("background", $.constant)),
     $.color,
   ),
 
@@ -1274,7 +1089,7 @@ module.exports.rules = {
         field("scale_w", $.number),
         field("scale_h", $.number),
       ),
-      field("scale", $.number),
+      field("value", $.number),
     )
   ),
 
@@ -1282,11 +1097,11 @@ module.exports.rules = {
 
   confirm_os_window_close: $ => seq(
     alias("confirm_os_window_close", $.option_name),
-    field("min_win_count", $.number),
+    field("value", $.number),
     optional(
       field(
         "count_background",
-        alias("count-background", $.string)
+        alias("count-background", $.constant)
       ),
     )
   ),
@@ -1295,7 +1110,7 @@ module.exports.rules = {
 
   kitty_mod: $ => seq(
     alias("kitty_mod", $.option_name),
-    field("sequence", $.key_sequence)
+    field("value", $.key_sequence)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -1324,7 +1139,7 @@ module.exports.rules = {
       ),
       $.option_name
     ),
-    field("name", $.string),
+    field("name", $.constant),
     field(
       "action",
       alias(/[^\n\r]+/, $.string)

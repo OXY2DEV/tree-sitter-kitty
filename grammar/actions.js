@@ -176,7 +176,7 @@ module.exports.rules = {
   copy_to_buffer: $ => seq(
     alias("copy_to_buffer", $.action_name),
     field(
-      "buffer",
+      "value",
       $.string
     )
   ),
@@ -184,7 +184,7 @@ module.exports.rules = {
   paste_from_buffer: $ => seq(
     alias("paste_from_buffer", $.action_name),
     field(
-      "buffer",
+      "value",
       $.string
     )
   ),
@@ -194,7 +194,7 @@ module.exports.rules = {
   send_key: $ => seq(
     alias("send_key", $.action_name),
     field(
-      "keys",
+      "value",
       $.keys
     )
   ),
@@ -234,7 +234,7 @@ module.exports.rules = {
 
   show_kitty_doc: $ => seq(
     alias("show_kitty_doc", $.action_name),
-    field("topic", $.string)
+    field("value", $.label)
   ),
 
   signal_child: $ => seq(
@@ -247,7 +247,7 @@ module.exports.rules = {
 
   clear_terminal: $ => seq(
     alias("clear_terminal", $.action_name),
-    field("action", $.clear_action),
+    field("action", alias($.clear_action, $.constant)),
     field("target", $.clear_target)
   ),
 
@@ -415,7 +415,7 @@ module.exports.rules = {
 
   launch_source_window: $ => seq(
     alias("--source-window", $.flag),
-    field("pattern", $.string),
+    field("value", $.string),
   ),
 
   launch_window_title: $ => seq(
@@ -423,21 +423,21 @@ module.exports.rules = {
       choice("--title", "--window-title"),
       $.flag
     ),
-    field("title", $.string)
+    field("value", $.string)
   ),
 
   launch_tab_title: $ => seq(
     alias("--tab-title", $.flag),
-    field("title", $.string)
+    field("value", $.string)
   ),
 
   launch_type: $ => seq(
     alias("--type", $.flag),
     token.immediate("="),
-    field("type", $._launch_type_value),
+    field("value", $.launch_type_value),
   ),
 
-  _launch_type_value: _ => immediate(
+  launch_type_value: _ => immediate(
     "window",
     "tab",
     "os-window",
@@ -466,8 +466,8 @@ module.exports.rules = {
     alias("--cwd", $.flag),
     token.immediate("="),
     field(
-      "directory",
-      alias(token.immediate(/\S+/), $.string)
+      "value",
+      alias(token.immediate(/\S+/), $.path)
     )
   ),
 
@@ -535,7 +535,7 @@ module.exports.rules = {
   launch_window_location: $ => seq(
     alias("--location", $.flag),
     token.immediate("="),
-    field("location", $.window_location)
+    field("value", $.window_location)
   ),
 
   window_location: _ => immediate(
@@ -552,13 +552,13 @@ module.exports.rules = {
 
   launch_next_to: $ => seq(
     alias("--next-to", $.flag),
-    field("pattern", $.string),
+    field("value", $.string),
   ),
 
   launch_bias: $ => seq(
     alias("--bias", $.flag),
     field(
-      "amount",
+      "value",
       alias(/[0-9\-\.]+/, $.number),
     ),
   ),
@@ -580,9 +580,7 @@ module.exports.rules = {
     alias("--remote-control-password", $.flag),
 
     "'",
-    '"',
-    field("password", $.password),
-    '"',
+    field("password", alias($.password, $.string)),
 
     optional(
       field("actions", $.remote_actions)
@@ -590,14 +588,14 @@ module.exports.rules = {
     "'",
   ),
 
-  password: _ => token(/[^"]+/),
+  password: _ => token(/"[^"]+"/),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_stdin_source: $ => seq(
     alias("--stdin-source", $.flag),
     token.immediate("="),
-    field("source", $.stdin_source)
+    field("value", $.stdin_source)
   ),
 
   stdin_source: _ => immediate(
@@ -637,7 +635,7 @@ module.exports.rules = {
 
   launch_marker: $ => seq(
     alias("--marker", $.flag),
-    field("markers", $.markers)
+    field("value", $.markers)
   ),
 
   markers: $ => seq(
@@ -656,7 +654,7 @@ module.exports.rules = {
   marker_entries: $ => repeat1($.marker_entry),
 
   marker_entry: $ => seq(
-    field("id", $.marker_id),
+    field("id", alias($.marker_id, $.label)),
     field("pattern", $.string)
   ),
 
@@ -666,22 +664,22 @@ module.exports.rules = {
 
   launch_os_window_class: $ => seq(
     alias("--os-window-class", $.flag),
-    field("class", $.string)
+    field("value", alias($.string, $.os_window_class))
   ),
 
   launch_os_window_name: $ => seq(
     alias("--os-window-name", $.flag),
-    field("name", $.string)
+    field("value", $.string)
   ),
 
   launch_os_window_title: $ => seq(
     alias("--os-window-title", $.flag),
-    field("title", $.string)
+    field("value", $.string)
   ),
 
   launch_os_window_state: $ => seq(
     alias("--os-window-state", $.flag),
-    field("state", $.window_state)
+    field("value", $.window_state)
   ),
 
   window_state: _ => choice(
@@ -693,14 +691,14 @@ module.exports.rules = {
 
   launch_logo: $ => seq(
     alias("--logo", $.flag),
-    field("path", $.string)
+    field("value", $.path)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   launch_logo_position: $ => seq(
     alias("--logo-position", $.flag),
-    field("position", $.logo_position)
+    field("value", $.logo_position)
   ),
 
   logo_position: _ => choice(
@@ -719,7 +717,7 @@ module.exports.rules = {
 
   launch_logo_alpha: $ => seq(
     alias("--logo-alpha", $.flag),
-    field("alpha", $.number)
+    field("value", $.number)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -747,7 +745,7 @@ module.exports.rules = {
 
   launch_os_panel: $ => seq(
     alias("--os-panel", $.flag),
-    field("option", $._os_panel_option),
+    field("value", $._os_panel_option),
   ),
 
   _os_panel_option: $ => choice(
@@ -855,7 +853,7 @@ module.exports.rules = {
   os_panel_output_name: $ => seq(
     alias("output-name", $.option),
     token.immediate("="),
-    field("path", $.output_name),
+    field("value", $.output_name),
   ),
 
   output_name: _ => immediate(
@@ -968,7 +966,7 @@ module.exports.rules = {
   os_panel_detach_log: $ => seq(
     alias("detached-log", $.option),
     token.immediate("="),
-    field("path", $.string),
+    field("value", $.string),
   ),
 
   os_panel_debug_rendering: $ => seq(
@@ -987,7 +985,7 @@ module.exports.rules = {
 
   launch_watcher: $ => seq(
     choice("--watcher", "-w"),
-    field("path", $.string)
+    field("value", $.path)
   ),
 
   launch_hold_after_ssh: $ => seq(
@@ -1007,18 +1005,18 @@ module.exports.rules = {
     alias("load_config_file", $.action_name),
 
     optional(
-      field("path", $.string)
+      field("value", $.path)
     )
   ),
 
   open_url: $ => seq(
     alias("open_url", $.action_name),
-    field("url", $.string)
+    field("value", $.string)
   ),
 
   remote_control_script: $ => seq(
     alias("remote_control_script", $.action_name),
-    field("path", $.string),
+    field("path", $.path),
 
     optional(
       field("arguments", $.remote_args)
@@ -1031,12 +1029,12 @@ module.exports.rules = {
 
   sleep: $ => seq(
     alias("sleep", $.action_name),
-    field("time", $.time)
+    field("value", $.time)
   ),
 
   mouse_handle_click: $ => seq(
     alias("mouse_handle_click", $.action_name),
-    field("actions", $.handle_click_actions)
+    field("value", $.handle_click_actions)
   ),
 
   handle_click_actions: $ => repeat1($.click_action),
@@ -1050,7 +1048,7 @@ module.exports.rules = {
 
   mouse_selection: $ => seq(
     alias("mouse_selection", $.action_name),
-    field("selection", $.mouse_selection_type)
+    field("value", $.mouse_selection_type)
   ),
 
   mouse_selection_type: _ => choice(
@@ -1081,13 +1079,13 @@ module.exports.rules = {
 
   goto_tab: $ => seq(
     alias("goto_tab", $.action_name),
-    field("tab", $.number),
+    field("value", alias($.number, $.label)),
   ),
 
   set_tab_title: $ => seq(
     alias("set_tab_title", $.action_name),
     optional(
-      field("title", $.title),
+      field("value", $.title),
     )
   ),
 
@@ -1103,21 +1101,21 @@ module.exports.rules = {
 
   move_window: $ => seq(
     alias("move_window", $.action_name),
-    field("direction", $.direction),
+    field("value", $.direction),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   neighboring_window: $ => seq(
     alias("neighboring_window", $.action_name),
-    field("direction", $.direction),
+    field("value", $.direction),
   ),
 
   ////////////////////////////////////////////////////////////////////////////
 
   nth_window: $ => seq(
     alias("nth_window", $.action_name),
-    field("window", $.number),
+    field("value", alias($.number, $.label)),
   ),
 
   resize_window: $ => seq(
@@ -1168,7 +1166,7 @@ module.exports.rules = {
   detach_window: $ => seq(
     alias("detach_window", $.action_name),
     optional(
-      field("into", $.detach_into),
+      field("value", $.detach_into),
     ),
   ),
 
@@ -1195,7 +1193,7 @@ module.exports.rules = {
   ),
 
   background_alpha: $ => choice(
-    "default",
+    alias("default", $.constant),
     $.number
   ),
 
@@ -1203,13 +1201,13 @@ module.exports.rules = {
 
   nth_os_window: $ => seq(
     alias("nth_os_window", $.action_name),
-    field("window", $.number),
+    field("value", alias($.number, $.label)),
   ),
 
   toggle_layout: $ => seq(
     alias("toggle_layout", $.action_name),
     optional(
-      field("name", $.layout_type)
+      field("value", $.layout_type)
     ),
   ),
 
@@ -1229,7 +1227,7 @@ module.exports.rules = {
       "name",
       alias(
         token.immediate(/[\w]+/),
-        $.string
+        $.constant
       )
     ),
     token.immediate("="),
@@ -1245,7 +1243,7 @@ module.exports.rules = {
     alias("remote_control", $.action_name),
     /[ \t]+/,
     field(
-      "commands",
+      "value",
       alias(/[^\n\r]+/, $.string)
     )
   ),
@@ -1255,7 +1253,7 @@ module.exports.rules = {
   aliased_action: $ => seq(
     field("name", alias(/\w+/, $.string)),
     optional(
-      field("arguments", $.action_arguments)
+      field("value", $.action_arguments)
     )
   ),
 
@@ -1263,7 +1261,7 @@ module.exports.rules = {
 
   pass_selection_to_program: $ => seq(
     alias("pass_selection_to_program", $.action_name),
-    field("program", $.string)
+    field("value", $.constant)
   ),
 
   ////////////////////////////////////////////////////////////////////////////
@@ -1273,7 +1271,7 @@ module.exports.rules = {
 
     optional(
       seq(
-        field("program", $.string),
+        field("value", $.string),
         optional("@selection")
       )
     ),
@@ -1284,7 +1282,7 @@ module.exports.rules = {
   kitty_shell: $ => seq(
     alias("kitty_shell", $.action_name),
     optional(
-      field("open_as", $.kitty_shell_open_as)
+      field("value", $.kitty_shell_open_as)
     )
   ),
 

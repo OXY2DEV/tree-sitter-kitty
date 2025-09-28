@@ -98,7 +98,7 @@ module.exports.rules = {
       token.immediate("="),
       field("value", $.color),
     ),
-    field("path", alias(/[^\s\=]+/, $.string))
+    field("path", alias(/[^\s\=]+/, $.path))
   ),
 
   color_option_name: _ => choice(

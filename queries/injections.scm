@@ -1,9 +1,9 @@
 (launch_source_window
-  pattern: (string) @injection.content
+  value: (string) @injection.content
   (#set! injection.language "regex"))
 
 (launch_next_to
-  pattern: (string) @injection.content
+  value: (string) @injection.content
   (#set! injection.language "regex"))
 
 (marker_entry
