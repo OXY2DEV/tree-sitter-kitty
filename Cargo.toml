@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-kitty"
 description = "Tree-sitter grammar for kitty.conf files."
-version = "3.1.0"
+version = "3.2.0"
 authors = ["MD. Mouinul Hossain <mdmouinulhossainshawon@gmail.com>"]
 license = "MIT"
 readme = "README.md"

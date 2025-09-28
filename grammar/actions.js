@@ -433,10 +433,11 @@ module.exports.rules = {
 
   launch_type: $ => seq(
     alias("--type", $.flag),
+    token.immediate("="),
     field("value", $.launch_type_value),
   ),
 
-  launch_type_value: _ => choice(
+  launch_type_value: _ => immediate(
     "window",
     "tab",
     "os-window",
@@ -1105,10 +1106,10 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  neighboring_window: $ => seq(
+  neighboring_window: $ => prec.right(seq(
     alias("neighboring_window", $.action_name),
     field("value", $.direction),
-  ),
+  )),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -1126,7 +1127,7 @@ module.exports.rules = {
   ),
 
   window_layout: _ => choice(
-    "narrowee",
+    "narrower",
     "wider",
     "taller",
     "shorter",

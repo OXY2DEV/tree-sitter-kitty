@@ -36,6 +36,7 @@
 
   (mouse_button)
 
+  (up)
   (left)
   (right)
   (middle)

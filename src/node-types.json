@@ -1333,7 +1333,29 @@
   {
     "type": "direction",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "down",
+          "named": true
+        },
+        {
+          "type": "left",
+          "named": true
+        },
+        {
+          "type": "right",
+          "named": true
+        },
+        {
+          "type": "up",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "disable_ligatures_in",
@@ -2245,16 +2267,6 @@
           }
         ]
       },
-      "criteria": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "key_focus_on",
-            "named": true
-          }
-        ]
-      },
       "sequence": {
         "multiple": false,
         "required": true,
@@ -2265,6 +2277,24 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "key_focus_on",
+          "named": true
+        },
+        {
+          "type": "mode",
+          "named": true
+        },
+        {
+          "type": "new_mode",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3819,6 +3849,32 @@
     }
   },
   {
+    "type": "mode",
+    "named": true,
+    "fields": {
+      "mode": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "modified_key",
     "named": true,
     "fields": {},
@@ -4384,6 +4440,32 @@
       "types": [
         {
           "type": "action_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "new_mode",
+    "named": true,
+    "fields": {
+      "mode": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
           "named": true
         }
       ]
@@ -8630,7 +8712,7 @@
     "named": false
   },
   {
-    "type": "narrowee",
+    "type": "narrower",
     "named": false
   },
   {
