@@ -70,7 +70,7 @@ module.exports.rules = {
       choice("--match", "-m"),
       $.flag
     ),
-    field("query", $.string),
+    field("query", $.pattern),
   ),
 
   color_match_tab: $ => seq(
@@ -78,7 +78,7 @@ module.exports.rules = {
       choice("--match-tab", "-t"),
       $.flag
     ),
-    field("query", $.string),
+    field("query", $.pattern),
   ),
 
   ////////////////////////////////////////////////////////////////////////////

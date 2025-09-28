@@ -18,7 +18,7 @@ module.exports.rules = {
     alias("globinclude", $.option_name),
     field(
       "glob",
-      alias(/\S+/, $.string)
+      alias(/\S+/, $.pattern)
     ),
   ),
 

@@ -1,11 +1,7 @@
-; Extra Nodes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (line_continuation) @comment
 
 (comment
   (comment_content) @spell) @comment
-
-; Primitive data types ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [
   (pixel)
@@ -55,8 +51,6 @@
   ","
 
   "'"
-  "\""
-
   ":"
 ] @punctuation.delimiter
 
@@ -72,8 +66,11 @@
 (label) @label
 (constant) @constant
 (direction) @constant
+(pattern) @string.regexp
 
-; Actions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(flag) @constant
+((string) @constant
+  (#match? @constant "^-"))
 
 (generic_action) @function.call
 (action_name) @function.call
@@ -136,34 +133,11 @@
   (option_name)
 ] @keyword
 
-;; Launch ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(flag) @constant
-((string) @constant
-  (#match? @constant "^-"))
-
-(launch_source_window
-  value: (string) @string.regexp)
-
-(launch_next_to
-  value: (string) @string.regexp)
-
-(marker_entry
-  pattern: (string) @string.regexp)
-
-;;; OS Panel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (open_url
   value: (string) @string.special.url)
 
 (handle_click_actions
   _ @type)
-
-(scroll_to_prompt
-  prompt_number: (number) @number)
-
-(scroll_to_prompt
-  lines_above: (number) @operator)
 
 (title) @string.special
 
@@ -173,39 +147,20 @@
 (aliased_action
   name: (string) @function.call)
 
-; Colors ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (set_colors
   "set_colors" @function.call)
-
-(color_match
-  (string) @string.regexp)
-
-(color_match_tab
-  (string) @string.regexp)
-
-; Includes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(include
-  glob: (string) @string.regexp)
 
 (include
   environment_variable: (string) @variable.builtin)
 
-; Keyboard shortcut ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (key_focus_on
   condition: (string) @string.special)
-
-; Mouse shortcuts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (mouse_mode
   [
     "grabbed"
     "ungrabbed"
   ] @variable.parameter)
-
-; Options ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (font_property
   name: (string) @variable.parameter)
@@ -221,8 +176,5 @@
   variable: (string) @variable.builtin)
 
 (boolean_operator) @keyword.operator
-
-(filter_element
-  (string) @string.regexp)
 
 (notification_action) @function.call

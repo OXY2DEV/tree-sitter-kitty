@@ -271,6 +271,15 @@
       "named": true,
       "value": "variable"
     },
+    "pattern": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "string"
+      },
+      "named": true,
+      "value": "pattern"
+    },
     "time": {
       "type": "SEQ",
       "members": [
@@ -3220,7 +3229,7 @@
           "name": "query",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "pattern"
           }
         }
       ]
@@ -3251,7 +3260,7 @@
           "name": "query",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "pattern"
           }
         }
       ]
@@ -5883,7 +5892,7 @@
           "name": "pattern",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "pattern"
           }
         }
       ]
@@ -8479,7 +8488,7 @@
               "value": "\\S+"
             },
             "named": true,
-            "value": "string"
+            "value": "pattern"
           }
         }
       ]
@@ -11237,8 +11246,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_filter_string"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "filter_string"
+          },
+          "named": true,
+          "value": "pattern"
         }
       ]
     },
@@ -11263,62 +11277,21 @@
         }
       ]
     },
-    "_filter_string": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "filter_string"
-          },
-          "named": true,
-          "value": "string"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "PATTERN",
-              "value": "[^\\s\"]+"
-            }
-          },
-          "named": true,
-          "value": "string"
-        }
-      ]
-    },
     "filter_string": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "\""
-          }
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "PATTERN",
-              "value": "[^\"]*"
-            }
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "\"[^\"]*\""
           },
-          "named": true,
-          "value": "string_content"
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "\""
+          {
+            "type": "PATTERN",
+            "value": "\\S+"
           }
-        }
-      ]
+        ]
+      }
     },
     "boolean_operator": {
       "type": "CHOICE",

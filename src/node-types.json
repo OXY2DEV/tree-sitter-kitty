@@ -477,7 +477,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -503,7 +503,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -1599,7 +1599,7 @@
           "named": true
         },
         {
-          "type": "string",
+          "type": "pattern",
           "named": true
         }
       ]
@@ -1937,7 +1937,7 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -3784,7 +3784,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "pattern",
             "named": true
           }
         ]
@@ -5455,6 +5455,21 @@
     }
   },
   {
+    "type": "pattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "pattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "percentage",
     "named": true,
     "fields": {},
@@ -6269,17 +6284,7 @@
   {
     "type": "string",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "string_content",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "string_option",
@@ -6894,10 +6899,6 @@
     "type": "window_state",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "\"",
-    "named": false
   },
   {
     "type": "#",
@@ -9454,10 +9455,6 @@
   {
     "type": "strikethrough_position",
     "named": false
-  },
-  {
-    "type": "string_content",
-    "named": true
   },
   {
     "type": "strip_trailing_spaces",

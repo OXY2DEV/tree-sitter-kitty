@@ -157,10 +157,12 @@ module.exports.rules = {
       /\S+/,
     )
   ),
+
   path: $ => alias($.string, $.path),
   label: $ => alias($.string, $.label),
   constant: $ => alias($.string, $.constant),
   variable: $ => alias($.string, $.variable),
+  pattern: $ => alias($.string, $.pattern),
 
   time: $ => seq(
     field("duration", $.number),

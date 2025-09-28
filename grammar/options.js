@@ -855,7 +855,7 @@ module.exports.rules = {
   _filter_element: $ => seq(
     $.filter_element_type,
     token.immediate(":"),
-    $._filter_string
+    alias($.filter_string, $.pattern)
   ),
 
   filter_element_type: _ => choice(
@@ -865,21 +865,11 @@ module.exports.rules = {
     "type",
   ),
 
-  _filter_string: $ => choice(
-    alias($.filter_string, $.string),
-    alias(
-      token.immediate(/[^\s"]+/),
-      $.string
+  filter_string: _ => token.immediate(
+    choice(
+      /"[^"]*"/,
+      /\S+/,
     )
-  ),
-
-  filter_string: $ => seq(
-    token.immediate('"'),
-    alias(
-      token.immediate(/[^"]*/),
-      $.string_content
-    ),
-    token.immediate('"'),
   ),
 
   boolean_operator: _ => choice(

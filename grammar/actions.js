@@ -655,7 +655,7 @@ module.exports.rules = {
 
   marker_entry: $ => seq(
     field("id", alias($.marker_id, $.label)),
-    field("pattern", $.string)
+    field("pattern", $.pattern)
   ),
 
   marker_id: _ => choice("1", "2", "3"),
