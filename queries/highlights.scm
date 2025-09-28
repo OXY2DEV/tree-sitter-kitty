@@ -52,6 +52,7 @@
   (left)
   (right)
   (middle)
+  (down)
 ] @constant.builtin
 
 [
@@ -82,6 +83,7 @@
 (path) @string.special.path
 (label) @label
 (constant) @constant
+(direction) @constant
 
 ; Actions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
