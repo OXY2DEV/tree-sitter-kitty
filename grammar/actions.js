@@ -216,11 +216,11 @@ module.exports.rules = {
   ),
 
   keyboard_mode: $ => seq(
-    $._keyboard_mode,
+    alias($._keyboard_mode, $.constant),
     repeat(
       seq(
         ",",
-        $._keyboard_mode,
+        alias($._keyboard_mode, $.constant)
       )
     )
   ),
@@ -433,11 +433,10 @@ module.exports.rules = {
 
   launch_type: $ => seq(
     alias("--type", $.flag),
-    token.immediate("="),
     field("value", $.launch_type_value),
   ),
 
-  launch_type_value: _ => immediate(
+  launch_type_value: _ => choice(
     "window",
     "tab",
     "os-window",
@@ -476,7 +475,7 @@ module.exports.rules = {
 
     field("variable", alias(/[^\s=]+/, $.string)),
     token.immediate("="),
-    field("value", $.string),
+    field("value", $.variable),
   ),
 
   launch_var: $ => seq(
@@ -484,7 +483,7 @@ module.exports.rules = {
 
     field("variable", alias(/[^\s=]+/, $.string)),
     token.immediate("="),
-    field("value", $.string),
+    field("value", $.variable),
   ),
 
   // Match as many characters as possible.
@@ -735,7 +734,7 @@ module.exports.rules = {
     alias("--spacing", $.flag),
     field(
       "name",
-      alias(/[^\s\=]+/, $.string)
+      alias(/[^\s\=]+/, $.spacing_type)
     ),
     token.immediate("="),
     field("value", $.number),
@@ -779,7 +778,7 @@ module.exports.rules = {
   ),
 
   os_panel_lines: $ => seq(
-    alias("lines", $.option),
+    alias("lines", $.option_name),
     token.immediate("="),
     field(
       "value",
@@ -788,7 +787,7 @@ module.exports.rules = {
   ),
 
   os_panel_columns: $ => seq(
-    alias("columns", $.option),
+    alias("columns", $.option_name),
     token.immediate("="),
     field(
       "value",
@@ -797,33 +796,33 @@ module.exports.rules = {
   ),
 
   os_panel_margin_top: $ => seq(
-    alias("margin-top", $.option),
+    alias("margin-top", $.option_name),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_margin_left: $ => seq(
-    alias("margin-left", $.option),
+    alias("margin-left", $.option_name),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_margin_bottom: $ => seq(
-    alias("margin-bottom", $.option),
+    alias("margin-bottom", $.option_name),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_margin_right: $ => seq(
-    alias("margin-right", $.option),
+    alias("margin-right", $.option_name),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_edge: $ => seq(
-    alias("edge", $.option),
+    alias("edge", $.option_name),
     token.immediate("="),
-    field("value", $.edge),
+    field("value", alias($.edge, $.constant)),
   ),
 
   edge: _ => immediate(
@@ -838,7 +837,7 @@ module.exports.rules = {
   ),
 
   os_panel_layer: $ => seq(
-    alias("layer", $.option),
+    alias("layer", $.option_name),
     token.immediate("="),
     field("value", $.layer),
   ),
@@ -851,7 +850,7 @@ module.exports.rules = {
   ),
 
   os_panel_output_name: $ => seq(
-    alias("output-name", $.option),
+    alias("output-name", $.option_name),
     token.immediate("="),
     field("value", $.output_name),
   ),
@@ -867,7 +866,7 @@ module.exports.rules = {
         "app-id",
         "class",
       ),
-      $.option
+      $.option_name
     ),
     token.immediate("="),
     field("value", $.output_name),
@@ -879,14 +878,14 @@ module.exports.rules = {
         "name",
         "os-window-tag",
       ),
-      $.option
+      $.option_name
     ),
     token.immediate("="),
     field("value", $.output_name),
   ),
 
   os_panel_focus_policy: $ => seq(
-    alias("focus-policy", $.option),
+    alias("focus-policy", $.option_name),
     token.immediate("="),
     field("value", $.focus_policy),
   ),
@@ -898,19 +897,19 @@ module.exports.rules = {
   ),
 
   os_panel_grab_keyboard: $ => seq(
-    alias("grab-keyboard", $.option),
+    alias("grab-keyboard", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_exclusive_zone: $ => seq(
-    alias("exclusive-zone", $.option),
+    alias("exclusive-zone", $.option_name),
     token.immediate("="),
     field("value", $.number),
   ),
 
   os_panel_override_exclusive_zone: $ => seq(
-    alias("override-exclusive-zone", $.option),
+    alias("override-exclusive-zone", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
@@ -921,62 +920,62 @@ module.exports.rules = {
         "single-instance",
         "1"
       ),
-      $.option
+      $.option_name
     ),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_instance_group: $ => seq(
-    alias("instance-group", $.option),
+    alias("instance-group", $.option_name),
     token.immediate("="),
     field("value", $.string),
   ),
 
   os_panel_wait_for_single_instance_window_close: $ => seq(
-    alias("wait-for-single-instance-window-close", $.option),
+    alias("wait-for-single-instance-window-close", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_listen_on: $ => seq(
-    alias("listen-on", $.option),
+    alias("listen-on", $.option_name),
     token.immediate("="),
     field("value", $.string),
   ),
 
   os_panel_toggle_visibility: $ => seq(
-    alias("toggle-visibility", $.option),
+    alias("toggle-visibility", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_start_as_hidden: $ => seq(
-    alias("start-as-hidden", $.option),
+    alias("start-as-hidden", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_detach: $ => seq(
-    alias("detach", $.option),
+    alias("detach", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_detach_log: $ => seq(
-    alias("detached-log", $.option),
+    alias("detached-log", $.option_name),
     token.immediate("="),
     field("value", $.string),
   ),
 
   os_panel_debug_rendering: $ => seq(
-    alias("debug-rendering", $.option),
+    alias("debug-rendering", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),
 
   os_panel_debug_input: $ => seq(
-    alias("debug-input", $.option),
+    alias("debug-input", $.option_name),
     token.immediate("="),
     field("value", $.boolean),
   ),

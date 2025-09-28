@@ -160,6 +160,7 @@ module.exports.rules = {
   path: $ => alias($.string, $.path),
   label: $ => alias($.string, $.label),
   constant: $ => alias($.string, $.constant),
+  variable: $ => alias($.string, $.variable),
 
   time: $ => seq(
     field("duration", $.number),

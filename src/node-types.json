@@ -1426,11 +1426,6 @@
     "fields": {}
   },
   {
-    "type": "edge",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "enabled_layouts",
     "named": true,
     "fields": {
@@ -2158,6 +2153,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flag",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2214,7 +2219,17 @@
   {
     "type": "keyboard_mode",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "keyboard_shortcut",
@@ -2644,7 +2659,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "variable",
             "named": true
           }
         ]
@@ -3317,7 +3332,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "spacing_type",
             "named": true
           }
         ]
@@ -3474,7 +3489,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "variable",
             "named": true
           }
         ]
@@ -4596,7 +4611,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4626,7 +4641,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4652,7 +4667,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4678,7 +4693,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4704,7 +4719,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4730,7 +4745,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4745,7 +4760,7 @@
         "required": true,
         "types": [
           {
-            "type": "edge",
+            "type": "constant",
             "named": true
           }
         ]
@@ -4756,7 +4771,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4782,7 +4797,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4808,7 +4823,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4834,7 +4849,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4860,7 +4875,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4886,7 +4901,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4916,7 +4931,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4942,7 +4957,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4968,7 +4983,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -4994,7 +5009,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5020,7 +5035,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5046,7 +5061,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5072,7 +5087,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5098,7 +5113,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5124,7 +5139,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5150,7 +5165,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5176,7 +5191,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5202,7 +5217,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -5228,7 +5243,7 @@
       "required": true,
       "types": [
         {
-          "type": "option",
+          "type": "option_name",
           "named": true
         }
       ]
@@ -6593,6 +6608,21 @@
     }
   },
   {
+    "type": "variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "visual_bell_color",
     "named": true,
     "fields": {
@@ -6825,10 +6855,6 @@
   },
   {
     "type": "--watcher",
-    "named": false
-  },
-  {
-    "type": "--when-focus-on",
     "named": false
   },
   {
@@ -8780,10 +8806,6 @@
     "named": false
   },
   {
-    "type": "option",
-    "named": true
-  },
-  {
     "type": "or",
     "named": false
   },
@@ -9298,6 +9320,10 @@
   {
     "type": "space",
     "named": false
+  },
+  {
+    "type": "spacing_type",
+    "named": true
   },
   {
     "type": "split",

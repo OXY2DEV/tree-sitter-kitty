@@ -13,7 +13,7 @@ module.exports.rules = {
   ),
 
   key_focus_on: $ => seq(
-    "--when-focus-on",
+    alias("--when-focus-on", $.flag),
     field("condition", $.string)
   ),
 

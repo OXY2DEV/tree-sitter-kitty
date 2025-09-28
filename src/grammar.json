@@ -262,6 +262,15 @@
       "named": true,
       "value": "constant"
     },
+    "variable": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "string"
+      },
+      "named": true,
+      "value": "variable"
+    },
     "time": {
       "type": "SEQ",
       "members": [
@@ -4163,8 +4172,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_keyboard_mode"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_keyboard_mode"
+          },
+          "named": true,
+          "value": "constant"
         },
         {
           "type": "REPEAT",
@@ -4176,8 +4190,13 @@
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "_keyboard_mode"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_keyboard_mode"
+                },
+                "named": true,
+                "value": "constant"
               }
             ]
           }
@@ -4930,13 +4949,6 @@
           "value": "flag"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "="
-          }
-        },
-        {
           "type": "FIELD",
           "name": "value",
           "content": {
@@ -4950,60 +4962,36 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "window"
-          }
+          "type": "STRING",
+          "value": "window"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "tab"
-          }
+          "type": "STRING",
+          "value": "tab"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "os-window"
-          }
+          "type": "STRING",
+          "value": "os-window"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "overlay-main"
-          }
+          "type": "STRING",
+          "value": "overlay-main"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "overlay"
-          }
+          "type": "STRING",
+          "value": "overlay"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "background"
-          }
+          "type": "STRING",
+          "value": "background"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "clipboard,primary"
-          }
+          "type": "STRING",
+          "value": "clipboard,primary"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "os-panel"
-          }
+          "type": "STRING",
+          "value": "os-panel"
         }
       ]
     },
@@ -5133,7 +5121,7 @@
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "variable"
           }
         }
       ]
@@ -5175,7 +5163,7 @@
           "name": "value",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "variable"
           }
         }
       ]
@@ -6166,7 +6154,7 @@
               "value": "[^\\s\\=]+"
             },
             "named": true,
-            "value": "string"
+            "value": "spacing_type"
           }
         },
         {
@@ -6323,7 +6311,7 @@
             "value": "lines"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6361,7 +6349,7 @@
             "value": "columns"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6399,7 +6387,7 @@
             "value": "margin-top"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6428,7 +6416,7 @@
             "value": "margin-left"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6457,7 +6445,7 @@
             "value": "margin-bottom"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6486,7 +6474,7 @@
             "value": "margin-right"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6515,7 +6503,7 @@
             "value": "edge"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6528,8 +6516,13 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "SYMBOL",
-            "name": "edge"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "edge"
+            },
+            "named": true,
+            "value": "constant"
           }
         }
       ]
@@ -6605,7 +6598,7 @@
             "value": "layer"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6667,7 +6660,7 @@
             "value": "output-name"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6724,7 +6717,7 @@
             ]
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6762,7 +6755,7 @@
             ]
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6791,7 +6784,7 @@
             "value": "focus-policy"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6837,7 +6830,7 @@
             "value": "grab-keyboard"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6866,7 +6859,7 @@
             "value": "exclusive-zone"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6895,7 +6888,7 @@
             "value": "override-exclusive-zone"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6933,7 +6926,7 @@
             ]
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6962,7 +6955,7 @@
             "value": "instance-group"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -6991,7 +6984,7 @@
             "value": "wait-for-single-instance-window-close"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7020,7 +7013,7 @@
             "value": "listen-on"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7049,7 +7042,7 @@
             "value": "toggle-visibility"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7078,7 +7071,7 @@
             "value": "start-as-hidden"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7107,7 +7100,7 @@
             "value": "detach"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7136,7 +7129,7 @@
             "value": "detached-log"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7165,7 +7158,7 @@
             "value": "debug-rendering"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -7194,7 +7187,7 @@
             "value": "debug-input"
           },
           "named": true,
-          "value": "option"
+          "value": "option_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -12162,8 +12155,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "--when-focus-on"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "--when-focus-on"
+          },
+          "named": true,
+          "value": "flag"
         },
         {
           "type": "FIELD",

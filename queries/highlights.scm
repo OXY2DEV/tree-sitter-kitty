@@ -14,20 +14,11 @@
 ] @number
 
 [
-  "pt"
-  "px"
-  "%"
-  "ratio"
-] @type
-
-[
   "steps"
   "cubic-bezier"
 ] @function.call
 
 (boolean) @boolean
-
-(layout_type) @type
 
 (color) @constant
 
@@ -35,10 +26,6 @@
   (#match? @constant "^[^#]"))
 
 (string) @string
-
-(time
-  duration: (number) @number
-  suffix: (time_suffix) @type)
 
 [
   (ctrl)
@@ -90,15 +77,12 @@
 (generic_action) @function.call
 (action_name) @function.call
 
-(keyboard_mode
-  [
-    "normal"
-    "application"
-    "kitty"
-    "all"
-  ] @constant)
-
 [
+  "pt"
+  "px"
+  "%"
+  "ratio"
+
   (signal_name)
   (clear_target)
   (ligature_target)
@@ -131,6 +115,12 @@
   (layout)
   (launch_type_value)
   (os_window_class)
+
+  (layout_type)
+  (time_suffix)
+  (cursor)
+
+  (spacing_type)
 ] @type
 
 (kitten
@@ -152,29 +142,13 @@
 (launch_source_window
   value: (string) @string.regexp)
 
-(launch_env
-  variable: (string) @variable.builtin)
-
-(launch_var
-  variable: (string) @variable.builtin)
-
 (launch_next_to
   value: (string) @string.regexp)
 
 (marker_entry
   pattern: (string) @string.regexp)
 
-(launch_spacing
-  name: (string) @variable.builtin)
-
 ;;; OS Panel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-; `option` may include any of the `os_panel_*` nodes.
-; The first child of these nodes are **always** the 
-; option name.
-(launch_os_panel
-  value: (_
-    (option) @variable.builtin))
 
 (open_url
   value: (string) @string.special.url)
@@ -189,12 +163,6 @@
   lines_above: (number) @operator)
 
 (title) @string.special
-
-(move_window
-  value: (direction) @constant)
-
-(neighboring_window
-  value: (direction) @constant)
 
 (font_change_amount
   sign: (font_change_sign) @operator)
@@ -227,7 +195,6 @@
 ; Keyboard shortcut ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (key_focus_on
-  "--when-focus-on" @constant
   condition: (string) @string.special)
 
 ; Mouse shortcuts ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -245,8 +212,6 @@
 
 (feature_list
   (string) @string.special)
-
-(cursor) @type
 
 (url_excluded_characters
   value: (string) @character)
