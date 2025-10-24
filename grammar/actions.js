@@ -431,10 +431,23 @@ module.exports.rules = {
     field("value", $.string)
   ),
 
+  /*
+    NOTE: Both `--type=<TYPE>` & `--type <TYPE>` exists
+
+    See #6
+  */
   launch_type: $ => seq(
     alias("--type", $.flag),
-    token.immediate("="),
-    field("value", $.launch_type_value),
+    choice(
+      seq(
+        optional(token.immediate("=")),
+        field("value", $.launch_type_value),
+      ),
+      seq(
+        optional(token.immediate(/[ \t]+/)),
+        field("value", $.launch_type_value),
+      ),
+    ),
   ),
 
   launch_type_value: _ => immediate(
