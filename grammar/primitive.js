@@ -122,6 +122,13 @@ const special_symbols = [
   "grave_accent",
 ];
 
+const keys = {
+  ctrl: [ /ctrl/i, /control/i, "^" ],
+  alt: [ /alt/i, /opt/i, /option/i, "⌥" ],
+  shift: [ /shift/i, "⇧" ],
+  super: [ /super/i, /cmd/i, /command/i, "⌘" ]
+};
+
 module.exports.rules = {
   _primitive: $ => choice(
     $.pixel,
@@ -277,18 +284,18 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  ctrl: _ => choice("ctrl", "control", "^"),
-  ctrl_: _ => immediate("ctrl", "control", "^"),
+  ctrl: _ => choice(...keys.ctrl),
+  ctrl_: _ => immediate(...keys.ctrl),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  alt: _ => choice("alt", "opt", "option", "⌥"),
-  alt_: _ => immediate("alt", "opt", "option", "⌥"),
+  alt: _ => choice(...keys.alt),
+  alt_: _ => immediate(...keys.alt),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  shift: _ => choice("shift", "⇧"),
-  shift_: _ => immediate("shift", "⇧"),
+  shift: _ => choice(...keys.shift),
+  shift_: _ => immediate(...keys.shift),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -297,28 +304,28 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  up: _ => "up",
-  up_: _ => token.immediate("up"),
+  up: _ => /up/i,
+  up_: _ => token.immediate(/up/i),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  down: _ => "down",
-  down_: _ => token.immediate("down"),
+  down: _ => /down/i,
+  down_: _ => token.immediate(/down/i),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  left: _ => "left",
-  left_: _ => token.immediate("left"),
+  left: _ => /left/i,
+  left_: _ => token.immediate(/left/i),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  middle: _ => "middle",
-  middle_: _ => token.immediate("middle"),
+  middle: _ => /middle/i,
+  middle_: _ => token.immediate(/middle/i),
 
   ////////////////////////////////////////////////////////////////////////////
 
-  right: _ => "right",
-  right_: _ => token.immediate("right"),
+  right: _ => /right/i,
+  right_: _ => token.immediate(/right/i),
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -327,8 +334,8 @@ module.exports.rules = {
 
   ////////////////////////////////////////////////////////////////////////////
 
-  super: _ => choice("super", "cmd", "command", "⌘"),
-  super_: _ => immediate("super", "cmd", "command", "⌘"),
+  super: _ => choice(...keys.super),
+  super_: _ => immediate(...keys.super),
 
   ////////////////////////////////////////////////////////////////////////////
 

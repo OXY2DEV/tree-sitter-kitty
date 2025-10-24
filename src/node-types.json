@@ -3699,11 +3699,6 @@
     "fields": {}
   },
   {
-    "type": "left",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "ligature_disabled",
     "named": true,
     "fields": {}
@@ -5795,11 +5790,6 @@
     }
   },
   {
-    "type": "right",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "scale_value",
     "named": true,
     "fields": {},
@@ -7093,10 +7083,6 @@
     "named": true
   },
   {
-    "type": "alt",
-    "named": false
-  },
-  {
     "type": "always",
     "named": false
   },
@@ -7365,10 +7351,6 @@
     "named": false
   },
   {
-    "type": "cmd",
-    "named": false
-  },
-  {
     "type": "color0",
     "named": false
   },
@@ -7461,10 +7443,6 @@
     "named": false
   },
   {
-    "type": "control",
-    "named": false
-  },
-  {
     "type": "copy_and_clear_or_interrupt",
     "named": false
   },
@@ -7506,10 +7484,6 @@
   },
   {
     "type": "crosshair",
-    "named": false
-  },
-  {
-    "type": "ctrl",
     "named": false
   },
   {
@@ -8326,6 +8300,10 @@
   },
   {
     "type": "left",
+    "named": true
+  },
+  {
+    "type": "left",
     "named": false
   },
   {
@@ -8885,14 +8863,6 @@
     "named": false
   },
   {
-    "type": "opt",
-    "named": false
-  },
-  {
-    "type": "option",
-    "named": false
-  },
-  {
     "type": "or",
     "named": false
   },
@@ -9158,6 +9128,10 @@
   },
   {
     "type": "right",
+    "named": true
+  },
+  {
+    "type": "right",
     "named": false
   },
   {
@@ -9325,10 +9299,6 @@
     "named": false
   },
   {
-    "type": "shift",
-    "named": false
-  },
-  {
     "type": "shorter",
     "named": false
   },
@@ -9462,10 +9432,6 @@
   },
   {
     "type": "style",
-    "named": false
-  },
-  {
-    "type": "super",
     "named": false
   },
   {
