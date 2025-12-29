@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-kitty",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "Tree-sitter grammar for kitty.conf files.",
   "repository": "https://github.com/tree-sitter/tree-sitter-kitty",
   "license": "MIT",

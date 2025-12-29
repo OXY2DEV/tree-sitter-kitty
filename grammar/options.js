@@ -28,6 +28,7 @@ module.exports.rules = {
     $.cursor_blink_interval,
     $.cursor_trail_decay,
     $.scrollback_pager,
+    $.scrollbar,
     $.mouse_hide_wait,
     $.url_prefixes,
     $.url_excluded_characters,
@@ -459,6 +460,21 @@ module.exports.rules = {
       "command",
       alias(/[^\n\r]+/, $.string)
     ),
+  ),
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  scrollbar: $ => seq(
+    alias("scrollbar", $.option_name),
+    field("value", alias($.scrollbar_kind, $.constant))
+  ),
+
+  scrollbar_kind: _ => choice(
+    "scrolled",
+    "hovered",
+    "scrolled-and-hovered",
+    "always",
+    "never",
   ),
 
   ////////////////////////////////////////////////////////////////////////////

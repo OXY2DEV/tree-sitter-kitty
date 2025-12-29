@@ -995,6 +995,10 @@
           "named": true
         },
         {
+          "type": "scrollbar",
+          "named": true
+        },
+        {
           "type": "shell_integration",
           "named": true
         },
@@ -5886,6 +5890,32 @@
     }
   },
   {
+    "type": "scrollbar",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constant",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "send_key",
     "named": true,
     "fields": {
@@ -8051,6 +8081,10 @@
     "named": false
   },
   {
+    "type": "hovered",
+    "named": false
+  },
+  {
     "type": "hsplit",
     "named": false
   },
@@ -9128,11 +9162,11 @@
   },
   {
     "type": "right",
-    "named": true
+    "named": false
   },
   {
     "type": "right",
-    "named": false
+    "named": true
   },
   {
     "type": "right_alt",
@@ -9244,6 +9278,14 @@
   },
   {
     "type": "scrollback_pager_history_size",
+    "named": false
+  },
+  {
+    "type": "scrolled",
+    "named": false
+  },
+  {
+    "type": "scrolled-and-hovered",
     "named": false
   },
   {

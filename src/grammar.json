@@ -8686,6 +8686,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "scrollbar"
+        },
+        {
+          "type": "SYMBOL",
           "name": "mouse_hide_wait"
         },
         {
@@ -10260,6 +10264,58 @@
             "named": true,
             "value": "string"
           }
+        }
+      ]
+    },
+    "scrollbar": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "scrollbar"
+          },
+          "named": true,
+          "value": "option_name"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "scrollbar_kind"
+            },
+            "named": true,
+            "value": "constant"
+          }
+        }
+      ]
+    },
+    "scrollbar_kind": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "scrolled"
+        },
+        {
+          "type": "STRING",
+          "value": "hovered"
+        },
+        {
+          "type": "STRING",
+          "value": "scrolled-and-hovered"
+        },
+        {
+          "type": "STRING",
+          "value": "always"
+        },
+        {
+          "type": "STRING",
+          "value": "never"
         }
       ]
     },
