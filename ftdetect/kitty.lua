@@ -2,7 +2,8 @@
 	Filetype detection for config files of `kitty`.
 	Language:          kitty
 	Maintainer:        MD. Mouinul Hossain Shawon
-	Last Change:       9 September, 2025
+	Last Change:       19 February, 2026
+	URL:               https://github.com/OXY2DEV/tree-sitter-kitty/blob/main/ftdetect/kitty.lua
 ]]
 
 
