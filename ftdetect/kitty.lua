@@ -33,6 +33,21 @@ vim.api.nvim_create_autocmd({
 			get_kitty_config_dir()
 		);
 
+		-- theme.conf files work OK
+		local unsupported = {
+			"open%-actions%.conf$",
+			"launch%-actions%.conf$",
+			"diff%.conf$",
+			"ssh%.conf$",
+			"choose%-files%.conf$",
+			"quick%-access%-terminal%.conf$",
+		}
+		for i = 1, #unsupported do
+			if string.match(path, unsupported[i]) then
+				return
+			end
+		end
+
 		if
 			string.match(path, kitty_config_path) or
 			string.match(path, "kitty%.conf$")
