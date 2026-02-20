@@ -64,6 +64,8 @@ module.exports.rules = {
     $.action_alias,
 
     $.pointer_option,
+
+    prec(-1000, $.custom_option),
    ),
 
   numeric_option: $ => seq(
@@ -1151,6 +1153,16 @@ module.exports.rules = {
     field(
       "action",
       alias(/[^\n\r]+/, $.string)
+    )
+  ),
+
+  custom_option: $ => seq(
+    alias(/\S+/, $.option_name),
+      optional(
+      field(
+        "action",
+        alias(/\S[^\n\r]+/, $.string)
+      )
     )
   ),
 };

@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-kitty
 HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-kitty
-VERSION := 3.3.0
+VERSION := 3.3.1
 
 # repository
 SRC_DIR := src

@@ -907,6 +907,10 @@
           "named": true
         },
         {
+          "type": "custom_option",
+          "named": true
+        },
+        {
           "type": "enabled_layouts",
           "named": true
         },
@@ -1287,6 +1291,32 @@
         "types": [
           {
             "type": "number",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "option_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "custom_option",
+    "named": true,
+    "fields": {
+      "action": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
             "named": true
           }
         ]
@@ -8334,11 +8364,11 @@
   },
   {
     "type": "left",
-    "named": true
+    "named": false
   },
   {
     "type": "left",
-    "named": false
+    "named": true
   },
   {
     "type": "left_alt",

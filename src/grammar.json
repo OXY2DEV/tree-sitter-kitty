@@ -8819,6 +8819,14 @@
         {
           "type": "SYMBOL",
           "name": "pointer_option"
+        },
+        {
+          "type": "PREC",
+          "value": -1000,
+          "content": {
+            "type": "SYMBOL",
+            "name": "custom_option"
+          }
         }
       ]
     },
@@ -12096,6 +12104,41 @@
             "named": true,
             "value": "string"
           }
+        }
+      ]
+    },
+    "custom_option": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "\\S+"
+          },
+          "named": true,
+          "value": "option_name"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "action",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "\\S[^\\n\\r]+"
+                },
+                "named": true,
+                "value": "string"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
