@@ -12114,7 +12114,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "\\S+"
+            "value": "[^\\s#]\\S+"
           },
           "named": true,
           "value": "option_name"

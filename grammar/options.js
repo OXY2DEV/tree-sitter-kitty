@@ -1157,7 +1157,7 @@ module.exports.rules = {
   ),
 
   custom_option: $ => seq(
-    alias(/\S+/, $.option_name),
+    alias(/[^\s#]\S+/, $.option_name),
       optional(
       field(
         "action",
