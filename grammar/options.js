@@ -633,28 +633,28 @@ module.exports.rules = {
   ),
 
   layout: _ => choice(
-    "Fat",
-    "Grid",
-    "Horizontal",
-    "Splits",
-    "Stack",
-    "Tall",
-    "Vertical",
+    /Fat/i,
+    /Grid/i,
+    /Horizontal/i,
+    /Splits/i,
+    /Stack/i,
+    /Tall/i,
+    /Vertical/i,
 
-    "all",
+    /all/i,
     "*"
   ),
 
   layout_: _ => immediate(
-    "Fat",
-    "Grid",
-    "Horizontal",
-    "Splits",
-    "Stack",
-    "Tall",
-    "Vertical",
+    /Fat/i,
+    /Grid/i,
+    /Horizontal/i,
+    /Splits/i,
+    /Stack/i,
+    /Tall/i,
+    /Vertical/i,
 
-    "all",
+    /all/i,
     "*"
   ),
 

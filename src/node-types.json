@@ -7055,34 +7055,6 @@
     "named": false
   },
   {
-    "type": "Fat",
-    "named": false
-  },
-  {
-    "type": "Grid",
-    "named": false
-  },
-  {
-    "type": "Horizontal",
-    "named": false
-  },
-  {
-    "type": "Splits",
-    "named": false
-  },
-  {
-    "type": "Stack",
-    "named": false
-  },
-  {
-    "type": "Tall",
-    "named": false
-  },
-  {
-    "type": "Vertical",
-    "named": false
-  },
-  {
     "type": "^",
     "named": false
   },
