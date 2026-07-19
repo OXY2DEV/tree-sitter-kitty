@@ -624,7 +624,7 @@ module.exports.rules = {
   layout_list: $ => seq(
     $.layout,
 
-    optional(
+    repeat(
       seq(
         token.immediate(","),
         alias($.layout_, $.layout)
